@@ -1,0 +1,17 @@
+\begin{table}[h] %voc table result
+	\centering
+		\begin{tabular}{*{4}{c}}
+			\toprule
+	 		Method & Pixel Acc. & Mean Acc. & Mean Iu.\\
+			\midrule
+			Liu等人\cite{liu2011sift}  & 76.7 & - & -\\
+		Tighe等人\cite{tighe2013finding}  & 78.6 & 39.2 & -\\
+			FCN-16s\cite{long2015fully} & 85.2 & \textbf{51.7} & 39.5\\
+			Deeplab-LargeFOV\cite{chen14semantic} & 85.6 & 51.2 & 39.7\\
+			\midrule
+			Grid-LSTM5 & \textbf{86.2} & 51.0 & \textbf{41.2}\\
+			\bottomrule
+		\end{tabular}
+		\caption{典型的实验对比表格}		
+		\label{tab:siftflow}
+\end{table}

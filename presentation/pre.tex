@@ -1,0 +1,89 @@
+\documentclass[UTF8, xcolor=table]{beamer}
+\usepackage[BoldFont,SlantFont]{xeCJK}
+\setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{AdobeSongStd-Light}
+% \setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{SimSum} %Windows先编译使用这个字体
+
+\usepackage{latexsym,amssymb,amsmath,amsbsy,amsopn,amstext,xcolor,multicol}
+\usepackage{graphicx,wrapfig,fancybox}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{thubeamer}
+\usepackage[backend=bibtex,sorting=none]{biblatex} % [参考文献格式](https://www.sharelatex.com/blog/2013/07/31/getting-started-with-biblatex.html) %mac IEEE not found
+\usepackage{array}
+\usepackage{bm}
+\usepackage{caption}
+\RequirePackage[font=footnotesize]{subcaption}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{animate}
+
+\defbibheading{bibliography}[\bibname]{} %avoid printbibliography 自动生成目录
+\addbibresource{../main.bib}
+\setbeamertemplate{bibliography item}[text] 
+
+\usepackage{boxedminipage} %for: bvh border
+\def\fourgraphicswidth{0.35} %0.3\textwidth
+
+\usepackage{algorithm} %%format of the algorithm
+\usepackage{algpseudocode}
+\floatname{algorithm}{算法}
+\renewcommand{\algorithmicrequire}{\textbf{输入:}} % Use Input in the format of Algorithm
+\renewcommand{\algorithmicensure}{\textbf{输出:}} % UseOutput in the format of Algorithm
+\algrenewcommand{\algorithmiccomment}[1]{ $//$ #1}
+
+\usepackage{listings}
+\renewcommand\lstlistingname{代码}
+\renewcommand\lstlistlistingname{代码}
+
+\lstset{framexleftmargin=1.4em,
+        xleftmargin=1.8em,
+        basicstyle=\ttfamily\small,
+        %frame=shadowbox, numberstyle=\tiny, breaklines=true,
+        frame=single,
+        numberstyle=\tiny, breaklines=true,
+        keywordstyle=\color{blue!70}\bfseries,
+        %commentstyle=\color{red!50!green!50!blue!50},
+        rulesepcolor=\color{red!20!green!20!blue!20},
+        numbers=none,fontadjust=true}
+\lstdefinelanguage{shader}{morekeywords={uniform, layout, uniform, vec2, vec3, vec4, in, out, gl_Position, dot, flat, int ,float, gl_VertexID, xyz, w, x, y, z, location, version, sampler2DRect, bgr, gl_FragData, texture2DRect, gl_TexCoord,for,xy},morecomment=[l]{//}}
+
+\begin{document}
+
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{caption}{size=\scriptsize}
+\setbeamertemplate{caption}[numbered]
+\setbeamerfont{subsection in toc}{size=\footnotesize}
+\renewcommand*{\bibfont}{\footnotesize}
+
+\graphicspath{{../}}
+
+\title{融合长短记忆神经网络与卷积特征学习的图像语义分割}
+\author[陈冠英]{}%{(申请中山大学工学学士学位论文答辩报告)\\ \vskip 20pt 学~~~~~~生：陈~冠~英}
+\institute[中山大学~电子信息与工程学院~\&~自动化]{}%{\small \vskip 38pt 电子信息与工程学院~自动化}
+\date{} %{\small \vskip -17pt二〇一六年五月}
+
+%% make title %%
+\frame{
+	\titlepage
+	\vspace{-23mm}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\textwidth]{image/illustration/networkstructure.pdf}
+	\end{figure}
+}
+
+\frame {
+	\frametitle{目录}
+	%\begin{multicols}{2}
+	\tableofcontents[sections={<1-7>}]
+}
+
+\include{chap01}
+\include{chap02}
+\include{chap03}
+\include{chap04}
+\include{chap05}
+\include{chap06}
+
+\end{document}

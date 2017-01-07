@@ -1,0 +1,99 @@
+\chapter{使用的例子}
+\label{cha:example}
+\section{图像的插入}
+\subsection{镶嵌在文中的图像}
+\label{sec:Images}
+\begin{wrapfigure}{r}{0.5\linewidth}
+	\centering
+	\includegraphics[width=0.5\textwidth]{image/result/confusion.pdf}
+	\caption{镶嵌在文中的图像}
+	\label{fig:confusion}
+\end{wrapfigure}
+论文主体是毕业论文的主要部分，必须言之成理，论据可靠，严格遵循本学科国际通行的学术规范。在写作上要注意结构合理、层次分明、重点突出，章节标题、公式图表符号必须规范统一。论文主体的内容根据不同学科有不同的特点，一般应包括以下几个方面： （1）毕业论文（设计）总体方案或选题的论证； （2）毕业论文（设计）各部分的设计实现，包括实验数据的获取、数据可行性及有效性的处理与分析、各部分的设计计算等； （3）对研究内容及成果的客观阐述，包括理论依据、创新见解、创造性成果及其改进与实际应用价值等； （4）论文主体的所有数据必须真实可靠，凡引用他人观点、方案、资料、数据等，无论曾否发表，无论是纸质或电子版，均应详加注释。自然科学论文应推理正确、结论清晰；人文和社会学科的论文应把握论点正确、论证充分、论据可靠，恰当运用系统分析和比较研究的方法进行模型或方案设计，注重实证研究和案例分析，根据分析结果提出建议和改进措施等。
+\subsection{单张图像的插入}
+\input{figure/chap03_hole}
+
+\subsection{多张图像的并排插入}
+\label{sub:多张图像的并排插入}
+\input{figure/chap01_example}
+\input{figure/chap04_improve.tex}
+
+\subsection{两列图像的插入}
+\label{sec:complex}
+\input{figure/chap04_voc12_comparison}
+
+\clearpage
+
+\section{表格的插入}
+\label{sec:tables}
+\input{table/chap04_siftflow_result}
+\input{table/chap04_voc_val}
+
+\section{公式}
+\label{sec:formula}
+没有编号的公式
+\begin{align*}
+\begin{split}
+	\label{eq:feedforward}
+	\mybold{z}^{(l)} & = \mybold{W}^{(l)}\mybold{a}^{(l-1)} + \mybold{b}^{(l)} \\
+	\mybold{a}^{(l)} & = f(\mybold{z}^{(l)})
+\end{split}
+\end{align*}
+公式中含有中文
+\begin{align}
+	\begin{split}
+	\mbox{像素准确率} &= \sum_{i=1}^{n_{cl}}n_{ii} / \sum_{i=1}^{n_{cl}}t_i \\
+		\mbox{平均像素准确率} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}(n_{ii}/ t_i) \\
+	\mbox{Mean IU} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}\frac{n_{ii}}{t_i + \sum_j^{n_{cl}} n_{ji} - n_{ii}}
+	\end{split}
+\end{align}
+公式中含有矩阵
+\begin{equation}
+	\textbf{H} = \begin{bmatrix}
+		I*\mybold{x}_i \\ \textbf{h}
+	\end{bmatrix}
+\end{equation}
+每行后面都有编号的公式
+\begin{align}
+	\frac{\partial}{\partial W_{ij}^{(l)}} J(\mybold{W},\mybold{b};\mybold{x},y) &= \frac{\partial J(\mybold{W},\mybold{b};\mybold{x},y)}{\partial z_i^{(l+1)}}\cdot \frac{\partial z_i^{(l+1)}}{\partial W_{ij}^{(l)}} = \delta_i^{(l+1)}a_j^{(l)} \\
+	\frac{\partial}{\partial b_i^{(l)}} J(\mybold{W},\mybold{b};\mybold{x},y) &= \frac{\partial J(\mybold{W},\mybold{b};\mybold{x},y)}{\partial z_i^{(l+1)}}\cdot \frac{\partial z_i^{(l+1)}}{\partial b_i^{(l)}} = \delta_i^{(l+1)}
+\end{align}
+
+\section{算法流程图}
+\label{sec:algorithm}
+\begin{algorithm}[h]
+\KwIn{$m$个训练样本}
+\lFor{$l=1$ \emph{\KwTo} $n_l$}{
+初始化：$\Delta \mybold{W}^{(l)}=0$，$\Delta \mybold{b}^{(l)}=0$}
+\ForEach{训练样本}{
+	\lFor{$l=1$ \emph{\KwTo} $n_l-1$}{
+	前向传播：$\mybold{z}^{(l+1)}=\mybold{W}^la^l+\mybold{b}^l$,$\mybold{a}^{(l+1)}=f(\mybold{z}^{(l+1)})$}
+	输出误差计算：$\delta^{(n_l)} = \frac{\partial}{\partial \mybold{z}^{(n_l)}} J(\mybold{W},\mybold{b};\mybold{x},y)$\;
+	\lFor{$l=n_l-1$ \emph{\KwTo} $1$}{
+	后向传播：$\delta^{(l)} = \bigl((\mybold{W}^{(l)})^T \delta^{(l+1)}\bigr)f'(\mybold{z}^{(l)})$}
+	\ForAll{层l}{
+		计算梯度：$\nabla_{\mybold{W}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)=\delta^{(l+1)}(\mybold{a}^{(l)})^T$ \\
+		\hspace{60pt}$\nabla_{\mybold{b}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)=\delta^{(l+1)}$\;
+		累加梯度：$\Delta \mybold{W}^{(l)} \leftarrow \Delta \mybold{W}^{(l)} + \nabla_{\mybold{W}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)$; \\
+		\hspace{60pt}$\Delta \mybold{b}^{(l)} \leftarrow \Delta \mybold{b}^{(l)} + \nabla_{\mybold{b}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)$\;
+	}
+}
+\ForAll{层$l$}{
+	更新权重：$\mybold{W}^{(l)} \leftarrow \mybold{W}^{(l)} - \alpha \biggl[\frac 1m \Delta \mybold{W}^{(l)}]$ \\
+	\hspace{60pt} $\mybold{b}^{(l)} \leftarrow \mybold{b}^{(l)} - \alpha \biggl[\frac 1m \Delta \mybold{b}^{(l)}\biggr]$
+}
+\caption{梯度下降算法}
+\label{algo:sgd}
+\end{algorithm}
+
+\section{其他的一些用法}
+\label{sec:font}
+这是一个列表
+\begin{itemize}
+	\item 引用文献\cite{long2015fully}
+	\item 字体{\color{red}{变红}}，\textbf{粗体}
+	\item 索引前面的章节 \ref{sec:formula}、图像\ref{fig:complex}、表格\ref{tab:siftflow}
+	\item 加脚注\footnote{http://cs231n.github.io/transfer-learning/}
+\end{itemize}
+
+

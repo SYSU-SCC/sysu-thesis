@@ -1,0 +1,16 @@
+% ctex-xecjk-adobefonts.def: Adobe 的 xeCJK 字体设置，为 Adobe 的四套字体
+% vim:ft=tex
+
+\setCJKmainfont[BoldFont=FandolHei,ItalicFont=FandolKai]{FandolSong}
+\setCJKfallbackfamilyfont{\CJKrmdefault}{WenQuanYi Zen Hei}
+\setCJKfamilyfont{zhsong}{FandolSong}
+\setCJKfamilyfont{zhhei}{FandolHei}
+\setCJKfamilyfont{zhfs}{FandolFang}
+\setCJKfamilyfont{zhkai}{FandolKai}
+\setCJKfamilyfont{zhback}{WenQuanYi Zen Hei}
+\newcommand*{\songti}{\CJKfamily{zhsong}}
+\newcommand*{\heiti}{\CJKfamily{zhhei}}
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}
+\newcommand*{\fangsong}{\CJKfamily{zhfs}}
+
+\endinput

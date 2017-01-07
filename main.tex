@@ -1,0 +1,27 @@
+﻿\documentclass{sysuthesis}
+
+\input{docs/cover} % 封面
+
+\begin{document}
+\frontmatter  %诚信声明，摘要，目录
+	\maketitle
+	\makedisclaim
+	\makeabstract
+	\tableofcontents
+	\makelistoffiguretable
+
+\mainmatter %主体
+	\include{docs/chap01} % Introduction
+	\include{docs/chap02} % 
+	\include{docs/chap03}
+    \include{docs/chap04}
+	\include{docs/chap05}
+
+\backmatter %参考文献和致谢
+	\bibliographystyle{ieeetr} 
+	%\bibliographystyle{sysuthesis} 如果不想使用IEEE格式， 可以使用这个格式
+	{\fontsize{10}{8}\rmfamily\bibliography{main}} %假定bib文件为main.bib
+	\include{docs/ack}
+\appendix %附录
+	\include{docs/appendix1}
+\end{document}

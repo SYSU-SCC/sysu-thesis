@@ -1,0 +1,67 @@
+%This version is modified by [tanglei](http://www.tanglei.name)
+%The origin is from http://far.tooold.cn/post/latex/beamertsinghua
+\mode<presentation>
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+%\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+\useoutertheme[footline=authorinstitutetitle]{miniframes}
+\makeatletter % [add curpage/total page at the bottom](http://tex.stackexchange.com/questions/100838/beamer-dresden-theme-miniframes-appeareance-and-frame-number-insertion)
+\newcommand{\frameofframes}{/}
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
+\setbeamertemplate{footline} 
+  {%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+      \leavevmode{\usebeamerfont{author in head/foot}\insertshortauthor}%
+      \hfill%
+      {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      {\usebeamerfont{title in head/foot}\insertshorttitle}%
+      \hfill%
+      {\usebeamerfont{frame number}\usebeamercolor[fg]{frame number}\insertframenumber~\frameofframes~\inserttotalframenumber}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+    \end{beamercolorbox}
+  }
+\makeatother
+
+\useinnertheme{rectangles}
+\usecolortheme{whale}
+\usecolortheme{orchid}
+
+
+\definecolor{sysu}{rgb}{0.09, 0.45, 0.27}
+
+\setbeamercolor{frametitle}{bg=sysu,fg=white}
+\setbeamercolor{title}{fg=white,bg=sysu}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamertemplate{navigation symbols}{}
+
+%% try
+\setbeamercolor{block title}{bg=sysu}
+\setbeamercolor{block title example}{use={normal text,example text},fg=example text.fg!75!normal text.fg,bg=sysu text.bg!75!black}
+\setbeamercolor{fine separation line}{}
+\setbeamercolor{item projected}{fg=black}
+\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{section in sidebar}{fg=brown}
+\setbeamercolor{section in sidebar shaded}{fg= grey}
+\setbeamercolor{separation line}{}
+\setbeamercolor{sidebar}{bg=sysu}
+\setbeamercolor{sidebar}{parent=palette primary}
+\setbeamercolor{structure}{fg=sysu}
+\setbeamercolor{subsection in sidebar}{fg=brown}
+\setbeamercolor{subsection in sidebar shaded}{fg=grey}
+
+\mode
+<all>
