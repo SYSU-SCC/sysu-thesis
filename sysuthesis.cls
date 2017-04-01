@@ -297,8 +297,8 @@
 	\setcounter{section}{0}
 	\gdef\@chapapp{\appendixname}
 	\gdef\thechapter{\@Alph\c@chapter}
-	\gdef\CTEX@prechapter{\CTEX@appendixname}
-	\gdef\CTEX@thechapter{\CTEX@appendixnumber}
+  \gdef\CTEX@prechapter{\CTEX@preappendix}
+	\gdef\CTEX@thechapter{\CTEX@appendix@number}
 	\gdef\CTEX@postchapter{}
 	\CTEXsetup[format={\centering}]{chapter}
 	\CTEXsetup[nameformat={\zihao{-2}\heiti}]{chapter}
