@@ -18,7 +18,8 @@
  - 下载并安装[Adobe Song Std Fonts](http://download.csdn.net/detail/wpc0000/6762849)字体,因为Ubuntu自身没有合适的中文字体
   ```
   #先解压文件，然后使用终端进入解压后的路径,根据下面命令将字体拷到系统字体路径
-  sudo mkdir /usr/share/fonts/texfonts/ sudo cp *.otf /usr/share/fonts/texfonts/
+  sudo mkdir /usr/share/fonts/texfonts/ 
+  sudo cp *.otf /usr/share/fonts/texfonts/
   sudo cd /usr/share/fonts/texfonts/
   sudo mkfontscale
   sudo mkfontdir
