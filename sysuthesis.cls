@@ -160,13 +160,13 @@
 			\zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}}\\
 			\vspace{2\baselineskip}
 
+      \@title
+      \vspace{2\baselineskip}
+
 			{\fontsize{15}{10}\selectfont
 			\begin{tabular}{l}
-				\makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\@ctitle\hfill}}\\\vspace{1pt}\\
-				\hspace{2.7cm} \underline{\makebox[8.3cm]{\mbox{}\hfill}}\\
-				\vspace{8pt} \\
-				院\hspace{0.5\ccwd}系\\ 
-				\makebox[4.8cm]{School (Department):\hfill} \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}}\\
+				院\hspace{6\ccwd}系: \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}} \\ 
+				\makebox[4.8cm]{School (Department)\hfill} \\
 				\vspace{8pt} \\
 				专\hspace{0.5\ccwd}业\\
 				\makebox[1.7cm]{Major:\hfill} \underline{\makebox[9.3cm]{\hfill\@cmajor\hspace{3.3cm}}}\\
