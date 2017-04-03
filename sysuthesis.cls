@@ -150,10 +150,10 @@
 \renewcommand{\theendnote}{\fnsymbol{endnote}}
 
 %
-\renewcommand\maketitle{
+\renewcommand\maketitle {
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{image/logo.png}\\
+			\includegraphics[width=10cm]{image/logo.png} \\
 			\songti
 			\vspace{\baselineskip}
 			\zihao{-0}\textbf{本科生毕业论文（设计）} \\ 
@@ -165,20 +165,24 @@
 
 			{\fontsize{15}{10}\selectfont
 			\begin{tabular}{l}
-				院\hspace{6\ccwd}系: \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}} \\ 
-				\makebox[4.8cm]{School (Department)\hfill} \\
-				\vspace{8pt} \\
-				专\hspace{0.5\ccwd}业\\
-				\makebox[1.7cm]{Major:\hfill} \underline{\makebox[9.3cm]{\hfill\@cmajor\hspace{3.3cm}}}\\
-				\vspace{8pt} \\
-				学生姓名 \\
-				\makebox[3.4cm]{Student Name:\hfill} \underline{\makebox[7.6cm]{\hfill\@cauthor\hspace{3cm}}}\\
-				\vspace{8pt} \\
-				学\hspace{0.5\ccwd}号 \\
-				\makebox[3cm]{Student No.:\hfill} \underline{\makebox[8cm]{\hfill\@studentid\hspace{3cm}}}\\
-				\vspace{8pt} \\
-				指导教师（职 称） \\ 
-				\makebox[4cm]{Supervisor (Title):\hfill} \underline{\makebox[7cm]{\hfill\@cmentor\hspace{2.7cm}}}\\
+        \makebox[4.8cm]{院\hspace{2\ccwd}系:} \underline{\makebox[15em]{\hfill\@cschool\hfill}} \\
+        \makebox[4.8cm]{School (Department)} \\
+        \vspace{8pt} \\
+
+        \makebox[4.8cm]{专\hspace{2\ccwd}业:} \underline{\makebox[15em]{\hfill\@cmajor\hfill}} \\
+        \makebox[4.8cm]{Major} \\
+        \vspace{8pt} \\
+
+        \makebox[4.8cm]{学生姓名:} \underline{\makebox[15em]{\hfill\@cauthor\hfill}} \\
+        \makebox[4.8cm]{Student Name} \\
+        \vspace{8pt} \\
+
+        \makebox[4.8cm]{学\hspace{2\ccwd}号:} \underline{\makebox[15em]{\hfill\@studentid\hfill}} \\
+        \makebox[4.8cm]{Student No.} \\
+        \vspace{8pt} \\
+
+        \makebox[4.8cm]{指导教师(职 称):} \underline{\makebox[15em]{\hfill\@cmentor\hfill}} \\
+        \makebox[4.8cm]{Supervisor (Title)} \\
 			\end{tabular}
 			}
 			\vfill
