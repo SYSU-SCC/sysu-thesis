@@ -4,8 +4,10 @@
 	[2017/01/05 v0.1 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
+
 \LoadClass[adobefonts,a4paper,openany,cs4size,hyperref]{ctexbook}
 %\LoadClass[winfonts,a4paper,openany,cs4size,hyperref]{ctexbook}%在windows编译且希望使用微软的字体时请把adobefonts改为winfonts
+
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{booktabs}
@@ -31,7 +33,10 @@
 \RequirePackage{xcolor}
 \RequirePackage{array}
 
-\AtBeginDocument{ % we setup hyperreferrence here because we get ctitle and cauthor util the begin of document
+% 设定时间为中文日期
+\ctexset{today=small}
+
+\AtBeginDocument{ % we setup hyperreferrence here because we get ctitle and cauthmr util the begin of document
 	\hypersetup{
 	colorlinks=true, citecolor=green,
 	filecolor=black, linkcolor=black,
@@ -188,8 +193,8 @@
 			\vfill
 			\zihao{-3}
 			{\centering 
-				时间： {2016} 年\hspace{0.3cm} {4} 月 \hspace{0.3cm}{24} 日 \\
-				Date: {4} Month \hspace{0.3cm}{24} Day \hspace{0.3cm} {2016} Year}
+        时间: \today    % 使用最后一次编译的日期, 实现日期的自动化
+      }
 		\end{center}
 	\end{titlepage}
 }
