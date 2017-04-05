@@ -4,8 +4,10 @@
 	[2017/01/05 v0.1 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
+
 \LoadClass[adobefonts,a4paper,openany,cs4size,hyperref]{ctexbook}
 %\LoadClass[winfonts,a4paper,openany,cs4size,hyperref]{ctexbook}%在windows编译且希望使用微软的字体时请把adobefonts改为winfonts
+
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{booktabs}
@@ -31,7 +33,10 @@
 \RequirePackage{xcolor}
 \RequirePackage{array}
 
-\AtBeginDocument{ % we setup hyperreferrence here because we get ctitle and cauthor util the begin of document
+% 设定时间为中文日期
+\ctexset{today=small}
+
+\AtBeginDocument{ % we setup hyperreferrence here because we get ctitle and cauthmr util the begin of document
 	\hypersetup{
 	colorlinks=true, citecolor=green,
 	filecolor=black, linkcolor=black,
@@ -150,42 +155,46 @@
 \renewcommand{\theendnote}{\fnsymbol{endnote}}
 
 %
-\renewcommand\maketitle{
+\renewcommand\maketitle {
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{image/logo.png}\\
+			\includegraphics[width=10cm]{image/logo.png} \\
 			\songti
 			\vspace{\baselineskip}
 			\zihao{-0}\textbf{本科生毕业论文（设计）} \\ 
 			\zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}}\\
 			\vspace{2\baselineskip}
 
+      \@title
+      \vspace{2\baselineskip}
+
 			{\fontsize{15}{10}\selectfont
 			\begin{tabular}{l}
-				\makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\@ctitle\hfill}}\\\vspace{1pt}\\
-				\hspace{2.7cm} \underline{\makebox[8.3cm]{\mbox{}\hfill}}\\
-				\vspace{8pt} \\
-				院\hspace{0.5\ccwd}系\\ 
-				\makebox[4.8cm]{School (Department):\hfill} \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}}\\
-				\vspace{8pt} \\
-				专\hspace{0.5\ccwd}业\\
-				\makebox[1.7cm]{Major:\hfill} \underline{\makebox[9.3cm]{\hfill\@cmajor\hspace{3.3cm}}}\\
-				\vspace{8pt} \\
-				学生姓名 \\
-				\makebox[3.4cm]{Student Name:\hfill} \underline{\makebox[7.6cm]{\hfill\@cauthor\hspace{3cm}}}\\
-				\vspace{8pt} \\
-				学\hspace{0.5\ccwd}号 \\
-				\makebox[3cm]{Student No.:\hfill} \underline{\makebox[8cm]{\hfill\@studentid\hspace{3cm}}}\\
-				\vspace{8pt} \\
-				指导教师（职 称） \\ 
-				\makebox[4cm]{Supervisor (Title):\hfill} \underline{\makebox[7cm]{\hfill\@cmentor\hspace{2.7cm}}}\\
+        \makebox[4.8cm]{院\hspace{2\ccwd}系:} \underline{\makebox[15em]{\hfill\@cschool\hfill}} \\
+        \makebox[4.8cm]{School (Department)} \\
+        \vspace{8pt} \\
+
+        \makebox[4.8cm]{专\hspace{2\ccwd}业:} \underline{\makebox[15em]{\hfill\@cmajor\hfill}} \\
+        \makebox[4.8cm]{Major} \\
+        \vspace{8pt} \\
+
+        \makebox[4.8cm]{学生姓名:} \underline{\makebox[15em]{\hfill\@cauthor\hfill}} \\
+        \makebox[4.8cm]{Student Name} \\
+        \vspace{8pt} \\
+
+        \makebox[4.8cm]{学\hspace{2\ccwd}号:} \underline{\makebox[15em]{\hfill\@studentid\hfill}} \\
+        \makebox[4.8cm]{Student No.} \\
+        \vspace{8pt} \\
+
+        \makebox[4.8cm]{指导教师(职 称):} \underline{\makebox[15em]{\hfill\@cmentor\hfill}} \\
+        \makebox[4.8cm]{Supervisor (Title)} \\
 			\end{tabular}
 			}
 			\vfill
 			\zihao{-3}
 			{\centering 
-				时间： {2016} 年\hspace{0.3cm} {4} 月 \hspace{0.3cm}{24} 日 \\
-				Date: {4} Month \hspace{0.3cm}{24} Day \hspace{0.3cm} {2016} Year}
+        时间: \today    % 使用最后一次编译的日期, 实现日期的自动化
+      }
 		\end{center}
 	\end{titlepage}
 }
