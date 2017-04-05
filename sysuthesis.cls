@@ -33,6 +33,15 @@
 \RequirePackage{xcolor}
 \RequirePackage{array}
 
+% Insert a TRUE blank page which has no header or footer
+\let\origdoublepage\cleardoublepage
+\newcommand{\clearemptydoublepage}{
+    \clearpage{
+        \pagestyle{empty}
+        \origdoublepage
+    }
+}
+
 % 设定时间为中文日期
 \ctexset{today=small}
 
@@ -61,7 +70,7 @@
 \fancypagestyle{plain}{
 		\fancyhf{}
 		\fancyfoot[C]{\zihao{-5}\thepage}
-		\fancyhead[L]{\zihao{-5}\@title}
+		\fancyhead[L]{\zihao{-5}\@ctitle}
 		\fancyhead[R]{\zihao{-5}\leftmark}
 }
 \pagestyle{plain}
