@@ -7,7 +7,8 @@
 基于以上理由, 本项目维护小组成立, 并**_诚邀各届校友参与开发维护, 为中大莘莘学子编写毕业论文提供方便_**
 
 ## 使用指南
-请移步到[项目wiki](https://gitlab.com/sysu-gitlab/latex-group/thesis/wikis/home)
+请移步到[项目wiki](https://gitlab.com/sysu-gitlab/latex-group/thesis/wikis/home)  
+_注意:　最新代码在dev分支上, 获取代码前请先确认分支._
 
 ## 致谢
 1. 感谢[@chunkwong](https://github.com/chungkwong)师兄在Github上放出了中大第一个[非官方的本科论文LaTex模板](https://github.com/chungkwong/sysu_thesis)
@@ -18,7 +19,7 @@
 
 ## 错误反馈以及改进
 1. 同学们如果在编译或者使用过程中遇到了一些问题，请参照[这里](ihttps://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)的步骤尝试解决问题。如果还是没法解决，请在这个代码仓库的Issues里汇报错误。
-1. 如果您想参与项目的维护，我们强烈建议您发起访问请求(Access request)到本项目组，我们**_非常欢迎校友的加入_**  
+1. 如果您想参与项目的维护，我们强烈建议您发起访问请求(Access request)到本项目，即可成为本项目的开发人员! 我们**_非常欢迎校友的加入_**  
     或者，克隆到您的gitlab仓库中，修改完成后给本项目提交`Merge Request`
 
 ## 声明
