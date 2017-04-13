@@ -30,3 +30,4 @@ sysuthesis.tar.gz
 
 *.swp
 
+node_modules/
