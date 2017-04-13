@@ -19,10 +19,12 @@
 	\include{docs/chap05}
 
 \backmatter %参考文献和致谢
-	\bibliographystyle{ieeetr} 
-	%\bibliographystyle{sysuthesis} 如果不想使用IEEE格式， 可以使用这个格式
+  %\bibliographystyle{ieeetr}
+  \bibliographystyle{gbt7714-2005}  % 国标文后参考文献著录规则
+  %\bibliographystyle{sysuthesis}   % 历史遗留模板
 	{\fontsize{10}{8}\rmfamily\bibliography{main}} %假定bib文件为main.bib
 	\include{docs/ack}
 \appendix %附录
 	\include{docs/appendix1}
 \end{document}
+
