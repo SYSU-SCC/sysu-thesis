@@ -1,30 +1,48 @@
 ﻿\documentclass{sysuthesis}
 
-\input{docs/cover} % 封面
+\input{docs/cover} % 论文相关信息
 
 \begin{document}
-\frontmatter  %诚信声明，摘要，目录
-	\maketitle
-        \clearemptydoublepage % Insert a blank page
-	\makedisclaim
-	\makeabstract
-	\tableofcontents
-	\makelistoffiguretable
+  % 论文前置部分
+  \frontmatter
+    \pagenumbering{Roman}
+    \maketitle  % 封面
+    \clearemptydoublepage   % 空白页
+    % 开题报告
+    % 过程检查记录表
+    % 答辩情况等级表
+    \makedisclaim   % 学术诚信声明
+    \makeabstract   % 中英文摘要
+    \tableofcontents    % 目录
+    \makelistoffiguretable
 
-\mainmatter %主体
-	\include{docs/chap01} % Introduction
-	\include{docs/chap02} % 
-	\include{docs/chap03}
+  % 论文主体部分
+  \mainmatter
+    % 引言
+
+    % 正文
+    \include{docs/chap01}
+    \include{docs/chap02}
+    \include{docs/chap03}
     \include{docs/chap04}
-	\include{docs/chap05}
+    \include{docs/chap05}
 
-\backmatter %参考文献和致谢
-  %\bibliographystyle{ieeetr}
-  \bibliographystyle{gbt7714-2005}  % 国标文后参考文献著录规则
-  %\bibliographystyle{sysuthesis}   % 历史遗留模板
-	{\fontsize{10}{8}\rmfamily\bibliography{main}} %假定bib文件为main.bib
-	\include{docs/ack}
-\appendix %附录
-	\include{docs/appendix1}
+    % 结语
+
+  % 附录部分
+  \backmatter
+    % 参考文献. 因不需要纳入章节目录, 故放入附录部分
+    % 实际上参考文献是属于论文主体部分
+    % 引用样式
+    %\bibliographystyle{ieeetr}     % 国际标准样式
+    \bibliographystyle{gbt7714-2005}  % 国标文后参考文献著录规则
+    %\bibliographystyle{sysuthesis}   % 历史遗留模板
+    {\fontsize{10}{8}\rmfamily\bibliography{main}}  % 引用文献列表
+
+    \include{docs/ack}  % 致谢
+
+    % 附录
+    \appendix
+    \include{docs/appendix1}
 \end{document}
 
