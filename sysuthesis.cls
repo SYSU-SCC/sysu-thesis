@@ -167,7 +167,7 @@
 \renewcommand\maketitle {
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{image/logo.png} \\
+			\includegraphics[width=10cm]{image/SYSULogo} \\
 			\songti
 			\vspace{\baselineskip}
 			\zihao{-0}\textbf{本科生毕业论文（设计）} \\ 
