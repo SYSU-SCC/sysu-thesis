@@ -209,16 +209,27 @@
 }
 
 \newcommand\makedisclaim{
-	\CTEXsetup[titleformat={\zihao{-2}\fangsong\bfseries}]{chapter}
-	\CTEXsetup[beforeskip={10pt},afterskip={40pt}]{chapter}
-	\input{docs/disclaim}
-	\thispagestyle{empty}
-	\clearpage
- }
+  \ctexset {
+    chapter = {
+      titleformat = {\zihao{-2}\fangsong\bfseries},
+      beforeskip = {10pt},
+      afterskip = {40pt}
+    }
+  }
+  \input{docs/disclaim}
+  \thispagestyle{empty}
+  \clearpage
+}
 
 \newcommand\makecabstract{
-	\CTEXsetup[titleformat={\zihao{8}\songti\bfseries}]{chapter}
-	\CTEXsetup[beforeskip={1pt},afterskip={1pt}]{chapter}%-3.5ex plus -1ex minus -.2ex
+  \ctexset{
+    chapter = {
+      titleformat = {\zihao{8}\songti\bfseries},
+      beforeskip = {1pt},
+      afterskip = {40pt}
+    }
+  }
+
 	\chapter[摘\hspace{\ccwd}要]{} 
 	\begin{flushleft}
 		\zihao{-4}
@@ -239,10 +250,15 @@
 }
 
 \newcommand\makeeabstract{
-	\CTEXsetup[titleformat={\zihao{8}\bfseries}]{chapter}
-	\CTEXsetup[beforeskip={1pt},afterskip={1pt}]{chapter}%-3.5ex plus -1ex minus -.2ex
+  \ctexset{
+    chapter = {
+      titleformat = {\zihao{8}\songti\bfseries},
+      beforeskip = {1pt},
+      afterskip = {1pt}
+    }
+  }
+
 	\chapter[ABSTRACT]{} 
-	
 	\begin{flushleft}
 		\zihao{-4}
 		\makebox[2.6cm]{\textbf{Title:}\hfill} \@etitle\\
@@ -285,17 +301,26 @@
 		\fancyhead[R]{\zihao{-5} 第\thechapter 章\mbox{  } \leftmark}
 	}
 	\pagestyle{plain}
-	\CTEXsetup[beforeskip={10pt},afterskip={20pt}]{chapter}
-	\CTEXsetup[nameformat={\zihao{-2}\heiti}]{chapter}
-	\CTEXsetup[titleformat={\zihao{-2}\heiti}]{chapter}
-	\CTEXsetup[format={}]{section}
-	\CTEXsetup[nameformat={\zihao{3}\heiti}]{section}
-	\CTEXsetup[titleformat={\zihao{3}\heiti}]{section}
-	\CTEXsetup[format={}]{subsection}
-	\CTEXsetup[nameformat={\zihao{4}\heiti}]{subsection}
-	\CTEXsetup[titleformat={\zihao{4}\heiti}]{subsection}
+  \ctexset {
+    chapter = {
+      beforeskip = {10pt},
+      afterskip = {20pt},
+      nameformat = {\zihao{-2}\heiti},
+      titleformat = {\zihao{-2}\heiti}
+    },
+    section = {
+      format = {},
+      nameformat = {\zihao{3}\heiti},
+      titleformat = {\zihao{3}\heiti}
+    },
+    subsection = {
+      format = {},
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti}
+    }
+  }
+
 	\zihao{-4}\songti \linespread{1.5}\selectfont
-	
 }
 
 \renewcommand\backmatter{
@@ -318,15 +343,23 @@
   \gdef\CTEX@prechapter{\CTEX@preappendix}
 	\gdef\CTEX@thechapter{\CTEX@appendix@number}
 	\gdef\CTEX@postchapter{}
-	\CTEXsetup[format={\centering}]{chapter}
-	\CTEXsetup[nameformat={\zihao{-2}\heiti}]{chapter}
-	\CTEXsetup[titleformat={\zihao{-2}\heiti}]{chapter}
-	\CTEXsetup[format={\centering}]{section}
-	\CTEXsetup[nameformat={\zihao{3}\heiti}]{section}
-	\CTEXsetup[titleformat={\zihao{3}\heiti}]{section}
-	\CTEXsetup[format={}]{subsection}
-	\CTEXsetup[nameformat={\zihao{4}\heiti}]{subsection}
-	\CTEXsetup[titleformat={\zihao{4}\heiti}]{subsection}
+  \ctexset {
+    chapter = {
+      format = {\centering},
+      nameformat = {\zihao{-2}\heiti},
+      titleformat = {\zihao{-2}\heiti},
+    },
+    section = {
+      format = {\centering},
+      nameformat = {\zihao{3}\heiti},
+      titleformat = {\zihao{3}\heiti}
+    },
+    subsection = {
+      format = {\centering},
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti}
+    }
+  }
 }
 
 \endinput
