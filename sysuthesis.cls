@@ -5,9 +5,14 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
-\LoadClass[adobefonts,a4paper,openany,cs4size,hyperref]{ctexbook}
-%\LoadClass[winfonts,a4paper,openany,cs4size,hyperref]{ctexbook}%在windows编译且希望使用微软的字体时请把adobefonts改为winfonts
+\LoadClass[
+  fontset=adobe,
+  a4paper,
+  openany,
+  zihao=-4,
+]{ctexbook}
 
+\RequirePackage{hyperref}
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{booktabs}
