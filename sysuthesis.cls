@@ -7,12 +7,16 @@
 
 \LoadClass[
   fontset=adobe,
+  %fontset=ubuntu,
+  %fontset=mac,
+  %fontset=windows,
   a4paper,
   openany,
-  zihao=-4,
+  zihao=-4
 ]{ctexbook}
 
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks=true]{hyperref}
+
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{booktabs}
