@@ -11,7 +11,7 @@
   %fontset=mac,
   %fontset=windows,
   a4paper,
-  openany,
+  openright,
   zihao=-4
 ]{ctexbook}
 
