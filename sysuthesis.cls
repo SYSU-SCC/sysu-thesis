@@ -7,6 +7,7 @@
 
 \LoadClass[
   fontset=adobe,
+  %fontset=fandol,  % texlive自带，可移植字体库，只有常用的6763个汉字
   %fontset=ubuntu,
   %fontset=mac,
   %fontset=windows,
@@ -196,7 +197,7 @@
       \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
       \vspace{2\baselineskip}
 
-      \@title
+      \zihao{3}\textbf{\@title}
       \vspace{2\baselineskip}
 
       {\fontsize{15}{10}\selectfont
