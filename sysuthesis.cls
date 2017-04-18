@@ -21,6 +21,10 @@
 \RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}  % hyperref必须在上两个包之后引入才能工作
 \RequirePackage{footnotebackref}
 
+% 配置英文字体
+\RequirePackage{fontspec}
+\setmainfont{Times New Roman}
+
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{booktabs}
@@ -240,66 +244,47 @@
   \clearpage
 }
 
+% 中文摘要、关键字标题：5号黑体并加方括号
+% 中文摘要、关键字内容：5号楷体
 \newcommand\makecabstract{
   \ctexset{
     chapter = {
-      titleformat = {\zihao{8}\songti\bfseries},
+      titleformat = {\zihao{4}\songti\bfseries},
       beforeskip = {1pt},
-      afterskip = {40pt}
+      afterskip = {20pt}
     }
   }
 
-  \chapter[摘\hspace{\ccwd}要]{} 
-  \begin{flushleft}
-    \zihao{-4}
-    \textbf{论文题目}：\mbox{ }\@ctitle \\
-    \textbf{专\hspace{2\ccwd}业}： \mbox{ }\@cmajor \\
-    \textbf{学生姓名}：\mbox{ }\@cauthor \\
-    \textbf{学\hspace{2\ccwd}号}：\mbox{ }\@studentid \\
-    \textbf{指导教师}：\mbox{ }\@cmentor \\
-  \end{flushleft}
-  
-  \begin{center}
-    \zihao{-2}\heiti\bfseries 摘\hspace{\ccwd}要
-  \end{center}
-  \zihao{-4}\linespread{1.5}\selectfont
+  \chapter{摘\hspace{\ccwd}要}
 
+  \zihao{5}\kaishu
+  %\paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
   \@cabstract
-  \paragraph{\textbf{关键词:}}\@ckeywords
+  \paragraph{\zihao{5}\heiti\textbf{[关键词]}}\@ckeywords
 }
 
+% 英文摘要、关键字标题：小四号新罗马体(Time New Roman)加粗并加方括号
+% 英文摘要、关键字内容：小四号新罗马体(Time New Roman)
 \newcommand\makeeabstract{
   \ctexset{
     chapter = {
-      titleformat = {\zihao{8}\songti\bfseries},
+      titleformat = {\zihao{4}\bfseries},
       beforeskip = {1pt},
-      afterskip = {1pt}
+      afterskip = {20pt}
     }
   }
 
-  \chapter[ABSTRACT]{} 
-  \begin{flushleft}
-    \zihao{-4}
-    \makebox[2.6cm]{\textbf{Title:}\hfill} \@etitle\\
-    \makebox[2.6cm]{\textbf{Major:}\hfill} \@emajor \\
-    \makebox[2.6cm]{\textbf{Name:}\hfill} \@eauthor\\
-    \makebox[2.6cm]{\textbf{Student ID:}\hfill} \@studentid \\
-    \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor 
-  \end{flushleft}
+  \chapter{ABSTRACT}
 
-  \begin{center}
-    \zihao{-2}\textbf{Abstract}
-  \end{center}
   \zihao{-4}
-
+  %\paragraph{\textbf{[Abstract]}}
   \@eabstract
-
-  \paragraph{\textbf{Keywords:}}\@ekeywords
+  \paragraph{\textbf{[Keywords]}}\@ekeywords
 }
 
 \newcommand\makeabstract{
-  \makecabstract
   \setcounter{page}{1}
+  \makecabstract
   \makeeabstract
   \thispagestyle{eAbstract}
   \cleardoublepage
