@@ -6,8 +6,8 @@
 \ProcessOptions\relax
 
 \LoadClass[
-  fontset=adobe,
-  %fontset=fandol,  % texlive自带，可移植字体库，只有常用的6763个汉字
+  %fontset=adobe,
+  fontset=fandol,  % texlive自带，可移植字体库，只有常用的6763个汉字
   %fontset=ubuntu,
   %fontset=mac,
   %fontset=windows,
@@ -250,7 +250,7 @@
 \newcommand\makecabstract{
   \ctexset{
     chapter = {
-      titleformat = {\zihao{4}\songti\bfseries},
+      titleformat = {\zihao{4}\heiti},
       beforeskip = {1pt},
       afterskip = {20pt}
     }
@@ -261,7 +261,7 @@
   \zihao{5}\kaishu
   %\paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
   \@cabstract
-  \paragraph{\zihao{5}\heiti\textbf{[关键词]}}\@ckeywords
+  \paragraph{\zihao{5}\heiti[关键词]}\@ckeywords
 }
 
 % 英文摘要、关键字标题：小四号新罗马体(Time New Roman)加粗并加方括号
