@@ -302,21 +302,17 @@
 \renewcommand\mainmatter{
   \@mainmattertrue
   \pagenumbering{arabic}
-  \fancypagestyle{plain}{
-    \fancyhead[R]{\zihao{-5} 第\thechapter 章\mbox{  } \leftmark}
-  }
-  \pagestyle{plain}
   \ctexset {
     chapter = {
       beforeskip = {10pt},
       afterskip = {20pt},
-      nameformat = {\zihao{-2}\heiti},
-      titleformat = {\zihao{-2}\heiti}
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti}
     },
     section = {
       format = {},
-      nameformat = {\zihao{3}\heiti},
-      titleformat = {\zihao{3}\heiti}
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti}
     },
     subsection = {
       format = {},
