@@ -15,7 +15,10 @@
   zihao=-4
 ]{ctexbook}
 
-\RequirePackage[hidelinks]{hyperref}
+% 配置超链接。
+\RequirePackage[bottom]{footmisc}
+\RequirePackage{setspace}
+\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}  % hyperref必须在上两个包之后引入才能工作
 
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
@@ -31,10 +34,8 @@
 \RequirePackage[section]{placeins}
 \RequirePackage[chinese, onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e}%不需要描述算法时把这行去掉
 \RequirePackage{enumitem}
-\RequirePackage[bottom]{footmisc}
 \RequirePackage{bbm}
 \RequirePackage{bm}
-\RequirePackage{setspace}
 \RequirePackage[notlof,notlot,nottoc,numbib]{tocbibind} %table of content 
 \RequirePackage{tocloft}
 \RequirePackage{wrapfig}
