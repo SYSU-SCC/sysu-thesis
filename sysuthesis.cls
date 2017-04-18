@@ -5,8 +5,17 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
-\LoadClass[adobefonts,a4paper,openany,cs4size,hyperref]{ctexbook}
-%\LoadClass[winfonts,a4paper,openany,cs4size,hyperref]{ctexbook}%在windows编译且希望使用微软的字体时请把adobefonts改为winfonts
+\LoadClass[
+  fontset=adobe,
+  %fontset=ubuntu,
+  %fontset=mac,
+  %fontset=windows,
+  a4paper,
+  openany,
+  zihao=-4
+]{ctexbook}
+
+\RequirePackage[hidelinks=true]{hyperref}
 
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
@@ -163,7 +172,9 @@
     \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩} \else\@ctrerr\fi}
 \renewcommand{\theendnote}{\fnsymbol{endnote}}
 
-%
+% 参考文献引用标记格式：右上角，带方括号
+\usepackage[square,super]{natbib}
+
 \renewcommand\maketitle {
 	\begin{titlepage}
 		\begin{center}
