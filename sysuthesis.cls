@@ -16,12 +16,6 @@
   zihao=-4
 ]{ctexbook}
 
-% 配置超链接。
-\RequirePackage[bottom]{footmisc}
-\RequirePackage{setspace}
-\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}  % hyperref必须在上两个包之后引入才能工作
-\RequirePackage{footnotebackref}
-
 % 配置英文字体
 \RequirePackage{fontspec}
 \setmainfont{Times New Roman}
@@ -79,7 +73,7 @@
 
 % list environment, 
 \setlist[enumerate]{nosep}
-\renewcommand\labelenumi{\theenumi)}
+\renewcommand\labelenumi{\theenumi}
 \setlist[itemize]{nosep}
 \setlist[description]{nosep}
 
@@ -298,7 +292,7 @@
 
 \newcommand\makelistoffiguretable{
   \clearpage
-  \listoffigures%插图目录（不需要则可以把这两行去掉）
+  \listoffigures
   \listoftables
   \thispagestyle{listoffiguretable}
   \clearpage
@@ -367,4 +361,11 @@
     }
   }
 }
+
+% 配置超链接。
+% hyperref一般要求是导言区最后一个宏包，才能正常工作
+\RequirePackage[bottom]{footmisc}
+\RequirePackage{setspace}
+\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}
+\RequirePackage{footnotebackref}
 
