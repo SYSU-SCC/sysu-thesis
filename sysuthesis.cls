@@ -6,20 +6,19 @@
 \ProcessOptions\relax
 
 \LoadClass[
-  fontset=adobe,
+  %fontset=adobe,
+  fontset=fandol,  % texlive自带，可移植字体库，只有常用的6763个汉字
   %fontset=ubuntu,
   %fontset=mac,
   %fontset=windows,
   a4paper,
-  openany,
+  openright,
   zihao=-4
 ]{ctexbook}
 
-% 配置超链接。
-\RequirePackage[bottom]{footmisc}
-\RequirePackage{setspace}
-\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}  % hyperref必须在上两个包之后引入才能工作
-\RequirePackage{footnotebackref}
+% 配置英文字体
+\RequirePackage{fontspec}
+\setmainfont{Times New Roman}
 
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
@@ -74,7 +73,7 @@
 
 % list environment, 
 \setlist[enumerate]{nosep}
-\renewcommand\labelenumi{\theenumi)}
+\renewcommand\labelenumi{\theenumi}
 \setlist[itemize]{nosep}
 \setlist[description]{nosep}
 
@@ -98,36 +97,41 @@
 \setlength\heavyrulewidth{0.2em}
 \captionsetup{font=small,format=hang}
 
-% table of content environtment setting, tocloft package
+
+% 目录设定，使用tocloft宏包
 \setcounter{secnumdepth}{2} % depth of toc, 2
 \setcounter{tocdepth}{1}
-\setlength{\cftbeforetoctitleskip}{30pt} %skip setting
-\setlength{\cftbeforelottitleskip}{30pt} 
-\setlength{\cftbeforeloftitleskip}{30pt}
-\setlength{\cftaftertoctitleskip}{30pt} 
-\setlength{\cftafterlottitleskip}{30pt}
-\setlength{\cftafterloftitleskip}{30pt}
-\setlength{\cftbeforechapskip}{20pt}
-\setlength{\cftparskip}{3pt}
-\renewcommand{\cfttoctitlefont}{\hfill\zihao{-2}\songti\bfseries} %title font setting 
-\renewcommand{\cftlottitlefont}{\hfill\zihao{-2}\songti\bfseries}
-\renewcommand{\cftloftitlefont}{\hfill\zihao{-2}\songti\bfseries}
-\renewcommand{\cftchapfont}{\zihao{-3}\songti} % chapter entry font
-\renewcommand{\cftchappagefont}{\zihao{-3}\songti} % chapter page font 
-\renewcommand{\cftsecfont}{\zihao{-4}\songti}% section entry font 
+
+% 目录标题：3号宋体加粗
+\renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\songti\bfseries}
+\renewcommand{\cftlottitlefont}{\hfill\zihao{3}\songti\bfseries}
+\renewcommand{\cftloftitlefont}{\hfill\zihao{3}\songti\bfseries}
+
+% 目录中章节标题：四号黑体
+\renewcommand{\cftchapfont}{\zihao{4}\heiti}
+\renewcommand{\cftchappagefont}{\zihao{4}\heiti}
+
+% 目录中其他内容：小四号宋体
+\renewcommand{\cftsecfont}{\zihao{-4}\songti}
 \renewcommand{\cftsecpagefont}{\zihao{-4}\songti}
 \renewcommand{\cftsubsecfont}{\zihao{-4}\songti} 
 \renewcommand{\cftsubsecpagefont}{\zihao{-4}\songti}
-\renewcommand{\cftfigfont}{\zihao{-4}\songti} % list of figure font
+
+% 插图目录
+\renewcommand{\listfigurename}{插图目录}
+\renewcommand{\cftfigfont}{\zihao{-4}\songti}
 \renewcommand{\cftfigpagefont}{\zihao{-4}\songti}
-\renewcommand{\cfttabfont}{\zihao{-4}\songti} % list of table font
+
+% 表格目录
+\renewcommand{\listtablename}{表格目录}
+\renewcommand{\cfttabfont}{\zihao{-4}\songti}
 \renewcommand{\cfttabpagefont}{\zihao{-4}\songti}
+
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftafterlottitle}{\hfill}
 \renewcommand{\cftafterloftitle}{\hfill}
-\renewcommand{\cftnodots}{\cftdotsep}% Chapter entry use dots leader in ToC
-\renewcommand{\listfigurename}{插图目录}
-\renewcommand{\listtablename}{表格目录}
+\renewcommand{\cftnodots}{\cftdotsep}   % 使用点指示页数
+
 \addtolength{\cftchapnumwidth}{3\ccwd}
 \newcommand\mybold[1]{\textit{\textbf{#1}}}
 
@@ -192,7 +196,7 @@
       \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
       \vspace{2\baselineskip}
 
-      \@title
+      \zihao{3}\textbf{\@title}
       \vspace{2\baselineskip}
 
       {\fontsize{15}{10}\selectfont
@@ -240,66 +244,47 @@
   \clearpage
 }
 
+% 中文摘要、关键字标题：5号黑体并加方括号
+% 中文摘要、关键字内容：5号楷体
 \newcommand\makecabstract{
   \ctexset{
     chapter = {
-      titleformat = {\zihao{8}\songti\bfseries},
+      titleformat = {\zihao{4}\heiti},
       beforeskip = {1pt},
-      afterskip = {40pt}
+      afterskip = {20pt}
     }
   }
 
-  \chapter[摘\hspace{\ccwd}要]{} 
-  \begin{flushleft}
-    \zihao{-4}
-    \textbf{论文题目}：\mbox{ }\@ctitle \\
-    \textbf{专\hspace{2\ccwd}业}： \mbox{ }\@cmajor \\
-    \textbf{学生姓名}：\mbox{ }\@cauthor \\
-    \textbf{学\hspace{2\ccwd}号}：\mbox{ }\@studentid \\
-    \textbf{指导教师}：\mbox{ }\@cmentor \\
-  \end{flushleft}
-  
-  \begin{center}
-    \zihao{-2}\heiti\bfseries 摘\hspace{\ccwd}要
-  \end{center}
-  \zihao{-4}\linespread{1.5}\selectfont
+  \chapter{摘\hspace{\ccwd}要}
 
+  \zihao{5}\kaishu
+  %\paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
   \@cabstract
-  \paragraph{\textbf{关键词:}}\@ckeywords
+  \paragraph{\zihao{5}\heiti[关键词]}\@ckeywords
 }
 
+% 英文摘要、关键字标题：小四号新罗马体(Time New Roman)加粗并加方括号
+% 英文摘要、关键字内容：小四号新罗马体(Time New Roman)
 \newcommand\makeeabstract{
   \ctexset{
     chapter = {
-      titleformat = {\zihao{8}\songti\bfseries},
+      titleformat = {\zihao{4}\bfseries},
       beforeskip = {1pt},
-      afterskip = {1pt}
+      afterskip = {20pt}
     }
   }
 
-  \chapter[ABSTRACT]{} 
-  \begin{flushleft}
-    \zihao{-4}
-    \makebox[2.6cm]{\textbf{Title:}\hfill} \@etitle\\
-    \makebox[2.6cm]{\textbf{Major:}\hfill} \@emajor \\
-    \makebox[2.6cm]{\textbf{Name:}\hfill} \@eauthor\\
-    \makebox[2.6cm]{\textbf{Student ID:}\hfill} \@studentid \\
-    \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor 
-  \end{flushleft}
+  \chapter{ABSTRACT}
 
-  \begin{center}
-    \zihao{-2}\textbf{Abstract}
-  \end{center}
   \zihao{-4}
-
+  %\paragraph{\textbf{[Abstract]}}
   \@eabstract
-
-  \paragraph{\textbf{Keywords:}}\@ekeywords
+  \paragraph{\textbf{[Keywords]}}\@ekeywords
 }
 
 \newcommand\makeabstract{
-  \makecabstract
   \setcounter{page}{1}
+  \makecabstract
   \makeeabstract
   \thispagestyle{eAbstract}
   \cleardoublepage
@@ -307,7 +292,7 @@
 
 \newcommand\makelistoffiguretable{
   \clearpage
-  \listoffigures%插图目录（不需要则可以把这两行去掉）
+  \listoffigures
   \listoftables
   \thispagestyle{listoffiguretable}
   \clearpage
@@ -316,21 +301,17 @@
 \renewcommand\mainmatter{
   \@mainmattertrue
   \pagenumbering{arabic}
-  \fancypagestyle{plain}{
-    \fancyhead[R]{\zihao{-5} 第\thechapter 章\mbox{  } \leftmark}
-  }
-  \pagestyle{plain}
   \ctexset {
     chapter = {
       beforeskip = {10pt},
       afterskip = {20pt},
-      nameformat = {\zihao{-2}\heiti},
-      titleformat = {\zihao{-2}\heiti}
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti}
     },
     section = {
       format = {},
-      nameformat = {\zihao{3}\heiti},
-      titleformat = {\zihao{3}\heiti}
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti}
     },
     subsection = {
       format = {},
@@ -365,13 +346,13 @@
   \ctexset {
     chapter = {
       format = {\centering},
-      nameformat = {\zihao{-2}\heiti},
-      titleformat = {\zihao{-2}\heiti},
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti},
     },
     section = {
       format = {\centering},
-      nameformat = {\zihao{3}\heiti},
-      titleformat = {\zihao{3}\heiti}
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti}
     },
     subsection = {
       format = {\centering},
@@ -380,4 +361,11 @@
     }
   }
 }
+
+% 配置超链接。
+% hyperref一般要求是导言区最后一个宏包，才能正常工作
+\RequirePackage[bottom]{footmisc}
+\RequirePackage{setspace}
+\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}
+\RequirePackage{footnotebackref}
 
