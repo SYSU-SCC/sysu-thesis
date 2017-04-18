@@ -178,11 +178,6 @@
   \popQED\endtrivlist\@endpefalse
 }
 
-\xeCJKsetcharclass{`①}{`⑩}{1}
-  \renewcommand{\@fnsymbol}[1]{
-    \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩} \else\@ctrerr\fi}
-\renewcommand{\theendnote}{\fnsymbol{endnote}}
-
 % 参考文献引用标记格式：右上角，带方括号
 \usepackage[square,super]{natbib}
 
@@ -368,4 +363,9 @@
 \RequirePackage{setspace}
 \RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}
 \RequirePackage{footnotebackref}
+
+\xeCJKsetcharclass{`①}{`⑩}{1}
+  \renewcommand{\@fnsymbol}[1]{
+    \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩} \else\@ctrerr\fi}
+\renewcommand{\theendnote}{\fnsymbol{endnote}}
 
