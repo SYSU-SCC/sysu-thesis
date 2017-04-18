@@ -19,6 +19,7 @@
 \RequirePackage[bottom]{footmisc}
 \RequirePackage{setspace}
 \RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}  % hyperref必须在上两个包之后引入才能工作
+\RequirePackage{footnotebackref}
 
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
