@@ -15,7 +15,7 @@
   zihao=-4
 ]{ctexbook}
 
-\RequirePackage[hidelinks=true]{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
@@ -56,10 +56,10 @@
 
 \AtBeginDocument{ % we setup hyperreferrence here because we get ctitle and cauthmr util the begin of document
 	\hypersetup{
-	colorlinks=true, citecolor=green,
+	citecolor=green,
 	filecolor=black, linkcolor=black,
 	urlcolor=black, CJKbookmarks=true,
-	xetex=true, pdftitle={\@ctitle},
+	pdftitle={\@ctitle},
 	pdfauthor={\@cauthor}, pdfkeywords={\@ckeywords},
 	pdfcreator={LaTeX with hyperref package, using SYSU undergraduate Thesis LaTeX Template}}}
 
