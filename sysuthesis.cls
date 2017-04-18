@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-	[2017/01/05 v0.1 Sun Yat-Sen University undergraduate thesis document class]
+  [2017/04/18 v4.1.1 Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -15,7 +15,11 @@
   zihao=-4
 ]{ctexbook}
 
-\RequirePackage[hidelinks=true]{hyperref}
+% 配置超链接。
+\RequirePackage[bottom]{footmisc}
+\RequirePackage{setspace}
+\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}  % hyperref必须在上两个包之后引入才能工作
+\RequirePackage{footnotebackref}
 
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
@@ -31,10 +35,8 @@
 \RequirePackage[section]{placeins}
 \RequirePackage[chinese, onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e}%不需要描述算法时把这行去掉
 \RequirePackage{enumitem}
-\RequirePackage[bottom]{footmisc}
 \RequirePackage{bbm}
 \RequirePackage{bm}
-\RequirePackage{setspace}
 \RequirePackage[notlof,notlot,nottoc,numbib]{tocbibind} %table of content 
 \RequirePackage{tocloft}
 \RequirePackage{wrapfig}
@@ -45,23 +47,28 @@
 % Insert a TRUE blank page which has no header or footer
 \let\origdoublepage\cleardoublepage
 \newcommand{\clearemptydoublepage}{
-    \clearpage{
-        \pagestyle{empty}
-        \origdoublepage
-    }
+  \clearpage{
+    \pagestyle{empty}
+    \origdoublepage
+  }
 }
 
 % 设定时间为中文日期
 \ctexset{today=small}
 
 \AtBeginDocument{ % we setup hyperreferrence here because we get ctitle and cauthmr util the begin of document
-	\hypersetup{
-	colorlinks=true, citecolor=green,
-	filecolor=black, linkcolor=black,
-	urlcolor=black, CJKbookmarks=true,
-	xetex=true, pdftitle={\@ctitle},
-	pdfauthor={\@cauthor}, pdfkeywords={\@ckeywords},
-	pdfcreator={LaTeX with hyperref package, using SYSU undergraduate Thesis LaTeX Template}}}
+  \hypersetup{
+    citecolor=green,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+    CJKbookmarks=true,
+    pdftitle={\@ctitle},
+    pdfauthor={\@cauthor},
+    pdfkeywords={\@ckeywords},
+    pdfcreator={LaTeX with hyperref package, using SYSU undergraduate Thesis LaTeX Template}
+  }
+}
 
 \pagestyle{fancy}
 
@@ -77,10 +84,10 @@
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \fancypagestyle{plain}{
-		\fancyhf{}
-		\fancyfoot[C]{\zihao{-5}\thepage}
-		\fancyhead[L]{\zihao{-5}\@ctitle}
-		\fancyhead[R]{\zihao{-5}\leftmark}
+  \fancyhf{}
+  \fancyfoot[C]{\zihao{-5}\thepage}
+  \fancyhead[L]{\zihao{-5}\@ctitle}
+  \fancyhead[R]{\zihao{-5}\leftmark}
 }
 \pagestyle{plain}
 \fancypagestyle{eAbstract}{\fancyhead[L]{\zihao{-5}\@etitle} }
@@ -168,7 +175,7 @@
 }
 
 \xeCJKsetcharclass{`①}{`⑩}{1}
-   \renewcommand{\@fnsymbol}[1]{%
+  \renewcommand{\@fnsymbol}[1]{
     \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩} \else\@ctrerr\fi}
 \renewcommand{\theendnote}{\fnsymbol{endnote}}
 
@@ -176,20 +183,20 @@
 \usepackage[square,super]{natbib}
 
 \renewcommand\maketitle {
-	\begin{titlepage}
-		\begin{center}
-			\includegraphics[width=10cm]{image/SYSULogo} \\
-			\songti
-			\vspace{\baselineskip}
-			\zihao{-0}\textbf{本科生毕业论文（设计）} \\ 
-			\zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}}\\
-			\vspace{2\baselineskip}
+  \begin{titlepage}
+    \begin{center}
+      \includegraphics[width=10cm]{image/SYSULogo} \\
+      \songti
+      \vspace{\baselineskip}
+      \zihao{-0}\textbf{本科生毕业论文（设计）} \\
+      \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
+      \vspace{2\baselineskip}
 
       \@title
       \vspace{2\baselineskip}
 
-			{\fontsize{15}{10}\selectfont
-			\begin{tabular}{l}
+      {\fontsize{15}{10}\selectfont
+      \begin{tabular}{l}
         \makebox[4.8cm]{院\hspace{2\ccwd}系:} \underline{\makebox[15em]{\hfill\@cschool\hfill}} \\
         \makebox[4.8cm]{School (Department)} \\
         \vspace{8pt} \\
@@ -208,15 +215,16 @@
 
         \makebox[4.8cm]{指导教师(职 称):} \underline{\makebox[15em]{\hfill\@cmentor\hfill}} \\
         \makebox[4.8cm]{Supervisor (Title)} \\
-			\end{tabular}
-			}
-			\vfill
-			\zihao{-3}
-			{\centering 
+      \end{tabular}
+      }
+      \vfill
+
+      \zihao{-3}
+      {\centering 
         时间: \today    % 使用最后一次编译的日期, 实现日期的自动化
       }
-		\end{center}
-	\end{titlepage}
+    \end{center}
+  \end{titlepage}
 }
 
 \newcommand\makedisclaim{
@@ -241,23 +249,23 @@
     }
   }
 
-	\chapter[摘\hspace{\ccwd}要]{} 
-	\begin{flushleft}
-		\zihao{-4}
-		\textbf{论文题目}：\mbox{ }\@ctitle \\
-		\textbf{专\hspace{2\ccwd}业}： \mbox{ }\@cmajor \\
-		\textbf{学生姓名}：\mbox{ }\@cauthor \\
-		\textbf{学\hspace{2\ccwd}号}：\mbox{ }\@studentid \\
-		\textbf{指导教师}：\mbox{ }\@cmentor \\
-	\end{flushleft}
-	
-	\begin{center}
-		\zihao{-2}\heiti\bfseries 摘\hspace{\ccwd}要
-	\end{center}
-	\zihao{-4}\linespread{1.5}\selectfont
+  \chapter[摘\hspace{\ccwd}要]{} 
+  \begin{flushleft}
+    \zihao{-4}
+    \textbf{论文题目}：\mbox{ }\@ctitle \\
+    \textbf{专\hspace{2\ccwd}业}： \mbox{ }\@cmajor \\
+    \textbf{学生姓名}：\mbox{ }\@cauthor \\
+    \textbf{学\hspace{2\ccwd}号}：\mbox{ }\@studentid \\
+    \textbf{指导教师}：\mbox{ }\@cmentor \\
+  \end{flushleft}
+  
+  \begin{center}
+    \zihao{-2}\heiti\bfseries 摘\hspace{\ccwd}要
+  \end{center}
+  \zihao{-4}\linespread{1.5}\selectfont
 
-	\@cabstract
-	\paragraph{\textbf{关键词:}}\@ckeywords
+  \@cabstract
+  \paragraph{\textbf{关键词:}}\@ckeywords
 }
 
 \newcommand\makeeabstract{
@@ -269,49 +277,49 @@
     }
   }
 
-	\chapter[ABSTRACT]{} 
-	\begin{flushleft}
-		\zihao{-4}
-		\makebox[2.6cm]{\textbf{Title:}\hfill} \@etitle\\
-		\makebox[2.6cm]{\textbf{Major:}\hfill} \@emajor \\
-		\makebox[2.6cm]{\textbf{Name:}\hfill} \@eauthor\\
-		\makebox[2.6cm]{\textbf{Student ID:}\hfill} \@studentid \\
-		\makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor 
-	\end{flushleft}
+  \chapter[ABSTRACT]{} 
+  \begin{flushleft}
+    \zihao{-4}
+    \makebox[2.6cm]{\textbf{Title:}\hfill} \@etitle\\
+    \makebox[2.6cm]{\textbf{Major:}\hfill} \@emajor \\
+    \makebox[2.6cm]{\textbf{Name:}\hfill} \@eauthor\\
+    \makebox[2.6cm]{\textbf{Student ID:}\hfill} \@studentid \\
+    \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor 
+  \end{flushleft}
 
-	\begin{center}
-		\zihao{-2}\textbf{Abstract}
-	\end{center}
-	\zihao{-4}
+  \begin{center}
+    \zihao{-2}\textbf{Abstract}
+  \end{center}
+  \zihao{-4}
 
-	\@eabstract
+  \@eabstract
 
-	\paragraph{\textbf{Keywords:}}\@ekeywords
+  \paragraph{\textbf{Keywords:}}\@ekeywords
 }
 
 \newcommand\makeabstract{
-	\makecabstract
-	\setcounter{page}{1}
-	\makeeabstract
-	\thispagestyle{eAbstract}
-	\cleardoublepage
+  \makecabstract
+  \setcounter{page}{1}
+  \makeeabstract
+  \thispagestyle{eAbstract}
+  \cleardoublepage
 }
 
 \newcommand\makelistoffiguretable{
-	\clearpage
-	\listoffigures%插图目录（不需要则可以把这两行去掉）
-	\listoftables
-	\thispagestyle{listoffiguretable}
-	\clearpage
+  \clearpage
+  \listoffigures%插图目录（不需要则可以把这两行去掉）
+  \listoftables
+  \thispagestyle{listoffiguretable}
+  \clearpage
 }
 
 \renewcommand\mainmatter{
-	\@mainmattertrue
-	\pagenumbering{arabic}
-	\fancypagestyle{plain}{
-		\fancyhead[R]{\zihao{-5} 第\thechapter 章\mbox{  } \leftmark}
-	}
-	\pagestyle{plain}
+  \@mainmattertrue
+  \pagenumbering{arabic}
+  \fancypagestyle{plain}{
+    \fancyhead[R]{\zihao{-5} 第\thechapter 章\mbox{  } \leftmark}
+  }
+  \pagestyle{plain}
   \ctexset {
     chapter = {
       beforeskip = {10pt},
@@ -331,29 +339,29 @@
     }
   }
 
-	\zihao{-4}\songti \linespread{1.5}\selectfont
+  \zihao{-4}\songti \linespread{1.5}\selectfont
 }
 
 \renewcommand\backmatter{
-	\@mainmatterfalse
-	\fancypagestyle{plain}{ \fancyhead[R]{\zihao{-5} \leftmark} }
-	\pagestyle{plain}
+  \@mainmatterfalse
+  \fancypagestyle{plain}{ \fancyhead[R]{\zihao{-5} \leftmark} }
+  \pagestyle{plain}
 }
 
 \renewcommand\appendix{\par
-	\@mainmattertrue
-	\fancypagestyle{plain}{
-		\fancyfoot{}
-		\fancyhead[R]{\zihao{-5} 附录\thechapter \leftmark}
-	}
-	\pagestyle{plain}
-	\setcounter{chapter}{0}
-	\setcounter{section}{0}
-	\gdef\@chapapp{\appendixname}
-	\gdef\thechapter{\@Alph\c@chapter}
+  \@mainmattertrue
+  \fancypagestyle{plain}{
+    \fancyfoot{}
+    \fancyhead[R]{\zihao{-5} 附录\thechapter \leftmark}
+  }
+  \pagestyle{plain}
+  \setcounter{chapter}{0}
+  \setcounter{section}{0}
+  \gdef\@chapapp{\appendixname}
+  \gdef\thechapter{\@Alph\c@chapter}
   \gdef\CTEX@prechapter{\CTEX@preappendix}
-	\gdef\CTEX@thechapter{\CTEX@appendix@number}
-	\gdef\CTEX@postchapter{}
+  \gdef\CTEX@thechapter{\CTEX@appendix@number}
+  \gdef\CTEX@postchapter{}
   \ctexset {
     chapter = {
       format = {\centering},
@@ -373,4 +381,3 @@
   }
 }
 
-\endinput
