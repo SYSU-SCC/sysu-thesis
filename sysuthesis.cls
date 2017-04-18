@@ -103,36 +103,41 @@
 \setlength\heavyrulewidth{0.2em}
 \captionsetup{font=small,format=hang}
 
-% table of content environtment setting, tocloft package
+
+% 目录设定，使用tocloft宏包
 \setcounter{secnumdepth}{2} % depth of toc, 2
 \setcounter{tocdepth}{1}
-\setlength{\cftbeforetoctitleskip}{30pt} %skip setting
-\setlength{\cftbeforelottitleskip}{30pt} 
-\setlength{\cftbeforeloftitleskip}{30pt}
-\setlength{\cftaftertoctitleskip}{30pt} 
-\setlength{\cftafterlottitleskip}{30pt}
-\setlength{\cftafterloftitleskip}{30pt}
-\setlength{\cftbeforechapskip}{20pt}
-\setlength{\cftparskip}{3pt}
-\renewcommand{\cfttoctitlefont}{\hfill\zihao{-2}\songti\bfseries} %title font setting 
-\renewcommand{\cftlottitlefont}{\hfill\zihao{-2}\songti\bfseries}
-\renewcommand{\cftloftitlefont}{\hfill\zihao{-2}\songti\bfseries}
-\renewcommand{\cftchapfont}{\zihao{-3}\songti} % chapter entry font
-\renewcommand{\cftchappagefont}{\zihao{-3}\songti} % chapter page font 
-\renewcommand{\cftsecfont}{\zihao{-4}\songti}% section entry font 
+
+% 目录标题：3号宋体加粗
+\renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\songti\bfseries}
+\renewcommand{\cftlottitlefont}{\hfill\zihao{3}\songti\bfseries}
+\renewcommand{\cftloftitlefont}{\hfill\zihao{3}\songti\bfseries}
+
+% 目录中章节标题：四号黑体
+\renewcommand{\cftchapfont}{\zihao{4}\heiti}
+\renewcommand{\cftchappagefont}{\zihao{4}\heiti}
+
+% 目录中其他内容：小四号宋体
+\renewcommand{\cftsecfont}{\zihao{-4}\songti}
 \renewcommand{\cftsecpagefont}{\zihao{-4}\songti}
 \renewcommand{\cftsubsecfont}{\zihao{-4}\songti} 
 \renewcommand{\cftsubsecpagefont}{\zihao{-4}\songti}
-\renewcommand{\cftfigfont}{\zihao{-4}\songti} % list of figure font
+
+% 插图目录
+\renewcommand{\listfigurename}{插图目录}
+\renewcommand{\cftfigfont}{\zihao{-4}\songti}
 \renewcommand{\cftfigpagefont}{\zihao{-4}\songti}
-\renewcommand{\cfttabfont}{\zihao{-4}\songti} % list of table font
+
+% 表格目录
+\renewcommand{\listtablename}{表格目录}
+\renewcommand{\cfttabfont}{\zihao{-4}\songti}
 \renewcommand{\cfttabpagefont}{\zihao{-4}\songti}
+
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftafterlottitle}{\hfill}
 \renewcommand{\cftafterloftitle}{\hfill}
-\renewcommand{\cftnodots}{\cftdotsep}% Chapter entry use dots leader in ToC
-\renewcommand{\listfigurename}{插图目录}
-\renewcommand{\listtablename}{表格目录}
+\renewcommand{\cftnodots}{\cftdotsep}   % 使用点指示页数
+
 \addtolength{\cftchapnumwidth}{3\ccwd}
 \newcommand\mybold[1]{\textit{\textbf{#1}}}
 
@@ -347,13 +352,13 @@
   \ctexset {
     chapter = {
       format = {\centering},
-      nameformat = {\zihao{-2}\heiti},
-      titleformat = {\zihao{-2}\heiti},
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti},
     },
     section = {
       format = {\centering},
-      nameformat = {\zihao{3}\heiti},
-      titleformat = {\zihao{3}\heiti}
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti}
     },
     subsection = {
       format = {\centering},
