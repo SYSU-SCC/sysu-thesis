@@ -12,7 +12,8 @@
   %fontset=mac,
   %fontset=windows,
   a4paper,
-  openright,
+  %openright,
+  openany,
   zihao=-4
 ]{ctexbook}
 
@@ -282,7 +283,8 @@
   \makecabstract
   \makeeabstract
   \thispagestyle{eAbstract}
-  \cleardoublepage
+  \clearpage
+  %\cleardoublepage
 }
 
 \newcommand\makelistoffiguretable{
