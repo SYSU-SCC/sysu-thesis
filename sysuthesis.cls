@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-  [2017/04/18 v4.1.1 Yat-Sen University undergraduate thesis document class]
+  [2017/04/19 v4.2.1 Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -177,11 +177,6 @@
 }{
   \popQED\endtrivlist\@endpefalse
 }
-
-\xeCJKsetcharclass{`①}{`⑩}{1}
-  \renewcommand{\@fnsymbol}[1]{
-    \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩} \else\@ctrerr\fi}
-\renewcommand{\theendnote}{\fnsymbol{endnote}}
 
 % 参考文献引用标记格式：右上角，带方括号
 \usepackage[square,super]{natbib}
@@ -368,4 +363,9 @@
 \RequirePackage{setspace}
 \RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}
 \RequirePackage{footnotebackref}
+
+\xeCJKsetcharclass{`①}{`⑩}{1}
+  \renewcommand{\@fnsymbol}[1]{
+    \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩} \else\@ctrerr\fi}
+\renewcommand{\theendnote}{\fnsymbol{endnote}}
 
