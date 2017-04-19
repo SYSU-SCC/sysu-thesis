@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-  [2017/04/18 v4.1.1 Yat-Sen University undergraduate thesis document class]
+  [2017/04/19 v4.2.1 Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
