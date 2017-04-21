@@ -225,6 +225,7 @@
       }
     \end{center}
   \end{titlepage}
+  \clearemptydoublepage   % 空白页
 }
 
 \newcommand\makedisclaim{
@@ -237,7 +238,7 @@
   }
   \input{docs/disclaim}
   \thispagestyle{empty}
-  \clearpage
+  \clearemptydoublepage   % 空白页
 }
 
 % 中文摘要、关键字标题：5号黑体并加方括号
