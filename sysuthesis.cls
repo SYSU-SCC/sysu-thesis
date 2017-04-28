@@ -43,6 +43,7 @@
 \RequirePackage{colortbl}
 \RequirePackage{xcolor}
 \RequirePackage{array}
+\RequirePackage{makecell}
 
 % Insert a TRUE blank page which has no header or footer
 \let\origdoublepage\cleardoublepage
