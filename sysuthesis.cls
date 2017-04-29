@@ -334,6 +334,27 @@
   \pagestyle{plain}
 }
 
+% 参考文献
+% 标题小五号黑体加冒号
+% 内容小五号宋体
+\newcommand\makereferences{
+  \begingroup
+    \ctexset {
+      chapter = {
+        aftertitle = {：},
+        format = {},
+        titleformat = {\zihao{-5}\heiti}
+      }
+    }
+
+    % 引用样式
+    %\bibliographystyle{ieeetr}     % 国际标准样式
+    \bibliographystyle{gbt7714-2005}  % 国标文后参考文献著录规则
+    %\bibliographystyle{sysuthesis}   % 历史遗留模板
+    {\zihao{-5}\rmfamily\bibliography{main}}  % 引用文献列表
+  \endgroup
+}
+
 \renewcommand\appendix{\par
   \@mainmattertrue
   \fancypagestyle{plain}{
