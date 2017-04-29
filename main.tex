@@ -8,7 +8,6 @@
   \frontmatter
     \pagenumbering{Roman}
     \maketitle  % 封面
-    \clearemptydoublepage   % 空白页
     % 开题报告
     % 过程检查记录表
     % 答辩情况等级表
@@ -34,16 +33,12 @@
   \backmatter
     % 参考文献. 因不需要纳入章节目录, 故放入附录部分
     % 实际上参考文献是属于论文主体部分
-    % 引用样式
-    %\bibliographystyle{ieeetr}     % 国际标准样式
-    \bibliographystyle{gbt7714-2005}  % 国标文后参考文献著录规则
-    %\bibliographystyle{sysuthesis}   % 历史遗留模板
-    {\fontsize{10}{8}\rmfamily\bibliography{main}}  % 引用文献列表
+    \makereferences
 
     \include{docs/ack}  % 致谢
 
     % 附录
-    \appendix
+  \appendix
     \include{docs/appendix1}
 \end{document}
 

@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-  [2017/04/19 v4.2.3 Yat-Sen University undergraduate thesis document class]
+  [2017/04/29 v4.3.0 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -43,6 +43,7 @@
 \RequirePackage{colortbl}
 \RequirePackage{xcolor}
 \RequirePackage{array}
+\RequirePackage{makecell}
 
 % Insert a TRUE blank page which has no header or footer
 \let\origdoublepage\cleardoublepage
@@ -117,6 +118,7 @@
 \renewcommand{\cftsecpagefont}{\zihao{-4}\songti}
 \renewcommand{\cftsubsecfont}{\zihao{-4}\songti} 
 \renewcommand{\cftsubsecpagefont}{\zihao{-4}\songti}
+\setlength{\cftsecindent}{2.3em}    % 小节缩进, 对齐章标题空隙
 
 % 插图目录
 \renewcommand{\listfigurename}{插图目录}
@@ -136,7 +138,7 @@
 \addtolength{\cftchapnumwidth}{3\ccwd}
 \newcommand\mybold[1]{\textit{\textbf{#1}}}
 
-% chinese title is built in
+% 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
 \newcommand\etitle[1]{\def\@etitle{#1}} % declare variables to store info
 \newcommand\cauthor[1]{\def\@cauthor{#1}} % author name in cover
@@ -225,6 +227,7 @@
       }
     \end{center}
   \end{titlepage}
+  \clearemptydoublepage   % 空白页
 }
 
 \newcommand\makedisclaim{
@@ -237,7 +240,7 @@
   }
   \input{docs/disclaim}
   \thispagestyle{empty}
-  \clearpage
+  \clearemptydoublepage   % 空白页
 }
 
 % 中文摘要、关键字标题：5号黑体并加方括号
@@ -252,11 +255,21 @@
   }
 
   % 使用隐藏目录项的section及添加为chapter形式目录的方法来去掉在openright环境中中英文摘要间出现空白页的情况
-  \section*{摘\hspace{\ccwd}要}
-  \addcontentsline{toc}{chapter}{摘\hspace{\ccwd}要}
+  %\section*{摘\hspace{\ccwd}要}
+  %\addcontentsline{toc}{chapter}{摘\hspace{\ccwd}要}
+
+  % 有些老师要求摘要前添加论文题目信息，因此保留此项
+  %\begin{flushleft}
+  %  \zihao{-4}
+  %  \textbf{论文题目}：\mbox{ }\@ctitle \\
+  %  \textbf{专\hspace{2\ccwd}业}： \mbox{ }\@cmajor \\
+  %  \textbf{学生姓名}：\mbox{ }\@cauthor \\
+  %  \textbf{学\hspace{2\ccwd}号}：\mbox{ }\@studentid \\
+  %  \textbf{指导教师}：\mbox{ }\@cmentor \\
+  %\end{flushleft}
 
   \zihao{5}\kaishu
-  %\paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
+  \paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
   \@cabstract
   \paragraph{\zihao{5}\heiti[关键词]}\@ckeywords
 }
@@ -272,11 +285,20 @@
     }
   }
 
-  \section*{ABSTRACT}
-  \addcontentsline{toc}{chapter}{ABSTRACT}
+  %\section*{ABSTRACT}
+  %\addcontentsline{toc}{chapter}{ABSTRACT}
+
+  %\begin{flushleft}
+  %  \zihao{-4}
+  %  \makebox[2.6cm]{\textbf{Title:}\hfill} \@etitle\\
+  %  \makebox[2.6cm]{\textbf{Major:}\hfill} \@emajor \\
+  %  \makebox[2.6cm]{\textbf{Name:}\hfill} \@eauthor\\
+  %  \makebox[2.6cm]{\textbf{Student ID:}\hfill} \@studentid \\
+  %  \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor 
+  %\end{flushleft}
 
   \zihao{-4}
-  %\paragraph{\textbf{[Abstract]}}
+  \paragraph{\textbf{[Abstract]}}
   \@eabstract
   \paragraph{\textbf{[Keywords]}}\@ekeywords
 }
@@ -307,6 +329,7 @@
     chapter = {
       beforeskip = {10pt},
       afterskip = {20pt},
+      format = {\centering},
       nameformat = {\zihao{4}\heiti},
       titleformat = {\zihao{4}\heiti}
     },
@@ -329,6 +352,27 @@
   \@mainmatterfalse
   \fancypagestyle{plain}{ \fancyhead[R]{\zihao{-5} \leftmark} }
   \pagestyle{plain}
+}
+
+% 参考文献
+% 标题小五号黑体加冒号
+% 内容小五号宋体
+\newcommand\makereferences{
+  \begingroup
+    \ctexset {
+      chapter = {
+        aftertitle = {：},
+        format = {},
+        titleformat = {\zihao{-5}\heiti}
+      }
+    }
+
+    % 引用样式
+    %\bibliographystyle{ieeetr}     % 国际标准样式
+    \bibliographystyle{gbt7714-2005}  % 国标文后参考文献著录规则
+    %\bibliographystyle{sysuthesis}   % 历史遗留模板
+    {\zihao{-5}\rmfamily\bibliography{main}}  % 引用文献列表
+  \endgroup
 }
 
 \renewcommand\appendix{\par
