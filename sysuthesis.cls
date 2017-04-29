@@ -118,6 +118,7 @@
 \renewcommand{\cftsecpagefont}{\zihao{-4}\songti}
 \renewcommand{\cftsubsecfont}{\zihao{-4}\songti} 
 \renewcommand{\cftsubsecpagefont}{\zihao{-4}\songti}
+\setlength{\cftsecindent}{2.3em}    % 小节缩进, 对齐章标题空隙
 
 % 插图目录
 \renewcommand{\listfigurename}{插图目录}
@@ -137,7 +138,7 @@
 \addtolength{\cftchapnumwidth}{3\ccwd}
 \newcommand\mybold[1]{\textit{\textbf{#1}}}
 
-% chinese title is built in
+% 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
 \newcommand\etitle[1]{\def\@etitle{#1}} % declare variables to store info
 \newcommand\cauthor[1]{\def\@cauthor{#1}} % author name in cover
