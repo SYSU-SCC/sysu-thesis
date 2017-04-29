@@ -1,5 +1,5 @@
 # 中山大学LaTeX论文项目模板(非官方)
-本维护项目由17届中大数据院软件工程校友黄俊杰(@huangjj27)与彭勃(@citrontyan)发起, 成立理由如下:
+本维护项目由17届中大数据院软件工程校友黄俊杰(@huangjj27)发起, 发起理由如下:
 1. 中山大学在github上[LaTeX官方模板项目](http://github.com/sysu/sysuthesis)已经有2年多的时间没有维护
 1. [@chunkwong](https://github.com/chungkwong)师兄在github上放出了中大的第一个[非官方的本科论文LaTex模板](https://github.com/chungkwong/sysu_thesis), 并由[@GoYchen](https://github.com/GoYchen)师兄接力改进
 1. 上述两位师兄毕业后均无法抽空维护项目
