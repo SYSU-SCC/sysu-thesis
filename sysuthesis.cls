@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-  [2017/04/29 v4.2.5 Yat-Sen University undergraduate thesis document class]
+  [2017/04/29 v4.3.0 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -257,6 +257,16 @@
   %\section*{摘\hspace{\ccwd}要}
   %\addcontentsline{toc}{chapter}{摘\hspace{\ccwd}要}
 
+  % 有些老师要求摘要前添加论文题目信息，因此保留此项
+  %\begin{flushleft}
+  %  \zihao{-4}
+  %  \textbf{论文题目}：\mbox{ }\@ctitle \\
+  %  \textbf{专\hspace{2\ccwd}业}： \mbox{ }\@cmajor \\
+  %  \textbf{学生姓名}：\mbox{ }\@cauthor \\
+  %  \textbf{学\hspace{2\ccwd}号}：\mbox{ }\@studentid \\
+  %  \textbf{指导教师}：\mbox{ }\@cmentor \\
+  %\end{flushleft}
+
   \zihao{5}\kaishu
   \paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
   \@cabstract
@@ -276,6 +286,15 @@
 
   %\section*{ABSTRACT}
   %\addcontentsline{toc}{chapter}{ABSTRACT}
+
+  %\begin{flushleft}
+  %  \zihao{-4}
+  %  \makebox[2.6cm]{\textbf{Title:}\hfill} \@etitle\\
+  %  \makebox[2.6cm]{\textbf{Major:}\hfill} \@emajor \\
+  %  \makebox[2.6cm]{\textbf{Name:}\hfill} \@eauthor\\
+  %  \makebox[2.6cm]{\textbf{Student ID:}\hfill} \@studentid \\
+  %  \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor 
+  %\end{flushleft}
 
   \zihao{-4}
   \paragraph{\textbf{[Abstract]}}
