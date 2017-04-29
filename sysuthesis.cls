@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-  [2017/04/19 v4.2.3 Yat-Sen University undergraduate thesis document class]
+  [2017/04/19 v4.2.4 Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -254,11 +254,11 @@
   }
 
   % 使用隐藏目录项的section及添加为chapter形式目录的方法来去掉在openright环境中中英文摘要间出现空白页的情况
-  \section*{摘\hspace{\ccwd}要}
-  \addcontentsline{toc}{chapter}{摘\hspace{\ccwd}要}
+  %\section*{摘\hspace{\ccwd}要}
+  %\addcontentsline{toc}{chapter}{摘\hspace{\ccwd}要}
 
   \zihao{5}\kaishu
-  %\paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
+  \paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
   \@cabstract
   \paragraph{\zihao{5}\heiti[关键词]}\@ckeywords
 }
@@ -274,11 +274,11 @@
     }
   }
 
-  \section*{ABSTRACT}
-  \addcontentsline{toc}{chapter}{ABSTRACT}
+  %\section*{ABSTRACT}
+  %\addcontentsline{toc}{chapter}{ABSTRACT}
 
   \zihao{-4}
-  %\paragraph{\textbf{[Abstract]}}
+  \paragraph{\textbf{[Abstract]}}
   \@eabstract
   \paragraph{\textbf{[Keywords]}}\@ekeywords
 }
