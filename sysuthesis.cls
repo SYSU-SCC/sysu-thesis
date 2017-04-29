@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-  [2017/04/19 v4.2.4 Yat-Sen University undergraduate thesis document class]
+  [2017/04/29 v4.2.5 Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -309,6 +309,7 @@
     chapter = {
       beforeskip = {10pt},
       afterskip = {20pt},
+      format = {\centering},
       nameformat = {\zihao{4}\heiti},
       titleformat = {\zihao{4}\heiti}
     },
