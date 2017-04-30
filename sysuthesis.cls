@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-  [2017/04/29 v4.3.2 Sun Yat-Sen University undergraduate thesis document class]
+  [2017/04/30 v4.3.3 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -84,6 +84,8 @@
 \renewcommand{\footrulewidth}{0pt}
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% 默认页面页眉页脚样式
 \fancypagestyle{plain}{
   \fancyhf{}
   \fancyfoot[C]{\zihao{-5}\thepage}
@@ -91,7 +93,17 @@
   \fancyhead[R]{\zihao{-5}\leftmark}
 }
 \pagestyle{plain}
-\fancypagestyle{eAbstract}{\fancyhead[L]{\zihao{-5}\@etitle} }
+
+% 中英文摘要页面样式
+\fancypagestyle{cAbstract}{
+  \fancyhead[L]{\zihao{-5}\@ctitle}
+  \fancyhead[R]{\zihao{-5}摘要}
+}
+\fancypagestyle{eAbstract}{
+  \fancyhead[L]{\zihao{-5}\@etitle}
+  \fancyhead[R]{\zihao{-5}ABSTRACT}
+}
+
 \fancypagestyle{listoffiguretable}{\fancyhead[R]{\zihao{-5}插图与表格目录}}
 
 % figure and table setting
@@ -308,6 +320,7 @@
 \newcommand\makeabstract{
   \setcounter{page}{1}
   \makecabstract
+  \thispagestyle{cAbstract}
   \clearpage
 
   \makeeabstract
