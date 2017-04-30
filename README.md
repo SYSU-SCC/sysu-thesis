@@ -1,7 +1,7 @@
-# 中山大学LaTeX论文项目模板(非官方)
+# 中山大学LaTeX论文项目模板(非)
 本维护项目由17届中大数据院软件工程校友黄俊杰(@huangjj27)发起, 发起理由如下:
 1. 中山大学在github上[LaTeX官方模板项目](http://github.com/sysu/sysuthesis)已经有2年多的时间没有维护
-1. [@chunkwong](https://github.com/chungkwong)师兄在github上放出了中大的第一个[非官方的本科论文LaTex模板](https://github.com/chungkwong/sysu_thesis), 并由[@GoYchen](https://github.com/GoYchen)师兄接力改进
+1. [@chunkwong](https://github.com/chungkwong)师兄在github上放出了中大的第一个[非官方的本科论文LaTeX模板](https://github.com/chungkwong/sysu_thesis), 并由[@GoYchen](https://github.com/GoYchen)师兄接力改进
 1. 上述两位师兄毕业后均无法抽空维护项目
 
 基于以上理由, 本项目维护小组成立, 并**_诚邀各届校友参与开发维护, 为中大莘莘学子编写毕业论文提供方便_**
@@ -13,6 +13,7 @@ _注意:　最新代码在dev分支上, 获取代码前请先确认分支._
 ## 致谢
 1. 感谢[@chunkwong](https://github.com/chungkwong)师兄在Github上放出了中大第一个[非官方的本科论文LaTex模板](https://github.com/chungkwong/sysu_thesis)
 1. 感谢[@GoYchen](https://github.com/GoYchen)师兄在模板结构化分解上作出了[极大的贡献](https://github.com/GoYchen/sysu_thesis)
+1. 感谢@huangjj27师兄在模板样式规范化做出极大的贡献
 1. PPT的模板源自 [http://far.tooold.cn/post/latex/beamertsinghua]
 1. 最后, 感谢Donald Ervin Knuth教授发明了`tex`这么好(zhe)用(teng)的工具  
     Finally, thanks Pro. Donald Ervin Knuth for inventing such useful tool as tex.
