@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-  [2017/04/30 v4.3.3 Sun Yat-Sen University undergraduate thesis document class]
+  [2017/04/30 v4.4.0 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -88,9 +88,15 @@
 % 默认页面页眉页脚样式
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{\zihao{-5}\thepage}
+  \fancyfoot[C]{\zihao{-5}\thepage} % 页码位于页脚居中
+
+  % 左右两栏页眉，左为论文题目右为当前章
   \fancyhead[L]{\zihao{-5}\@ctitle}
   \fancyhead[R]{\zihao{-5}\leftmark}
+
+  % 居中式页眉，可以选择为论文题目或当前章
+  %\fancyhead[C]{\zihao{-5}\@ctitle}
+  %\fancyhead[C]{\zihao{-5}\leftmark}
 }
 \pagestyle{plain}
 
