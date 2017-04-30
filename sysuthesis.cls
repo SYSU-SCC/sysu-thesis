@@ -31,7 +31,6 @@
 \RequirePackage{amsmath,amssymb,amsthm}
 \RequirePackage{listings}
 \RequirePackage{longtable}
-\RequirePackage{endnotes}
 \RequirePackage[section]{placeins}
 \RequirePackage[chinese, onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e}%不需要描述算法时把这行去掉
 \RequirePackage{enumitem}
@@ -44,6 +43,8 @@
 \RequirePackage{xcolor}
 \RequirePackage{array}
 \RequirePackage{makecell}
+\RequirePackage[bottom, perpage]{footmisc}
+\RequirePackage{setspace}
 
 % Insert a TRUE blank page which has no header or footer
 \let\origdoublepage\cleardoublepage
@@ -57,7 +58,9 @@
 % 设定时间为中文日期
 \ctexset{today=small}
 
-\AtBeginDocument{ % we setup hyperreferrence here because we get ctitle and cauthmr util the begin of document
+% 配置超链接。
+% hyperref一般要求是导言区最后一个宏包，才能正常工作
+\AtBeginDocument{
   \hypersetup{
     citecolor=green,
     filecolor=black,
@@ -70,6 +73,8 @@
     pdfcreator={LaTeX with hyperref package, using SYSU undergraduate Thesis LaTeX Template}
   }
 }
+\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}
+\RequirePackage{footnotebackref}
 
 \pagestyle{fancy}
 
@@ -79,10 +84,11 @@
 \setlist[itemize]{nosep}
 \setlist[description]{nosep}
 
-% header, footer, footnote setting
+% 页眉、页脚、脚注设定
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
+\let\@fnsymbol=\@arabic     % 采用普通的数字符号代替*号脚注
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 % 默认页面页眉页脚样式
@@ -184,8 +190,6 @@
 \newtheorem{eg}{例}[chapter]
 
 \renewcommand{\proofname}{{\heiti 证明}}
-\renewcommand{\notesname}{{\zihao{-5}\heiti 注释：\hfill}}
-%\renewcommand{\bibname}{{\zihao{-5}\heiti 参考文献：}}
 \renewcommand{\@biblabel}[1]{[#1]\hfill}
 
 \renewenvironment{proof}[1][\proofname]{\par
@@ -200,7 +204,7 @@
 }
 
 % 参考文献引用标记格式：右上角，带方括号
-\usepackage[square,super]{natbib}
+\RequirePackage[square,super]{natbib}
 
 \renewcommand\maketitle {
   \begin{titlepage}
@@ -435,16 +439,4 @@
     }
   }
 }
-
-% 配置超链接。
-% hyperref一般要求是导言区最后一个宏包，才能正常工作
-\RequirePackage[bottom]{footmisc}
-\RequirePackage{setspace}
-\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}
-\RequirePackage{footnotebackref}
-
-\xeCJKsetcharclass{`①}{`⑩}{1}
-  \renewcommand{\@fnsymbol}[1]{
-    \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩} \else\@ctrerr\fi}
-\renewcommand{\theendnote}{\fnsymbol{endnote}}
 
