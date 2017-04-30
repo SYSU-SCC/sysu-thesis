@@ -1,7 +1,7 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}
-  [2017/04/29 v4.3.0 Sun Yat-Sen University undergraduate thesis document class]
+  [2017/04/29 v4.3.1 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -227,7 +227,8 @@
       }
     \end{center}
   \end{titlepage}
-  \clearemptydoublepage   % 空白页
+  \clearpage
+  %\clearemptydoublepage   % 空白页
 }
 
 \newcommand\makedisclaim{
@@ -240,7 +241,8 @@
   }
   \input{docs/disclaim}
   \thispagestyle{empty}
-  \clearemptydoublepage   % 空白页
+  \clearpage
+  %\clearemptydoublepage   % 空白页
 }
 
 % 中文摘要、关键字标题：5号黑体并加方括号
