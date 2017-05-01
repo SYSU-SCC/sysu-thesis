@@ -197,7 +197,7 @@
   \trivlist
   \item[\hskip\labelsep
         \itshape
-    #1]\gnorespaces
+    #1]\ignorespaces
 }{
   \popQED\endtrivlist\@endpefalse
 }
