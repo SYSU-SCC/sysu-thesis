@@ -31,7 +31,7 @@
 \RequirePackage{listings}
 \RequirePackage{longtable}
 \RequirePackage[section]{placeins}
-\RequirePackage[chinese, onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e}%不需要描述算法时把这行去掉
+\RequirePackage[chinese, onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e}
 \RequirePackage{enumitem}
 \RequirePackage{bbm}
 \RequirePackage{bm}
@@ -178,7 +178,7 @@
 \newcommand\eabstract[1]{\def\@eabstract{#1}}
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newtheoremstyle{dotless}{3pt}{3pt}{\normalfont}{}{\bfseries}{}{ }{}
+\newtheoremstyle{dotless}{3pt}{3pt}{\kaishu}{2em}{\bfseries}{}{\ccwd}{}
 \theoremstyle{dotless}
 \newtheorem{theorem}{{定理}}[chapter]
 \newtheorem{proposition}{{命题}}[chapter]
