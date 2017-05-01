@@ -178,7 +178,7 @@
 \newcommand\eabstract[1]{\def\@eabstract{#1}}
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newtheoremstyle{dotless}{3pt}{3pt}{\kaishu}{2em}{\bfseries}{}{\ccwd}{}
+\newtheoremstyle{dotless}{3pt}{3pt}{\kaishu}{2em}{\heiti}{}{\ccwd}{}
 \theoremstyle{dotless}
 \newtheorem{theorem}{{定理}}[chapter]
 \newtheorem{proposition}{{命题}}[chapter]
