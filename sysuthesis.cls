@@ -57,8 +57,6 @@
 % 设定时间为中文日期
 \ctexset{today=small}
 
-% 配置超链接。
-% hyperref一般要求是导言区最后一个宏包，才能正常工作
 \AtBeginDocument{
   \hypersetup{
     citecolor=green,
@@ -72,9 +70,6 @@
     pdfcreator={LaTeX with hyperref package, using SYSU undergraduate Thesis LaTeX Template}
   }
 }
-\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}
-\RequirePackage{footnotebackref}
-
 \pagestyle{fancy}
 
 % list environment, 
@@ -89,14 +84,6 @@
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
 % 采用带圈数字符号代替*号脚注
 \xeCJKsetcharclass{`①}{`⑩}{1}
-\renewcommand{\@fnsymbol}[1]{
-  \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩}
-  \else
-    \@ctrerr
-  \fi
-}
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
-
 % 默认页面页眉页脚样式
 \fancypagestyle{plain}{
   \fancyhf{}
@@ -445,4 +432,19 @@
     }
   }
 }
+
+% 配置超链接。
+% hyperref一般要求是导言区最后一个宏包，才能正常工作
+% 若把该宏包提前，则会引起附录列表跳转到第一章的问题
+% TODO: 重构宏包引入顺序以让代码语义聚集
+\RequirePackage[hidelinks, hyperfootnotes=true]{hyperref}
+\RequirePackage{footnotebackref}
+
+\renewcommand{\@fnsymbol}[1]{
+  \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩}
+  \else
+    \@ctrerr
+  \fi
+}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
