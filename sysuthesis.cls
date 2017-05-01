@@ -87,7 +87,14 @@
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
-\let\@fnsymbol=\@arabic     % 采用普通的数字符号代替*号脚注
+% 采用带圈数字符号代替*号脚注
+\xeCJKsetcharclass{`①}{`⑩}{1}
+\renewcommand{\@fnsymbol}[1]{
+  \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or  \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩}
+  \else
+    \@ctrerr
+  \fi
+}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 % 默认页面页眉页脚样式
