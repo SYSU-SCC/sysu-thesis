@@ -242,7 +242,7 @@
 
     \end{center}
   \end{titlepage}
-  \clearemptydoublepage   % 空白页
+  %\clearemptydoublepage   % 空白页
 }
 
 % 下面是更好的封面，但不符合学校要求，暂且注释保留
