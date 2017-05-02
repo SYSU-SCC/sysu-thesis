@@ -158,7 +158,7 @@
 % 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
 \newcommand\etitle[1]{\def\@etitle{#1}} % declare variables to store info
-\newcommand\covertitlefirst[1]{\def\@covertitlefirst{#1}}
+\newcommand\covertitlefirst[2]{\def\@covertitlefirst{#1}}
 \newcommand\covertitlesecond[1]{\def\@covertitlesecond{#1}}
 \newcommand\cauthor[1]{\def\@cauthor{#1}} % author name in cover
 \newcommand\eauthor[1]{\def\@eauthor{#1}}
@@ -172,6 +172,7 @@
 \newcommand\ekeywords[1]{\def\@ekeywords{#1}}
 \newcommand\cabstract[1]{\def\@cabstract{#1}}
 \newcommand\eabstract[1]{\def\@eabstract{#1}}
+
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newtheoremstyle{dotless}{3pt}{3pt}{\kaishu}{2em}{\heiti}{}{\ccwd}{}
@@ -213,8 +214,8 @@
 
       {\fontsize{15}{10}\selectfont
       \begin{tabular}{l}
-          \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\textbf\@covertitlefirst\hfill}}\\\vspace{1pt}\\
-          \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\textbf\@covertitlesecond\hfill}}\\\vspace{1pt}\\
+          \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\songti\textbf\@covertitlefirst\hfill}}\\\vspace{1pt}\\
+          \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\songti\textbf\@covertitlesecond\hfill}}\\\vspace{1pt}\\
           \vspace{8pt} \\
           院\hspace{0.5\ccwd}系\\
           \makebox[4.8cm]{School (Department):\hfill} \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}}\\
