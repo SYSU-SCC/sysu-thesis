@@ -158,8 +158,8 @@
 % 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
 \newcommand\etitle[1]{\def\@etitle{#1}} % declare variables to store info
-\newcommand\covertitlefirst[1]{def\@covertitlefirst{#1}}
-\newcommand\covertitlesecond[1]{def\@covertitlesecond{#1}}
+\newcommand\covertitlefirst[1]{\def\@covertitlefirst{#1}}
+\newcommand\covertitlesecond[1]{\def\@covertitlesecond{#1}}
 \newcommand\cauthor[1]{\def\@cauthor{#1}} % author name in cover
 \newcommand\eauthor[1]{\def\@eauthor{#1}}
 \newcommand\studentid[1]{\def\@studentid{#1}}
@@ -211,13 +211,10 @@
       \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
       \vspace{2\baselineskip}
 
-      %\zihao{3}\textbf{\@title}
-      %\vspace{2\baselineskip}
-
       {\fontsize{15}{10}\selectfont
       \begin{tabular}{l}
-          \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\covertitlefirst\hfill}}\\\vspace{1pt}\\
-          \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\covertitlesecond\hfill}}\\\vspace{1pt}\\
+          \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\@covertitlefirst\hfill}}\\\vspace{1pt}\\
+          \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\@covertitlesecond\hfill}}\\\vspace{1pt}\\
           \vspace{8pt} \\
           院\hspace{0.5\ccwd}系\\
           \makebox[4.8cm]{School (Department):\hfill} \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}}\\
