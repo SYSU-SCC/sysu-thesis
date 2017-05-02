@@ -189,7 +189,7 @@
 
 \renewenvironment{proof}[1][\proofname]{\par
   \pushQED{\qed}
-  \normalfont \topsep6\p@\@plus6\p@\relax
+  \kaishu \topsep6\p@\@plus6\p@\relax
   \trivlist
   \item[\hskip\labelsep
         \itshape
