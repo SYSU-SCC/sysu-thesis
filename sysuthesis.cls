@@ -158,6 +158,8 @@
 % 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
 \newcommand\etitle[1]{\def\@etitle{#1}} % declare variables to store info
+\newcommand\covertitlefirst[1]{def\@covertitlefirst{#1}}
+\newcommand\covertitlesecond[1]{def\@covertitlesecond{#1}}
 \newcommand\cauthor[1]{\def\@cauthor{#1}} % author name in cover
 \newcommand\eauthor[1]{\def\@eauthor{#1}}
 \newcommand\studentid[1]{\def\@studentid{#1}}
