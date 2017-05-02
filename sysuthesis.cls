@@ -207,52 +207,45 @@
       \includegraphics[width=10cm]{image/SYSULogo} \\
       \songti
       \vspace{\baselineskip}
-      \zihao{-0}\textbf{本\ 科\ 生\ 毕\ 业\ 论\ 文} \\
-      % \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
+      \zihao{-0}\textbf{本科生毕业论文（设计）} \\
+      \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
       \vspace{2\baselineskip}
 
-      % \zihao{3}\textbf{\@title}
-      % \vspace{2\baselineskip}
+      %\zihao{3}\textbf{\@title}
+      %\vspace{2\baselineskip}
 
       {\fontsize{15}{10}\selectfont
       \begin{tabular}{l}
-        \makebox[4.8cm]{题\hspace{2\ccwd}目:} \underline{\makebox[15em]{\hfill\covertitlefirst\hfill}} \\
-        \makebox[4.8cm]{\hspace{4\ccwd}} \underline{\makebox[15em]{\hfill\covertitlesecond\hfill}} \\
-        \vspace{8pt} \\
-
-        \makebox[4.8cm]{院\hspace{2\ccwd}系:} \underline{\makebox[15em]{\hfill\@cschool\hfill}} \\
-        % \makebox[4.8cm]{School (Department)} \\
-        \vspace{8pt} \\
-
-        \makebox[4.8cm]{专\hspace{2\ccwd}业:} \underline{\makebox[15em]{\hfill\@cmajor\hfill}} \\
-        % \makebox[4.8cm]{Major} \\
-        \vspace{8pt} \\
-
-        \makebox[4.8cm]{学生姓名:} \underline{\makebox[15em]{\hfill\@cauthor\hfill}} \\
-        % \makebox[4.8cm]{Student Name} \\
-        \vspace{8pt} \\
-
-        \makebox[4.8cm]{学\hspace{2\ccwd}号:} \underline{\makebox[15em]{\hfill\@studentid\hfill}} \\
-        % \makebox[4.8cm]{Student No.} \\
-        \vspace{8pt} \\
-
-        \makebox[4.8cm]{指导教师:} \underline{\makebox[15em]{\hfill\@cmentor\hfill}} \\
-        % \makebox[4.8cm]{Supervisor (Title)} \\
+          \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\covertitlefirst\hfill}}\\\vspace{1pt}\\
+          \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\covertitlesecond\hfill}}\\\vspace{1pt}\\
+          \vspace{8pt} \\
+          院\hspace{0.5\ccwd}系\\
+          \makebox[4.8cm]{School (Department):\hfill} \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}}\\
+          \vspace{8pt} \\
+          专\hspace{0.5\ccwd}业\\
+          \makebox[1.7cm]{Major:\hfill} \underline{\makebox[9.3cm]{\hfill\@cmajor\hspace{3.3cm}}}\\
+          \vspace{8pt} \\
+          学生姓名 \\
+          \makebox[3.4cm]{Student Name:\hfill} \underline{\makebox[7.6cm]{\hfill\@cauthor\hspace{3cm}}}\\
+          \vspace{8pt} \\
+          学\hspace{0.5\ccwd}号 \\
+          \makebox[3cm]{Student No.:\hfill} \underline{\makebox[8cm]{\hfill\@studentid\hspace{3cm}}}\\
+          \vspace{8pt} \\
+          指导教师（职 称） \\
+          \makebox[4cm]{Supervisor (Title):\hfill} \underline{\makebox[7cm]{\hfill\@cmentor\hspace{2.7cm}}}
       \end{tabular}
       }
       \vfill
 
       \zihao{-3}
       {\centering
-        % \ctexset{today=old} % 使用阿拉伯数字表示日期
-        \ctexset{today=big} % 使用汉字数字表示日期，学院模板用的是这个
-        % \ctexset{today=old} % 使用英文表示日期
-        \today    % 使用最后一次编译的日期, 实现日期的自动化
+        \hspace{2\ccwd}时间：\today   \\ % 使用最后一次编译的日期, 实现日期的自动化
+        Date:\hspace{0.5\ccwd} Month\hspace{2\ccwd} Day\hspace{1\ccwd} Year
       }
+
     \end{center}
   \end{titlepage}
-  \clearpage
-  % \clearemptydoublepage   % 空白页
+  \clearemptydoublepage   % 空白页
 }
 
 % 下面是更好的封面，但不符合学校要求，暂且注释保留
