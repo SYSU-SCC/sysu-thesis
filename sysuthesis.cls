@@ -208,13 +208,13 @@
       \songti
       \vspace{\baselineskip}
       \zihao{-0}\textbf{本科生毕业论文（设计）} \\
-      \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
+      \zihao{2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
       \vspace{2\baselineskip}
 
       {\fontsize{15}{10}\selectfont
       \begin{tabular}{l}
-          \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\@covertitlefirst\hfill}}\\\vspace{1pt}\\
-          \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\@covertitlesecond\hfill}}\\\vspace{1pt}\\
+          \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\textbf\@covertitlefirst\hfill}}\\\vspace{1pt}\\
+          \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\textbf\@covertitlesecond\hfill}}\\\vspace{1pt}\\
           \vspace{8pt} \\
           院\hspace{0.5\ccwd}系\\
           \makebox[4.8cm]{School (Department):\hfill} \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}}\\
