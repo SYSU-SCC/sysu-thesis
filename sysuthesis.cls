@@ -35,7 +35,7 @@
 \RequirePackage{enumitem}
 \RequirePackage{bbm}
 \RequirePackage{bm}
-\RequirePackage[notlof,notlot,nottoc,numbib]{tocbibind} %table of content 
+\RequirePackage[notlof,notlot,nottoc,numbib]{tocbibind} %table of content
 \RequirePackage{tocloft}
 \RequirePackage{wrapfig}
 \RequirePackage{colortbl}
@@ -72,7 +72,7 @@
 }
 \pagestyle{fancy}
 
-% list environment, 
+% list environment,
 \setlist[enumerate]{nosep}
 \renewcommand\labelenumi{\theenumi}
 \setlist[itemize]{nosep}
@@ -133,7 +133,7 @@
 % 目录中其他内容：小四号宋体
 \renewcommand{\cftsecfont}{\zihao{-4}\songti}
 \renewcommand{\cftsecpagefont}{\zihao{-4}\songti}
-\renewcommand{\cftsubsecfont}{\zihao{-4}\songti} 
+\renewcommand{\cftsubsecfont}{\zihao{-4}\songti}
 \renewcommand{\cftsubsecpagefont}{\zihao{-4}\songti}
 \setlength{\cftsecindent}{2.3em}    % 小节缩进, 对齐章标题空隙
 
@@ -205,46 +205,100 @@
       \includegraphics[width=10cm]{image/SYSULogo} \\
       \songti
       \vspace{\baselineskip}
-      \zihao{-0}\textbf{本科生毕业论文（设计）} \\
-      \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
+      \zihao{-0}\textbf{本\ 科\ 生\ 毕\ 业\ 论\ 文} \\
+      % \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
       \vspace{2\baselineskip}
 
-      \zihao{3}\textbf{\@title}
-      \vspace{2\baselineskip}
+      % \zihao{3}\textbf{\@title}
+      % \vspace{2\baselineskip}
 
       {\fontsize{15}{10}\selectfont
       \begin{tabular}{l}
+        \makebox[4.8cm]{题\hspace{2\ccwd}目:} \underline{\makebox[15em]{\hfill\covertitlefirst\hfill}} \\
+        \makebox[4.8cm]{\hspace{4\ccwd}} \underline{\makebox[15em]{\hfill\covertitlesecond\hfill}} \\
+        \vspace{8pt} \\
+
         \makebox[4.8cm]{院\hspace{2\ccwd}系:} \underline{\makebox[15em]{\hfill\@cschool\hfill}} \\
-        \makebox[4.8cm]{School (Department)} \\
+        % \makebox[4.8cm]{School (Department)} \\
         \vspace{8pt} \\
 
         \makebox[4.8cm]{专\hspace{2\ccwd}业:} \underline{\makebox[15em]{\hfill\@cmajor\hfill}} \\
-        \makebox[4.8cm]{Major} \\
+        % \makebox[4.8cm]{Major} \\
         \vspace{8pt} \\
 
         \makebox[4.8cm]{学生姓名:} \underline{\makebox[15em]{\hfill\@cauthor\hfill}} \\
-        \makebox[4.8cm]{Student Name} \\
+        % \makebox[4.8cm]{Student Name} \\
         \vspace{8pt} \\
 
         \makebox[4.8cm]{学\hspace{2\ccwd}号:} \underline{\makebox[15em]{\hfill\@studentid\hfill}} \\
-        \makebox[4.8cm]{Student No.} \\
+        % \makebox[4.8cm]{Student No.} \\
         \vspace{8pt} \\
 
-        \makebox[4.8cm]{指导教师(职 称):} \underline{\makebox[15em]{\hfill\@cmentor\hfill}} \\
-        \makebox[4.8cm]{Supervisor (Title)} \\
+        \makebox[4.8cm]{指导教师:} \underline{\makebox[15em]{\hfill\@cmentor\hfill}} \\
+        % \makebox[4.8cm]{Supervisor (Title)} \\
       \end{tabular}
       }
       \vfill
 
       \zihao{-3}
-      {\centering 
-        时间: \today    % 使用最后一次编译的日期, 实现日期的自动化
+      {\centering
+        % \ctexset{today=old} % 使用阿拉伯数字表示日期
+        \ctexset{today=big} % 使用汉字数字表示日期，学院模板用的是这个
+        % \ctexset{today=old} % 使用英文表示日期
+        \today    % 使用最后一次编译的日期, 实现日期的自动化
       }
     \end{center}
   \end{titlepage}
-  \clearpage
-  %\clearemptydoublepage   % 空白页
+  % \clearemptydoublepage   % 空白页
 }
+
+% 下面是更好的封面，但不符合学校要求，暂且注释保留
+% \renewcommand\maketitle {
+%   \begin{titlepage}
+%     \begin{center}
+%       \includegraphics[width=10cm]{image/SYSULogo} \\
+%       \songti
+%       \vspace{\baselineskip}
+%       \zihao{-0}\textbf{本科生毕业论文（设计）} \\
+%       \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
+%       \vspace{2\baselineskip}
+%
+%       \zihao{3}\textbf{\@title}
+%       \vspace{2\baselineskip}
+%
+%       {\fontsize{15}{10}\selectfont
+%       \begin{tabular}{l}
+%         \makebox[4.8cm]{院\hspace{2\ccwd}系:} \underline{\makebox[15em]{\hfill\@cschool\hfill}} \\
+%         \makebox[4.8cm]{School (Department)} \\
+%         \vspace{8pt} \\
+%
+%         \makebox[4.8cm]{专\hspace{2\ccwd}业:} \underline{\makebox[15em]{\hfill\@cmajor\hfill}} \\
+%         \makebox[4.8cm]{Major} \\
+%         \vspace{8pt} \\
+%
+%         \makebox[4.8cm]{学生姓名:} \underline{\makebox[15em]{\hfill\@cauthor\hfill}} \\
+%         \makebox[4.8cm]{Student Name} \\
+%         \vspace{8pt} \\
+%
+%         \makebox[4.8cm]{学\hspace{2\ccwd}号:} \underline{\makebox[15em]{\hfill\@studentid\hfill}} \\
+%         \makebox[4.8cm]{Student No.} \\
+%         \vspace{8pt} \\
+%
+%         \makebox[4.8cm]{指导教师(职 称):} \underline{\makebox[15em]{\hfill\@cmentor\hfill}} \\
+%         \makebox[4.8cm]{Supervisor (Title)} \\
+%       \end{tabular}
+%       }
+%       \vfill
+%
+%       \zihao{-3}
+%       {\centering
+%         时间: \today    % 使用最后一次编译的日期, 实现日期的自动化
+%       }
+%     \end{center}
+%   \end{titlepage}
+%   \clearpage
+%   %\clearemptydoublepage   % 空白页
+% }
 
 \newcommand\makedisclaim{
   \ctexset {
@@ -311,7 +365,7 @@
   %  \makebox[2.6cm]{\textbf{Major:}\hfill} \@emajor \\
   %  \makebox[2.6cm]{\textbf{Name:}\hfill} \@eauthor\\
   %  \makebox[2.6cm]{\textbf{Student ID:}\hfill} \@studentid \\
-  %  \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor 
+  %  \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor
   %\end{flushleft}
 
   \zihao{-4}
@@ -447,4 +501,3 @@
   \fi
 }
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-
