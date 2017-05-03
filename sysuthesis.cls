@@ -1,6 +1,6 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sysuthesis}[2017/05/02 v4.4.0 Sun Yat-Sen University undergraduate thesis document class]
+\ProvidesClass{sysuthesis}[2017/05/03 v4.5.0 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -173,6 +173,7 @@
 \newcommand\cabstract[1]{\def\@cabstract{#1}}
 \newcommand\eabstract[1]{\def\@eabstract{#1}}
 
+
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newtheoremstyle{dotless}{3pt}{3pt}{\kaishu}{2em}{\heiti}{}{\ccwd}{}
 \theoremstyle{dotless}
@@ -213,20 +214,20 @@
 
       {\fontsize{15}{10}\selectfont
       \begin{tabular}{l}
-          \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\textbf\@covertitlefirst\hfill}}\\\vspace{1pt}\\
-          \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\textbf\@covertitlesecond\hfill}}\\\vspace{1pt}\\
+          \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\songti\textbf\@covertitlefirst\hfill}}\\\vspace{1pt}\\
+          \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\songti\textbf\@covertitlesecond\hfill}}\\\vspace{1pt}\\
           \vspace{8pt} \\
           院\hspace{0.5\ccwd}系\\
           \makebox[4.8cm]{School (Department):\hfill} \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}}\\
           \vspace{8pt} \\
           专\hspace{0.5\ccwd}业\\
-          \makebox[1.7cm]{Major:\hfill} \underline{\makebox[9.3cm]{\hfill\@cmajor\hspace{3.3cm}}}\\
+          \makebox[1.7cm]{Major:\hfill} \underline{\makebox[9.3cm]{\hfill\@cmajor\hfill}}\\
           \vspace{8pt} \\
           学生姓名 \\
-          \makebox[3.4cm]{Student Name:\hfill} \underline{\makebox[7.6cm]{\hfill\@cauthor\hspace{3cm}}}\\
+          \makebox[3.4cm]{Student Name:\hfill} \underline{\makebox[7.6cm]{\hfill\@cauthor\hfill}}\\
           \vspace{8pt} \\
           学\hspace{0.5\ccwd}号 \\
-          \makebox[3cm]{Student No.:\hfill} \underline{\makebox[8cm]{\hfill\@studentid\hspace{3cm}}}\\
+          \makebox[3cm]{Student No.:\hfill} \underline{\makebox[8cm]{\hfill\@studentid\hfill}}\\
           \vspace{8pt} \\
           指导教师（职 称） \\
           \makebox[4cm]{Supervisor (Title):\hfill} \underline{\makebox[7cm]{\hfill\@cmentor\hspace{2.7cm}}}
@@ -236,7 +237,8 @@
 
       \zihao{-3}
       {\centering
-        \hspace{2\ccwd}时间：\today   \\ % 使用最后一次编译的日期, 实现日期的自动化
+        \ctexset{today=big}     % 汉字数字形式日期
+        时间：\today   \\ % 使用最后一次编译的日期, 实现日期的自动化
         Date:\hspace{0.5\ccwd} Month\hspace{2\ccwd} Day\hspace{1\ccwd} Year
       }
 
@@ -253,7 +255,7 @@
 %       \songti
 %       \vspace{\baselineskip}
 %       \zihao{-0}\textbf{本科生毕业论文（设计）} \\
-%       \zihao{-2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
+%       \zihao{2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
 %       \vspace{2\baselineskip}
 %
 %       \zihao{3}\textbf{\@title}
@@ -285,7 +287,10 @@
 %
 %       \zihao{-3}
 %       {\centering
+%         \ctexset{today=big}     % 汉字数字形式日期
 %         时间: \today    % 使用最后一次编译的日期, 实现日期的自动化
+%         \ctexset{today=old}     % 英文形式日期
+%         Date: \today
 %       }
 %     \end{center}
 %   \end{titlepage}
@@ -332,6 +337,9 @@
   %  \textbf{指导教师}：\mbox{ }\@cmentor \\
   %\end{flushleft}
 
+  % 或者只要一个醒目的标题
+  \centerline{\songti\zihao{3}\bfseries{\@ctitle}}
+
   \zihao{5}\kaishu
   \paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
   \@cabstract
@@ -360,6 +368,8 @@
   %  \makebox[2.6cm]{\textbf{Student ID:}\hfill} \@studentid \\
   %  \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor
   %\end{flushleft}
+
+  \centerline{\zihao{3}\bfseries{\@etitle}}
 
   \zihao{-4}
   \paragraph{\textbf{[Abstract]}}
