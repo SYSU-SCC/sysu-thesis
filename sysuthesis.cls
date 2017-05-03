@@ -1,6 +1,6 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sysuthesis}[2017/05/02 v4.4.0 Sun Yat-Sen University undergraduate thesis document class]
+\ProvidesClass{sysuthesis}[2017/05/03 v4.5.0 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -158,7 +158,7 @@
 % 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
 \newcommand\etitle[1]{\def\@etitle{#1}} % declare variables to store info
-\newcommand\covertitlefirst[2]{\def\@covertitlefirst{#1}}
+\newcommand\covertitlefirst[1]{\def\@covertitlefirst{#1}}
 \newcommand\covertitlesecond[1]{\def\@covertitlesecond{#1}}
 \newcommand\cauthor[1]{\def\@cauthor{#1}} % author name in cover
 \newcommand\eauthor[1]{\def\@eauthor{#1}}
@@ -337,6 +337,9 @@
   %  \textbf{指导教师}：\mbox{ }\@cmentor \\
   %\end{flushleft}
 
+  % 或者只要一个醒目的标题
+  \centerline{\songti\zihao{3}\bfseries{\@ctitle}}
+
   \zihao{5}\kaishu
   \paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
   \@cabstract
@@ -365,6 +368,8 @@
   %  \makebox[2.6cm]{\textbf{Student ID:}\hfill} \@studentid \\
   %  \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor
   %\end{flushleft}
+
+  \centerline{\zihao{3}\bfseries{\@etitle}}
 
   \zihao{-4}
   \paragraph{\textbf{[Abstract]}}
