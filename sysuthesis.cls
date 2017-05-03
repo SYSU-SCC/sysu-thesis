@@ -1,6 +1,6 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sysuthesis}[2017/05/03 v4.5.0 Sun Yat-Sen University undergraduate thesis document class]
+\ProvidesClass{sysuthesis}[2017/05/03 v4.5.1 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -320,7 +320,8 @@
       titleformat = {\zihao{4}\heiti},
       beforeskip = {10pt},
       afterskip = {20pt}
-    }
+    },
+    paragraph/format = {}
   }
 
   % 使用隐藏目录项的section及添加为chapter形式目录的方法来去掉在openright环境中中英文摘要间出现空白页的情况
@@ -341,7 +342,7 @@
   \centerline{\songti\zihao{3}\bfseries{\@ctitle}}
 
   \zihao{5}\kaishu
-  \paragraph{\zihao{5}\heiti\textbf{[摘\hspace{\ccwd}要]}}
+  \paragraph{\zihao{5}\heiti[摘\hspace{\ccwd}要]}
   \@cabstract
   \paragraph{\zihao{5}\heiti[关键词]}\@ckeywords
 }
