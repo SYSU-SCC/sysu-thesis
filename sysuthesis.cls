@@ -1,6 +1,6 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sysuthesis}[2017/05/03 v4.5.1 Sun Yat-Sen University undergraduate thesis document class]
+\ProvidesClass{sysuthesis}[2017/05/04 v4.5.2 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -403,7 +403,7 @@
   \pagenumbering{arabic}
   \ctexset {
     chapter = {
-      fixskip = true,
+      %fixskip = true,
       beforeskip = {10pt},
       afterskip = {20pt},
       format = {\centering},
@@ -411,7 +411,7 @@
       titleformat = {\zihao{4}\heiti}
     },
     section = {
-      fixskip = true,
+      %fixskip = true,
       beforeskip = {20pt},
       afterskip = {10pt},
       format = {},
@@ -419,7 +419,7 @@
       titleformat = {\zihao{4}\heiti}
     },
     subsection = {
-      fixskip = true,
+      %fixskip = true,
       beforeskip = {20pt},
       afterskip = {10pt},
       format = {},
