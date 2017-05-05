@@ -425,6 +425,14 @@
       format = {},
       nameformat = {\zihao{4}\heiti},
       titleformat = {\zihao{4}\heiti}
+    },
+    subsubsection = {
+      beforeskip = {20pt},
+      afterskip = {10pt},
+      format = {},
+      nameformat = {\zihao{4}\heiti},
+      titleformat = {\zihao{4}\heiti},
+      number = {(\arabic{subsubsection})}
     }
   }
 
