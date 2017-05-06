@@ -1,6 +1,6 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sysuthesis}[2017/05/04 v4.5.2 Sun Yat-Sen University undergraduate thesis document class]
+\ProvidesClass{sysuthesis}[2017/05/06 v4.5.3 Sun Yat-Sen University undergraduate thesis document class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -74,7 +74,8 @@
 
 % list environment,
 \setlist[enumerate]{nosep}
-\renewcommand\labelenumi{\theenumi}
+\renewcommand\labelenumi{\theenumi)}
+%\renewcommand\labelenumi{\theenumi.}
 \setlist[itemize]{nosep}
 \setlist[description]{nosep}
 
