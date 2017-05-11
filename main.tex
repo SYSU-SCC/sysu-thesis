@@ -1,44 +1,44 @@
 ﻿\documentclass{sysuthesis}
 
-\input{docs/info}   % 论文相关信息
-\input{docs/abstract}   % 摘要内容
+\input{docs/info}     % 论文相关信息
+\input{docs/abstract}     % 摘要内容
 
 \begin{document}
-  % 论文前置部分
-  \frontmatter
-    \pagenumbering{Roman}
-    \maketitle  % 封面
-    % 开题报告
-    % 过程检查记录表
-    % 答辩情况等级表
-    \makedisclaim   % 学术诚信声明
-    \makeabstract   % 中英文摘要
-    \tableofcontents    % 目录
-    \makelistoffiguretable
+    % 论文前置部分
+    \frontmatter
+        \pagenumbering{Roman}
+        \maketitle    % 封面
+        % 开题报告
+        % 过程检查记录表
+        % 答辩情况等级表
+        \makedisclaim     % 学术诚信声明
+        \makeabstract     % 中英文摘要
+        \tableofcontents        % 目录
+        \makelistoffiguretable
 
-  % 论文主体部分
-  \mainmatter
-    % 引言
+    % 论文主体部分
+    \mainmatter
+        % 引言
 
-    % 正文
-    \include{docs/chap01}
-    \include{docs/chap02}
-    \include{docs/chap03}
-    \include{docs/chap04}
-    \include{docs/chap05}
+        % 正文
+        \include{docs/chap01}
+        \include{docs/chap02}
+        \include{docs/chap03}
+        \include{docs/chap04}
+        \include{docs/chap05}
 
-    % 结语
+        % 结语
 
-  % 附录部分
-  \backmatter
-    % 参考文献. 因不需要纳入章节目录, 故放入附录部分
-    % 实际上参考文献是属于论文主体部分
-    \makereferences
+    % 附录部分
+    \backmatter
+        % 参考文献. 因不需要纳入章节目录, 故放入附录部分
+        % 实际上参考文献是属于论文主体部分
+        \makereferences
 
-    \include{docs/ack}  % 致谢
+        \include{docs/ack}    % 致谢
 
-    % 附录
-  \appendix
-    \include{docs/appendix1}
+        % 附录
+    \appendix
+        \include{docs/appendix1}
 \end{document}
 
