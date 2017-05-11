@@ -1,11 +1,14 @@
 src = main
-pdf : clean main.tex main.bib
+
+pdf: clean main.tex main.bib
 	xelatex $(src)
 	bibtex $(src)
 	xelatex $(src)
 	xelatex $(src)
+
 show:
 	xdg-open $(src).pdf
+
 clean:
 	-@rm -rf \
 		*~ \
