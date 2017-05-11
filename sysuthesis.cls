@@ -460,10 +460,10 @@
     }
 
     % 引用样式
-    %\bibliographystyle{ieeetr}     % 国际标准样式
-    \bibliographystyle{gbt7714-2005}  % 国标文后参考文献著录规则
-    %\bibliographystyle{sysuthesis}   % 历史遗留模板
-    %\bibliographystyle{sysuthesis2}   % 2017年由程建生师兄提供的模板
+    %\bibliographystyle{bibtex-style/ieeetr}     % 国际标准样式
+    \bibliographystyle{bibtex-style/gbt7714-2005}  % 国标文后参考文献著录规则
+    %\bibliographystyle{bibtex-style/sysuthesis}   % 历史遗留模板
+    %\bibliographystyle{bibtex-style/sysuthesis2}   % 2017年由程建生师兄提供的模板
     {\zihao{-5}\rmfamily\bibliography{main}}  % 引用文献列表
   \endgroup
 }
