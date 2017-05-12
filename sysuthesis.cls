@@ -303,15 +303,17 @@
 
 % 开题报告
 \newcommand\makeProposal{
-    \cleardoublepage
     \ctexset{
         chapter = {
-            titleformat = {\zihao{-3}\fangsong\bfseries},
+            titleformat = {\zihao{3}\fangsong\bfseries},
             beforeskip = {-3.5ex plus -1ex minus -.2ex}, 
             afterskip = {2.3ex plus .2ex}
         }
     }
-    \chapter*{表一\hspace{\ccwd}毕业论文（设计）开题报告}
+    \chapter*{
+        表一\hspace{\ccwd}毕业论文（设计）开题报告 \\
+        Form 1: Research Proposal of Graduation Thesis (Design)
+    }
     \zihao{-4}\songti
     \begin{longtable}{|p{\textwidth}|}
         \hline
@@ -322,18 +324,23 @@
         \endfoot
         \hline
         \endlastfoot
-        论文(设计)题目:\@ctitle
-        \\\hline
+        论文(设计)题目: \\
+        Thesis (Design) Title: \@ctitle \\
+        \hline
         (简述选题的目的、思路、方法、相关支持条件及进度安排等)\\
+        (Please briefly state the research objective, research methodology, research procedure and research schedule in this part.) \\
         \@proposal    \\
-        \\
-        \hspace{2\ccwd}学生签名：\hfill 年\qquad 月\qquad 日\\
-        \\\hline
+        \hspace{2\ccwd}Student Signature:\hfill Date:\makebox{\hspace{10\ccwd}}\\
+        \hline
         指导教师意见:\\
+        Comments from Supervisor: \\
         \@proposalInstructions \\
-        1、同意开题( ) 2、修改后开题( ) 3、重新开题( )\\\rule{0cm}{\baselineskip}\\
-        \hspace{2\ccwd}指导教师签名:\hfill 年\qquad 月\qquad 日\\\rule{0cm}{\baselineskip}\\
+        1、同意开题( ) 2、修改后开题( ) 3、重新开题( )\\
+        \rule{0cm}{\baselineskip}\\
+        \hspace{2\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{10\ccwd}}\\
+        \rule{0cm}{\baselineskip}\\
     \end{longtable}
+    \thispagestyle{empty}
 }
 
 \newcommand\makedisclaim{
