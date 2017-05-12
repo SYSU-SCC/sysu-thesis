@@ -169,6 +169,8 @@
 \newcommand\emajor[1]{\def\@emajor{#1}}
 \newcommand\cmentor[1]{\def\@cmentor{#1}}
 \newcommand\ementor[1]{\def\@ementor{#1}}
+\newcommand\proposal[1]{\def\@proposal{#1}}
+\newcommand\proposalInstructions[1]{\def\@proposalInstructions{#1}}
 \newcommand\ckeywords[1]{\def\@ckeywords{#1}}
 \newcommand\ekeywords[1]{\def\@ekeywords{#1}}
 \newcommand\cabstract[1]{\def\@cabstract{#1}}
@@ -299,26 +301,61 @@
 %     %\clearemptydoublepage     % 空白页
 % }
 
-\newcommand\makedisclaim{
-    \ctexset {
+% 开题报告
+\newcommand\makeProposal{
+    \cleardoublepage
+    \ctexset{
         chapter = {
-            titleformat = {\zihao{-2}\fangsong\bfseries},
-            beforeskip = {10pt},
-            afterskip = {40pt}
+            titleformat = {\zihao{-3}\fangsong\bfseries},
+            beforeskip = {-3.5ex plus -1ex minus -.2ex}, 
+            afterskip = {2.3ex plus .2ex}
         }
     }
-    \input{docs/disclaim}
-    \thispagestyle{empty}
-    \clearpage
-    %\clearemptydoublepage     % 空白页
+    \chapter*{表一\hspace{\ccwd}毕业论文（设计）开题报告}
+    \zihao{-4}\songti
+    \begin{longtable}{|p{\textwidth}|}
+        \hline
+        \endfirsthead
+        \hline
+        \endhead
+        \hline
+        \endfoot
+        \hline
+        \endlastfoot
+        论文(设计)题目:\@ctitle
+        \\\hline
+        (简述选题的目的、思路、方法、相关支持条件及进度安排等)\\
+        \@proposal    \\
+        \\
+        \hspace{2\ccwd}学生签名：\hfill 年\qquad 月\qquad 日\\
+        \\\hline
+        指导教师意见:\\
+        \@proposalInstructions \\
+        1、同意开题( ) 2、修改后开题( ) 3、重新开题( )\\\rule{0cm}{\baselineskip}\\
+        \hspace{2\ccwd}指导教师签名:\hfill 年\qquad 月\qquad 日\\\rule{0cm}{\baselineskip}\\
+    \end{longtable}
+}
+
+\newcommand\makedisclaim{
+\ctexset {
+chapter = {
+titleformat = {\zihao{-2}\fangsong\bfseries},
+beforeskip = {10pt},
+afterskip = {40pt}
+}
+}
+\input{docs/disclaim}
+\thispagestyle{empty}
+\clearpage
+%\clearemptydoublepage     % 空白页
 }
 
 % 中文摘要、关键字标题：5号黑体并加方括号
 % 中文摘要、关键字内容：5号楷体
 \newcommand\makecabstract{
-    \ctexset{
-        section = {
-            titleformat = {\zihao{4}\heiti},
+\ctexset{
+section = {
+titleformat = {\zihao{4}\heiti},
             beforeskip = {10pt},
             afterskip = {20pt}
         },
