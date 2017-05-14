@@ -156,6 +156,7 @@
 \addtolength{\cftchapnumwidth}{3\ccwd}
 \newcommand\mybold[1]{\textit{\textbf{#1}}}
 
+
 % 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
 \newcommand\etitle[1]{\def\@etitle{#1}}
@@ -169,6 +170,16 @@
 \newcommand\emajor[1]{\def\@emajor{#1}}
 \newcommand\cmentor[1]{\def\@cmentor{#1}}
 \newcommand\ementor[1]{\def\@ementor{#1}}
+
+% 开题报告
+\newcommand\objective[1]{\def\@objective{#1}}
+\newcommand\methodology[1]{\def\@methodology{#1}}
+\newcommand\researchProcedure[1]{\def\@researchProcedure{#1}}
+\newcommand\supportment[1]{\def\@supportment{#1}}
+\newcommand\schedule[1]{\def\@schedule{#1}}
+\newcommand\proposalInstructions[1]{\def\@proposalInstructions{#1}}
+
+% 摘要
 \newcommand\ckeywords[1]{\def\@ckeywords{#1}}
 \newcommand\ekeywords[1]{\def\@ekeywords{#1}}
 \newcommand\cabstract[1]{\def\@cabstract{#1}}
@@ -299,18 +310,96 @@
 %     %\clearemptydoublepage     % 空白页
 % }
 
+% 开题报告
+\newcommand\makeProposal{
+    \pagestyle{empty}
+
+    \begin{center}
+        \zihao{3}\fangsong\bfseries
+        表一\hspace{\ccwd}毕业论文（设计）开题报告 \\
+        Form 1: Research Proposal of Graduation Thesis (Design)
+    \end{center}
+    %\addcontentsline{toc}{chapter}{表一 毕业论文（设计）开题报告}
+
+    \zihao{-4}\songti
+    \begin{longtable}{|p{0.9\textwidth}|}
+        % 第一页出现的表头
+        \hline
+        论文(设计)题目: \\
+        Thesis (Design) Title: \@ctitle
+        \endfirsthead
+
+        % 中间页出现的表头
+        \hline
+        %(前接)
+        \endhead
+
+        % 中间页出现的表脚
+        %(后续) \\
+        \hline
+        \endfoot
+
+        % 表格最后一页的表脚
+        %\hline
+        指导教师意见:\\
+        Comments from Supervisor: \\
+        \@proposalInstructions  \\
+        \vspace{\baselineskip}
+
+        \begin{tabular}{l l l}
+            1. 同意开题     & 2. 修改后开题                     & 3. 重新开题           \\
+            1. Approved(　) & 2. Approved after Revision(　)    & 3. Disapproved(　)    \\
+        \end{tabular}
+
+        \vspace{\baselineskip}
+        \hspace{2\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{10\ccwd}}\\
+        \rule{0cm}{\baselineskip}\\
+        \hline
+        \endlastfoot
+
+        \hline
+        (简述选题的目的、思路、方法、相关支持条件及进度安排等)\\
+        (Please briefly state the research objective, research methodology, research procedure and research schedule in this part.) \\
+        \textbf{选题目的:}  \\
+        \@objective
+        \vspace{\baselineskip}
+
+        \textbf{思路:}  \\
+        \@methodology
+        \vspace{\baselineskip}
+
+        \textbf{方法:}  \\
+        \@researchProcedure
+        \vspace{\baselineskip}
+
+        \textbf{相关支持条件:}  \\
+        \@supportment
+        \vspace{\baselineskip}
+
+        \textbf{进度安排:}  \\
+        \@schedule
+        \vspace{\baselineskip}
+        \vfill
+
+        \hspace{2\ccwd}Student Signature:\hfill Date:\makebox{\hspace{10\ccwd}} \\
+        \rule{0cm}{\baselineskip}\\
+        \hline
+    \end{longtable}
+    %\clearemptydoublepage
+}
+
 \newcommand\makedisclaim{
-    \ctexset {
-        chapter = {
-            titleformat = {\zihao{-2}\fangsong\bfseries},
-            beforeskip = {10pt},
-            afterskip = {40pt}
-        }
+\ctexset {
+    chapter = {
+        titleformat = {\zihao{-2}\fangsong\bfseries},
+        beforeskip = {10pt},
+        afterskip = {40pt}
     }
-    \input{docs/disclaim}
-    \thispagestyle{empty}
-    \clearpage
-    %\clearemptydoublepage     % 空白页
+}
+\input{docs/disclaim}
+\thispagestyle{empty}
+\clearpage
+%\clearemptydoublepage     % 空白页
 }
 
 % 中文摘要、关键字标题：5号黑体并加方括号
