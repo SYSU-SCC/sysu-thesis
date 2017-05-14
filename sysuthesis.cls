@@ -312,8 +312,7 @@
 
 % 开题报告
 \newcommand\makeProposal{
-    \thispagestyle{empty}
-    \zihao{-4}\songti
+    \pagestyle{empty}
     \ctexset{
         chapter = {
             titleformat = {\zihao{3}\fangsong\bfseries},
@@ -351,7 +350,12 @@
         \vspace{\baselineskip}
         \@proposalInstructions  \\
         \vspace{\baselineskip}
-        1、同意开题( ) 2、修改后开题( ) 3、重新开题( )\\
+
+        \begin{tabular}{l l l}
+            1. 同意开题     & 2. 修改后开题                     & 3. 重新开题           \\
+            1. Approved(　) & 2. Approved after Revision(　)    & 3. Disapproved(　)    \\
+        \end{tabular}
+
         \rule{0cm}{2\baselineskip}\\
         \hspace{2\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{10\ccwd}}\\
         \rule{0cm}{\baselineskip}\\
