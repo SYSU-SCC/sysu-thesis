@@ -313,17 +313,13 @@
 % 开题报告
 \newcommand\makeProposal{
     \pagestyle{empty}
-    \ctexset{
-        chapter = {
-            titleformat = {\zihao{3}\fangsong\bfseries},
-            beforeskip = {-3.5ex plus -1ex minus -.2ex},
-            afterskip = {2.3ex plus .2ex}
-        }
-    }
-    \chapter*{
+
+    \begin{center}
+        \zihao{3}\fangsong\bfseries
         表一\hspace{\ccwd}毕业论文（设计）开题报告 \\
         Form 1: Research Proposal of Graduation Thesis (Design)
-    }
+    \end{center}
+    %\addcontentsline{toc}{chapter}{表一 毕业论文（设计）开题报告}
 
     \zihao{-4}\songti
     \begin{longtable}{|p{0.9\textwidth}|}
@@ -347,7 +343,6 @@
         %\hline
         指导教师意见:\\
         Comments from Supervisor: \\
-        \vspace{\baselineskip}
         \@proposalInstructions  \\
         \vspace{\baselineskip}
 
@@ -356,7 +351,7 @@
             1. Approved(　) & 2. Approved after Revision(　)    & 3. Disapproved(　)    \\
         \end{tabular}
 
-        \rule{0cm}{2\baselineskip}\\
+        \vspace{\baselineskip}
         \hspace{2\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{10\ccwd}}\\
         \rule{0cm}{\baselineskip}\\
         \hline
@@ -364,7 +359,7 @@
 
         \hline
         (简述选题的目的、思路、方法、相关支持条件及进度安排等)\\
-        (Please briefly state the research objective, research methodology, research procedure and research schedule in this part.)\\
+        (Please briefly state the research objective, research methodology, research procedure and research schedule in this part.) \\
         \textbf{选题目的:}  \\
         \@objective
         \vspace{\baselineskip}
@@ -384,9 +379,9 @@
         \textbf{进度安排:}  \\
         \@schedule
         \vspace{\baselineskip}
-        %\vfill
+        \vfill
 
-        \hspace{2\ccwd}Student Signature:\hfill Date:\makebox{\hspace{10\ccwd}}\\
+        \hspace{2\ccwd}Student Signature:\hfill Date:\makebox{\hspace{10\ccwd}} \\
         \rule{0cm}{\baselineskip}\\
         \hline
     \end{longtable}
