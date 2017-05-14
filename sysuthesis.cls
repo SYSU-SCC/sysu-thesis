@@ -172,7 +172,6 @@
 \newcommand\ementor[1]{\def\@ementor{#1}}
 
 % 开题报告
-\newcommand\proposal[1]{\def\@proposal{#1}}
 \newcommand\objective[1]{\def\@objective{#1}}
 \newcommand\methodology[1]{\def\@methodology{#1}}
 \newcommand\researchProcedure[1]{\def\@researchProcedure{#1}}
@@ -313,10 +312,12 @@
 
 % 开题报告
 \newcommand\makeProposal{
+    \thispagestyle{empty}
+    \zihao{-4}\songti
     \ctexset{
         chapter = {
             titleformat = {\zihao{3}\fangsong\bfseries},
-            beforeskip = {-3.5ex plus -1ex minus -.2ex}, 
+            beforeskip = {-3.5ex plus -1ex minus -.2ex},
             afterskip = {2.3ex plus .2ex}
         }
     }
@@ -325,7 +326,6 @@
         Form 1: Research Proposal of Graduation Thesis (Design)
     }
 
-    \pagestyle{empty}
     \zihao{-4}\songti
     \begin{longtable}{|p{0.9\textwidth}|}
         % 第一页出现的表头
@@ -334,11 +334,13 @@
         Thesis (Design) Title: \@ctitle
         \endfirsthead
 
+        % 中间页出现的表头
         \hline
-        %(前接)      % 中间页出现的表头
+        %(前接)
         \endhead
 
-        %(后续) \\      % 中间页出现的表脚
+        % 中间页出现的表脚
+        %(后续) \\
         \hline
         \endfoot
 
@@ -346,9 +348,9 @@
         %\hline
         指导教师意见:\\
         Comments from Supervisor: \\
-        \rule{0cm}{\baselineskip}\\
-        \@proposalInstructions \\
-        \rule{0cm}{\baselineskip}\\
+        \vspace{\baselineskip}
+        \@proposalInstructions  \\
+        \vspace{\baselineskip}
         1、同意开题( ) 2、修改后开题( ) 3、重新开题( )\\
         \rule{0cm}{2\baselineskip}\\
         \hspace{2\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{10\ccwd}}\\
@@ -358,9 +360,7 @@
 
         \hline
         (简述选题的目的、思路、方法、相关支持条件及进度安排等)\\
-        (Please briefly state the research objective, research methodology, research procedure and research schedule in this part.)
-        \vspace{\baselineskip}
-
+        (Please briefly state the research objective, research methodology, research procedure and research schedule in this part.)\\
         \textbf{选题目的:}  \\
         \@objective
         \vspace{\baselineskip}
@@ -380,7 +380,7 @@
         \textbf{进度安排:}  \\
         \@schedule
         \vspace{\baselineskip}
-        \vfill
+        %\vfill
 
         \hspace{2\ccwd}Student Signature:\hfill Date:\makebox{\hspace{10\ccwd}}\\
         \rule{0cm}{\baselineskip}\\
@@ -406,9 +406,9 @@
 % 中文摘要、关键字标题：5号黑体并加方括号
 % 中文摘要、关键字内容：5号楷体
 \newcommand\makecabstract{
-\ctexset{
-section = {
-titleformat = {\zihao{4}\heiti},
+    \ctexset{
+        section = {
+            titleformat = {\zihao{4}\heiti},
             beforeskip = {10pt},
             afterskip = {20pt}
         },
