@@ -322,7 +322,7 @@
     %\addcontentsline{toc}{chapter}{表一 毕业论文（设计）开题报告}
 
     \zihao{-4}\songti
-    \begin{longtable}{|p{0.9\textwidth}|}
+    \begin{longtable}{|p{\textwidth}|}
         % 第一页出现的表头
         \hline
         论文(设计)题目: \\
@@ -385,6 +385,7 @@
         \rule{0cm}{\baselineskip}\\
         \hline
     \end{longtable}
+    \clearpage
     %\clearemptydoublepage
 }
 
