@@ -600,7 +600,7 @@
     %\addcontentsline{toc}{chapter}{表一 毕业论文（设计）开题报告}
 
     \zihao{4}\songti
-    \begin{longtable}{|p{\textwidth}|}
+    \begin{longtable}{|p{0.9\textwidth}|}
         % 第一页出现的表头
         \hline
         \endfirsthead
@@ -649,13 +649,11 @@
         \vspace{\baselineskip}
 
         \hspace{\ccwd}成绩评定  \\
-        \hspace{\ccwd}Grade:    
+        \hspace{\ccwd}Grade:
         \vspace{\baselineskip}
 
-        \begin{tabular}{l l l}
-            签名        & 院系盖章      &       \\
-            Signature:  & Stamp:        & Date: \\
-        \end{tabular}
+        \hspace{\ccwd} \makebox[5cm]{签名\hfill} \makebox[5cm]{院系盖章\hfill}    \\
+        \hspace{\ccwd} \makebox[5cm]{Signature:\hfill} \makebox[5cm]{Stamp:\hfill} \makebox[3cm]{Date:\hfill} \\
     \end{longtable}
     \clearpage
     %\clearemptydoublepage
