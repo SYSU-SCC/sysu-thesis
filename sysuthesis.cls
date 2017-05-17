@@ -589,9 +589,11 @@
     }
 }
 
+%成绩评定记录表
+\newcommand\gradingComment[1]{\def\@gradingComment{#1}}
 \newcommand\makeGrade{
     \pagestyle{empty}
-    \linespread{1}
+    \linespread{1.2}
     \begin{center}
         \zihao{3}\fangsong\bfseries
         毕业论文(设计)成绩评定记录  \\
@@ -620,7 +622,8 @@
         \endlastfoot
 
         \hspace{\ccwd}指导教师评语    \\
-        \hspace{\ccwd}Comments of Supervisor:
+        \hspace{\ccwd}Comments of Supervisor:   \\
+        \@gradingComment
         \vspace{\baselineskip}
 
         \hspace{\ccwd}成绩评定  \\
@@ -634,7 +637,7 @@
 
         \hspace{\ccwd}答辩小组或专业负责人意见  \\
         \hspace{\ccwd}Comments of the Defense Committee:    \\
-        \vspace{\baselineskip}
+        \vspace{2\baselineskip}
 
         \hspace{\ccwd}成绩评定  \\
         \hspace{\ccwd}Grade:
@@ -646,7 +649,7 @@
         \hline
         \hspace{\ccwd}院系负责人意见    \\
         \hspace{\ccwd}Comments of the Academic Chief of School:
-        \vspace{\baselineskip}
+        \vspace{2\baselineskip}
 
         \hspace{\ccwd}成绩评定  \\
         \hspace{\ccwd}Grade:
