@@ -591,7 +591,7 @@
 
 \newcommand\makeGrade{
     \pagestyle{empty}
-
+    \linespread{0.8}
     \begin{center}
         \zihao{3}\fangsong\bfseries
         毕业论文(设计)成绩评定记录  \\
