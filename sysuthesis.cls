@@ -156,14 +156,6 @@
 \addtolength{\cftchapnumwidth}{3\ccwd}
 \newcommand\mybold[1]{\textit{\textbf{#1}}}
 
-% 开题报告
-\newcommand\objective[1]{\def\@objective{#1}}
-\newcommand\methodology[1]{\def\@methodology{#1}}
-\newcommand\researchProcedure[1]{\def\@researchProcedure{#1}}
-\newcommand\supportment[1]{\def\@supportment{#1}}
-\newcommand\schedule[1]{\def\@schedule{#1}}
-\newcommand\proposalInstructions[1]{\def\@proposalInstructions{#1}}
-
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newtheoremstyle{dotless}{3pt}{3pt}{\kaishu}{2em}{\heiti}{}{\ccwd}{}
 \theoremstyle{dotless}
@@ -303,6 +295,13 @@
 % }
 
 % 开题报告
+\newcommand\objective[1]{\def\@objective{#1}}
+\newcommand\methodology[1]{\def\@methodology{#1}}
+\newcommand\researchProcedure[1]{\def\@researchProcedure{#1}}
+\newcommand\supportment[1]{\def\@supportment{#1}}
+\newcommand\schedule[1]{\def\@schedule{#1}}
+\newcommand\proposalInstructions[1]{\def\@proposalInstructions{#1}}
+
 \newcommand\makeProposal{
     \pagestyle{empty}
 
