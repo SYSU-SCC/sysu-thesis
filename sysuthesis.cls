@@ -156,21 +156,6 @@
 \addtolength{\cftchapnumwidth}{3\ccwd}
 \newcommand\mybold[1]{\textit{\textbf{#1}}}
 
-
-% 相关信息宏定义
-\newcommand\ctitle[1]{\def\@ctitle{#1}}
-\newcommand\etitle[1]{\def\@etitle{#1}}
-\newcommand\covertitlefirst[1]{\def\@covertitlefirst{#1}}
-\newcommand\covertitlesecond[1]{\def\@covertitlesecond{#1}}
-\newcommand\cauthor[1]{\def\@cauthor{#1}} % 默认中文名为封面作者名字
-\newcommand\eauthor[1]{\def\@eauthor{#1}}
-\newcommand\studentid[1]{\def\@studentid{#1}}
-\newcommand\cschool[1]{\def\@cschool{#1}}
-\newcommand\cmajor[1]{\def\@cmajor{#1}}
-\newcommand\emajor[1]{\def\@emajor{#1}}
-\newcommand\cmentor[1]{\def\@cmentor{#1}}
-\newcommand\ementor[1]{\def\@ementor{#1}}
-
 % 开题报告
 \newcommand\objective[1]{\def\@objective{#1}}
 \newcommand\methodology[1]{\def\@methodology{#1}}
@@ -178,7 +163,6 @@
 \newcommand\supportment[1]{\def\@supportment{#1}}
 \newcommand\schedule[1]{\def\@schedule{#1}}
 \newcommand\proposalInstructions[1]{\def\@proposalInstructions{#1}}
-
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newtheoremstyle{dotless}{3pt}{3pt}{\kaishu}{2em}{\heiti}{}{\ccwd}{}
@@ -207,6 +191,20 @@
 
 % 参考文献引用标记格式：右上角，带方括号
 \RequirePackage[square,super]{natbib}
+
+% 相关信息宏定义
+\newcommand\ctitle[1]{\def\@ctitle{#1}}
+\newcommand\etitle[1]{\def\@etitle{#1}}
+\newcommand\covertitlefirst[1]{\def\@covertitlefirst{#1}}
+\newcommand\covertitlesecond[1]{\def\@covertitlesecond{#1}}
+\newcommand\cauthor[1]{\def\@cauthor{#1}} % 默认中文名为封面作者名字
+\newcommand\eauthor[1]{\def\@eauthor{#1}}
+\newcommand\studentid[1]{\def\@studentid{#1}}
+\newcommand\cschool[1]{\def\@cschool{#1}}
+\newcommand\cmajor[1]{\def\@cmajor{#1}}
+\newcommand\emajor[1]{\def\@emajor{#1}}
+\newcommand\cmentor[1]{\def\@cmentor{#1}}
+\newcommand\ementor[1]{\def\@ementor{#1}}
 
 \renewcommand\maketitle {
     \begin{titlepage}
