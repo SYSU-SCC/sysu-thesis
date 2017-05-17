@@ -591,7 +591,7 @@
 
 \newcommand\makeGrade{
     \pagestyle{empty}
-    \linespread{0.8}
+    \linespread{1}
     \begin{center}
         \zihao{3}\fangsong\bfseries
         毕业论文(设计)成绩评定记录  \\
@@ -652,8 +652,8 @@
         \hspace{\ccwd}Grade:
         \vspace{\baselineskip}
 
-        \hspace{\ccwd} \makebox[5cm]{签名\hfill} \makebox[5cm]{院系盖章\hfill}    \\
-        \hspace{\ccwd} \makebox[5cm]{Signature:\hfill} \makebox[5cm]{Stamp:\hfill} \makebox[3cm]{Date:\hfill} \\
+        \hspace{\ccwd}\makebox[5cm]{签名\hfill} \makebox[5cm]{院系盖章\hfill}    \\
+        \hspace{\ccwd}\makebox[5cm]{Signature:\hfill} \makebox[5cm]{Stamp:\hfill} \makebox[3cm]{Date:\hfill} \\
     \end{longtable}
     \clearpage
     %\clearemptydoublepage
