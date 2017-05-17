@@ -179,12 +179,6 @@
 \newcommand\schedule[1]{\def\@schedule{#1}}
 \newcommand\proposalInstructions[1]{\def\@proposalInstructions{#1}}
 
-% 摘要
-\newcommand\ckeywords[1]{\def\@ckeywords{#1}}
-\newcommand\ekeywords[1]{\def\@ekeywords{#1}}
-\newcommand\cabstract[1]{\def\@cabstract{#1}}
-\newcommand\eabstract[1]{\def\@eabstract{#1}}
-
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newtheoremstyle{dotless}{3pt}{3pt}{\kaishu}{2em}{\heiti}{}{\ccwd}{}
@@ -402,6 +396,12 @@
 \clearpage
 %\clearemptydoublepage     % 空白页
 }
+
+% 摘要
+\newcommand\ckeywords[1]{\def\@ckeywords{#1}}
+\newcommand\ekeywords[1]{\def\@ekeywords{#1}}
+\newcommand\cabstract[1]{\def\@cabstract{#1}}
+\newcommand\eabstract[1]{\def\@eabstract{#1}}
 
 % 中文摘要、关键字标题：5号黑体并加方括号
 % 中文摘要、关键字内容：5号楷体
