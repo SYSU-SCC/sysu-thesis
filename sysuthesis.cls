@@ -589,6 +589,79 @@
     }
 }
 
+%成绩评定记录表
+\newcommand\gradingComment[1]{\def\@gradingComment{#1}}
+\newcommand\makeGrade{
+    \pagestyle{empty}
+    \linespread{1.2}
+    \begin{center}
+        \zihao{3}\fangsong\bfseries
+        毕业论文(设计)成绩评定记录  \\
+        Grading Sheet of the Graduation Thesis (Design)
+    \end{center}
+    %\addcontentsline{toc}{chapter}{表一 毕业论文（设计）开题报告}
+
+    \zihao{4}\songti
+    \begin{longtable}{|p{0.9\textwidth}|}
+        % 第一页出现的表头
+        \hline
+        \endfirsthead
+
+        % 中间页出现的表头
+        \hline
+        %(前接)
+        \endhead
+
+        % 中间页出现的表脚
+        %(后续) \\
+        \hline
+        \endfoot
+
+        % 表格最后一页的表脚
+        \hline
+        \endlastfoot
+
+        \hspace{\ccwd}指导教师评语    \\
+        \hspace{\ccwd}Comments of Supervisor:   \\
+        \@gradingComment
+        \vspace{\baselineskip}
+
+        \hspace{\ccwd}成绩评定  \\
+        \hspace{\ccwd}Grade:
+        \vspace{\baselineskip}
+
+        \hspace{\ccwd}指导教师签名  \\
+        \hspace{\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{6\ccwd}}   \\
+
+        \hline
+
+        \hspace{\ccwd}答辩小组或专业负责人意见  \\
+        \hspace{\ccwd}Comments of the Defense Committee:    \\
+        \vspace{2\baselineskip}
+
+        \hspace{\ccwd}成绩评定  \\
+        \hspace{\ccwd}Grade:
+        \vspace{\baselineskip}
+
+        \hspace{\ccwd}签名:\hfill Date:\makebox{\hspace{6\ccwd}}  \\
+        \hspace{\ccwd}Signatures of Committee Members   \\
+
+        \hline
+        \hspace{\ccwd}院系负责人意见    \\
+        \hspace{\ccwd}Comments of the Academic Chief of School:
+        \vspace{2\baselineskip}
+
+        \hspace{\ccwd}成绩评定  \\
+        \hspace{\ccwd}Grade:
+        \vspace{\baselineskip}
+
+        \hspace{\ccwd}\makebox[5cm]{签名\hfill} \makebox[5cm]{院系盖章\hfill}    \\
+        \hspace{\ccwd}\makebox[5cm]{Signature:\hfill} \makebox[5cm]{Stamp:\hfill} \makebox[3cm]{Date:\hfill} \\
+    \end{longtable}
+    \clearpage
+    %\clearemptydoublepage
+}
+
 % 配置超链接。
 % hyperref一般要求是导言区最后一个宏包，才能正常工作
 % 若把该宏包提前，则会引起附录列表跳转到第一章的问题
