@@ -1,4 +1,4 @@
-# 中山大学LaTeX论文项目模板(非)
+# 中山大学LaTeX论文项目模板(非官方)
 本维护项目由17届中大数据院软件工程校友黄俊杰(@huangjj27)发起, 发起理由如下:
 1. 中山大学在github上[LaTeX官方模板项目](http://github.com/sysu/sysuthesis)已经有2年多的时间没有维护
 1. [@chunkwong](https://github.com/chungkwong)师兄在github上放出了中大的第一个[非官方的本科论文LaTeX模板](https://github.com/chungkwong/sysu_thesis), 并由[@GoYchen](https://github.com/GoYchen)师兄接力改进
@@ -21,9 +21,9 @@ _注意:　最新代码在dev分支上, 获取代码前请先确认分支._
 ## 错误反馈以及改进
 1. 同学们如果在编译或者使用过程中遇到了一些问题，请参照[这里](ihttps://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)的步骤尝试解决问题。如果还是没法解决，请在这个代码仓库的Issues里汇报错误。
 1. 如果您想参与项目的维护，我们强烈建议您发起访问请求(Access request)到本项目，即可成为本项目的开发人员! 我们**_非常欢迎校友的加入_**  
-    或者，克隆到您的gitlab仓库中，修改完成后给本项目提交`Merge Request`
+    或者，克隆本仓库到您的gitlab仓库中，修改完成后给本项目提交`Merge Request`
 
 ## 声明
 1. 您可以任意地使用和修改这个模板，但该模板可能无法满足最新的《中山大学本科生毕业论文(设计)写作与印制规范》。
-1. 项目组处于刚起步阶段，目前维护人员均要应对毕业论文工作，因此项目会优先满足应届毕业生的需求，还请大家谅解。
+1. 目前项目组人手紧缺, **强烈欢迎校友们的加入**
 
