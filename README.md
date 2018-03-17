@@ -14,7 +14,7 @@ _注意:　最新代码在dev分支上, 获取代码前请先确认分支._
 1. 感谢[@chunkwong](https://github.com/chungkwong)师兄在Github上放出了中大第一个[非官方的本科论文LaTex模板](https://github.com/chungkwong/sysu_thesis)
 1. 感谢[@GoYchen](https://github.com/GoYchen)师兄在模板结构化分解上作出了[极大的贡献](https://github.com/GoYchen/sysu_thesis)
 1. 感谢@huangjj27师兄在模板样式规范化做出极大的贡献
-1. PPT的模板源自 [http://far.tooold.cn/post/latex/beamertsinghua]
+1. PPT的模板源自<http://far.tooold.cn/post/latex/beamertsinghua>
 1. 最后, 感谢Donald Ervin Knuth教授发明了`tex`这么好(zhe)用(teng)的工具  
     Finally, thanks Pro. Donald Ervin Knuth for inventing such useful tool as tex.
 
