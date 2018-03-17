@@ -44,6 +44,8 @@
 \RequirePackage{makecell}
 \RequirePackage[bottom, perpage]{footmisc}
 \RequirePackage{setspace}
+\RequirePackage{datetime}
+\RequirePackage{nth}
 
 % Insert a TRUE blank page which has no header or footer
 \let\origdoublepage\cleardoublepage
@@ -56,6 +58,11 @@
 
 % 设定时间为中文日期
 \ctexset{today=small}
+
+% 定义英文日期格式
+\newcommand\etoday{
+  \hspace{0.5\ccwd} \monthname[\the\month]\hspace{2\ccwd} \nth{\the\day}{\hspace{1\ccwd}} \the\year
+}
 
 \AtBeginDocument{
     \hypersetup{
@@ -235,7 +242,8 @@
             {\centering
                 \ctexset{today=big}         % 汉字数字形式日期
                 时间：\today     \\ % 使用最后一次编译的日期, 实现日期的自动化
-                Date:\hspace{0.5\ccwd} Month\hspace{2\ccwd} Day\hspace{1\ccwd} Year
+                % Date:\hspace{0.5\ccwd} Month\hspace{2\ccwd} Day\hspace{1\ccwd} Year
+                Date: \etoday % 英文日期自动化
             }
 
         \end{center}
