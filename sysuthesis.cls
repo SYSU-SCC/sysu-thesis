@@ -196,6 +196,8 @@
 \newcommand\etitle[1]{\def\@etitle{#1}}
 \newcommand\covertitlefirst[1]{\def\@covertitlefirst{#1}}
 \newcommand\covertitlesecond[1]{\def\@covertitlesecond{#1}}
+\newcommand\eabstracttitlefirst[1]{\def\@eabstracttitlefirst{#1}} % 解决英文摘要页标题过长问题 (Issue 49&63)
+\newcommand\eabstracttitlesecond[1]{\def\@eabstracttitlesecond{#1}}
 \newcommand\cauthor[1]{\def\@cauthor{#1}} % 默认中文名为封面作者名字
 \newcommand\eauthor[1]{\def\@eauthor{#1}}
 \newcommand\studentid[1]{\def\@studentid{#1}}
@@ -466,7 +468,9 @@
     %    \makebox[2.6cm]{\textbf{Supervisor:}\hfill} \@ementor
     %\end{flushleft}
 
-    \centerline{\zihao{3}\bfseries{\@etitle}}
+    %\centerline{\zihao{3}\bfseries{\@etitle}}
+    \centerline{\zihao{3}\bfseries{\@eabstracttitlefirst}}
+    \centerline{\zihao{3}\bfseries{\@eabstracttitlesecond}}
 
     \zihao{-4}
     \paragraph{\textbf{[Abstract]}}
