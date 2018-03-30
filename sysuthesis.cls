@@ -47,6 +47,9 @@
 \RequirePackage{datetime}
 \RequirePackage{nth}
 
+% 引入调整段落整体宽度的宏包
+\RequirePackage{changepage}
+
 % Insert a TRUE blank page which has no header or footer
 \let\origdoublepage\cleardoublepage
 \newcommand{\clearemptydoublepage}{
@@ -389,6 +392,81 @@
     \clearpage
     %\clearemptydoublepage
 }
+
+
+
+
+% Author:   Souler Ou
+% 修改者:    欧一锋
+% Date:     3/30/2018
+% Mail:     ou@souler.cc
+
+% 答辩情况登记表
+% 这两个在原来的info.tex里面定义，用于英文标题过长的时候的换行情况
+\newcommand\etitlefirst[1]{\def\@etitlefirst{#1}}
+\newcommand\etitlesecond[1]{\def\@etitlesecond{#1}}
+
+\newcommand\makeDefenseRecord{
+    \pagestyle{empty}
+
+    \begin{center}
+        \zihao{3}\fangsong\bfseries
+        表三\hspace{\ccwd}毕业论文（设计）答辩情况登记表 \\
+        Form 3: Thesis Defense Performance Form
+    \end{center}
+
+    \zihao{-4}\songti
+    \begin{longtable}{|c|c|c|c|}
+        % 第一页出现的表头
+        \hline
+        % 第一行 答辩人以及专业 使用info.tex中的数据自动生成
+        \textbf{答辩人} & \@cauthor & \textbf{专业} & \@cmajor \\
+        \textbf{Student Name} & \@eauthor & {Major} & \@emajor \\
+        \hline
+        % 第二行 论文题目 如果题目长度过长需要换成两行的版本。
+        \textbf{论文(设计)题目} & \multicolumn{3}{c|}{\@ctitle} \\
+        \textbf{Thesis（Design）Title} & \multicolumn{3}{c|}{\@etitle} \\
+        % 需要两行英文题目的可以使用向下面两行
+        % \textbf{Thesis（Design）Title} & \multicolumn{3}{|c|}{\@etitlefirst} \\
+        % & \multicolumn{3}{|c|}{\@etitlesecond}\\
+        \hline
+        \textbf{答辩小组成员} & \multicolumn{3}{c|}{\quad} \\
+        \textbf{Committee Members} & \multicolumn{3}{c|}{\quad} \\
+        \endfirsthead
+
+        % 中间页出现的表头
+        \hline
+        %(前接)
+        \endhead
+
+        % 中间页出现的表脚
+        %(后续) \\
+        \hline
+        \endfoot
+
+        % 表格最后一页的表脚
+        \hline
+        \multicolumn{4}{|p{\textwidth}|}{
+            % 按照论文原格式是两个字符的缩进
+            \begin{adjustwidth}{2em}{2em}
+            答辩记录 \newline
+            Records of Defense Performance:
+            \end{adjustwidth}
+
+            % % 两行标题的情况，用14厘米的空白页
+            % \vspace{14cm}
+
+            % 单行标题的情况，用14也行，推荐15
+            \vspace{15cm}
+            \hspace{2\ccwd}记录人签名（Clerk Signature）:\hfill 日期（Date）:\makebox{\hspace{5\ccwd}}
+            \vspace{\baselineskip}
+        }
+        \\
+        \hline
+    \end{longtable}
+    \clearpage
+}
+
 
 \newcommand\makedisclaim{
 \ctexset {
