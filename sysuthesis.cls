@@ -394,6 +394,144 @@
 }
 
 
+% Author:   Souler Ou
+% 修改者:    欧一锋
+% Date:     3/30/2018
+
+% 用到的变量
+% 四次过程报告自述
+\newcommand\firstsummary[1]{\def\@firstsummary{#1}}
+\newcommand\secondsummary[1]{\def\@secondsummary{#1}}
+\newcommand\thirdsummary[1]{\def\@thirdsummary{#1}}
+\newcommand\fourthsummary[1]{\def\@fourthsummary{#1}}
+% 四次老师的评价
+\newcommand\firstcomment[1]{\def\@firstcomment{#1}}
+\newcommand\secondcomment[1]{\def\@secondcomment{#1}}
+\newcommand\thirdcomment[1]{\def\@thirdcomment{#1}}
+\newcommand\fourthcomment[1]{\def\@fourthcomment{#1}}
+% 老师最后评价
+\newcommand\finalcomment[1]{\def\@finalcomment{#1}}
+
+% 进度检查记录表
+% 这个文件中使用到的数据需要在 docs/progess.tex 中做好填写。
+\newcommand\makeProgressCheck{
+    \pagestyle{empty}
+
+    \begin{center}
+        \zihao{3}\fangsong\bfseries
+        表二\hspace{\ccwd}毕业论文（设计）过程检查记录表 \\
+        Form 2: Process Check-up Form
+    \end{center}
+
+    \zihao{-4}\songti
+    \begin{longtable}{|c|l|}
+        % 中间页出现的表头
+        \hline
+        \endhead
+
+        % 中间页出现的表脚
+        %(后续) \\
+        \hline
+        \endfoot
+
+        %最后部分的表脚
+        \hline
+        & 指导教师意见Comments from Supervisor: \\
+        &  \\
+        &  \\
+        &  \\
+        \newline
+        \textbf{总体完成情况} & 1、按计划完成，完成情况优（Excellent）：（\quad）\\
+        & 2、按计划完成，完成情况良（Good）：（\quad）\\
+        \textbf{(Overall Assessment)} & 3、基本按计划完成，完成情况合格（Fair）：（\quad）\\
+        & 4、完成情况不合格（Poor）：（\quad）\\
+        & \\
+        & 指导教师签名（Supervisor Signature）:\\
+        & 日期（Date）:\\
+        & \\
+        \hline
+        \endlastfoot
+
+        % 开头的废话
+        \multicolumn{2}{|p{\textwidth}|}{
+            \bfseries{指导教师分阶段检查论文的进展情况（要求过程检查记录不少于3次）} \newline
+            \bfseries{The supervisor should check up the working process for the thesis（design）and fill up the following check-up log. At least three times of the check-up should be done and kept on the log.}
+            \vspace{\baselineskip}
+        }\\
+        % 第一次检查
+        \multicolumn{2}{|p{\textwidth}|} {
+            \textbf{第一次检查（First Check-up）:}  \newline
+            \begin{adjustwidth}{2em}{2em}
+            学生总结 \newline
+            Student Self-Summary:
+            \end{adjustwidth}
+            \@firstsummary 
+            \begin{adjustwidth}{2em}{2em}
+            指导教师意见 \newline
+            Comments of Supervisor: \newline
+            \end{adjustwidth}
+            \@firstcomment
+            \vspace{\baselineskip}
+        }\\
+        % 第二次检查
+        \multicolumn{2}{|p{\textwidth}|} {
+            \textbf{第二次检查（Second Check-up）:}  \newline
+            \begin{adjustwidth}{2em}{2em}
+            学生总结 \newline
+            Student Self-Summary:
+            \end{adjustwidth}
+            \@secondsummary
+            \begin{adjustwidth}{2em}{2em}
+            指导教师意见 \newline
+            Comments of Supervisor: \newline
+            \end{adjustwidth}
+            \@secondcomment
+            \vspace{\baselineskip}
+        }\\
+
+        % 第三次检查
+        \multicolumn{2}{|p{\textwidth}|} {
+            \textbf{第三次检查（Third Check-up）:}  \newline
+            \begin{adjustwidth}{2em}{2em}
+            学生总结 \newline
+            Student Self-Summary:
+            \end{adjustwidth}
+            \@thirdsummary
+            \begin{adjustwidth}{2em}{2em}
+            指导教师意见 \newline
+            Comments of Supervisor:
+            \end{adjustwidth}
+            \@thirdcomment
+            \vspace{\baselineskip}
+        }\\
+
+        % 第四次检查
+        \multicolumn{2}{|p{\textwidth}|} {
+            \textbf{第四次检查（Fourth Check-up）:}  \newline
+            \begin{adjustwidth}{2em}{2em}
+            学生总结 \newline
+            Student Self-Summary:
+            \end{adjustwidth}
+            \@fourthsummary
+            \begin{adjustwidth}{2em}{2em}
+            指导教师意见 \newline
+            Comments of Supervisor:
+            \end{adjustwidth}
+            \@fourthcomment
+            \vspace{\baselineskip}
+        }\\
+
+        % 结尾落款部分
+        \multicolumn{2}{|p{\textwidth}|}{
+            \vspace{1cm} \newline
+            \hspace{2\ccwd}学生签名（Student Signature）:\hfill 日期（Date）:\makebox{\hspace{5\ccwd}} \newline
+            \rule{0cm}{\baselineskip}\newline
+            \hspace{2\ccwd}指导教师签名（Supervisor Signature）:\hfill 日期（Date）:\makebox{\hspace{5\ccwd}} \newline
+            \rule{0cm}{\baselineskip}
+        }\\
+    \end{longtable}
+    \clearpage
+}
 
 
 % Author:   Souler Ou
