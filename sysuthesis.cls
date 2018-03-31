@@ -133,6 +133,7 @@
 \setcounter{tocdepth}{1}
 
 % 目录标题：3号宋体加粗
+\renewcommand{\contentsname}{\centerline{ 目\quad 录}}
 \renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\songti\bfseries}
 \renewcommand{\cftlottitlefont}{\hfill\zihao{3}\songti\bfseries}
 \renewcommand{\cftloftitlefont}{\hfill\zihao{3}\songti\bfseries}
