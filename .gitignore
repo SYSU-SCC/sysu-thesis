@@ -31,3 +31,6 @@ sysuthesis.tar.gz
 *.swp
 
 node_modules/
+
+/.vscode
+/*.synctex.gz
