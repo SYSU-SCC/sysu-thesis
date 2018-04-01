@@ -44,7 +44,10 @@ test_build:
   - mkdir ~/.ssh
   - mv tks/tk ~/.ssh/id_rsa
   # 推送新tag
-  - git push origin ci/$CI_COMMIT_REF_NAME
+  - git push git@gitlab.com:a20185/thesis.git ci/$
+  only:
+  - master
+  - dev
 
 
 # 编译好的文件自动打版本上传至仓库
