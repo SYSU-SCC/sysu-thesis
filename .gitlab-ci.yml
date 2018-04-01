@@ -48,6 +48,7 @@ test_build:
   only:
   - master
   - dev
+  - ci-test
 
 
 # 编译好的文件自动打版本上传至仓库
