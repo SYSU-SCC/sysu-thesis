@@ -1,16 +1,17 @@
 # sudo: required
 # dist: trusty
-# image: ablu/ubuntu-texlive-full:latest
+image: ablu/ubuntu-texlive-full:latest
 before_script:
-- sudo apt-get update
-- sudo apt-get install git texlive-full
-- sudo mkdir -p /usr/share/fonts/opentype
+- apt-get update
+# - apt-get install git texlive-full
+- apt-get install git
+- mkdir -p /usr/share/fonts/opentype
 - git clone https://github.com/a20185/adobefonts
 - cd adobefonts
 - cp *.otf /usr/share/fonts/opentype
-- sudo mkfontscale
-- sudo mkfontdir
-- sudo fc-cache -fv
+- mkfontscale
+- mkfontdir
+- fc-cache -fv
 
 stages:
 - test
