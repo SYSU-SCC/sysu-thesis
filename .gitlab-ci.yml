@@ -13,7 +13,7 @@ before_script:
 - apt-get install -y git language-pack-zh-hans language-pack-zh-hant 
 # 处理Adobe和Times New Roman 字体
 - mkdir -p /usr/share/fonts/opentype
-- git clone https://github.com/a20185/adobefonts
+- git clone $FONT_REPO
 - cd adobefonts
 - cp *.otf /usr/share/fonts/opentype
 - cp *.ttf /usr/share/fonts/truetype
@@ -25,7 +25,7 @@ before_script:
 stages:
 - build
 # 暂时无部署的部分(没有静态文件服务器 or git权限得到控制的token)
-- deploy
+# - deploy
 
 test_build:
   stage: build
@@ -42,7 +42,6 @@ test_build:
   - git commit -m "ci build passed"
   - git tag ci/$CI_COMMIT_SHA
   # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
-  # - git clone 
   - git clone $SSH_KEYS_REPO
   - mkdir ~/.ssh
   - mv tks/tk ~/.ssh/id_rsa
@@ -54,26 +53,7 @@ test_build:
   only:
   - master
   - dev
-  - ci-test
 
-
-# 编译好的文件自动打版本上传至仓库
-# deploy_to_repo:
-#   stage: deploy
-#   script:
-#   # 配置提交环境
-#   - git config --global user.email "ci@thesis.sysu"
-#   - git config --global user.name "CI Runner"
-#   # 添加编译出来的文件，打tag
-#   - git add main.pdf
-#   - git commit -m "ci build passed"
-#   - git tag ci/$CI_COMMIT_REF_NAME
-#   # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
-#   - git clone https://github.com/a20185/tks
-#   - mv ~/.ssh/id_rsa ~/.ssh/id_rsa.old
-#   - mv tks/tk ~/.ssh/id_rsa
-#   # 推送新tag
-#   - git push origin ci/$CI_COMMIT_REF_NAME
 
 # 编译好的文件自动上传静态文件服务器(如七牛之类的)
 # deploy_to_server:
