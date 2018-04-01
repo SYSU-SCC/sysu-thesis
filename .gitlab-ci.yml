@@ -1,7 +1,7 @@
-sudo: required
-dist: trusty
-
-before_install:
+# sudo: required
+# dist: trusty
+# image: ablu/ubuntu-texlive-full:latest
+before_script:
 - sudo apt-get update
 - sudo apt-get install git texlive-full
 - sudo mkdir -p /usr/share/fonts/opentype
@@ -12,5 +12,11 @@ before_install:
 - sudo mkfontdir
 - sudo fc-cache -fv
 
-script:
-- make
+stages:
+- test
+
+test_build:
+  stage: test
+  script:
+  - make
+  - echo ls /builds/
