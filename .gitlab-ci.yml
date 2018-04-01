@@ -32,11 +32,6 @@ test_build:
   script:
   - git checkout -b ci-build
   - make
-
-# 编译好的文件自动打版本上传至仓库
-deploy_to_repo:
-  stage: deploy
-  script:
   # 配置提交环境
   - git config --global user.email "ci@thesis.sysu"
   - git config --global user.name "CI Runner"
@@ -50,6 +45,25 @@ deploy_to_repo:
   - mv tks/tk ~/.ssh/id_rsa
   # 推送新tag
   - git push origin ci/$CI_COMMIT_REF_NAME
+  
+
+# 编译好的文件自动打版本上传至仓库
+# deploy_to_repo:
+#   stage: deploy
+#   script:
+#   # 配置提交环境
+#   - git config --global user.email "ci@thesis.sysu"
+#   - git config --global user.name "CI Runner"
+#   # 添加编译出来的文件，打tag
+#   - git add main.pdf
+#   - git commit -m "ci build passed"
+#   - git tag ci/$CI_COMMIT_REF_NAME
+#   # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
+#   - git clone https://github.com/a20185/tks
+#   - mv ~/.ssh/id_rsa ~/.ssh/id_rsa.old
+#   - mv tks/tk ~/.ssh/id_rsa
+#   # 推送新tag
+#   - git push origin ci/$CI_COMMIT_REF_NAME
 
 # 编译好的文件自动上传静态文件服务器(如七牛之类的)
 # deploy_to_server:
