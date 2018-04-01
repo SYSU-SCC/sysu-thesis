@@ -41,6 +41,7 @@ test_build:
   - git tag ci/$CI_COMMIT_REF_NAME
   # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
   - git clone https://github.com/a20185/tks
+  - mkdir ~/.ssh
   - mv tks/tk ~/.ssh/id_rsa
   # 推送新tag
   - git push origin ci/$CI_COMMIT_REF_NAME
