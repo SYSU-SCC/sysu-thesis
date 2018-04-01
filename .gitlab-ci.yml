@@ -44,7 +44,7 @@ test_build:
   - mkdir ~/.ssh
   - mv tks/tk ~/.ssh/id_rsa
   # 推送新tag
-  - git push git@gitlab.com:a20185/thesis.git ci/$
+  - git push git@gitlab.com:a20185/thesis.git ci/$CI_COMMIT_REF_NAME
   only:
   - master
   - dev
