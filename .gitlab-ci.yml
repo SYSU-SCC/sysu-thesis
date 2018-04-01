@@ -10,16 +10,38 @@ before_script:
 - cd adobefonts
 - cp *.otf /usr/share/fonts/opentype
 - cp *.ttf /usr/share/fonts/truetype
-# - mkfontscale
-# - mkfontdir
+
 - fc-cache -f -v
+- cd ..
+- rm -R adobefonts
 
 stages:
-- test
+- build
+- deploy
 
 test_build:
-  stage: test
+  stage: build
   script:
-  - cd ..
+  - git checkout -b ci-build
   - make
-  - echo ls /builds/
+
+# 编译好的文件自动打版本上传至仓库
+deploy_to_repo:
+  stage: deploy
+  script:
+  # 添加编译出来的文件，打tag
+  - git add main.pdf
+  - git commit -m "ci build passed"
+  - git tag ci/$CI_COMMIT_REF_NAME
+  # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
+  - git clone https://github.com/a20185/tks
+  - mv ~/.ssh/id_rsa ~/.ssh/id_rsa.old
+  - mv tks/tk ~/.ssh/id_rsa
+  # 推送新tag
+  - git push origin ci/$CI_COMMIT_REF_NAME
+
+
+# deploy_to_server:
+#   stage: deploy
+#   script:
+#   # 需要有静态文件服务器
