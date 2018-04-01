@@ -5,8 +5,8 @@
 \ProcessOptions\relax
 
 \LoadClass[
-    %fontset=adobe,
-    fontset=fandol,    % texlive自带，可移植字体库，只有常用的6763个汉字
+    fontset=adobe,       % CI使用此字体库作为编译，如果实际使用中无此字体可换用下面fandol字体库或者前往 https://github.com/a20185/adobefonts 下载
+    % fontset=fandol,    % texlive自带，可移植字体库，只有常用的6763个汉字
     %fontset=ubuntu,
     %fontset=mac,
     %fontset=windows,

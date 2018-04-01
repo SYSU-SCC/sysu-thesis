@@ -1,0 +1,82 @@
+# Gitlab持续集成配置文件
+# Author:   Souler Ou
+# 修改者:    欧一锋
+# Date:     4/1/2018
+# Mail:     ou@souler.cc
+
+# 使用ubuntu-texlive环境
+image: ablu/ubuntu-texlive-full:latest
+# 一系列准备
+before_script:
+- apt-get update
+# 安装中文包和git控制器
+- apt-get install -y git language-pack-zh-hans language-pack-zh-hant 
+# 处理Adobe和Times New Roman 字体
+- mkdir -p /usr/share/fonts/opentype
+- git clone https://github.com/a20185/adobefonts
+- cd adobefonts
+- cp *.otf /usr/share/fonts/opentype
+- cp *.ttf /usr/share/fonts/truetype
+# 刷新缓存以及之后的操作
+- fc-cache -f -v
+- cd ..
+- rm -R adobefonts
+
+stages:
+- build
+# 暂时无部署的部分(没有静态文件服务器 or git权限得到控制的token)
+- deploy
+
+test_build:
+  stage: build
+  script:
+  - git checkout -b ci-build
+  - make
+  # 下面是推送部分
+  # 这部分处理暂时有待斟酌,个人认为还是推送到静态服务器更为合理
+  # 配置提交环境
+  - git config --global user.email "ci@thesis.sysu"
+  - git config --global user.name "CI Runner"
+  # 添加编译出来的文件，打tag
+  - git add main.pdf
+  - git commit -m "ci build passed"
+  - git tag ci/$CI_COMMIT_SHA
+  # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
+  # - git clone 
+  - git clone $SSH_KEYS_REPO
+  - mkdir ~/.ssh
+  - mv tks/tk ~/.ssh/id_rsa
+  - mv tks/tkp ~/.ssh/id_rsa.pub
+  - mv tks/hst ~/.ssh/known_hosts
+  - chmod 600 ~/.ssh/id_rsa
+  # 推送新tag
+  - git push $REFERENCE_GIT ci/$CI_COMMIT_SHA
+  only:
+  - master
+  - dev
+  - ci-test
+
+
+# 编译好的文件自动打版本上传至仓库
+# deploy_to_repo:
+#   stage: deploy
+#   script:
+#   # 配置提交环境
+#   - git config --global user.email "ci@thesis.sysu"
+#   - git config --global user.name "CI Runner"
+#   # 添加编译出来的文件，打tag
+#   - git add main.pdf
+#   - git commit -m "ci build passed"
+#   - git tag ci/$CI_COMMIT_REF_NAME
+#   # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
+#   - git clone https://github.com/a20185/tks
+#   - mv ~/.ssh/id_rsa ~/.ssh/id_rsa.old
+#   - mv tks/tk ~/.ssh/id_rsa
+#   # 推送新tag
+#   - git push origin ci/$CI_COMMIT_REF_NAME
+
+# 编译好的文件自动上传静态文件服务器(如七牛之类的)
+# deploy_to_server:
+#   stage: deploy
+#   script:
+#   # 需要有静态文件服务器
