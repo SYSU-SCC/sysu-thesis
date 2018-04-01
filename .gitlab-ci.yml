@@ -4,14 +4,14 @@ image: ablu/ubuntu-texlive-full:latest
 before_script:
 - apt-get update
 # - apt-get install git texlive-full
-- apt-get install -y git
+- apt-get install -y git language-pack-zh-hans language-pack-zh-hant 
 - mkdir -p /usr/share/fonts/opentype
 - git clone https://github.com/a20185/adobefonts
 - cd adobefonts
 - cp *.otf /usr/share/fonts/opentype
-- mkfontscale
-- mkfontdir
-- fc-cache -fv
+# - mkfontscale
+# - mkfontdir
+- fc-cache -f -v
 
 stages:
 - test
