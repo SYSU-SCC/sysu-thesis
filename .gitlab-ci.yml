@@ -9,6 +9,7 @@ before_script:
 - git clone https://github.com/a20185/adobefonts
 - cd adobefonts
 - cp *.otf /usr/share/fonts/opentype
+- cp *.ttf /usr/share/fonts/truetype
 # - mkfontscale
 # - mkfontdir
 - fc-cache -f -v
