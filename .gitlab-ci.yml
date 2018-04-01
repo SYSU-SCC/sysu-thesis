@@ -19,5 +19,6 @@ stages:
 test_build:
   stage: test
   script:
+  - cd ..
   - make
   - echo ls /builds/
