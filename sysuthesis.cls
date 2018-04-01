@@ -754,6 +754,7 @@
     }
 
     \zihao{-4}\songti \linespread{1.5}\selectfont
+    \pagestyle{plain}
 }
 
 \renewcommand\backmatter{
@@ -788,7 +789,6 @@
 \renewcommand\appendix{\par
     \@mainmattertrue
     \fancypagestyle{plain}{
-        \fancyfoot{}
         \fancyhead[R]{\zihao{-5} 附录\thechapter \leftmark}
     }
     \pagestyle{plain}
