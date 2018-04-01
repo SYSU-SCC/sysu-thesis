@@ -1,0 +1,16 @@
+sudo: required
+dist: trusty
+
+before_install:
+- sudo apt-get update
+- sudo apt-get install git texlive-full
+- sudo mkdir -p /usr/share/fonts/opentype
+- git clone https://github.com/a20185/adobefonts
+- cd adobefonts
+- cp *.otf /usr/share/fonts/opentype
+- sudo mkfontscale
+- sudo mkfontdir
+- sudo fc-cache -fv
+
+script:
+- make
