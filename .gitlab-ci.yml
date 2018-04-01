@@ -40,7 +40,7 @@ test_build:
   # 添加编译出来的文件，打tag
   - git add main.pdf
   - git commit -m "ci build passed"
-  - git tag ci/$CI_COMMIT_REF_NAME
+  - git tag ci/$CI_COMMIT_SHA
   # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
   # - git clone 
   - git clone $SSH_KEYS_REPO
