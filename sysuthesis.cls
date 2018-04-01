@@ -129,8 +129,10 @@
 
 
 % 目录设定，使用tocloft宏包
-\setcounter{secnumdepth}{2} % depth of toc, 2
+\setcounter{secnumdepth}{3} % depth of toc, 2
 \setcounter{tocdepth}{1}
+% 如果要在目录中显示子章节请换用下面这行(目录中显示到x.y.z章)，如果不用这行默认显示到x.y章。
+% \setcounter{tocdepth}{2}
 
 % 目录标题：3号宋体加粗
 \renewcommand{\contentsname}{\centerline{ 目\quad 录}}
@@ -748,8 +750,9 @@
             afterskip = {10pt},
             format = {},
             nameformat = {\zihao{4}\heiti},
-            titleformat = {\zihao{4}\heiti},
-            number = {(\arabic{subsubsection})}
+            titleformat = {\zihao{4}\heiti}
+            % 按照中大规定的格式需要显示成a.b.c.d章，而不是(d)节
+            % number = {(\arabic{subsubsection})}
         }
     }
 
