@@ -5,7 +5,7 @@
 \ProcessOptions\relax
 
 \LoadClass[
-    % fontset=adobe,       % CI使用此字体库作为编译，如果实际使用中无此字体可换用下面fandol字体库或者前往 https://github.com/a20185/adobefonts 下载
+    %fontset=adobe,
     fontset=fandol,    % texlive自带，可移植字体库，只有常用的6763个汉字
     %fontset=ubuntu,
     %fontset=mac,
@@ -18,8 +18,7 @@
 
 % 配置英文字体
 \RequirePackage{fontspec}
-% \setmainfont{Times New Roman}
-\setmainfont{Nimbus Roman No9 L}
+\setmainfont{Times New Roman}
 
 \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage{fancyhdr}
@@ -136,6 +135,7 @@
 % \setcounter{tocdepth}{2}
 
 % 目录标题：3号宋体加粗
+\renewcommand{\contentsname}{\centerline{ 目\quad 录}}
 \renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\songti\bfseries}
 \renewcommand{\cftlottitlefont}{\hfill\zihao{3}\songti\bfseries}
 \renewcommand{\cftloftitlefont}{\hfill\zihao{3}\songti\bfseries}
@@ -757,6 +757,7 @@
     }
 
     \zihao{-4}\songti \linespread{1.5}\selectfont
+    \pagestyle{plain}
 }
 
 \renewcommand\backmatter{
@@ -791,7 +792,6 @@
 \renewcommand\appendix{\par
     \@mainmattertrue
     \fancypagestyle{plain}{
-        \fancyfoot{}
         \fancyhead[R]{\zihao{-5} 附录\thechapter \leftmark}
     }
     \pagestyle{plain}
@@ -908,4 +908,3 @@
     \fi
 }
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-

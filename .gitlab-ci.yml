@@ -11,19 +11,17 @@ before_script:
 - apt-get update
 # 安装中文包和git控制器
 - apt-get install -y git language-pack-zh-hans language-pack-zh-hant 
-# 处理Adobe和Times New Roman 字体
+# 处理字体
 - mkdir -p /usr/share/fonts/opentype
 - git clone $FONT_REPO
 - chmod +x $FONT_RUNNER
 - $FONT_RUNNER
-# - cd adobefonts
-# - cp *.otf /usr/share/fonts/opentype
-# # - cp *.ttf /usr/share/fonts/truetype
 # 刷新缓存以及之后的操作
 - fc-cache -f -v
+# 将Times New Roman 更换为 Nimbus No9 L字体
+- sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
 - $FONT_CLEANER
-# - cd ..
-# - rm -R adobefonts
+
 
 stages:
 - build
