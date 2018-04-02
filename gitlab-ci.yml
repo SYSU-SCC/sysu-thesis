@@ -1,0 +1,78 @@
+# Gitlab持续集成配置文件
+# For Individual Usage
+# Author:   Souler Ou
+# 修改者:    欧一锋
+# Date:     4/1/2018
+# Mail:     ou@souler.cc
+
+variables:
+  # 存放Nimbus Roman No9 L 字体的仓库地址
+  FONT_REPO: "https://github.com/a20185/adobefonts"
+  # 自己配置Reference Git 地址
+  REFERENCE_GIT: "git@gitlab.com/xxx/thesis"
+
+# 使用ubuntu-texlive环境
+image: ablu/ubuntu-texlive-full:latest
+# 一系列准备
+before_script:
+- apt-get update
+# 安装中文包和git控制器
+- apt-get install -y git language-pack-zh-hans language-pack-zh-hant 
+# 处理字体
+- mkdir -p /usr/share/fonts/opentype
+- git clone $FONT_REPO
+- cd adobefonts
+- cp *.otf /usr/share/fonts/opentype
+- cd ..
+# 刷新缓存以及之后的操作
+- fc-cache -f -v
+# 将Times New Roman 更换为 Nimbus No9 L字体
+- sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
+- rm -R adobefonts
+
+
+stages:
+- build
+# 暂时无部署的部分(没有静态文件服务器 or git权限得到控制的token)
+# - deploy
+
+test_build:
+  stage: build
+  script:
+  - git checkout -b ci-build
+  - make
+  # 下面是推送部分
+  # 这部分处理暂时有待斟酌,个人认为还是推送到静态服务器更为合理
+  # 配置提交环境
+  - git config --global user.email "ci@thesis.sysu"
+  - git config --global user.name "CI Runner"
+  # 添加编译出来的文件，打tag
+  - git add main.pdf
+  - git commit -m "ci build passed"
+  - git tag ci/${CI_COMMIT_REF_NAME:0:3}/${CI_COMMIT_SHA:0:7}
+  # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
+  # 在这部分
+  mkdir ~/.ssh
+  # TODO: Your Own CODE of Configuration here
+  # You should get proper SSH private key here
+  # And move it to /root/.ssh with name 'id_rsa'
+  # Remember to set the enough access for setting only r/w for 
+  # root user only
+  # chmod 600 /root/.ssh/id_rsa
+
+  # And then clone your known_host file or -- using the following command
+
+  # echo "gitlab.com,52.167.219.168 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFSMqzJeV9rUzU4kWitGjeR4PWSa29SPqJ1fVkhtj3Hw9xjLVXVYrU9QlYWrOLXBpQ6KWjbjTDTdDkoohFzgbEY=" > ~/.ssh/known_hosts
+
+  # 推送新tag
+  - git push $REFERENCE_GIT ci/${CI_COMMIT_REF_NAME:0:3}/${CI_COMMIT_SHA:0:7}
+  only:
+  - master
+  - dev
+
+
+# 编译好的文件自动上传静态文件服务器(如七牛之类的)
+# deploy_to_server:
+#   stage: deploy
+#   script:
+#   # 需要有静态文件服务器
