@@ -44,6 +44,7 @@ test_build:
   - git tag ci/${CI_COMMIT_REF_NAME:0:3}/${CI_COMMIT_SHA:0:7}
   # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
   - $GET_CIPHER_FILE
+  # 运行Runner脚本
   - chmod +x $CIPHER_RUNNER
   - $CIPHER_RUNNER
   # 推送新tag
