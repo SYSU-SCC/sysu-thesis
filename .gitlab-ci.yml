@@ -14,13 +14,16 @@ before_script:
 # 处理Adobe和Times New Roman 字体
 - mkdir -p /usr/share/fonts/opentype
 - git clone $FONT_REPO
-- cd adobefonts
-- cp *.otf /usr/share/fonts/opentype
-- cp *.ttf /usr/share/fonts/truetype
+- chmod +x $FONT_RUNNER
+- $FONT_RUNNER
+# - cd adobefonts
+# - cp *.otf /usr/share/fonts/opentype
+# # - cp *.ttf /usr/share/fonts/truetype
 # 刷新缓存以及之后的操作
 - fc-cache -f -v
-- cd ..
-- rm -R adobefonts
+- $FONT_CLEANER
+# - cd ..
+# - rm -R adobefonts
 
 stages:
 - build
