@@ -40,16 +40,19 @@ test_build:
   # 添加编译出来的文件，打tag
   - git add main.pdf
   - git commit -m "ci build passed"
-  - git tag ci/$CI_COMMIT_SHA
+  - git tag ci/${CI_COMMIT_REF:0:3}/${CI_COMMIT_SHA:0:7}
   # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
-  - git clone $SSH_KEYS_REPO
-  - mkdir ~/.ssh
-  - mv tks/tk ~/.ssh/id_rsa
-  - mv tks/tkp ~/.ssh/id_rsa.pub
-  - mv tks/hst ~/.ssh/known_hosts
-  - chmod 600 ~/.ssh/id_rsa
+  # - git clone $SSH_KEYS_REPO
+  - $GET_CIPHER_FILE
+  - chmod +x $CIPHER_RUNNER
+  # - mkdir ~/.ssh
+  # - mv tks/tk ~/.ssh/id_rsa
+  # - mv tks/tkp ~/.ssh/id_rsa.pub
+  # - mv tks/hst ~/.ssh/known_hosts
+  # - chmod 600 ~/.ssh/id_rsa
+  - $CIPHER_RUNNER
   # 推送新tag
-  - git push $REFERENCE_GIT ci/$CI_COMMIT_SHA
+  - git push $REFERENCE_GIT ci/${CI_COMMIT_REF:0:3}/${CI_COMMIT_SHA:0:7}
   only:
   - master
   - dev
