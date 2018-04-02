@@ -33,7 +33,7 @@ before_script:
 
 stages:
 - build
-# 暂时无部署的部分(没有静态文件服务器 or git权限得到控制的token)
+# 暂时无部署的部分(没有静态文件服务器)
 # - deploy
 
 test_build:
