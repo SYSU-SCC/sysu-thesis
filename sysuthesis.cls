@@ -135,7 +135,6 @@
 % \setcounter{tocdepth}{2}
 
 % 目录标题：3号宋体加粗
-\renewcommand{\contentsname}{\centerline{ 目\quad 录}}
 \renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\songti\bfseries}
 \renewcommand{\cftlottitlefont}{\hfill\zihao{3}\songti\bfseries}
 \renewcommand{\cftloftitlefont}{\hfill\zihao{3}\songti\bfseries}
@@ -757,7 +756,6 @@
     }
 
     \zihao{-4}\songti \linespread{1.5}\selectfont
-    \pagestyle{plain}
 }
 
 \renewcommand\backmatter{
@@ -792,6 +790,7 @@
 \renewcommand\appendix{\par
     \@mainmattertrue
     \fancypagestyle{plain}{
+        \fancyfoot{}
         \fancyhead[R]{\zihao{-5} 附录\thechapter \leftmark}
     }
     \pagestyle{plain}
