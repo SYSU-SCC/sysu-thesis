@@ -33,22 +33,27 @@ test_build:
   script:
   - git checkout -b ci-build
   - make
+  artifacts:
+    paths:
+    - main.pdf
+    name: "CI-$CI_COMMIT_REF_NAME-${CI_COMMIT_SHA:0:7}"
+    when: on_success
   # 下面是推送部分
   # 这部分处理暂时有待斟酌,个人认为还是推送到静态服务器更为合理
   # 配置提交环境
-  - git config --global user.email "ci@thesis.sysu"
-  - git config --global user.name "CI Runner"
-  # 添加编译出来的文件，打tag
-  - git add main.pdf
-  - git commit -m "ci build passed"
-  - git tag ci/${CI_COMMIT_REF_NAME:0:3}/${CI_COMMIT_SHA:0:7}
-  # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
-  - $GET_CIPHER_FILE
-  # 运行Runner脚本
-  - chmod +x $CIPHER_RUNNER
-  - $CIPHER_RUNNER
-  # 推送新tag
-  - git push $REFERENCE_GIT ci/${CI_COMMIT_REF_NAME:0:3}/${CI_COMMIT_SHA:0:7}
+  # - git config --global user.email "ci@thesis.sysu"
+  # - git config --global user.name "CI Runner"
+  # # 添加编译出来的文件，打tag
+  # - git add main.pdf
+  # - git commit -m "ci build passed"
+  # - git tag ci/${CI_COMMIT_REF_NAME:0:3}/${CI_COMMIT_SHA:0:7}
+  # # 以下两步是使用配置好的SSH-Keys, 更好的做法是使用带权限的Token
+  # - $GET_CIPHER_FILE
+  # # 运行Runner脚本
+  # - chmod +x $CIPHER_RUNNER
+  # - $CIPHER_RUNNER
+  # # 推送新tag
+  # - git push $REFERENCE_GIT ci/${CI_COMMIT_REF_NAME:0:3}/${CI_COMMIT_SHA:0:7}
   only:
   - master
   - dev
