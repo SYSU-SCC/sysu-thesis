@@ -912,4 +912,3 @@
     \fi
 }
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-
