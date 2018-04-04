@@ -16,8 +16,8 @@
     zihao=-4
 ]{ctexbook}
 
-%\def\@printtwoside{0} % 设置文章为电子版格式（不添加多余空白页）
-\def\@printtwoside{1} % 设置文章为双面打印格式（添加多余空白页保证每个表格、章节开头为奇数页面）
+\def\@printtwoside{0} % 设置文章为电子版格式（不添加多余空白页）
+%\def\@printtwoside{1} % 设置文章为双面打印格式（添加多余空白页保证每个表格、章节开头为奇数页面）
 
 % 配置英文字体
 \RequirePackage{fontspec}
@@ -267,7 +267,6 @@
         \end{center}
     \end{titlepage}
     \newclearpage
-    %\clearemptydoublepage     % 空白页
 }
 
 % 下面是更好的封面，但不符合学校要求，暂且注释保留
@@ -317,8 +316,7 @@
 %             }
 %         \end{center}
 %     \end{titlepage}
-%     \clearpage
-%     %\clearemptydoublepage     % 空白页
+%     \newclearpage
 % }
 
 % 开题报告
@@ -404,7 +402,6 @@
         \hline
     \end{longtable}
     \newclearpage
-    %\clearemptydoublepage
 }
 
 
@@ -631,7 +628,6 @@
     \input{docs/disclaim}
     \thispagestyle{empty}
     \newclearpage
-    %\clearemptydoublepage     % 空白页
 }
 
 % 摘要
@@ -717,7 +713,6 @@
     \makeeabstract
     \thispagestyle{eAbstract}
     \newclearpage
-    %\cleardoublepage
 }
 \newcommand\maketableofcontents{
     \pagestyle{plain}
@@ -905,7 +900,6 @@
         \hspace{\ccwd}\makebox[5cm]{Signature:\hfill} \makebox[5cm]{Stamp:\hfill} \makebox[3cm]{Date:\hfill} \\
     \end{longtable}
     \newclearpage
-    %\clearemptydoublepage
 }
 
 % 配置超链接。
