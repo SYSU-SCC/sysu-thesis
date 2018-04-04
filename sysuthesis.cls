@@ -16,6 +16,9 @@
     zihao=-4
 ]{ctexbook}
 
+\def\@printtwoside{0} % 设置文章为电子版格式（不添加多余空白页）
+%\def\@printtwoside{1} % 设置文章为双面打印格式（添加多余空白页保证每个表格、章节开头为奇数页面）
+
 % 配置英文字体
 \RequirePackage{fontspec}
 \setmainfont{Times New Roman}
@@ -57,6 +60,14 @@
         \pagestyle{empty}
         \origdoublepage
     }
+}
+% 定义了一种新的clearpage方式，允许一个变量切换电子版及双面打印版
+\newcommand{\newclearpage}{
+    \if\@printtwoside1
+        \clearemptydoublepage
+    \else
+        \clearpage
+    \fi
 }
 
 % 设定时间为中文日期
@@ -135,7 +146,6 @@
 % \setcounter{tocdepth}{2}
 
 % 目录标题：3号宋体加粗
-\renewcommand{\contentsname}{\centerline{ 目\quad 录}}
 \renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\songti\bfseries}
 \renewcommand{\cftlottitlefont}{\hfill\zihao{3}\songti\bfseries}
 \renewcommand{\cftloftitlefont}{\hfill\zihao{3}\songti\bfseries}
@@ -256,7 +266,7 @@
 
         \end{center}
     \end{titlepage}
-    %\clearemptydoublepage     % 空白页
+    \newclearpage
 }
 
 % 下面是更好的封面，但不符合学校要求，暂且注释保留
@@ -306,8 +316,7 @@
 %             }
 %         \end{center}
 %     \end{titlepage}
-%     \clearpage
-%     %\clearemptydoublepage     % 空白页
+%     \newclearpage
 % }
 
 % 开题报告
@@ -392,8 +401,7 @@
         \rule{0cm}{\baselineskip}\\
         \hline
     \end{longtable}
-    \clearpage
-    %\clearemptydoublepage
+    \newclearpage
 }
 
 
@@ -533,7 +541,7 @@
             \rule{0cm}{\baselineskip}
         }\\
     \end{longtable}
-    \clearpage
+    \newclearpage
 }
 
 
@@ -605,22 +613,21 @@
         \\
         \hline
     \end{longtable}
-    \clearpage
+    \newclearpage
 }
 
 
 \newcommand\makedisclaim{
-\ctexset {
-    chapter = {
-        titleformat = {\zihao{-2}\fangsong\bfseries},
-        beforeskip = {10pt},
-        afterskip = {40pt}
+    \ctexset {
+        chapter = {
+            titleformat = {\zihao{-2}\fangsong\bfseries},
+            beforeskip = {10pt},
+            afterskip = {40pt}
+        }
     }
-}
-\input{docs/disclaim}
-\thispagestyle{empty}
-\clearpage
-%\clearemptydoublepage     % 空白页
+    \input{docs/disclaim}
+    \thispagestyle{empty}
+    \newclearpage
 }
 
 % 摘要
@@ -701,20 +708,22 @@
     \setcounter{page}{1}
     \makecabstract
     \thispagestyle{cAbstract}
-    \clearpage
+    \newclearpage
 
     \makeeabstract
     \thispagestyle{eAbstract}
-    \clearpage
-    %\cleardoublepage
+    \newclearpage
 }
-
+\newcommand\maketableofcontents{
+    \pagestyle{plain}
+    \tableofcontents
+    \newclearpage
+}
 \newcommand\makelistoffiguretable{
-    \clearpage
     \listoffigures
     \listoftables
     \thispagestyle{listoffiguretable}
-    \cleardoublepage
+    \newclearpage
 }
 
 \renewcommand\mainmatter{
@@ -890,8 +899,7 @@
         \hspace{\ccwd}\makebox[5cm]{签名\hfill} \makebox[5cm]{院系盖章\hfill}    \\
         \hspace{\ccwd}\makebox[5cm]{Signature:\hfill} \makebox[5cm]{Stamp:\hfill} \makebox[3cm]{Date:\hfill} \\
     \end{longtable}
-    \clearpage
-    %\clearemptydoublepage
+    \newclearpage
 }
 
 % 配置超链接。
