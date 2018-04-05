@@ -1,0 +1,50 @@
+# Gitlab持续集成配置文件
+# Author:   Souler Ou
+# 修改者:    欧一锋
+# Date:     4/1/2018
+# Mail:     ou@souler.cc
+
+# 使用ubuntu-texlive环境
+image: ablu/ubuntu-texlive-full:latest
+# 一系列准备
+before_script:
+- apt-get update
+# 安装中文包和git控制器
+- apt-get install -y git language-pack-zh-hans language-pack-zh-hant 
+# 处理字体
+- mkdir -p /usr/share/fonts/opentype
+- git clone https://github.com/a20185/adobefonts
+- chmod +x adobefonts/runner.sh
+- adobefonts/runner.sh
+# 刷新缓存以及之后的操作
+- fc-cache -f -v
+# 将Times New Roman 更换为 Nimbus No9 L字体
+- sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
+- rm -R adobefonts
+
+
+stages:
+- build
+# 暂时无部署的部分(没有静态文件服务器 or git权限得到控制的token)
+# - deploy
+
+test_build:
+  stage: build
+  script:
+  - git checkout -b ci-build
+  - make
+  artifacts:
+    paths:
+    - main.pdf
+    name: "CI-$CI_COMMIT_REF_NAME-${CI_COMMIT_SHA:0:7}"
+    when: on_success
+  only:
+  - master
+  - dev
+
+
+# 编译好的文件自动上传静态文件服务器(如七牛之类的)
+# deploy_to_server:
+#   stage: deploy
+#   script:
+#   # 需要有静态文件服务器

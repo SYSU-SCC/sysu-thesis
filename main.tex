@@ -4,18 +4,18 @@
 \input{docs/proposal}   % 开题报告内容
 \input{docs/abstract}     % 摘要内容
 \input{docs/grading}    % 成绩评定记录表评语
-
+\input{docs/progress}   % 过程检查报告数据
 \begin{document}
     % 论文前置部分
     \frontmatter
         \pagenumbering{Roman}
         \maketitle    % 封面
         \makeProposal% 开题报告
-        % 过程检查记录表
-        % 答辩情况等级表
-        \makedisclaim     % 学术诚信声明
-        \makeabstract     % 中英文摘要
-        \tableofcontents        % 目录
+        \makeProgressCheck  % 过程检查记录表
+        \makeDefenseRecord  % 答辩情况等级表
+        \makedisclaim       % 学术诚信声明
+        \makeabstract       % 中英文摘要
+        \maketableofcontents        % 目录
         \makelistoffiguretable
 
     % 论文主体部分
@@ -24,11 +24,15 @@
 
         % 正文
         \include{docs/chap01}
+        \newclearpage
         \include{docs/chap02}
+        \newclearpage
         \include{docs/chap03}
+        \newclearpage
         \include{docs/chap04}
+        \newclearpage
         \include{docs/chap05}
-
+        \newclearpage
         % 结语
 
     % 附录部分
@@ -38,11 +42,11 @@
         \makereferences
 
         \include{docs/ack}    % 致谢
-
+        \newclearpage
         % 附录
     \appendix
         \include{docs/appendix1}
-
+        \newclearpage
     \makeGrade      % 成绩评定记录表
 \end{document}
 
