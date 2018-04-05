@@ -14,6 +14,7 @@ _注意:　最新代码在dev分支上, 获取代码前请先确认分支._
 1. 感谢[@chunkwong](https://github.com/chungkwong)师兄在Github上放出了中大第一个[非官方的本科论文LaTex模板](https://github.com/chungkwong/sysu_thesis)
 1. 感谢[@GoYchen](https://github.com/GoYchen)师兄在模板结构化分解上作出了[极大的贡献](https://github.com/GoYchen/sysu_thesis)
 1. 感谢@huangjj27师兄在模板样式规范化做出极大的贡献
+1. 感谢@a20185 @Kinpzz @yttty @perqin @noeagles 等人[对v4.6.0作出极大的贡献](https://gitlab.com/sysu-gitlab/latex-group/thesis)
 1. PPT的模板源自<http://far.tooold.cn/post/latex/beamertsinghua>
 1. 最后, 感谢Donald Ervin Knuth教授发明了`tex`这么好(zhe)用(teng)的工具  
     Finally, thanks Pro. Donald Ervin Knuth for inventing such useful tool as tex.
@@ -26,4 +27,4 @@ _注意:　最新代码在dev分支上, 获取代码前请先确认分支._
 ## 声明
 1. 您可以任意地使用和修改这个模板，但该模板可能无法满足最新的《中山大学本科生毕业论文(设计)写作与印制规范》。
 1. 目前项目组人手紧缺, **强烈欢迎校友们的加入**
-
+1. 目前基于GitLab CI的构建工具[使用的字体与规范要求有轻微的区别](https://gitlab.com/sysu-gitlab/latex-group/thesis/merge_requests/29#note_66184589)，请在使用时注意风险.
