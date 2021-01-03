@@ -15,7 +15,7 @@
 - [ ] 进一步完善答辩 ppt 的模板
 - [ ] 待增加
 
-希望大家踊跃提出自己的想法，提交pr，一起完善该Latex模板， Make SYS U Great Again！
+希望大家踊跃提出自己的想法，提交pr，一起完善该Latex模板， Make **SYS**U Great Again！
 
 ## 一些说明
 
