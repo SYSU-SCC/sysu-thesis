@@ -1,3 +1,29 @@
+# 中山大学Latex论文项目模板
+
+本项目现已得到学院老师支持，我们正在努力增加feature，满足毕业设计的要求。
+
+此项目将会得到长期维护，目前重点在于：
+
+- [*] 增加Github Action支持，编译结果上传到[action](https://github.com/SYSU-SCC/sysu-thesis/actions)中的artifact，免去配置本地环境的烦恼。
+- [ ] 校验排版格式要求，满足相关文件中的格式要求。 如[附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc](./specifications/附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc)
+- [ ] 增加使用说明、增加更多的例子、完善文献引用样式
+- [ ] 增加CTAN等模板库的自动发布
+
+未来将要支持的feature如下：
+
+- [ ] 拆分本科、硕士、与博士的 cls 并抽取出三者共同的基础 cls 配置
+- [ ] 进一步完善答辩 ppt 的模板
+- [ ] 待增加
+
+希望大家踊跃提出自己的想法，提交pr，一起完善该Latex模板， Make SYS U Great Again！
+
+## 一些说明
+
+1. 已征得原作者，17届中大数据院软件工程校友黄俊杰(@huangjj27)的同意，我们团队未来将长期维护该项目。
+2. 原项目repo可见[github](https://gitlab.com/sysu-gitlab/latex-group/thesis)，原项目wiki可见[wiki](https://gitlab.com/sysu-gitlab/latex-group/thesis/-/wikis/home)，原repo中的信息将会在之后更新到本repo中。
+
+-------------------------这里是分割线，原始repo的README------------------------------------
+
 # 中山大学LaTeX论文项目模板(非官方)
 本维护项目由17届中大数据院软件工程校友黄俊杰(@huangjj27)发起, 发起理由如下:
 1. 中山大学在github上[LaTeX官方模板项目](http://github.com/sysu/sysuthesis)已经有2年多的时间没有维护
