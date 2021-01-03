@@ -56,3 +56,7 @@ jobs:
       
       - name: Compile
         run: make pdf
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: main.pdf
