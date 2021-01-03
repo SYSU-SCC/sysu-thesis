@@ -663,12 +663,15 @@
     %\end{flushleft}
 
     % 或者只要一个醒目的标题
-    \centerline{\songti\zihao{3}\bfseries{\@ctitle}}
+    \vspace*{1ex}
+    \centerline{\zihao{5}\heiti【摘\hspace{\ccwd}要】}
+    \vspace{1ex}
 
     \zihao{5}\kaishu
-    \paragraph{\zihao{5}\heiti[摘\hspace{\ccwd}要]}
+    % \paragraph{}
+    \setlength{\baselineskip}{20pt}
     \@cabstract
-    \paragraph{\zihao{5}\heiti[关键词]}\@ckeywords
+    \paragraph{\zihao{5}\heiti【关键词】}\@ckeywords
 }
 
 % 英文摘要、关键字标题：小四号新罗马体(Time New Roman)加粗并加方括号
@@ -695,11 +698,14 @@
     %\end{flushleft}
 
     %\centerline{\zihao{3}\bfseries{\@etitle}}
-    \centerline{\zihao{3}\bfseries{\@eabstracttitlefirst}}
-    \centerline{\zihao{3}\bfseries{\@eabstracttitlesecond}}
+    % \centerline{\zihao{3}\bfseries{\@eabstracttitlefirst}}
+    % \centerline{\zihao{3}\bfseries{\@eabstracttitlesecond}}
 
+    \vspace*{1ex}
     \zihao{-4}
-    \paragraph{\textbf{[Abstract]}}
+    \centerline{\textbf{[ABSTRACT]}}
+    \vspace*{1ex}
+    \setlength{\baselineskip}{20pt}
     \@eabstract
     \paragraph{\textbf{[Keywords]}}\@ekeywords
 }
