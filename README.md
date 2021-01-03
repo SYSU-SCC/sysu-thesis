@@ -20,7 +20,7 @@
 ## 一些说明
 
 1. 已征得原作者，17届中大数据院软件工程校友黄俊杰(@huangjj27)的同意，我们团队未来将长期维护该项目。
-2. 原项目repo可见[github](https://gitlab.com/sysu-gitlab/latex-group/thesis)，原项目wiki可见[wiki](https://gitlab.com/sysu-gitlab/latex-group/thesis/-/wikis/home)，原repo中的信息将会在之后更新到本repo中。
+2. 原项目repo可见[gitlab](https://gitlab.com/sysu-gitlab/latex-group/thesis)，原项目wiki可见[wiki](https://gitlab.com/sysu-gitlab/latex-group/thesis/-/wikis/home)，原repo中的信息将会在之后更新到本repo中。
 
 -------------------------这里是分割线，原始repo的README------------------------------------
 
