@@ -5,10 +5,10 @@
 \ProcessOptions\relax
 
 \LoadClass[
-    %fontset=adobe,
+    % fontset=adobe,
     fontset=fandol,    % texlive自带，可移植字体库，只有常用的6763个汉字
     %fontset=ubuntu,
-    %fontset=mac,
+    % fontset=mac,
     %fontset=windows,
     a4paper,
     %openright,
@@ -31,6 +31,7 @@
 \RequirePackage[labelsep=space]{caption}
 \RequirePackage[font=footnotesize]{subcaption}
 \RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{ragged2e} % 实现两端对齐
 \RequirePackage{listings}
 \RequirePackage{longtable}
 \RequirePackage[section]{placeins}
@@ -223,6 +224,70 @@
 \newcommand\cmentor[1]{\def\@cmentor{#1}}
 \newcommand\ementor[1]{\def\@ementor{#1}}
 
+% 新版封面，add by wyf 2021-01-11 21:57:01
+\newcommand\makeUndergraduateTitle {
+    \begin{titlepage}
+        \begin{center}
+            \heiti
+            \definecolor{sysugreen}{RGB}{36,86,44}
+            \includegraphics[width=3cm]{template/image/sysu-logo.pdf} \\
+            \vspace{\baselineskip}
+            {\zihao{-0}\textcolor{sysugreen}{\songti\textbf{\ 本科生毕业论文（设计）}}}
+
+            \vspace{\baselineskip}
+            
+            % 做分割线
+            \noindent\makebox[\linewidth]{ { \color{sysugreen} \rule{\paperwidth}{0.12cm} } }
+            % \noindent\makebox[\linewidth]{ { \color{sysugreen} \rule[1.05cm]{\paperwidth}{0.05cm} } }
+            \noindent\makebox[\linewidth]{ { \color{sysugreen} \rule[0.8\baselineskip]{\paperwidth}{0.05cm} } }
+
+            \vspace{\baselineskip}
+            \vspace{\baselineskip}
+            \vspace{\baselineskip}
+
+            \ \\
+
+            {
+                % 二号对应22pt
+                \fontsize{22}{22}\heiti\selectfont
+                \begin{tabular}{ll}
+                    \makebox[0.7cm]&\makebox[1.5cm]{题目：\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\songti\textbf\@covertitlefirst\hfill}}\\
+                    \vspace{1pt}\\
+                    \makebox[0.7cm]&\makebox[1.5cm]{\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\songti\textbf\@covertitlesecond\hfill}}\\
+                    \vspace{1pt}\\
+                \end{tabular}
+                \ \\
+                \ \\
+                \ \\
+                % 小三对应15pt
+                \renewcommand{\arraystretch}{2.4}
+                \fontsize{15}{15}\heiti\selectfont
+                \begin{tabular}{cc}
+                        % [s] 两端对齐
+                        \makebox[2.2cm][s]{姓名} & \makebox[8cm]{\hfill\@cauthor\hfill}\\ \cline{2-2}
+                        \makebox[2.2cm][s]{院系} & \makebox[8cm]{\hfill\@cschool\hfill}\\ \cline{2-2}
+                        \makebox[2.2cm][s]{院系} & \makebox[8cm]{\hfill\@cmajor\hfill}\\ \cline{2-2}
+                        \makebox[2.2cm][s]{专业} & \makebox[8cm]{\hfill\@studentid\hfill}\\ \cline{2-2}
+                        \makebox[2.2cm][s]{指导教师} & \makebox[8cm]{\hfill\@cmentor\hfill}\\ \cline{2-2}
+                \end{tabular}
+            }\\
+            \ \\
+            \underline{\makebox[0.9cm]{\number\year}}年\underline{\makebox[0.9cm]{\number\month}}月\underline{\makebox[0.9cm]{\number\day}}日
+
+            % \zihao{-3}
+            % {\centering
+            %     \ctexset{today=big}         % 汉字数字形式日期
+            %     时间：\today     \\ % 使用最后一次编译的日期, 实现日期的自动化
+            %     % Date:\hspace{0.5\ccwd} Month\hspace{2\ccwd} Day\hspace{1\ccwd} Year
+            %     Date: \etoday % 英文日期自动化
+            % }
+
+        \end{center}
+    \end{titlepage}
+    \newclearpage
+}
+
+% 旧版的一种封面
 \renewcommand\maketitle {
     \begin{titlepage}
         \begin{center}
@@ -279,34 +344,34 @@
 %             \zihao{-0}\textbf{本科生毕业论文（设计）} \\
 %             \zihao{2}\textbf{\textrm{Undergraduate Graduation Thesis（Design）}} \\
 %             \vspace{2\baselineskip}
-%
+
 %             \zihao{3}\textbf{\@title}
 %             \vspace{2\baselineskip}
-%
+
 %             {\fontsize{15}{10}\selectfont
 %             \begin{tabular}{l}
 %                 \makebox[4.8cm]{院\hspace{2\ccwd}系:} \underline{\makebox[15em]{\hfill\@cschool\hfill}} \\
 %                 \makebox[4.8cm]{School (Department)} \\
 %                 \vspace{8pt} \\
-%
+
 %                 \makebox[4.8cm]{专\hspace{2\ccwd}业:} \underline{\makebox[15em]{\hfill\@cmajor\hfill}} \\
 %                 \makebox[4.8cm]{Major} \\
 %                 \vspace{8pt} \\
-%
+
 %                 \makebox[4.8cm]{学生姓名:} \underline{\makebox[15em]{\hfill\@cauthor\hfill}} \\
 %                 \makebox[4.8cm]{Student Name} \\
 %                 \vspace{8pt} \\
-%
+
 %                 \makebox[4.8cm]{学\hspace{2\ccwd}号:} \underline{\makebox[15em]{\hfill\@studentid\hfill}} \\
 %                 \makebox[4.8cm]{Student No.} \\
 %                 \vspace{8pt} \\
-%
+
 %                 \makebox[4.8cm]{指导教师(职 称):} \underline{\makebox[15em]{\hfill\@cmentor\hfill}} \\
 %                 \makebox[4.8cm]{Supervisor (Title)} \\
 %             \end{tabular}
 %             }
 %             \vfill
-%
+
 %             \zihao{-3}
 %             {\centering
 %                 \ctexset{today=big}         % 汉字数字形式日期
