@@ -5,6 +5,7 @@
 此项目将会得到长期维护，目前重点在于：
 
 - [x] 增加Github Action支持，编译结果上传到[action](https://github.com/SYSU-SCC/sysu-thesis/actions)中的artifact，免去配置本地环境的烦恼。
+- [x] 增加了一种新的封面，可见[#8](https://github.com/SYSU-SCC/sysu-thesis/pull/8)
 - [ ] 校验排版格式要求，满足相关文件中的格式要求。 如[附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc](./specifications/附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc)
 - [ ] 增加使用说明、增加更多的例子、完善文献引用样式
 - [ ] 增加CTAN、[overleaf](https://www.overleaf.com/) 等模板库的自动发布，可一键在overleaf中打开项目.
