@@ -1,33 +1,3 @@
-diff
-*.xml
-*.nav
-*.snm
-~*
-.~*
-.fuse*
-*.txt.data
-*.zip
-analyse/
-paper
-ardrone.pdf
-template.pdf
-old
-*.aux
-*.bbl
-*.blg
-*.ent
-*.loa
-*.lof
-*.log
-*.lot
-*.out
-*.toc
-main2.pdf
-missfont.log
-svn-commit.tmp
-sysuthesis.tar.gz
-中山大学本科毕业论文非官方LaTeX模版0.0.*.tar.gz
-
 *.swp
 
 node_modules/
@@ -56,7 +26,8 @@ node_modules/
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
-*.pdf
+# *.pdf
+!template/image/sysu-logo.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
 .pdf
@@ -319,3 +290,33 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+diff
+*.xml
+*.nav
+*.snm
+~*
+.~*
+.fuse*
+*.txt.data
+*.zip
+analyse/
+paper
+ardrone.pdf
+template.pdf
+old
+*.aux
+*.bbl
+*.blg
+*.ent
+*.loa
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+main2.pdf
+missfont.log
+svn-commit.tmp
+sysuthesis.tar.gz
+中山大学本科毕业论文非官方LaTeX模版0.0.*.tar.gz
+
