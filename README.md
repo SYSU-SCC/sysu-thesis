@@ -19,6 +19,11 @@
 
 希望大家踊跃提出自己的想法，提交pr，一起完善该Latex模板， Make **SYS**U Great Again！
 
+## 相关规范
+
+1. [本科生](./specifications/附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc)
+2. [研究生](http://graduate.sysu.edu.cn/rules)
+
 ## 一些说明
 
 1. 已征得原作者，17届中大数据院软件工程校友黄俊杰(@huangjj27)的同意，我们团队未来将长期维护该项目。

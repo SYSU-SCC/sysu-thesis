@@ -9,10 +9,11 @@
     % 论文前置部分
     \frontmatter
         \pagenumbering{Roman}
-        \makeUndergraduateTitle    % 封面
-        \makeProposal% 开题报告
-        \makeProgressCheck  % 过程检查记录表
-        \makeDefenseRecord  % 答辩情况等级表
+        \makeUndergraduateCover    % 封面
+        \makeUndergraduateTitlePage    % 扉页
+        % \makeProposal% 开题报告
+        % \makeProgressCheck  % 过程检查记录表
+        % \makeDefenseRecord  % 答辩情况等级表
         \makedisclaim       % 学术诚信声明
         \makeabstract       % 中英文摘要
         \maketableofcontents        % 目录
@@ -33,6 +34,9 @@
         \newclearpage
         \include{docs/chap05}
         \newclearpage
+        \include{docs/chap06}
+        \newclearpage
+
         % 结语
 
     % 附录部分
@@ -47,6 +51,6 @@
     \appendix
         \include{docs/appendix1}
         \newclearpage
-    \makeGrade      % 成绩评定记录表
+    % \makeGrade      % 成绩评定记录表
 \end{document}
 

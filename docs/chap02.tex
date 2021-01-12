@@ -1,124 +1,288 @@
-\chapter{简单的使用例子}
-\label{cha:example}
-\section{图像的插入}
-\subsection{镶嵌在文中的图像}
-\label{sec:Images}
-\begin{wrapfigure}{r}{0.5\linewidth}
-	\centering
-	\includegraphics[width=0.5\textwidth]{image/result/confusion.pdf}
-	\caption{镶嵌在文中的图像}
-	\label{fig:confusion}
-\end{wrapfigure}
-论文主体是毕业论文的主要部分，必须言之成理，论据可靠，严格遵循本学科国际通行的学术规范。在写作上要注意结构合理、层次分明、重点突出，章节标题、公式图表符号必须规范统一。论文主体的内容根据不同学科有不同的特点，一般应包括以下几个方面： （1）毕业论文（设计）总体方案或选题的论证； （2）毕业论文（设计）各部分的设计实现，包括实验数据的获取、数据可行性及有效性的处理与分析、各部分的设计计算等； （3）对研究内容及成果的客观阐述，包括理论依据、创新见解、创造性成果及其改进与实际应用价值等； （4）论文主体的所有数据必须真实可靠，凡引用他人观点、方案、资料、数据等，无论曾否发表，无论是纸质或电子版，均应详加注释。自然科学论文应推理正确、结论清晰；人文和社会学科的论文应把握论点正确、论证充分、论据可靠，恰当运用系统分析和比较研究的方法进行模型或方案设计，注重实证研究和案例分析，根据分析结果提出建议和改进措施等。
-\subsection{单张图像的插入}
-\input{figure/chap03_hole}
+\chapter{本科生毕业论文写作与印制规范}
 
-\subsection{多张图像的并排插入}
-\label{sub:多张图像的并排插入}
-\input{figure/chap01_example}
-\input{figure/chap04_improve.tex}
+\label{cha:sysu-thesis-contents-format-requirement}
 
-\subsection{两列图像的插入}
-\label{sec:complex}
-\input{figure/chap04_voc12_comparison}
 
-\clearpage
+% TODO 引用
+该部分将学校规定中的毕业论文（设计）写作与印制规范复制了过来，并在其中展示相关例子表明格式的正确性。
 
-\section{表格的插入}
-\label{sec:tables}
-\input{table/chap04_siftflow_result}
-\input{table/chap04_voc_val}
 
-\section{公式}
-\label{sec:formula}
-没有编号的公式
-\begin{align*}
-\begin{split}
-	\label{eq:feedforward}
-	\mybold{z}^{(l)} & = \mybold{W}^{(l)}\mybold{a}^{(l-1)} + \mybold{b}^{(l)} \\
-	\mybold{a}^{(l)} & = f(\mybold{z}^{(l)})
-\end{split}
-\end{align*}
-公式中含有中文
-\begin{align}
-	\begin{split}
-	\mbox{像素准确率} &= \sum_{i=1}^{n_{cl}}n_{ii} / \sum_{i=1}^{n_{cl}}t_i \\
-		\mbox{平均像素准确率} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}(n_{ii}/ t_i) \\
-	\mbox{Mean IU} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}\frac{n_{ii}}{t_i + \sum_j^{n_{cl}} n_{ji} - n_{ii}}
-	\end{split}
-\end{align}
-公式中含有矩阵
-\begin{equation}
-	\textbf{H} = \begin{bmatrix}
-		I*\mybold{x}_i \\ \textbf{h}
-	\end{bmatrix}
-\end{equation}
-每行后面都有编号的公式
-\begin{align}
-	\frac{\partial}{\partial W_{ij}^{(l)}} J(\mybold{W},\mybold{b};\mybold{x},y) &= \frac{\partial J(\mybold{W},\mybold{b};\mybold{x},y)}{\partial z_i^{(l+1)}}\cdot \frac{\partial z_i^{(l+1)}}{\partial W_{ij}^{(l)}} = \delta_i^{(l+1)}a_j^{(l)} \\
-	\frac{\partial}{\partial b_i^{(l)}} J(\mybold{W},\mybold{b};\mybold{x},y) &= \frac{\partial J(\mybold{W},\mybold{b};\mybold{x},y)}{\partial z_i^{(l+1)}}\cdot \frac{\partial z_i^{(l+1)}}{\partial b_i^{(l)}} = \delta_i^{(l+1)}
-\end{align}
+\section{毕业论文的撰写内容与要求}
 
-\section{算法流程图}
-\label{sec:algorithm}
-\begin{algorithm}[h]
-\KwIn{$m$个训练样本}
-\lFor{$l=1$ \emph{\KwTo} $n_l$}{
-初始化：$\Delta \mybold{W}^{(l)}=0$，$\Delta \mybold{b}^{(l)}=0$}
-\ForEach{训练样本}{
-	\lFor{$l=1$ \emph{\KwTo} $n_l-1$}{
-	前向传播：$\mybold{z}^{(l+1)}=\mybold{W}^la^l+\mybold{b}^l$,$\mybold{a}^{(l+1)}=f(\mybold{z}^{(l+1)})$}
-	输出误差计算：$\delta^{(n_l)} = \frac{\partial}{\partial \mybold{z}^{(n_l)}} J(\mybold{W},\mybold{b};\mybold{x},y)$\;
-	\lFor{$l=n_l-1$ \emph{\KwTo} $1$}{
-	后向传播：$\delta^{(l)} = \bigl((\mybold{W}^{(l)})^T \delta^{(l+1)}\bigr)f'(\mybold{z}^{(l)})$}
-	\ForAll{层l}{
-		计算梯度：$\nabla_{\mybold{W}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)=\delta^{(l+1)}(\mybold{a}^{(l)})^T$ \\
-		\hspace{60pt}$\nabla_{\mybold{b}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)=\delta^{(l+1)}$\;
-		累加梯度：$\Delta \mybold{W}^{(l)} \leftarrow \Delta \mybold{W}^{(l)} + \nabla_{\mybold{W}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)$; \\
-		\hspace{60pt}$\Delta \mybold{b}^{(l)} \leftarrow \Delta \mybold{b}^{(l)} + \nabla_{\mybold{b}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)$\;
-	}
-}
-\ForAll{层$l$}{
-	更新权重：$\mybold{W}^{(l)} \leftarrow \mybold{W}^{(l)} - \alpha \biggl[\frac 1m \Delta \mybold{W}^{(l)}]$ \\
-	\hspace{60pt} $\mybold{b}^{(l)} \leftarrow \mybold{b}^{(l)} - \alpha \biggl[\frac 1m \Delta \mybold{b}^{(l)}\biggr]$
-}
-\caption{梯度下降算法}
-\label{algo:sgd}
-\end{algorithm}
+\subsection{封面}
 
-\section{例子与证明}
-\subsection{例子}
-\begin{eg}
-  这是一个例子, 用以验证特殊环境的字体成功更改为楷体.
-\end{eg}
 
-\begin{proof}
-  1. 大前提
-  2. 小前提
-  结论: 示例结论
-\end{proof}
+纸质版封面由学校统一印发（电子版请参见文后示例）。封面内容包括论文题目、所在院系专业、学生姓名学号、指导教师（姓名及职称）等信息。论文题目应以简短、明确的词语恰当概括整个论文的核心内容，避免使用不常见的缩略词、缩写字。读者通过题目可大致了解毕业论文的内容、专业特点和学科范畴。论文题目一般不宜超过25个字，必要时可增加副标题。
 
-\section{其他的一些用法}
-\label{sec:font}
-\subsection{子章节编号}
-\label{sec:font:subsection}
-\subsubsection{更小的章节}
-\label{sec:font:subsection:subsub}
-更小的章节编号也是支持的。
+\subsection{扉页}
 
-\subsection{列表的使用}
-\label{sec:font:list}
+扉页内容包括论文中英文题目、学生姓名、学号、院系、专业、指导教师（姓名及职称）等信息。格式详见文后示例。
 
-这是一个无序列表
-\begin{itemize}
-	\item 引用文献\cite{long2015fully}
-	\item 字体{\color{red}{变红}}，\textbf{粗体}
-\end{itemize}
+\subsection{学术诚信声明}
 
-这是一个有序列表
+内容及格式详见文后示例。
+
+\subsection{摘要和关键词}
+
 \begin{enumerate}
-	\item 索引前面的章节 \ref{sec:formula}、图像\ref{fig:complex}、表格\ref{tab:siftflow}
-	\item 加脚注\footnote{http://cs231n.github.io/transfer-learning/}
+    \item \textbf{中文摘要和关键词} \\
+    摘要应概括论文的主要信息，应具有独立性和自含性，即不阅读论文的全文，就能获得必要的信息。摘要内容一般应包括研究目的、内容、方法、成果和结论，要突出论文的创造性成果或新见解，不要与绪论相混淆。语言力求精练、准确，以300-500字为宜。关键词是供检索用的主题词条，应体现论文特色，具有语义性，在论文中有明确的出处，并应尽量采用《汉语主题词表》或各专业主题词表提供的规范词。关键词与摘要应在同一页，在摘要的下方另起一行注明，一般列3-5个，按词条的外延层次排列（外延大的排在前面）。
+    \item \textbf{英文摘要和关键词} \\
+    英文摘要及关键词内容应与中文摘要及关键词内容相同。中英文摘要及其关键词各置一页内。
+\end{enumerate}
+
+\subsection{目录}
+
+目录是论文的提纲，也是论文各章节组成部分的小标题。要求标题层次清晰，目录中的标题要与正文中的标题一致。
+
+
+\subsection{正文}
+
+正文是毕业论文的主体和核心部分，不同学科专业和不同的选题可以有不同的写作方式。正文一般包括以下几个方面：
+
+\begin{enumerate}
+    \item \textbf{诸论} \\
+    绪论应包括毕业论文选题的背景、目的和意义；对国内外研究现状和相关领域中已有的研究成果的简要评述；介绍本项研究工作研究设想、研究方法或实验设计、理论依据或实验基础；涉及范围和预期结果等。要求言简意赅，注意不要与摘要雷同或成为摘要的注解。
+    \item \textbf{主体} \\
+    论文主体是毕业论文的主要部分，必须言之成理，论据可靠，严格遵循本学科国际通行的学术规范。在写作上要注意结构合理、层次分明、重点突出，章节标题、公式图表符号必须规范统一。论文主体的内容根据不同学科有不同的特点，一般应包括以下几个方面：
+    \begin{enumerate}
+        \item 毕业论文总体方案或选题的论证；
+        \item 毕业论文各部分的设计实现，包括实验数据的获取、数据可行性及有效性的处理与分析、各部分的设计计算等；
+        \item 对研究内容及成果的客观阐述，包括理论依据、创新见解、创造性成果及其改进与实际应用价值等；
+        \item 论文主体的所有数据必须真实可靠，凡引用他人观点、方案、资料、数据等，无论曾否发表，无论来源于纸质或电子版材料，均应详加注释。自然科学论文应推理正确、结论清晰；人文和社会学科的论文应把握论点正确、论证充分、论据可靠，恰当运用系统分析和比较研究的方法进行模型或方案设计，注重实证研究和案例分析，根据分析结果提出建议和改进措施等。
+    \end{enumerate}
+    \item \textbf{结论} \\
+    结论是毕业论文的总结，是整篇论文的归宿，应精炼、准确、完整。结论应着重阐述自己的创造性成果及其在本研究领域中的意义和作用，还可进一步提出需要讨论的问题和建议。
+\end{enumerate}
+
+\subsection{参考文献}
+
+参考文献是毕业论文不可缺少的组成部分，它反映毕业论文的取材来源、材料的广博和可靠程度，也是作者对他人知识成果的承认和尊重。凡有引用他人的著作、论文等，均应列于参考文献中。
+
+\subsection{相关的科研成果目录}
+
+本科期间发表的与毕业论文相关的论文或被鉴定的技术成果、发明专利等，应在成果目录中列出。此项不是必需项，空缺时可以省略。
+
+\subsection{附录}
+
+对于一些不宜放在正文中的重要支撑材料，可编入毕业论文的附录中，包括某些重要的原始数据、详细数学推导、程序全文及其说明、复杂的图表、设计图纸等一系列需要补充提供的说明材料。如果毕业论文中引用的实例、数据资料，实验结果等符号较多时，为了节约篇幅，便于读者查阅，可以编写一个符号说明，注明符号代表的意义。附录的篇幅不宜太多，一般不超过正文。此项不是必需项，空缺时可以省略。
+
+\subsection{致谢}
+
+致谢应以简短的文字对课题研究与论文撰写过程中曾直接给予帮助的人员(例如指导教师、答疑教师及其他人员)表达自己的谢意，这不仅是一种礼貌，也是对他人劳动的尊重，是治学者应当遵循的学术规范。内容限一页。
+
+
+\section{毕业论文的撰写格式要求}
+
+
+\subsection{文字和字数}
+
+
+除外国语言文学类专业外，其他专业的毕业论文须采用简化汉语文字撰写。论文正文部分一般不少于8000 字，各专业可根据需要确定具体的字数要求，并报教务部备案。
+
+\subsection{字体和字号}
+
+标题一般用黑体，内容一般用宋体，数字和英文字母一般用Times New Roman，具体如\autoref{tab:font-spec}。
+
+\begin{table}[]
+    \caption{字体使用规范}
+    \begin{tabular}{|c|c|}
+    \hline
+    论文题目        & 黑体二号居中                             \\ \hline
+    中文摘要标题      & 黑体三号居中                             \\ \hline
+    中文摘要内容      & 宋体小四号                              \\ \hline
+    中文关键词       & 宋体小四号（标题``关键词''加粗）                   \\ \hline
+    英文摘要标题      & Times New Roman加粗三号全部大写            \\ \hline
+    英文摘要内容      & Times New Roman小四号                 \\ \hline
+    英文关键词       & Times New Roman小四号（标题``Keywords''加粗） \\ \hline
+    目录标题        & 黑体三号居中                             \\ \hline
+    目录内容        & 宋体小四号                              \\ \hline
+    正文各章标题      & 黑体三号居中                             \\ \hline
+    正文各节一级标题    & 黑体四号左对齐                            \\ \hline
+    正文各节二级及以下标题 & 宋体小四号加粗左对齐空两格                      \\ \hline
+    正文内容        & 宋体小四号                              \\ \hline
+    参考文献标题      & 黑体三号居中                             \\ \hline
+    参考文献内容      & 宋体五号                               \\ \hline
+    致谢、附录标题     & 黑体三号居中                             \\ \hline
+    致谢、附录内容     & 宋体小四号                              \\ \hline
+    页眉与页脚       & 宋体五号居中                             \\ \hline
+    图题、表题       & 宋体五号                               \\ \hline
+    脚注、尾注       & 宋体小五号                              \\ \hline
+    \end{tabular}
+    \label{tab:font-spec}
+\end{table}
+
+
+字体样例可见如下（以居中形式展现）： \\
+
+
+
+\begin{center}
+{\heiti\zihao{2}黑体二号居中} \\
+
+{\heiti\zihao{3}黑体三号居中} \\
+
+{\heiti\zihao{4}黑体四号居中} \\
+ 
+{\songti\zihao{4}宋体四号居中} \\
+
+{\songti\zihao{-4}宋体小四号居中} \\
+
+{\songti\zihao{5}宋体五号居中} \\
+
+{\songti\zihao{-5}宋体小五号居中} \\
+
+{\zihao{3} Times New Roman : Three} 三号居中 \\ 
+
+{\zihao{-4} Times New Roman : Small Four} 小四号居中 \\
+
+\end{center}
+
+
+\subsection{页面设置}
+
+纸张大小：A4。
+
+页边距：上边距25 mm，下边距20 mm，左右边距均为30 mm。
+
+行距：1.5倍行距，章和节标题段前段后各空0.5行。
+
+\subsection{页码}
+
+页面底端居中，从摘要开始至绪论之前以大写罗马数字（
+\uppercase\expandafter{\romannumeral1} ，
+\uppercase\expandafter{\romannumeral2} ，
+\uppercase\expandafter{\romannumeral3} ，
+…）单独编连续码，绪论开始至论文结尾，以阿拉伯数字（1，2，3…）编连续码。
+
+\subsection{关键词}
+
+
+摘要正文下方另起一行顶格打印``关键词''款项，后加冒号，多个关键词以逗号分隔。
+
+\subsection{目录}
+
+目录应另起一页，包括论文中的各级标题，按照``一……''、``（一）……''或``1……''、``1.1……''格式编写。
+
+\subsection{各级标题}
+
+正文各部分的标题应简明扼要，不使用标点符号。论文内文各大部分的标题用``一、二……（或1、2……）''，次级标题为``（一）、（二）……（或1.1、2.1……）''，三级标题用``1、2……（或1.1.1、2.1.1……）''，四级标题用``（1）、（2）……（或1.1.1.1、2.1.1.1……）''，不再使用五级以下标题。两类标题不要混编。
+
+\subsection{名词术语}
+
+\begin{enumerate}
+    \item 科学技术名词术语尽量采用全国自然科学名词审定委员会公布的规范词或国家标准、部标准中规定的名称，尚未统一规定或叫法有争议的名词术语，可采用惯用的名称。
+    \item 特定含义的名词术语或新名词、以及使用外文缩写代替某一名词术语时，首次出现时应在括号内注明其含义，如：经济合作与发展组织（Organisation for Economic Co-operation and Development, OECD）。
+    \item 外国人名一般采用英文原名，可不译成中文，英文人名按姓前名后的原则书写，如：CRAY P，不可将外国人姓名中的名部分漏写，例如：不能只写CRAY, 应写成CRAY P。一般很熟知的外国人名(如牛顿、爱因斯坦、达尔文、马克思等)可按通常标准译法写译名。
+\end{enumerate}
+
+\subsection{物理量名称、符号与计量单位}
+
+\begin{enumerate}
+    \item 论文中某一物理量的名称和符号应统一，应采用国务院发布的《中华人民共和国法定计量单位》、国际公认或各行业领域惯用的计量单位。单位名称和符号的书写方式，应采用国际通用符号。
+    \item 在不涉及具体数据表达时允许使用中文计量单位如``千克''。
+    \item 表达时刻应采用中文计量单位，如``下午3点10分''，不能写成``3h10min''，在表格中可以用``3:10PM''表示。
+    \item 物理量符号、物理量常量、变量符号用斜体，计量单位符号均用正体。
+\end{enumerate}
+
+\subsection{数字}
+
+\begin{enumerate}
+    \item 无特别约定情况下，一般均采用阿拉伯数字表示。
+    \item 年份一律使用4位数字表示。
+    % \item 统计符号的格式：一般除$\mu$、$\alpha$、$\beta$、$\lambda$、$\varepsilon$ 以及$V$等符号外，其余统计符号一律以斜体字呈现，如$ANCOVA$，$ANOVA$，$MANOVA$，$N$，$nl$，$M$，$SD$，$F$，$p$，$r$等。
+    \item 统计符号的格式：一般除μ、α、β、λ、ε以及V等符号外，其余统计符号一律以斜体字呈现，如\textit{ANCOVA}，\textit{ANOVA}，\textit{MANOVA}，\textit{N}，\textit{nl}，\textit{M}，\textit{SD}，\textit{F}，\textit{p}，\textit{r}等。
 \end{enumerate}
 
 
+\subsection{公式}
+
+\begin{enumerate}
+    \item 公式应另起一行写在稿纸中央。一行写不完的长公式，最好在等号处转行，如做不到这一点，可在运算符号（如``+''、``-''号）处转行，等号或运算符号应在转行后的行首。
+    \item 公式的编号用圆括号括起，放在公式右边行末，在公式和编号之间不加虚线。公式可按全文统编序号，也可按章编独立序号，如（49）、（4.11）、（4-11）等。采用哪一种序号应和图序、表序编法一致。不应出现某章里的公式编序号，有的则不编序号。子公式可不编序号，需要引用时可加编a、b、c……，重复引用的公式不得另编新序号。公式序号必须连续，不得重复或跳缺。
+    \item 文中引用某一公式时，可写成``由式（序号）''。
+\end{enumerate}
+
+\ \\
+
+这是一个例子：
+
+\begin{equation}
+    \label{eq:example-formulas}
+    ax^2 +bx+c = 0
+\end{equation}
+
+
+如\autoref{eq:example-formulas}所示，为了求解该一元二次方程，我们可以推导得到该方程的求根公式。因此，由\autoref{eq:example-formulas2}即可求解该方程的两个根。
+
+\begin{equation}
+    \label{eq:example-formulas2}
+    \begin{split}
+    x_1 = & \frac{-b+\sqrt{b^2-4ac}}{2a} \\
+     & \\
+    x_2 = & \frac{-b-\sqrt{b^2-4ac}}{2a}
+    \end{split}
+\end{equation}
+
+\subsection{表格}
+
+\begin{enumerate}
+    \item 表格必须与论文叙述有直接联系，不得出现与论文叙述脱节的表格。表格中的内容在技术上不得与正文矛盾。
+    \item 每个表格都应有自己的标题和序号。标题应写在表格上方正中，不加标点，序号写在标题左方。
+    \item 全文的表格可以统一编序，也可以逐章单独编序。采用哪一种方式应和插图、公式的编序方式统一。表序必须连续，不得跳缺。
+    \item 表格允许下页接写，接写时标题省略，表头应重复书写，并在右上方写``续表××''。多项大表可以分割成块，多页书写，接口处必须注明``接下页''、``接上页''、``接第×页''字样。
+    \item 表格应放在离正文首次出现处最近的地方，不应超前和过分拖后。
+\end{enumerate}
+
+
+例子可见\autoref{tab:table-example}。
+
+\begin{table}[!htbp]
+    \centering
+    \caption{表格例子}
+    \label{tab:table-example}
+    \begin{tabular}{|l|l|}
+    \hline
+    \multicolumn{1}{|c|}{这是表格第一行第一列} & 这是表格第一行第二列 \\ \hline
+    这是表格第二行第一列                       & 这是表格第二行第二列 \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{图}
+
+
+\begin{enumerate}
+    \item 插图应与文字内容相符，技术内容正确。所有制图应符合国家标准和专业标准。对无规定符号的图形应采用该行业的常用画法。
+    \item 每幅插图应有标题和序号，全文的插图可以统一编序，也可以逐章单独编序，采取哪一种方式应和表格、公式的编序方式统一。图序必须连续，不重复，不跳缺。
+    \item 由若干分图组成的插图，分图用a、b、c……标序。分图的图名以及图中各种代号的意义，以图注形式写在图题下方，先写分图名，另起行写代号的意义。
+    \item 图与图标题、图序号为一个整体，不得拆开排版为两页。当页空白不够排版该图整体时，可将其后文字部分提前，将图移至次页最前面。
+    \item 对坐标轴必须进行文字标示，有数字标注的坐标图必须注明坐标单位。
+\end{enumerate}
+
+例子可见\autoref{fig:example-figure}。
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=3cm]{example-image-a}
+    \caption{图片例子}
+    \label{fig:example-figure}
+\end{figure}
+
+\subsection{注释}
+
+毕业论文（设计）中有个别名词或情况需要解释时，可加注说明。注释采用脚注或尾注，应根据注释的先后顺序编排序号。注释序号以``①、②''等数字形式标示在正文中被注释词条的右上角，脚注或尾注内容中的序号应与被注释词条序号保持一致。
+
+脚注例子可见这里\footnote{这是一个脚注}。
+
+\subsection{参考文献}
+
+参考文献的序号左顶格，并用数字加方括号表示，如``[1]''。每一条参考文献著录均以``.''结束。各类参考文献的具体编排格式请参照国家标准《信息与文献 参考文献著录规则》（GB/T 7714-2015）。
+
+参考文献例子可见这里\cite{sysu-thesis}。
+
+
+\subsection{附录}
+
+论文附录依次用大写字母``附录A、附录B、附录C……''表示，附录内的分级序号可采用``附A1、附A1.1、附A1.1.1''等表示，图、表、公式均依此类推为``图A1、表A1、式A1''等。
+
+% TODO：增加引用例子。
