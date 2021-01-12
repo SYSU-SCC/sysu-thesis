@@ -36,6 +36,8 @@
 \RequirePackage{listings}
 \RequirePackage{longtable}
 \RequirePackage[section]{placeins}
+% TODO: 伪代码要用中文吗？
+% \RequirePackage[onelanguage,linesnumbered,algochapter,ruled,vlined]{algorithm2e}
 \RequirePackage[chinese, onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e}
 \RequirePackage{enumitem}
 \RequirePackage{bbm}
