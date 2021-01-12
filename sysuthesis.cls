@@ -23,7 +23,8 @@
 \RequirePackage{fontspec}
 \setmainfont{Times New Roman}
 
-\RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
+% \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
+\RequirePackage[top=25mm, bottom=20mm, left=30mm, right=30mm,a4paper]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{booktabs}
 \RequirePackage{calc}
@@ -93,6 +94,8 @@
     }
 }
 \pagestyle{fancy}
+% 1.5倍行距 TODO
+\renewcommand{\baselinestretch}{1.5}
 
 % 有序与无序列表环境
 \setlist[enumerate]{nosep}
@@ -110,14 +113,15 @@
 % 默认页面页眉页脚样式
 \fancypagestyle{plain}{
     \fancyhf{}
-    \fancyfoot[C]{\zihao{-5}\thepage} % 页码位于页脚居中
+    % F18 页眉与页脚 宋体五号居中
+    \fancyfoot[C]{\zihao{5}\thepage} % 页码位于页脚居中
 
     % 左右两栏页眉，左为论文题目右为当前章
-    \fancyhead[L]{\zihao{-5}\@ctitle}
-    \fancyhead[R]{\zihao{-5}\leftmark}
+    % \fancyhead[L]{\zihao{-5}\@ctitle}
+    % \fancyhead[R]{\zihao{-5}\leftmark}
 
     % 居中式页眉，可以选择为论文题目或当前章
-    %\fancyhead[C]{\zihao{-5}\@ctitle}
+    \fancyhead[C]{\zihao{5}\@ctitle}
     %\fancyhead[C]{\zihao{-5}\leftmark}
 }
 \pagestyle{plain}
@@ -135,9 +139,13 @@
 \fancypagestyle{listoffiguretable}{\fancyhead[R]{\zihao{-5}插图与表格目录}}
 
 % 表格与图片标题设定
+% https://blog.csdn.net/uncle_gy/article/details/78313861
+% https://tex.stackexchange.com/questions/101591/setting-font-size-for-caption-package
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 \setlength\heavyrulewidth{0.2em}
-\captionsetup{font=small,format=hang}
+% F19 图题表题 宋体五号
+\DeclareCaptionFormat{sysucaption}{\fontsize{10.5}{10.5}\selectfont#1#2#3}
+\captionsetup{format=sysucaption}
 
 
 % 目录设定，使用tocloft宏包
@@ -146,14 +154,16 @@
 % 如果要在目录中显示子章节请换用下面这行(目录中显示到x.y.z章)，如果不用这行默认显示到x.y章。
 % \setcounter{tocdepth}{2}
 
-% 目录标题：3号宋体加粗
-\renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\songti\bfseries}
-\renewcommand{\cftlottitlefont}{\hfill\zihao{3}\songti\bfseries}
-\renewcommand{\cftloftitlefont}{\hfill\zihao{3}\songti\bfseries}
+% F8 目录标题：3号黑体居中
+\renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\heiti}
+\renewcommand{\cftlottitlefont}{\hfill\zihao{3}\heiti}
+\renewcommand{\cftloftitlefont}{\hfill\zihao{3}\heiti}
 
-% 目录中章节标题：四号黑体
-\renewcommand{\cftchapfont}{\zihao{4}\heiti}
-\renewcommand{\cftchappagefont}{\zihao{4}\heiti}
+% 如果要加粗，放 \bfseries
+% 目录中章节标题：小四号宋体
+% F9 目录内容：宋体小四号
+\renewcommand{\cftchapfont}{\zihao{-4}\songti}
+\renewcommand{\cftchappagefont}{\zihao{-4}\songti}
 
 % 目录中其他内容：小四号宋体
 \renewcommand{\cftsecfont}{\zihao{-4}\songti}
@@ -213,6 +223,9 @@
 \newcommand\etitle[1]{\def\@etitle{#1}}
 \newcommand\covertitlefirst[1]{\def\@covertitlefirst{#1}}
 \newcommand\covertitlesecond[1]{\def\@covertitlesecond{#1}}
+% 这两个在原来的info.tex里面定义，用于英文标题过长的时候的换行情况
+\newcommand\etitlefirst[1]{\def\@etitlefirst{#1}}
+\newcommand\etitlesecond[1]{\def\@etitlesecond{#1}}
 \newcommand\eabstracttitlefirst[1]{\def\@eabstracttitlefirst{#1}} % 解决英文摘要页标题过长问题 (Issue 49&63)
 \newcommand\eabstracttitlesecond[1]{\def\@eabstracttitlesecond{#1}}
 \newcommand\cauthor[1]{\def\@cauthor{#1}} % 默认中文名为封面作者名字
@@ -225,11 +238,12 @@
 \newcommand\ementor[1]{\def\@ementor{#1}}
 
 % 新版封面，add by wyf 2021-01-11 21:57:01
-\newcommand\makeUndergraduateTitle {
+\newcommand\makeUndergraduateCover {
     \begin{titlepage}
         \begin{center}
             \heiti
             \definecolor{sysugreen}{RGB}{36,86,44}
+            \ \vspace{0.5cm}
             \includegraphics[width=3cm]{template/image/sysu-logo.pdf} \\
             \vspace{\baselineskip}
             {\zihao{-0}\textcolor{sysugreen}{\songti\textbf{\ 本科生毕业论文（设计）}}}
@@ -241,26 +255,22 @@
             % \noindent\makebox[\linewidth]{ { \color{sysugreen} \rule[1.05cm]{\paperwidth}{0.05cm} } }
             \noindent\makebox[\linewidth]{ { \color{sysugreen} \rule[0.8\baselineskip]{\paperwidth}{0.05cm} } }
 
-            \vspace{\baselineskip}
-            \vspace{\baselineskip}
-            \vspace{\baselineskip}
-
-            \ \\
+            \ \vspace{1.5cm}
 
             {
                 % 二号对应22pt
+                \renewcommand{\arraystretch}{1.5}
                 \fontsize{22}{22}\heiti\selectfont
                 \begin{tabular}{ll}
-                    \makebox[0.7cm]&\makebox[1.5cm]{题目：\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\songti\textbf\@covertitlefirst\hfill}}\\
-                    \vspace{1pt}\\
-                    \makebox[0.7cm]&\makebox[1.5cm]{\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\songti\textbf\@covertitlesecond\hfill}}\\
-                    \vspace{1pt}\\
+                    % F1: 论文题目 黑体二号居中
+                    \makebox[0.7cm]&\makebox[1.5cm]{题目：\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\textbf\@covertitlefirst\hfill}}\\
+                    % \vspace{1pt}\\
+                    \makebox[0.7cm]&\makebox[1.5cm]{\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\textbf\@covertitlesecond\hfill}}\\
                 \end{tabular}
-                \ \\
-                \ \\
-                \ \\
+                \ \vspace{1.7cm} \\
                 % 小三对应15pt
-                \renewcommand{\arraystretch}{2.4}
+                \renewcommand{\arraystretch}{2}
+                % \setlength\arrayrulewidth{1.4pt}
                 \fontsize{15}{15}\heiti\selectfont
                 \begin{tabular}{cc}
                         % [s] 两端对齐
@@ -286,6 +296,63 @@
     \end{titlepage}
     \newclearpage
 }
+
+
+% 新版封面，add by wyf 2021-01-11 21:57:01
+\newcommand\makeUndergraduateTitlePage {
+    \begin{center}
+        \ \vspace{2cm} \\
+        {
+            \renewcommand{\arraystretch}{1.2}
+            \zihao{2}\heiti\selectfont
+            \begin{tabular}{c}
+                % F1: 论文题目 黑体二号居中
+                \makebox[13cm]{\heiti\hfill\zihao{2}\textbf{\@covertitlefirst}\hfill}\\
+                \makebox[13cm]{\heiti\hfill\zihao{2}\textbf{\@covertitlesecond}\hfill}\\
+            \end{tabular}
+            \ \vspace{1cm} \\
+            \zihao{2}\selectfont
+            \begin{tabular}{c}
+                % F1: 论文题目 黑体二号居中
+                \makebox[13cm]{\hfill\zihao{2}\textbf{\@etitlefirst}\hfill}\\
+                \makebox[13cm]{\hfill\zihao{2}\textbf{\@etitlesecond}\hfill}\\
+            \end{tabular}
+        }
+
+        \ \vspace{1.8cm} \\
+
+        {
+            % 小三对应15pt
+            \renewcommand{\arraystretch}{1.6}
+            % \setlength\arrayrulewidth{1.4pt}
+            \zihao{3}\heiti\selectfont
+            \begin{tabular}{cc}
+                    % [s] 两端对齐
+                    \makebox[2.3cm][s]{姓名} & \makebox[8.5cm]{\hfill\@cauthor\hfill}\\ \cline{2-2}
+                    \makebox[2.3cm][s]{院系} & \makebox[8.5cm]{\hfill\@cschool\hfill}\\ \cline{2-2}
+                    \makebox[2.3cm][s]{院系} & \makebox[8.5cm]{\hfill\@cmajor\hfill}\\ \cline{2-2}
+                    \makebox[2.3cm][s]{专业} & \makebox[8.5cm]{\hfill\@studentid\hfill}\\ \cline{2-2}
+                    \makebox[2.3cm][s]{指导教师} & \makebox[8.5cm]{\hfill\@cmentor\hfill}\\ \cline{2-2}
+            \end{tabular}
+        }\\
+
+        \ \vspace{1.5cm} \\
+
+        {\zihao{4}\heiti \underline{\makebox[0.9cm]{\number\year}}年\underline{\makebox[0.9cm]{\number\month}}月\underline{\makebox[0.9cm]{\number\day}}日 }
+
+        % \zihao{-3}
+        % {\centering
+        %     \ctexset{today=big}         % 汉字数字形式日期
+        %     时间：\today     \\ % 使用最后一次编译的日期, 实现日期的自动化
+        %     % Date:\hspace{0.5\ccwd} Month\hspace{2\ccwd} Day\hspace{1\ccwd} Year
+        %     Date: \etoday % 英文日期自动化
+        % }
+
+    \end{center}
+    \thispagestyle{empty}
+    \newclearpage
+}
+
 
 % 旧版的一种封面
 \renewcommand\maketitle {
@@ -616,9 +683,6 @@
 % Mail:     ou@souler.cc
 
 % 答辩情况登记表
-% 这两个在原来的info.tex里面定义，用于英文标题过长的时候的换行情况
-\newcommand\etitlefirst[1]{\def\@etitlefirst{#1}}
-\newcommand\etitlesecond[1]{\def\@etitlesecond{#1}}
 
 \newcommand\makeDefenseRecord{
     \pagestyle{empty}
@@ -685,12 +749,31 @@
 \newcommand\makedisclaim{
     \ctexset {
         chapter = {
-            titleformat = {\zihao{-2}\fangsong\bfseries},
+            titleformat = {\zihao{3}\heiti\bfseries},
             beforeskip = {10pt},
-            afterskip = {40pt}
+            afterskip = {20pt}
         }
     }
-    \input{docs/disclaim}
+    \chapter*{学术诚信声明}
+    % {\centering\zihao{3}\heiti\textbf{学术诚信声明} }
+
+    \zihao{-4}\songti\selectfont
+
+    % 旧版的学术诚信声明
+    % 本人所呈交的毕业论文，是在导师的指导下，独立进行研究工作所取得的成果，所有数据、图片资料均真实可靠。除文中已经注明引用的内容外，本论文不包含任何其他人或集体已经发表或撰写过的作品或成果。对本论文的研究作出重要贡献的个人和集体，均已在文中以明确的方式标明。本毕业论文的知识产权归属于培养单位。本人完全意识到本声明的法律结果由本人承担。
+
+    % 新版的
+    本人郑重声明：所呈交的毕业论文（设计），是本人在导师的指导下，独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文（设计）不包含任何其他个人或集体已经发表或撰写过的作品成果。对本论文（设计）的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本论文（设计）的知识产权归属于培养单位。本人完全意识到本声明的法律结果由本人承担。
+
+    \vspace{2\baselineskip}
+
+    \begin{flushright}
+        \makebox[2.1cm][s]{作者签名：} \makebox[5cm]{\hspace{1cm}} \\
+        \vspace{\baselineskip}
+        \makebox[2.1cm][s]{日期：} \makebox[5cm]{\hspace{1cm}年\hspace{1cm}月\hspace{1cm}日} \\
+    \end{flushright}
+
+    % \input{docs/disclaim}
     \thispagestyle{empty}
     \newclearpage
 }
@@ -728,15 +811,21 @@
     %\end{flushleft}
 
     % 或者只要一个醒目的标题
+    % F2：中文摘要标题 黑体三号居中
     \vspace*{1ex}
-    \centerline{\zihao{5}\heiti【摘\hspace{\ccwd}要】}
+    \centerline{\zihao{3}\heiti【摘\hspace{\ccwd}要】}
     \vspace{1ex}
 
-    \zihao{5}\kaishu
+    
+    % F3: 中文摘要内容 宋体小四号
+    % F4: 中文关键词 宋体小四号(关键词加粗)
+
+    \zihao{-4}\songti
+    % \fontsize{12}{18}\songti
     % \paragraph{}
-    \setlength{\baselineskip}{20pt}
+    % \setlength{\baselineskip}{20pt}
     \@cabstract
-    \paragraph{\zihao{5}\heiti【关键词】}\@ckeywords
+    \paragraph{\textbf{【关键词】}}\@ckeywords
 }
 
 % 英文摘要、关键字标题：小四号新罗马体(Time New Roman)加粗并加方括号
@@ -767,10 +856,15 @@
     % \centerline{\zihao{3}\bfseries{\@eabstracttitlesecond}}
 
     \vspace*{1ex}
-    \zihao{-4}
+    % F5 英文摘要标题，加粗三号全部大写
+    \zihao{3}
     \centerline{\textbf{[ABSTRACT]}}
     \vspace*{1ex}
     \setlength{\baselineskip}{20pt}
+    
+    % F6 英文摘要内容，小四号
+    % F7 英文关键词，小四号，加粗
+    \zihao{-4}
     \@eabstract
     \paragraph{\textbf{[Keywords]}}\@ekeywords
 }
@@ -778,11 +872,11 @@
 \newcommand\makeabstract{
     \setcounter{page}{1}
     \makecabstract
-    \thispagestyle{cAbstract}
+    % \thispagestyle{cAbstract}
     \newclearpage
 
     \makeeabstract
-    \thispagestyle{eAbstract}
+    % \thispagestyle{eAbstract}
     \newclearpage
 }
 \newcommand\maketableofcontents{
@@ -793,7 +887,7 @@
 \newcommand\makelistoffiguretable{
     \listoffigures
     \listoftables
-    \thispagestyle{listoffiguretable}
+    % \thispagestyle{listoffiguretable}
     \newclearpage
 }
 
@@ -806,14 +900,16 @@
             beforeskip = {10pt},
             afterskip = {20pt},
             format = {\centering},
-            nameformat = {\zihao{4}\heiti},
-            titleformat = {\zihao{4}\heiti}
+            % F10 正文各章标题 黑体三号居中
+            nameformat = {\zihao{3}\heiti},
+            titleformat = {\zihao{3}\heiti}
         },
         section = {
             %fixskip = true,
             beforeskip = {20pt},
             afterskip = {10pt},
             format = {},
+            % F11 正文各节一级标题 黑体四号居中
             nameformat = {\zihao{4}\heiti},
             titleformat = {\zihao{4}\heiti}
         },
@@ -822,27 +918,31 @@
             beforeskip = {20pt},
             afterskip = {10pt},
             format = {},
-            nameformat = {\zihao{4}\heiti},
-            titleformat = {\zihao{4}\heiti}
+            % F12 正文各节二级及以下标题 宋体小四号加粗左对齐空两格
+            indent = {24pt},
+            nameformat = {\zihao{-4}\songti\bfseries},
+            titleformat = {\zihao{-4}\songti\bfseries}
         },
         subsubsection = {
             beforeskip = {20pt},
             afterskip = {10pt},
             format = {},
-            nameformat = {\zihao{4}\heiti},
-            titleformat = {\zihao{4}\heiti}
+            % F12 正文各节二级及以下标题 宋体小四号加粗左对齐空两格
+            indent = {24pt},
+            nameformat = {\zihao{-4}\songti\bfseries},
+            titleformat = {\zihao{-4}\songti\bfseries}
             % 按照中大规定的格式需要显示成a.b.c.d章，而不是(d)节
             % number = {(\arabic{subsubsection})}
         }
     }
-
+    % F13 正文内容  宋体小四号
     \zihao{-4}\songti \linespread{1.5}\selectfont
     \pagestyle{plain}
 }
 
 \renewcommand\backmatter{
     \@mainmatterfalse
-    \fancypagestyle{plain}{ \fancyhead[R]{\zihao{-5} \leftmark} }
+    % \fancypagestyle{plain}{ \fancyhead[R]{\zihao{-5} \leftmark} }
     \pagestyle{plain}
 }
 
@@ -853,9 +953,10 @@
     \begingroup
         \ctexset {
             chapter = {
-                aftertitle = {：},
-                format = {},
-                titleformat = {\zihao{-5}\heiti}
+                % aftertitle = {：},
+                format = {\centering},
+                % F14 参考文献标题：黑体三号居中
+                titleformat = {\zihao{3}\heiti}
             }
         }
 
@@ -864,7 +965,8 @@
         \bibliographystyle{bibtex-style/gbt7714-2005}    % 国标文后参考文献著录规则
         %\bibliographystyle{bibtex-style/sysuthesis}     % 历史遗留模板
         %\bibliographystyle{bibtex-style/sysuthesis2}     % 2017年由程建生师兄提供的模板
-        {\zihao{-5}\rmfamily\bibliography{main}}    % 引用文献列表
+        % F15 参考文献内容 宋体五号
+        {\zihao{5}\rmfamily\songti\bibliography{main}}    % 引用文献列表
     \endgroup
 }
 
@@ -884,19 +986,21 @@
     \gdef\CTEX@postchapter{}
     \ctexset {
         chapter = {
+            % F16 附录标题 黑体三号居中
             format = {\centering},
-            nameformat = {\zihao{4}\heiti},
-            titleformat = {\zihao{4}\heiti},
+            nameformat = {\zihao{3}\heiti},
+            titleformat = {\zihao{3}\heiti},
         },
         section = {
-            format = {\centering},
+            format = {},
             nameformat = {\zihao{4}\heiti},
             titleformat = {\zihao{4}\heiti}
         },
         subsection = {
-            format = {\centering},
-            nameformat = {\zihao{4}\heiti},
-            titleformat = {\zihao{4}\heiti}
+            format = {},
+            indent = {24pt},
+            nameformat = {\zihao{-4}\songti\bfseries},
+            titleformat = {\zihao{-4}\songti\bfseries}
         }
     }
 }
