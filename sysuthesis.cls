@@ -275,9 +275,9 @@
                 \begin{tabular}{cc}
                         % [s] 两端对齐
                         \makebox[2.2cm][s]{姓名} & \makebox[8cm]{\hfill\@cauthor\hfill}\\ \cline{2-2}
+                        \makebox[2.2cm][s]{学号} & \makebox[8cm]{\hfill\@studentid\hfill}\\ \cline{2-2}
                         \makebox[2.2cm][s]{院系} & \makebox[8cm]{\hfill\@cschool\hfill}\\ \cline{2-2}
-                        \makebox[2.2cm][s]{院系} & \makebox[8cm]{\hfill\@cmajor\hfill}\\ \cline{2-2}
-                        \makebox[2.2cm][s]{专业} & \makebox[8cm]{\hfill\@studentid\hfill}\\ \cline{2-2}
+                        \makebox[2.2cm][s]{专业} & \makebox[8cm]{\hfill\@cmajor\hfill}\\ \cline{2-2}
                         \makebox[2.2cm][s]{指导教师} & \makebox[8cm]{\hfill\@cmentor\hfill}\\ \cline{2-2}
                 \end{tabular}
             }\\
@@ -329,9 +329,9 @@
             \begin{tabular}{cc}
                     % [s] 两端对齐
                     \makebox[2.3cm][s]{姓名} & \makebox[8.5cm]{\hfill\@cauthor\hfill}\\ \cline{2-2}
+                    \makebox[2.3cm][s]{学号} & \makebox[8.5cm]{\hfill\@studentid\hfill}\\ \cline{2-2}
                     \makebox[2.3cm][s]{院系} & \makebox[8.5cm]{\hfill\@cschool\hfill}\\ \cline{2-2}
-                    \makebox[2.3cm][s]{院系} & \makebox[8.5cm]{\hfill\@cmajor\hfill}\\ \cline{2-2}
-                    \makebox[2.3cm][s]{专业} & \makebox[8.5cm]{\hfill\@studentid\hfill}\\ \cline{2-2}
+                    \makebox[2.3cm][s]{专业} & \makebox[8.5cm]{\hfill\@cmajor\hfill}\\ \cline{2-2}
                     \makebox[2.3cm][s]{指导教师} & \makebox[8.5cm]{\hfill\@cmentor\hfill}\\ \cline{2-2}
             \end{tabular}
         }\\
