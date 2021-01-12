@@ -170,7 +170,7 @@
 \renewcommand{\cftsecpagefont}{\zihao{-4}\songti}
 \renewcommand{\cftsubsecfont}{\zihao{-4}\songti}
 \renewcommand{\cftsubsecpagefont}{\zihao{-4}\songti}
-\setlength{\cftsecindent}{2.3em}        % 小节缩进, 对齐章标题空隙
+\setlength{\cftsecindent}{0.5em}        % 小节缩进, 对齐章标题空隙
 
 % 插图目录
 \renewcommand{\listfigurename}{插图目录}
@@ -187,7 +187,7 @@
 \renewcommand{\cftafterloftitle}{\hfill}
 \renewcommand{\cftnodots}{\cftdotsep}     % 使用点指示页数
 
-\addtolength{\cftchapnumwidth}{3\ccwd}
+% \addtolength{\cftchapnumwidth}{3\ccwd} % 用来设置目录中章节标题离数字的距离
 \newcommand\mybold[1]{\textit{\textbf{#1}}}
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
@@ -902,6 +902,8 @@
             format = {\centering},
             % F10 正文各章标题 黑体三号居中
             nameformat = {\zihao{3}\heiti},
+            name = {,、},
+            aftername = {},
             titleformat = {\zihao{3}\heiti}
         },
         section = {
