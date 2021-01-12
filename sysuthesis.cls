@@ -244,7 +244,7 @@
             \heiti
             \definecolor{sysugreen}{RGB}{36,86,44}
             \ \vspace{0.5cm}
-            \includegraphics[width=3cm]{template/image/sysu-logo.pdf} \\
+            \includegraphics[width=3cm]{image/template/sysu-logo.pdf} \\
             \vspace{\baselineskip}
             {\zihao{-0}\textcolor{sysugreen}{\songti\textbf{\ 本科生毕业论文（设计）}}}
 
@@ -358,7 +358,7 @@
 \renewcommand\maketitle {
     \begin{titlepage}
         \begin{center}
-            \includegraphics[width=10cm]{image/SYSULogo} \\
+            \includegraphics[width=10cm]{image/template/SYSULogo} \\
             \songti
             \vspace{\baselineskip}
             \zihao{-0}\textbf{本科生毕业论文（设计）} \\
@@ -1102,7 +1102,7 @@
 \def\subparagraphautorefname{子段落}%
 \def\FancyVerbLineautorefname{行}%
 \def\theoremautorefname{定理}%
-
+% 暂时不能处理引理，推论
 
 
 \renewcommand{\@fnsymbol}[1]{
