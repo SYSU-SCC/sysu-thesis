@@ -888,6 +888,7 @@
 }
 \newcommand\makelistoffiguretable{
     \listoffigures
+    \newclearpage
     \listoftables
     % \thispagestyle{listoffiguretable}
     \newclearpage
