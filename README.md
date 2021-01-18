@@ -9,8 +9,9 @@
 - [x] 校验排版格式要求，满足相关文件中的格式要求。 如[附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc](./specifications/附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc)
     - 本科生版本done，可见 [#9](https://github.com/SYSU-SCC/sysu-thesis/pull/9) [#10](https://github.com/SYSU-SCC/sysu-thesis/pull/10)
     - 已merge到主线，学院老师已确认。
-- [ ] 增加使用说明、增加更多的例子、完善文献引用样式
-- [ ] 增加CTAN、[overleaf](https://www.overleaf.com/) 等模板库的自动发布，可一键在overleaf中打开项目.
+- [x] 增加使用说明，可见 [#12](https://github.com/SYSU-SCC/sysu-thesis/pull/12)
+- [ ] 增加更多的例子、完善文献引用样式
+- [ ] 增加CTAN、[overleaf](https://www.overleaf.com/) 等模板库的自动发布，可一键在overleaf中打开项目。
 
 未来将要支持的feature如下：
 
