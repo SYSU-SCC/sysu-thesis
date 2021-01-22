@@ -286,8 +286,8 @@
 
 \section{代码}
 
-本模版支持在论文中插入代码块，或直接从源码文件进行插入。
-例如，在论文中插入代码块的效果为：
+本模版支持在论文中插入代码片段，或直接从源码文件进行插入。
+例如，在论文中插入代码片段的效果为：
 \begin{python}
 def func():
     print("hello world")
@@ -299,6 +299,8 @@ if __name__ == "__main__":
     func()
 \end{python}
 也可在行内插入代码片段，例如：Python中重载加法运算符的函数为\pyinline{__add__}，类的标识符为\pyinline{class}。
+此外，还可直接插入代码文件，例如插入\texttt{./code/demo.cpp}的效果为：
+\lstinputlisting[style=sysucpp]{code/demo.cpp}
 
 
 \section{其他的一些用法}

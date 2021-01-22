@@ -1,6 +1,6 @@
 % 说明：
 % 本科生毕业论文规范中并未明确指出在论文中插入代码的要求，该文件定义的代码风格尽量保持简洁与美观
-% 目前仅支持Python、C/C++和Matlab等常用语言，若需添加listing包所支持的其他语言，可参考本文件方法进行定义，尽量保持全文的代码风格一致
+% 目前仅支持Python和C/C++，若需添加listing包所支持的其他语言，可参考本文件方法进行定义，尽量保持全文的代码风格一致
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{sysucode}[2021/01/21 v0.1 code style format defined for sysuthesis]
 
@@ -16,6 +16,8 @@
 \colorlet{magicmethodcolour}{violet}
 
 % 定义Python代码风格
+% 由于listing中自带的Python高亮模块并不完整，因此手动添加一些需要高亮的关键字
+% 参考自：https://github.com/olivierverdier/python-latex-highlighting/blob/master/pythonhighlight.sty
 % 使用方法 \begin{python} ... \end{python}
 \lstdefinestyle{sysupython}{
     language=python,
@@ -48,6 +50,20 @@
 % 定义listing包中的环境
 \lstnewenvironment{python}[1][]{\lstset{style=sysupython}}{}
 % 定义行内代码
+% 使用方法 xxx \pyinline{python code here} xxx
 \newcommand*{\pyinline}{\lstinline[style=sysupython]}
 
-% TODO 添加C++和Matlab代码支持
+% 定义C++代码风格
+% 使用方法 \begin{cpp} ... \end{cpp}
+\lstdefinestyle{sysucpp}{
+    language=C++,
+    tabsize=4,
+    basicstyle=\ttfamily\footnotesize, % 设置字号和字体
+    breaklines=true, % 当代码过长时，自动换行
+    frame=L, % 设置代码显示边框
+    keywordstyle=\bfseries\color{keywordcolor},
+    commentstyle=\itshape\color{commentcolor},
+    stringstyle=\color{stringcolor},
+    identifierstyle=\color{blue}
+}
+\lstnewenvironment{cpp}[1][]{\lstset{style=sysucpp}}{}
