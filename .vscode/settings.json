@@ -70,7 +70,6 @@
             ],
             "env": {}
         },
-   
         {
             "name": "latexmk",
             "command": "latexmk",
@@ -163,5 +162,4 @@
         }
     ],
     "latex-workshop.latex.recipe.default": "first"
-   
 }

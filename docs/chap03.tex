@@ -21,7 +21,7 @@ Overleaf\footnote{网址可见\url{https://www.overleaf.com/}}是一个在线的
 	\includegraphics[width=0.2\textwidth]{image/chap03/overleaf-create-proj.jpg}
 	\includegraphics[width=0.7\textwidth]{image/chap03/overleaf-upload-proj.jpg}
 	\caption{在Overleaf上创建并上传压缩包。}
- 	\label{fig:overleaf-new-proj}
+	\label{fig:overleaf-new-proj}
 \end{figure}
 
 第二步，在Overleaf的菜单中调整编译工具为\texttt{xelatex}，可参考\autoref{fig:overleaf-config}。
@@ -30,7 +30,7 @@ Overleaf\footnote{网址可见\url{https://www.overleaf.com/}}是一个在线的
 	\centering
 	\includegraphics[width=0.6\textwidth]{image/chap03/overleaf-config.jpg}
 	\caption{在Overleaf上调整编译工具}
- 	\label{fig:overleaf-config}
+	\label{fig:overleaf-config}
 \end{figure}
 
 
@@ -41,7 +41,7 @@ Overleaf\footnote{网址可见\url{https://www.overleaf.com/}}是一个在线的
 	\centering
 	\includegraphics[width=0.9\textwidth]{image/chap03/overleaf-example.jpg}
 	\caption{Overleaf使用例子}
- 	\label{fig:overleaf-example}
+	\label{fig:overleaf-example}
 \end{figure}
 
 
@@ -64,8 +64,8 @@ Overleaf\footnote{网址可见\url{https://www.overleaf.com/}}是一个在线的
 在MacOS上配置Latex的环境，这里我们使用的是MacTex。
 
 \begin{enumerate}
-    \item \url{https://www.tug.org/mactex/}下载MacTex安装。
-    \item 安装步骤：不详细展开，按照图形界面点击即可, 傻瓜式安装。
+	\item \url{https://www.tug.org/mactex/}下载MacTex安装。
+	\item 安装步骤：不详细展开，按照图形界面点击即可, 傻瓜式安装。
 \end{enumerate}
 
 TIPS：MacTex文件比较大，有2G多，介意的话可以选择MacTex\_Basic包，只有100M以内，但是如果安装MacTex\_Basic，后期可能会遇到各种缺包的问题。
@@ -82,9 +82,9 @@ TIPS：MacTex文件比较大，有2G多，介意的话可以选择MacTex\_Basic�
 由于\LaTeX 的限制，本模板需要经过四次编译才能生成完整的论文：
 
 \begin{enumerate}
-    \item 先使用xelatex编译一次
-    \item 再使用bibtex编译一次
-    \item 然后使用xelatex编译两次
+	\item 先使用xelatex编译一次
+	\item 再使用bibtex编译一次
+	\item 然后使用xelatex编译两次
 \end{enumerate}
 
 本编译流程已经写在Makefile中，修改模板源码后只需要执行\texttt{make pdf}即可按照该流程进行编译并生成最终的pdf。
@@ -96,8 +96,8 @@ TIPS：MacTex文件比较大，有2G多，介意的话可以选择MacTex\_Basic�
 Visual Studio Code是微软公司推出的轻量代码编辑器，我们可以做一些简单的配置，便可以用该编辑器修改我们的\LaTeX 模板，并实现一键编译。
 
 \begin{enumerate}
-    \item 安装 Visual Studio Code。
-    \item 安装 LaTeX Workshop 插件。
+	\item 安装 Visual Studio Code。
+	\item 安装 LaTeX Workshop 插件。
 \end{enumerate}
 
 本项目的\texttt{.vscode/setting.json}下已经包含了与前面所述编译流程相同的配置。正常配置下，每次修改模板源码后按下保存（Ctrl+S），就能够自动进行编译产生pdf。效果图如\autoref{fig:vscode-example}所示。
@@ -107,7 +107,7 @@ Visual Studio Code是微软公司推出的轻量代码编辑器，我们可以�
 	\centering
 	\includegraphics[width=\linewidth]{image/chap03/vscode-example.png}
 	\caption{vscode配置好后的样例}
- 	\label{fig:vscode-example}
+	\label{fig:vscode-example}
 \end{figure}
 
 

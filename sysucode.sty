@@ -20,31 +20,31 @@
 % 参考自：https://github.com/olivierverdier/python-latex-highlighting/blob/master/pythonhighlight.sty
 % 使用方法 \begin{python} ... \end{python}
 \lstdefinestyle{sysupython}{
-    language=python,
-    tabsize=4, % 设置indent缩进为4个空格
-    basicstyle=\ttfamily\footnotesize, % 设置字号和字体
-    breaklines=true, % 当代码过长时，自动换行
-    frame=L, % 设置代码显示边框
-    keywordstyle=\bfseries\color{keywordcolor},
-    commentstyle=\itshape\color{commentcolor},
-    stringstyle=\color{stringcolor},
-    emph={and, break, continue, yield, del,% 
-            except, exec, finally, for, from, global, import, in,%
-            lambda, not, or, pass, raise, return, try, while, assert, with, as},
-    emphstyle=\bfseries\color{identifiercolor},
-    emph={[2]True, False, None},
-    emphstyle=[2]\color{identifiercolor},
-    emph={[3]Exception, NameError, IndexError, SyntaxError, TypeError, ValueError, OverflowError, ZeroDivisionError},
-    emphstyle=[3]\color{exceptioncolour},
-    emph={[4]ode, fsolve, sqrt, exp, sin, cos, arctan, arctan2, arccos, pi,  array, norm, solve, dot, arange, isscalar, max, sum,%
-            flatten, shape, reshape, find, any, all, abs, plot, linspace, legend, quad, polyval, polyfit, hstack, concatenate, vstack,%
-            column_stack, empty, zeros, ones, rand, vander, grid, pcolor, eig, eigs, eigvals, svd, qr, tan, det, logspace, roll, min,% 
-            ean, cumsum, cumprod, diff, vectorize, lstsq, cla, eye, xlabel, ylabel, squeeze},
-    emphstyle=[4]\color{identifiercolor},
-    emph={[5]__init__, __add__, __mul__, __div__, __sub__, __call__, __getitem__, __setitem__, __neg__, __eq__, __ne__,%
-            __gt__, __lt__, __ge__, __le__, __nonzero__, __rmul__, __radd__, __repr__, __str__, __get__, __truediv__,%
-            __pow__, __name__, __future__, __all__},
-    emphstyle=[5]\color{magicmethodcolour}
+        language=python,
+        tabsize=4, % 设置indent缩进为4个空格
+        basicstyle=\ttfamily\footnotesize, % 设置字号和字体
+        breaklines=true, % 当代码过长时，自动换行
+        frame=L, % 设置代码显示边框
+        keywordstyle=\bfseries\color{keywordcolor},
+        commentstyle=\itshape\color{commentcolor},
+        stringstyle=\color{stringcolor},
+        emph={and, break, continue, yield, del,% 
+                        except, exec, finally, for, from, global, import, in,%
+                        lambda, not, or, pass, raise, return, try, while, assert, with, as},
+        emphstyle=\bfseries\color{identifiercolor},
+        emph={[2]True, False, None},
+        emphstyle=[2]\color{identifiercolor},
+        emph={[3]Exception, NameError, IndexError, SyntaxError, TypeError, ValueError, OverflowError, ZeroDivisionError},
+        emphstyle=[3]\color{exceptioncolour},
+        emph={[4]ode, fsolve, sqrt, exp, sin, cos, arctan, arctan2, arccos, pi,  array, norm, solve, dot, arange, isscalar, max, sum,%
+                        flatten, shape, reshape, find, any, all, abs, plot, linspace, legend, quad, polyval, polyfit, hstack, concatenate, vstack,%
+                        column_stack, empty, zeros, ones, rand, vander, grid, pcolor, eig, eigs, eigvals, svd, qr, tan, det, logspace, roll, min,% 
+                        ean, cumsum, cumprod, diff, vectorize, lstsq, cla, eye, xlabel, ylabel, squeeze},
+        emphstyle=[4]\color{identifiercolor},
+        emph={[5]__init__, __add__, __mul__, __div__, __sub__, __call__, __getitem__, __setitem__, __neg__, __eq__, __ne__,%
+                        __gt__, __lt__, __ge__, __le__, __nonzero__, __rmul__, __radd__, __repr__, __str__, __get__, __truediv__,%
+                        __pow__, __name__, __future__, __all__},
+        emphstyle=[5]\color{magicmethodcolour}
 }
 
 % 定义listing包中的环境
@@ -56,14 +56,14 @@
 % 定义C++代码风格
 % 使用方法 \begin{cpp} ... \end{cpp}
 \lstdefinestyle{sysucpp}{
-    language=C++,
-    tabsize=4,
-    basicstyle=\ttfamily\footnotesize, % 设置字号和字体
-    breaklines=true, % 当代码过长时，自动换行
-    frame=L, % 设置代码显示边框
-    keywordstyle=\bfseries\color{keywordcolor},
-    commentstyle=\itshape\color{commentcolor},
-    stringstyle=\color{stringcolor},
-    identifierstyle=\color{blue}
+        language=C++,
+        tabsize=4,
+        basicstyle=\ttfamily\footnotesize, % 设置字号和字体
+        breaklines=true, % 当代码过长时，自动换行
+        frame=L, % 设置代码显示边框
+        keywordstyle=\bfseries\color{keywordcolor},
+        commentstyle=\itshape\color{commentcolor},
+        stringstyle=\color{stringcolor},
+        identifierstyle=\color{blue}
 }
 \lstnewenvironment{cpp}[1][]{\lstset{style=sysucpp}}{}
