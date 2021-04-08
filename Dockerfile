@@ -20,7 +20,7 @@ cd /sysu-thesis\n\
 cp sysuthesis.cls sysuthesis.cls.old\n\
 sed -i "s/Times New Roman/Nimbus Roman No9 L/g" sysuthesis.cls\n\
 $@\n\
-mv sysuthesis.cls.old sysuthesis.cls\n' >> /entrypoint.sh
+mv sysuthesis.cls.old sysuthesis.cls\n' >>/entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]

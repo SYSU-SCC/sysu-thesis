@@ -7,51 +7,51 @@
 \input{docs/grading}    % 成绩评定记录表评语
 \input{docs/progress}   % 过程检查报告数据
 \begin{document}
-    % 论文前置部分
-    \frontmatter
-        \pagenumbering{Roman}
-        \makeUndergraduateCover    % 封面
-        \makeUndergraduateTitlePage    % 扉页
-        % \makeProposal% 开题报告
-        % \makeProgressCheck  % 过程检查记录表
-        % \makeDefenseRecord  % 答辩情况等级表
-        \makedisclaim       % 学术诚信声明
-        \makeabstract       % 中英文摘要
-        \maketableofcontents        % 目录
-        \makelistoffiguretable
+% 论文前置部分
+\frontmatter
+\pagenumbering{Roman}
+\makeUndergraduateCover    % 封面
+\makeUndergraduateTitlePage    % 扉页
+% \makeProposal% 开题报告
+% \makeProgressCheck  % 过程检查记录表
+% \makeDefenseRecord  % 答辩情况等级表
+\makedisclaim       % 学术诚信声明
+\makeabstract       % 中英文摘要
+\maketableofcontents        % 目录
+\makelistoffiguretable
 
-    % 论文主体部分
-    \mainmatter
-        % 引言
+% 论文主体部分
+\mainmatter
+% 引言
 
-        % 正文
-        \include{docs/chap01}
-        \newclearpage
-        \include{docs/chap02}
-        \newclearpage
-        \include{docs/chap03}
-        \newclearpage
-        \include{docs/chap04}
-        \newclearpage
-        \include{docs/chap05}
-        \newclearpage
-        \include{docs/chap06}
-        \newclearpage
+% 正文
+\include{docs/chap01}
+\newclearpage
+\include{docs/chap02}
+\newclearpage
+\include{docs/chap03}
+\newclearpage
+\include{docs/chap04}
+\newclearpage
+\include{docs/chap05}
+\newclearpage
+\include{docs/chap06}
+\newclearpage
 
-        % 结语
+% 结语
 
-    % 附录部分
-    \backmatter
-        % 参考文献. 因不需要纳入章节目录, 故放入附录部分
-        % 实际上参考文献是属于论文主体部分
-        \makereferences
+% 附录部分
+\backmatter
+% 参考文献. 因不需要纳入章节目录, 故放入附录部分
+% 实际上参考文献是属于论文主体部分
+\makereferences
 
-        \include{docs/ack}    % 致谢
-        \newclearpage
-        % 附录
-    \appendix
-        \include{docs/appendix1}
-        \newclearpage
-    % \makeGrade      % 成绩评定记录表
+\include{docs/ack}    % 致谢
+\newclearpage
+% 附录
+\appendix
+\include{docs/appendix1}
+\newclearpage
+% \makeGrade      % 成绩评定记录表
 \end{document}
 

@@ -1,7 +1,7 @@
 \section{网络模型结构}
 \subsection*{网络模型结构}
 \frame{
-  \frametitle{网络整体结构}
+	\frametitle{网络整体结构}
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.9\textwidth,height=0.28\textwidth]{image/illustration/networkstructure.pdf}
@@ -11,10 +11,10 @@
 	\vspace{-1em}
 	\small
 	\begin{block}{}
-	\begin{itemize}
-		\item  四个组成部分:\textbf{卷积网络部分}，过渡层，\textbf{网格型长短记忆网络部分}，前向卷积层
-		\item 核心思想：在卷积网络后堆叠多层网格型长短记忆层
-	\end{itemize}
+		\begin{itemize}
+			\item  四个组成部分:\textbf{卷积网络部分}，过渡层，\textbf{网格型长短记忆网络部分}，前向卷积层
+			\item 核心思想：在卷积网络后堆叠多层网格型长短记忆层
+		\end{itemize}
 	\end{block}
 }
 \frame{
@@ -22,10 +22,10 @@
 	\vspace{-1em}
 	\footnotesize
 	\begin{block}{}
-	\begin{itemize}
-		\item 基于$VGG_{16}$模型\footnote{Simonyan \& Zissermanet, Very deep Convolutional Networks For Large-scale Image Recognition, ICLR 2015}, 含有16层卷积层
-		\item 使用了“孔算法”，在不损失精度的情况下将模型参数减少了 6.5 倍\footnote{Chen et al, DeepLab-LargeFOV, ICLR 2015}
-	\end{itemize}
+		\begin{itemize}
+			\item 基于$VGG_{16}$模型\footnote{Simonyan \& Zissermanet, Very deep Convolutional Networks For Large-scale Image Recognition, ICLR 2015}, 含有16层卷积层
+			\item 使用了“孔算法”，在不损失精度的情况下将模型参数减少了 6.5 倍\footnote{Chen et al, DeepLab-LargeFOV, ICLR 2015}
+		\end{itemize}
 	\end{block}
 	\vspace{-1em}
 	\begin{figure}[h]
@@ -36,33 +36,33 @@
 }
 
 \frame{
-\frametitle{网格型长短记忆网络部分}
+	\frametitle{网格型长短记忆网络部分}
 	\vspace{-1em}
-    \begin{columns}%[onlytextwidth]
-        \begin{column}{0.6\textwidth}
-        \vspace{0.2em}
-		\begin{figure}
-			\centering
-			\includegraphics[width=\textwidth]{image/illustration/neighboring.pdf}
-			\caption{九维网格型长短记忆网络层之间的通信示意图}
-			\label{fig:neighboring}
-		\end{figure}
-		\end{column} 
+	\begin{columns}%[onlytextwidth]
+		\begin{column}{0.6\textwidth}
+			\vspace{0.2em}
+			\begin{figure}
+				\centering
+				\includegraphics[width=\textwidth]{image/illustration/neighboring.pdf}
+				\caption{九维网格型长短记忆网络层之间的通信示意图}
+				\label{fig:neighboring}
+			\end{figure}
+		\end{column}
 		%%%%%%% new column
 		\begin{column}{0.5\textwidth}
 			\footnotesize
 			\vspace{-1.5em}
 			\begin{align}
 				\begin{split}
-				(\hat{\textbf{h}}_{i,j}^0,\hat{\textbf{m}}_{i,j}^0) &= \mbox{LSTM}(\textbf{H}_{i,j},\textbf{m}_{i,j}^0,\textbf{W}_i) \\
-				(\hat{\textbf{h}}_{i,j}^1,\hat{\textbf{m}}_{i,j}^1) &= \mbox{LSTM}(\textbf{H}_{i,j},\textbf{m}_{i,j}^1,\textbf{W}_i) \\
-				\vdots \\
-				(\hat{\textbf{h}}_{i,j}^N,\hat{\textbf{m}}_{i,j}^N) &= \mbox{LSTM}(\textbf{H}_{i,j},\textbf{m}_{i,j}^N,\textbf{W}_i) \\
-				\textbf{H}_{i,j} &= [\textbf{h}_{i,j}^0\mbox{ }\textbf{h}_{i,j}^1\mbox{ }...\mbox{ }\textbf{h}_{i,j}^N]^T
+					(\hat{\textbf{h}}_{i,j}^0,\hat{\textbf{m}}_{i,j}^0) &= \mbox{LSTM}(\textbf{H}_{i,j},\textbf{m}_{i,j}^0,\textbf{W}_i) \\
+					(\hat{\textbf{h}}_{i,j}^1,\hat{\textbf{m}}_{i,j}^1) &= \mbox{LSTM}(\textbf{H}_{i,j},\textbf{m}_{i,j}^1,\textbf{W}_i) \\
+					\vdots \\
+					(\hat{\textbf{h}}_{i,j}^N,\hat{\textbf{m}}_{i,j}^N) &= \mbox{LSTM}(\textbf{H}_{i,j},\textbf{m}_{i,j}^N,\textbf{W}_i) \\
+					\textbf{H}_{i,j} &= [\textbf{h}_{i,j}^0\mbox{ }\textbf{h}_{i,j}^1\mbox{ }...\mbox{ }\textbf{h}_{i,j}^N]^T
 				\end{split}
 			\end{align}
 		\end{column}
-    \end{columns}
+	\end{columns}
 	\footnotesize
 	\vspace{-1em}
 	\begin{block}{九维网格型长短记忆网络}

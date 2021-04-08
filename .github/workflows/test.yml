@@ -2,13 +2,13 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master, dev ]
+    branches: [master, dev]
   pull_request:
-    branches: [ master, dev ]
+    branches: [master, dev]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -36,8 +36,8 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      
-      - name: Config Latex env 
+
+      - name: Config Latex env
         run: |
           apt-get update
           apt-get update
@@ -53,7 +53,7 @@ jobs:
           # 将Times New Roman 更换为 Nimbus No9 L字体
           sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
           rm -R adobefonts
-      
+
       - name: Compile
         run: make pdf
 

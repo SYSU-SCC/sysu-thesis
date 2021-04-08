@@ -79,7 +79,7 @@
 
 % 定义英文日期格式
 \newcommand\etoday{
-  \hspace{0.5\ccwd} \monthname[\the\month]\hspace{2\ccwd} \nth{\the\day}{\hspace{1\ccwd}} \the\year
+    \hspace{0.5\ccwd} \monthname[\the\month]\hspace{2\ccwd} \nth{\the\day}{\hspace{1\ccwd}} \the\year
 }
 
 \AtBeginDocument{
@@ -212,7 +212,7 @@
     \trivlist
     \item[\hskip\labelsep
                 \itshape
-        #1]\ignorespaces
+                #1]\ignorespaces
 }{
     \popQED\endtrivlist\@endpefalse
 }
@@ -251,7 +251,7 @@
             {\zihao{-0}\textcolor{sysugreen}{\songti\textbf{\ 本科生毕业论文（设计）}}}
 
             \vspace{\baselineskip}
-            
+
             % 做分割线
             \noindent\makebox[\linewidth]{ { \color{sysugreen} \rule{\paperwidth}{0.12cm} } }
             % \noindent\makebox[\linewidth]{ { \color{sysugreen} \rule[1.05cm]{\paperwidth}{0.05cm} } }
@@ -265,9 +265,9 @@
                 \fontsize{22}{22}\heiti\selectfont
                 \begin{tabular}{ll}
                     % F1: 论文题目 黑体二号居中
-                    \makebox[0.7cm]&\makebox[1.5cm]{题目：\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\textbf\@covertitlefirst\hfill}}\\
+                    \makebox[0.7cm] & \makebox[1.5cm]{题目：\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\textbf\@covertitlefirst\hfill}} \\
                     % \vspace{1pt}\\
-                    \makebox[0.7cm]&\makebox[1.5cm]{\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\textbf\@covertitlesecond\hfill}}\\
+                    \makebox[0.7cm] & \makebox[1.5cm]{\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\textbf\@covertitlesecond\hfill}}      \\
                 \end{tabular}
                 \ \vspace{1.7cm} \\
                 % 小三对应15pt
@@ -275,12 +275,12 @@
                 % \setlength\arrayrulewidth{1.4pt}
                 \fontsize{15}{15}\heiti\selectfont
                 \begin{tabular}{cc}
-                        % [s] 两端对齐
-                        \makebox[2.2cm][s]{姓名} & \makebox[8cm]{\hfill\@cauthor\hfill}\\ \cline{2-2}
-                        \makebox[2.2cm][s]{学号} & \makebox[8cm]{\hfill\@studentid\hfill}\\ \cline{2-2}
-                        \makebox[2.2cm][s]{院系} & \makebox[8cm]{\hfill\@cschool\hfill}\\ \cline{2-2}
-                        \makebox[2.2cm][s]{专业} & \makebox[8cm]{\hfill\@cmajor\hfill}\\ \cline{2-2}
-                        \makebox[2.2cm][s]{指导教师} & \makebox[8cm]{\hfill\@cmentor\hfill}\\ \cline{2-2}
+                    % [s] 两端对齐
+                    \makebox[2.2cm][s]{姓名}     & \makebox[8cm]{\hfill\@cauthor\hfill}   \\ \cline{2-2}
+                    \makebox[2.2cm][s]{学号}     & \makebox[8cm]{\hfill\@studentid\hfill} \\ \cline{2-2}
+                    \makebox[2.2cm][s]{院系}     & \makebox[8cm]{\hfill\@cschool\hfill}   \\ \cline{2-2}
+                    \makebox[2.2cm][s]{专业}     & \makebox[8cm]{\hfill\@cmajor\hfill}    \\ \cline{2-2}
+                    \makebox[2.2cm][s]{指导教师} & \makebox[8cm]{\hfill\@cmentor\hfill}   \\ \cline{2-2}
                 \end{tabular}
             }\\
             \ \\
@@ -305,37 +305,37 @@
     \begin{center}
         \ \vspace{2cm} \\
         {
-            \renewcommand{\arraystretch}{1.2}
-            \zihao{2}\heiti\selectfont
-            \begin{tabular}{c}
-                % F1: 论文题目 黑体二号居中
-                \makebox[13cm]{\heiti\hfill\zihao{2}\textbf{\@covertitlefirst}\hfill}\\
-                \makebox[13cm]{\heiti\hfill\zihao{2}\textbf{\@covertitlesecond}\hfill}\\
-            \end{tabular}
-            \ \vspace{1cm} \\
-            \zihao{2}\selectfont
-            \begin{tabular}{c}
-                % F1: 论文题目 黑体二号居中
-                \makebox[13cm]{\hfill\zihao{2}\textbf{\@etitlefirst}\hfill}\\
-                \makebox[13cm]{\hfill\zihao{2}\textbf{\@etitlesecond}\hfill}\\
-            \end{tabular}
+        \renewcommand{\arraystretch}{1.2}
+        \zihao{2}\heiti\selectfont
+        \begin{tabular}{c}
+            % F1: 论文题目 黑体二号居中
+            \makebox[13cm]{\heiti\hfill\zihao{2}\textbf{\@covertitlefirst}\hfill}  \\
+            \makebox[13cm]{\heiti\hfill\zihao{2}\textbf{\@covertitlesecond}\hfill} \\
+        \end{tabular}
+        \ \vspace{1cm} \\
+        \zihao{2}\selectfont
+        \begin{tabular}{c}
+            % F1: 论文题目 黑体二号居中
+            \makebox[13cm]{\hfill\zihao{2}\textbf{\@etitlefirst}\hfill}  \\
+            \makebox[13cm]{\hfill\zihao{2}\textbf{\@etitlesecond}\hfill} \\
+        \end{tabular}
         }
 
         \ \vspace{1.8cm} \\
 
         {
-            % 小三对应15pt
-            \renewcommand{\arraystretch}{1.6}
-            % \setlength\arrayrulewidth{1.4pt}
-            \zihao{3}\heiti\selectfont
-            \begin{tabular}{cc}
-                    % [s] 两端对齐
-                    \makebox[2.3cm][s]{姓名} & \makebox[8.5cm]{\hfill\@cauthor\hfill}\\ \cline{2-2}
-                    \makebox[2.3cm][s]{学号} & \makebox[8.5cm]{\hfill\@studentid\hfill}\\ \cline{2-2}
-                    \makebox[2.3cm][s]{院系} & \makebox[8.5cm]{\hfill\@cschool\hfill}\\ \cline{2-2}
-                    \makebox[2.3cm][s]{专业} & \makebox[8.5cm]{\hfill\@cmajor\hfill}\\ \cline{2-2}
-                    \makebox[2.3cm][s]{指导教师} & \makebox[8.5cm]{\hfill\@cmentor\hfill}\\ \cline{2-2}
-            \end{tabular}
+        % 小三对应15pt
+        \renewcommand{\arraystretch}{1.6}
+        % \setlength\arrayrulewidth{1.4pt}
+        \zihao{3}\heiti\selectfont
+        \begin{tabular}{cc}
+            % [s] 两端对齐
+            \makebox[2.3cm][s]{姓名}     & \makebox[8.5cm]{\hfill\@cauthor\hfill}   \\ \cline{2-2}
+            \makebox[2.3cm][s]{学号}     & \makebox[8.5cm]{\hfill\@studentid\hfill} \\ \cline{2-2}
+            \makebox[2.3cm][s]{院系}     & \makebox[8.5cm]{\hfill\@cschool\hfill}   \\ \cline{2-2}
+            \makebox[2.3cm][s]{专业}     & \makebox[8.5cm]{\hfill\@cmajor\hfill}    \\ \cline{2-2}
+            \makebox[2.3cm][s]{指导教师} & \makebox[8.5cm]{\hfill\@cmentor\hfill}   \\ \cline{2-2}
+        \end{tabular}
         }\\
 
         \ \vspace{1.5cm} \\
@@ -368,25 +368,25 @@
             \vspace{2\baselineskip}
 
             {\fontsize{15}{10}\selectfont
-            \begin{tabular}{l}
-                    \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\songti\textbf\@covertitlefirst\hfill}}\\\vspace{1pt}\\
-                    \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\songti\textbf\@covertitlesecond\hfill}}\\\vspace{1pt}\\
-                    \vspace{8pt} \\
-                    院\hspace{0.5\ccwd}系\\
-                    \makebox[4.8cm]{School (Department):\hfill} \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}}\\
-                    \vspace{8pt} \\
-                    专\hspace{0.5\ccwd}业\\
-                    \makebox[1.7cm]{Major:\hfill} \underline{\makebox[9.3cm]{\hfill\@cmajor\hfill}}\\
-                    \vspace{8pt} \\
-                    学生姓名 \\
-                    \makebox[3.4cm]{Student Name:\hfill} \underline{\makebox[7.6cm]{\hfill\@cauthor\hfill}}\\
-                    \vspace{8pt} \\
-                    学\hspace{0.5\ccwd}号 \\
-                    \makebox[3cm]{Student No.:\hfill} \underline{\makebox[8cm]{\hfill\@studentid\hfill}}\\
-                    \vspace{8pt} \\
-                    指导教师（职 称） \\
+                \begin{tabular}{l}
+                    \makebox[2.7cm]{题目 Title:\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\songti\textbf\@covertitlefirst\hfill}} \\\vspace{1pt}\\
+                    \makebox[2.7cm]{\hfill} \underline{\makebox[8.3cm]{\hfill\zihao{3}\songti\textbf\@covertitlesecond\hfill}}           \\\vspace{1pt}\\
+                    \vspace{8pt}                                                                                                         \\
+                    院\hspace{0.5\ccwd}系                                                                                                \\
+                    \makebox[4.8cm]{School (Department):\hfill} \underline{\makebox[6.2cm]{\hfill\@cschool\hfill}}                       \\
+                    \vspace{8pt}                                                                                                         \\
+                    专\hspace{0.5\ccwd}业                                                                                                \\
+                    \makebox[1.7cm]{Major:\hfill} \underline{\makebox[9.3cm]{\hfill\@cmajor\hfill}}                                      \\
+                    \vspace{8pt}                                                                                                         \\
+                    学生姓名                                                                                                             \\
+                    \makebox[3.4cm]{Student Name:\hfill} \underline{\makebox[7.6cm]{\hfill\@cauthor\hfill}}                              \\
+                    \vspace{8pt}                                                                                                         \\
+                    学\hspace{0.5\ccwd}号                                                                                                \\
+                    \makebox[3cm]{Student No.:\hfill} \underline{\makebox[8cm]{\hfill\@studentid\hfill}}                                 \\
+                    \vspace{8pt}                                                                                                         \\
+                    指导教师（职 称）                                                                                                    \\
                     \makebox[4cm]{Supervisor (Title):\hfill} \underline{\makebox[7cm]{\hfill\@cmentor\hspace{2.7cm}}}
-            \end{tabular}
+                \end{tabular}
             }
             \vfill
 
@@ -475,7 +475,7 @@
     \begin{longtable}{|p{\textwidth}|}
         % 第一页出现的表头
         \hline
-        论文(设计)题目: \\
+        论文(设计)题目:                                                                                                             \\
         Thesis (Design) Title: \@ctitle
         \endfirsthead
 
@@ -491,48 +491,48 @@
 
         % 表格最后一页的表脚
         %\hline
-        指导教师意见:\\
-        Comments from Supervisor: \\
-        \@proposalInstructions  \\
+        指导教师意见:                                                                                                               \\
+        Comments from Supervisor:                                                                                                   \\
+        \@proposalInstructions                                                                                                      \\
         \vspace{\baselineskip}
 
         \begin{tabular}{l l l}
-            1. 同意开题     & 2. 修改后开题                     & 3. 重新开题           \\
-            1. Approved(　) & 2. Approved after Revision(　)    & 3. Disapproved(　)    \\
+            1. 同意开题     & 2. 修改后开题                  & 3. 重新开题        \\
+            1. Approved(　) & 2. Approved after Revision(　) & 3. Disapproved(　) \\
         \end{tabular}
 
         \vspace{\baselineskip}
-        \hspace{2\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{10\ccwd}}\\
-        \rule{0cm}{\baselineskip}\\
+        \hspace{2\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{10\ccwd}}                                                  \\
+        \rule{0cm}{\baselineskip}                                                                                                   \\
         \hline
         \endlastfoot
 
         \hline
-        (简述选题的目的、思路、方法、相关支持条件及进度安排等)\\
+        (简述选题的目的、思路、方法、相关支持条件及进度安排等)                                                                      \\
         (Please briefly state the research objective, research methodology, research procedure and research schedule in this part.) \\
-        \textbf{选题目的:}  \\
+        \textbf{选题目的:}                                                                                                          \\
         \@objective
         \vspace{\baselineskip}
 
-        \textbf{思路:}  \\
+        \textbf{思路:}                                                                                                              \\
         \@methodology
         \vspace{\baselineskip}
 
-        \textbf{方法:}  \\
+        \textbf{方法:}                                                                                                              \\
         \@researchProcedure
         \vspace{\baselineskip}
 
-        \textbf{相关支持条件:}  \\
+        \textbf{相关支持条件:}                                                                                                      \\
         \@supportment
         \vspace{\baselineskip}
 
-        \textbf{进度安排:}  \\
+        \textbf{进度安排:}                                                                                                          \\
         \@schedule
         \vspace{\baselineskip}
         \vfill
 
-        \hspace{2\ccwd}Student Signature:\hfill Date:\makebox{\hspace{10\ccwd}} \\
-        \rule{0cm}{\baselineskip}\\
+        \hspace{2\ccwd}Student Signature:\hfill Date:\makebox{\hspace{10\ccwd}}                                                     \\
+        \rule{0cm}{\baselineskip}                                                                                                   \\
         \hline
     \end{longtable}
     \newclearpage
@@ -581,99 +581,99 @@
 
         %最后部分的表脚
         \hline
-        & 指导教师意见Comments from Supervisor: \\
-        &  \\
-        &  \\
-        &  \\
+                                      & 指导教师意见Comments from Supervisor:              \\
+                                      &                                                    \\
+                                      &                                                    \\
+                                      &                                                    \\
         \newline
-        \textbf{总体完成情况} & 1、按计划完成，完成情况优（Excellent）：（\quad）\\
-        & 2、按计划完成，完成情况良（Good）：（\quad）\\
-        \textbf{(Overall Assessment)} & 3、基本按计划完成，完成情况合格（Fair）：（\quad）\\
-        & 4、完成情况不合格（Poor）：（\quad）\\
-        & \\
-        & 指导教师签名（Supervisor Signature）:\\
-        & 日期（Date）:\\
-        & \\
+        \textbf{总体完成情况}         & 1、按计划完成，完成情况优（Excellent）：（\quad）  \\
+                                      & 2、按计划完成，完成情况良（Good）：（\quad）       \\
+        \textbf{(Overall Assessment)} & 3、基本按计划完成，完成情况合格（Fair）：（\quad） \\
+                                      & 4、完成情况不合格（Poor）：（\quad）               \\
+                                      &                                                    \\
+                                      & 指导教师签名（Supervisor Signature）:              \\
+                                      & 日期（Date）:                                      \\
+                                      &                                                    \\
         \hline
         \endlastfoot
 
         % 开头的废话
         \multicolumn{2}{|p{\textwidth}|}{
-            \bfseries{指导教师分阶段检查论文的进展情况（要求过程检查记录不少于3次）} \newline
-            \bfseries{The supervisor should check up the working process for the thesis（design）and fill up the following check-up log. At least three times of the check-up should be done and kept on the log.}
-            \vspace{\baselineskip}
-        }\\
+        \bfseries{指导教师分阶段检查论文的进展情况（要求过程检查记录不少于3次）} \newline
+        \bfseries{The supervisor should check up the working process for the thesis（design）and fill up the following check-up log. At least three times of the check-up should be done and kept on the log.}
+        \vspace{\baselineskip}
+        }                                                                                  \\
         % 第一次检查
         \multicolumn{2}{|p{\textwidth}|} {
-            \textbf{第一次检查（First Check-up）:}  \newline
-            \begin{adjustwidth}{2em}{2em}
+        \textbf{第一次检查（First Check-up）:}  \newline
+        \begin{adjustwidth}{2em}{2em}
             学生总结 \newline
             Student Self-Summary:
-            \end{adjustwidth}
-            \@firstsummary 
-            \begin{adjustwidth}{2em}{2em}
+        \end{adjustwidth}
+        \@firstsummary
+        \begin{adjustwidth}{2em}{2em}
             指导教师意见 \newline
             Comments of Supervisor: \newline
-            \end{adjustwidth}
-            \@firstcomment
-            \vspace{\baselineskip}
-        }\\
+        \end{adjustwidth}
+        \@firstcomment
+        \vspace{\baselineskip}
+        }                                                                                  \\
         % 第二次检查
         \multicolumn{2}{|p{\textwidth}|} {
-            \textbf{第二次检查（Second Check-up）:}  \newline
-            \begin{adjustwidth}{2em}{2em}
+        \textbf{第二次检查（Second Check-up）:}  \newline
+        \begin{adjustwidth}{2em}{2em}
             学生总结 \newline
             Student Self-Summary:
-            \end{adjustwidth}
-            \@secondsummary
-            \begin{adjustwidth}{2em}{2em}
+        \end{adjustwidth}
+        \@secondsummary
+        \begin{adjustwidth}{2em}{2em}
             指导教师意见 \newline
             Comments of Supervisor: \newline
-            \end{adjustwidth}
-            \@secondcomment
-            \vspace{\baselineskip}
-        }\\
+        \end{adjustwidth}
+        \@secondcomment
+        \vspace{\baselineskip}
+        }                                                                                  \\
 
         % 第三次检查
         \multicolumn{2}{|p{\textwidth}|} {
-            \textbf{第三次检查（Third Check-up）:}  \newline
-            \begin{adjustwidth}{2em}{2em}
+        \textbf{第三次检查（Third Check-up）:}  \newline
+        \begin{adjustwidth}{2em}{2em}
             学生总结 \newline
             Student Self-Summary:
-            \end{adjustwidth}
-            \@thirdsummary
-            \begin{adjustwidth}{2em}{2em}
+        \end{adjustwidth}
+        \@thirdsummary
+        \begin{adjustwidth}{2em}{2em}
             指导教师意见 \newline
             Comments of Supervisor:
-            \end{adjustwidth}
-            \@thirdcomment
-            \vspace{\baselineskip}
-        }\\
+        \end{adjustwidth}
+        \@thirdcomment
+        \vspace{\baselineskip}
+        }                                                                                  \\
 
         % 第四次检查
         \multicolumn{2}{|p{\textwidth}|} {
-            \textbf{第四次检查（Fourth Check-up）:}  \newline
-            \begin{adjustwidth}{2em}{2em}
+        \textbf{第四次检查（Fourth Check-up）:}  \newline
+        \begin{adjustwidth}{2em}{2em}
             学生总结 \newline
             Student Self-Summary:
-            \end{adjustwidth}
-            \@fourthsummary
-            \begin{adjustwidth}{2em}{2em}
+        \end{adjustwidth}
+        \@fourthsummary
+        \begin{adjustwidth}{2em}{2em}
             指导教师意见 \newline
             Comments of Supervisor:
-            \end{adjustwidth}
-            \@fourthcomment
-            \vspace{\baselineskip}
-        }\\
+        \end{adjustwidth}
+        \@fourthcomment
+        \vspace{\baselineskip}
+        }                                                                                  \\
 
         % 结尾落款部分
         \multicolumn{2}{|p{\textwidth}|}{
-            \vspace{1cm} \newline
-            \hspace{2\ccwd}学生签名（Student Signature）:\hfill 日期（Date）:\makebox{\hspace{5\ccwd}} \newline
-            \rule{0cm}{\baselineskip}\newline
-            \hspace{2\ccwd}指导教师签名（Supervisor Signature）:\hfill 日期（Date）:\makebox{\hspace{5\ccwd}} \newline
-            \rule{0cm}{\baselineskip}
-        }\\
+        \vspace{1cm} \newline
+        \hspace{2\ccwd}学生签名（Student Signature）:\hfill 日期（Date）:\makebox{\hspace{5\ccwd}} \newline
+        \rule{0cm}{\baselineskip}\newline
+        \hspace{2\ccwd}指导教师签名（Supervisor Signature）:\hfill 日期（Date）:\makebox{\hspace{5\ccwd}} \newline
+        \rule{0cm}{\baselineskip}
+        }                                                                                  \\
     \end{longtable}
     \newclearpage
 }
@@ -700,18 +700,18 @@
         % 第一页出现的表头
         \hline
         % 第一行 答辩人以及专业 使用info.tex中的数据自动生成
-        \textbf{答辩人} & \@cauthor & \textbf{专业} & \@cmajor \\
-        \textbf{Student Name} & \@eauthor & {Major} & \@emajor \\
+        \textbf{答辩人}                & \@cauthor                     & \textbf{专业} & \@cmajor \\
+        \textbf{Student Name}          & \@eauthor                     & {Major}       & \@emajor \\
         \hline
         % 第二行 论文题目 如果题目长度过长需要换成两行的版本。
-        \textbf{论文(设计)题目} & \multicolumn{3}{c|}{\@ctitle} \\
-        \textbf{Thesis（Design）Title} & \multicolumn{3}{c|}{\@etitle} \\
+        \textbf{论文(设计)题目}        & \multicolumn{3}{c|}{\@ctitle}                            \\
+        \textbf{Thesis（Design）Title} & \multicolumn{3}{c|}{\@etitle}                            \\
         % 需要两行英文题目的可以使用向下面两行
         % \textbf{Thesis（Design）Title} & \multicolumn{3}{|c|}{\@etitlefirst} \\
         % & \multicolumn{3}{|c|}{\@etitlesecond}\\
         \hline
-        \textbf{答辩小组成员} & \multicolumn{3}{c|}{\quad} \\
-        \textbf{Committee Members} & \multicolumn{3}{c|}{\quad} \\
+        \textbf{答辩小组成员}          & \multicolumn{3}{c|}{\quad}                               \\
+        \textbf{Committee Members}     & \multicolumn{3}{c|}{\quad}                               \\
         \endfirsthead
 
         % 中间页出现的表头
@@ -727,19 +727,19 @@
         % 表格最后一页的表脚
         \hline
         \multicolumn{4}{|p{\textwidth}|}{
-            % 按照论文原格式是两个字符的缩进
-            \begin{adjustwidth}{2em}{2em}
+        % 按照论文原格式是两个字符的缩进
+        \begin{adjustwidth}{2em}{2em}
             答辩记录 \newline
             Records of Defense Performance:
-            \end{adjustwidth}
+        \end{adjustwidth}
 
-            % % 两行标题的情况，用14厘米的空白页
-            % \vspace{14cm}
+        % % 两行标题的情况，用14厘米的空白页
+        % \vspace{14cm}
 
-            % 单行标题的情况，用14也行，推荐15
-            \vspace{15cm}
-            \hspace{2\ccwd}记录人签名（Clerk Signature）:\hfill 日期（Date）:\makebox{\hspace{5\ccwd}}
-            \vspace{\baselineskip}
+        % 单行标题的情况，用14也行，推荐15
+        \vspace{15cm}
+        \hspace{2\ccwd}记录人签名（Clerk Signature）:\hfill 日期（Date）:\makebox{\hspace{5\ccwd}}
+        \vspace{\baselineskip}
         }
         \\
         \hline
@@ -751,10 +751,10 @@
 \newcommand\makedisclaim{
     \ctexset {
         chapter = {
-            titleformat = {\zihao{3}\heiti\bfseries},
-            beforeskip = {10pt},
-            afterskip = {20pt}
-        }
+          titleformat = {\zihao{3}\heiti\bfseries},
+          beforeskip = {10pt},
+          afterskip = {20pt}
+         }
     }
     \chapter*{学术诚信声明}
     % {\centering\zihao{3}\heiti\textbf{学术诚信声明} }
@@ -791,10 +791,10 @@
 \newcommand\makecabstract{
     \ctexset{
         section = {
-            titleformat = {\zihao{4}\heiti},
-            beforeskip = {10pt},
-            afterskip = {20pt}
-        },
+          titleformat = {\zihao{4}\heiti},
+          beforeskip = {10pt},
+          afterskip = {20pt}
+         },
         paragraph/format = {}
     }
 
@@ -818,7 +818,7 @@
     \centerline{\zihao{3}\heiti【摘\hspace{\ccwd}要】}
     \vspace{1ex}
 
-    
+
     % F3: 中文摘要内容 宋体小四号
     % F4: 中文关键词 宋体小四号(关键词加粗)
 
@@ -835,10 +835,10 @@
 \newcommand\makeeabstract{
     \ctexset{
         section = {
-            titleformat = {\zihao{4}\bfseries},
-            beforeskip = {10pt},
-            afterskip = {20pt}
-        }
+          titleformat = {\zihao{4}\bfseries},
+          beforeskip = {10pt},
+          afterskip = {20pt}
+         }
     }
 
     %\section*{ABSTRACT}
@@ -863,7 +863,7 @@
     \centerline{\textbf{[ABSTRACT]}}
     \vspace*{1ex}
     \setlength{\baselineskip}{20pt}
-    
+
     % F6 英文摘要内容，小四号
     % F7 英文关键词，小四号，加粗
     \zihao{-4}
@@ -899,46 +899,46 @@
     \pagenumbering{arabic}
     \ctexset {
         chapter = {
-            %fixskip = true,
-            beforeskip = {10pt},
-            afterskip = {20pt},
-            format = {\centering},
-            % F10 正文各章标题 黑体三号居中
-            nameformat = {\zihao{3}\heiti},
-            name = {,、},
-            aftername = {},
-            titleformat = {\zihao{3}\heiti}
-        },
+          %fixskip = true,
+          beforeskip = {10pt},
+          afterskip = {20pt},
+          format = {\centering},
+          % F10 正文各章标题 黑体三号居中
+          nameformat = {\zihao{3}\heiti},
+          name = {,、},
+          aftername = {},
+          titleformat = {\zihao{3}\heiti}
+         },
         section = {
-            %fixskip = true,
-            beforeskip = {20pt},
-            afterskip = {10pt},
-            format = {},
-            % F11 正文各节一级标题 黑体四号居中
-            nameformat = {\zihao{4}\heiti},
-            titleformat = {\zihao{4}\heiti}
-        },
+          %fixskip = true,
+          beforeskip = {20pt},
+          afterskip = {10pt},
+          format = {},
+          % F11 正文各节一级标题 黑体四号居中
+          nameformat = {\zihao{4}\heiti},
+          titleformat = {\zihao{4}\heiti}
+         },
         subsection = {
-            %fixskip = true,
-            beforeskip = {20pt},
-            afterskip = {10pt},
-            format = {},
-            % F12 正文各节二级及以下标题 宋体小四号加粗左对齐空两格
-            indent = {24pt},
-            nameformat = {\zihao{-4}\songti\bfseries},
-            titleformat = {\zihao{-4}\songti\bfseries}
-        },
+                %fixskip = true,
+                beforeskip = {20pt},
+                afterskip = {10pt},
+                format = {},
+                % F12 正文各节二级及以下标题 宋体小四号加粗左对齐空两格
+                indent = {24pt},
+                nameformat = {\zihao{-4}\songti\bfseries},
+                titleformat = {\zihao{-4}\songti\bfseries}
+            },
         subsubsection = {
-            beforeskip = {20pt},
-            afterskip = {10pt},
-            format = {},
-            % F12 正文各节二级及以下标题 宋体小四号加粗左对齐空两格
-            indent = {24pt},
-            nameformat = {\zihao{-4}\songti\bfseries},
-            titleformat = {\zihao{-4}\songti\bfseries}
-            % 按照中大规定的格式需要显示成a.b.c.d章，而不是(d)节
-            % number = {(\arabic{subsubsection})}
-        }
+                beforeskip = {20pt},
+                afterskip = {10pt},
+                format = {},
+                % F12 正文各节二级及以下标题 宋体小四号加粗左对齐空两格
+                indent = {24pt},
+                nameformat = {\zihao{-4}\songti\bfseries},
+                titleformat = {\zihao{-4}\songti\bfseries}
+                % 按照中大规定的格式需要显示成a.b.c.d章，而不是(d)节
+                % number = {(\arabic{subsubsection})}
+            }
     }
     % F13 正文内容  宋体小四号
     \zihao{-4}\songti \linespread{1.5}\selectfont
@@ -956,22 +956,22 @@
 % 内容小五号宋体
 \newcommand\makereferences{
     \begingroup
-        \ctexset {
-            chapter = {
-                % aftertitle = {：},
-                format = {\centering},
-                % F14 参考文献标题：黑体三号居中
-                titleformat = {\zihao{3}\heiti}
-            }
-        }
+    \ctexset {
+        chapter = {
+          % aftertitle = {：},
+          format = {\centering},
+          % F14 参考文献标题：黑体三号居中
+          titleformat = {\zihao{3}\heiti}
+         }
+    }
 
-        % 引用样式
-        %\bibliographystyle{bibtex-style/ieeetr}         % 国际标准样式
-        \bibliographystyle{bibtex-style/gbt7714-2005}    % 国标文后参考文献著录规则
-        %\bibliographystyle{bibtex-style/sysuthesis}     % 历史遗留模板
-        %\bibliographystyle{bibtex-style/sysuthesis2}     % 2017年由程建生师兄提供的模板
-        % F15 参考文献内容 宋体五号
-        {\zihao{5}\rmfamily\songti\bibliography{main}}    % 引用文献列表
+    % 引用样式
+    %\bibliographystyle{bibtex-style/ieeetr}         % 国际标准样式
+    \bibliographystyle{bibtex-style/gbt7714-2005}    % 国标文后参考文献著录规则
+    %\bibliographystyle{bibtex-style/sysuthesis}     % 历史遗留模板
+    %\bibliographystyle{bibtex-style/sysuthesis2}     % 2017年由程建生师兄提供的模板
+    % F15 参考文献内容 宋体五号
+    {\zihao{5}\rmfamily\songti\bibliography{main}}    % 引用文献列表
     \endgroup
 }
 
@@ -991,22 +991,22 @@
     \gdef\CTEX@postchapter{}
     \ctexset {
         chapter = {
-            % F16 附录标题 黑体三号居中
-            format = {\centering},
-            nameformat = {\zihao{3}\heiti},
-            titleformat = {\zihao{3}\heiti},
-        },
+          % F16 附录标题 黑体三号居中
+          format = {\centering},
+          nameformat = {\zihao{3}\heiti},
+          titleformat = {\zihao{3}\heiti},
+         },
         section = {
-            format = {},
-            nameformat = {\zihao{4}\heiti},
-            titleformat = {\zihao{4}\heiti}
-        },
+          format = {},
+          nameformat = {\zihao{4}\heiti},
+          titleformat = {\zihao{4}\heiti}
+         },
         subsection = {
-            format = {},
-            indent = {24pt},
-            nameformat = {\zihao{-4}\songti\bfseries},
-            titleformat = {\zihao{-4}\songti\bfseries}
-        }
+                format = {},
+                indent = {24pt},
+                nameformat = {\zihao{-4}\songti\bfseries},
+                titleformat = {\zihao{-4}\songti\bfseries}
+            }
     }
 }
 
@@ -1042,41 +1042,41 @@
         \hline
         \endlastfoot
 
-        \hspace{\ccwd}指导教师评语    \\
-        \hspace{\ccwd}Comments of Supervisor:   \\
+        \hspace{\ccwd}指导教师评语                                                                           \\
+        \hspace{\ccwd}Comments of Supervisor:                                                                \\
         \@gradingComment
         \vspace{\baselineskip}
 
-        \hspace{\ccwd}成绩评定  \\
+        \hspace{\ccwd}成绩评定                                                                               \\
         \hspace{\ccwd}Grade:
         \vspace{\baselineskip}
 
-        \hspace{\ccwd}指导教师签名  \\
-        \hspace{\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{6\ccwd}}   \\
+        \hspace{\ccwd}指导教师签名                                                                           \\
+        \hspace{\ccwd}Supervisor Signature:\hfill Date:\makebox{\hspace{6\ccwd}}                             \\
 
         \hline
 
-        \hspace{\ccwd}答辩小组或专业负责人意见  \\
-        \hspace{\ccwd}Comments of the Defense Committee:    \\
+        \hspace{\ccwd}答辩小组或专业负责人意见                                                               \\
+        \hspace{\ccwd}Comments of the Defense Committee:                                                     \\
         \vspace{2\baselineskip}
 
-        \hspace{\ccwd}成绩评定  \\
+        \hspace{\ccwd}成绩评定                                                                               \\
         \hspace{\ccwd}Grade:
         \vspace{\baselineskip}
 
-        \hspace{\ccwd}签名:\hfill Date:\makebox{\hspace{6\ccwd}}  \\
-        \hspace{\ccwd}Signatures of Committee Members   \\
+        \hspace{\ccwd}签名:\hfill Date:\makebox{\hspace{6\ccwd}}                                             \\
+        \hspace{\ccwd}Signatures of Committee Members                                                        \\
 
         \hline
-        \hspace{\ccwd}院系负责人意见    \\
+        \hspace{\ccwd}院系负责人意见                                                                         \\
         \hspace{\ccwd}Comments of the Academic Chief of School:
         \vspace{2\baselineskip}
 
-        \hspace{\ccwd}成绩评定  \\
+        \hspace{\ccwd}成绩评定                                                                               \\
         \hspace{\ccwd}Grade:
         \vspace{\baselineskip}
 
-        \hspace{\ccwd}\makebox[5cm]{签名\hfill} \makebox[5cm]{院系盖章\hfill}    \\
+        \hspace{\ccwd}\makebox[5cm]{签名\hfill} \makebox[5cm]{院系盖章\hfill}                                \\
         \hspace{\ccwd}\makebox[5cm]{Signature:\hfill} \makebox[5cm]{Stamp:\hfill} \makebox[3cm]{Date:\hfill} \\
     \end{longtable}
     \newclearpage
