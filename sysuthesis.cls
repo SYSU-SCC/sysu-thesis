@@ -5,10 +5,10 @@
 \ProcessOptions\relax
 
 \LoadClass[
-    % fontset=adobe,
+    % fontset=adobe2, % 可手动下载adobe，并选用此项
     fontset=fandol,    % texlive自带，可移植字体库，只有常用的6763个汉字
     %fontset=ubuntu,
-    % fontset=mac,
+    %fontset=mac,
     %fontset=windows,
     a4paper,
     %openright,
