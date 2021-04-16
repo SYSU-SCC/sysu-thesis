@@ -267,7 +267,7 @@
                     % F1: 论文题目 黑体二号居中
                     \makebox[0.7cm] & \makebox[1.5cm]{题目：\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\textbf\@covertitlefirst\hfill}} \\
                     % \vspace{1pt}\\
-                    % \makebox[0.7cm] & \makebox[1.5cm]{\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\textbf\@covertitlesecond\hfill}}      \\
+                    \makebox[0.7cm] & \makebox[1.5cm]{\hfill} \underline{\makebox[13cm]{\hfill\zihao{2}\textbf\@covertitlesecond\hfill}}      \\
                 \end{tabular}
                 \ \vspace{1.7cm} \\
                 % 小三对应15pt
