@@ -1,6 +1,6 @@
 # e.g.
 # docker build -t sysu-thesis:latest .
-# docker run -i -v $(pwd):/sysu-thesis sysu-thesis:latest make pdf
+# docker run -i -v $(pwd):/sysu-thesis -u $(id -u ${USER}):$(id -g ${USER}) sysu-thesis:latest make pdf
 FROM alpine:3.10
 
 ## init environment
