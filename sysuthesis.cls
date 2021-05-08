@@ -908,7 +908,7 @@
           nameformat = {\zihao{3}\heiti},
           name = {,},
           number = {\arabic{chapter}},
-          aftername = {},
+          % aftername = {},
           titleformat = {\zihao{3}\heiti}
          },
         section = {
