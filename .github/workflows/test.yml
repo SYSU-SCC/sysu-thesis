@@ -24,35 +24,30 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            sudo apt install -y language-pack-zh-hans language-pack-zh-hant
+            make pdf
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-
-      - name: Config Latex env
-        run: |
-          sudo apt update
+      # - name: Config Latex env
+        # run: |
+          # sudo apt update
           # 安装中文包和git控制器
-          sudo apt install -y language-pack-zh-hans language-pack-zh-hant texlive-full
+          # sudo apt install -y language-pack-zh-hans language-pack-zh-hant texlive-full
           # 处理字体
-          sudo mkdir -p /usr/share/fonts/opentype
-          git clone https://github.com/a20185/adobefonts
-          sudo chmod +x adobefonts/runner.sh
-          sudo adobefonts/runner.sh
+          # sudo mkdir -p /usr/share/fonts/opentype
+          # git clone https://github.com/a20185/adobefonts
+          # sudo chmod +x adobefonts/runner.sh
+          # sudo adobefonts/runner.sh
           # 刷新缓存以及之后的操作
-          sudo fc-cache -f -v
+          # sudo fc-cache -f -v
           # 将Times New Roman 更换为 Nimbus No9 L字体
-          sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
-          rm -R adobefonts
+          # sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
+          # rm -R adobefonts
 
-      - name: Compile
-        run: make pdf
+      # - name: Compile
+        # run: make pdf
 
       - uses: actions/upload-artifact@v2
         with:
