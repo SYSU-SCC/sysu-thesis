@@ -19,37 +19,42 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container:
+      image: wwyf/overleaf:2.5.2-full
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: xu-cheng/texlive-action/full@v1
-        with:
-          run: |
-            apk add make
-            make pdf
-            mv main.pdf main.fondol.pdf
 
-      - name: Init Adobe Fonts
+      - name: Compile Latex
         run: |
-          sudo apt update
-          sudo apt install -y wget
-          # sudo apt install -y language-pack-zh-hans language-pack-zh-hant
-          cd fonts
-          ./init_fonts.sh
-          cd ..
-          sed -i  's| fontset=fandol,| fontset=adobe2,|' sysuthesis.cls
-      - uses: xu-cheng/texlive-action/full@v1
-        with:
-          run: |
-            apk add make
-            make pdf
-            mv main.pdf main.adobe.pdf
+          make pdf
+          mv main.pdf main.fondol.pdf
 
-      - uses: actions/upload-artifact@v2
-        with:
-          path: main.*.pdf
+      # - uses: xu-cheng/texlive-action/full@v1
+      #   with:
+      #     run: |
+      #       apk add make
+      #       make pdf
+      #       mv main.pdf main.fondol.pdf
+
+      # - name: Init Adobe Fonts
+      #   run: |
+      #     sudo apt update
+      #     sudo apt install -y wget
+      #     # sudo apt install -y language-pack-zh-hans language-pack-zh-hant
+      #     cd fonts
+      #     ./init_fonts.sh
+      #     cd ..
+      #     sed -i  's| fontset=fandol,| fontset=adobe2,|' sysuthesis.cls
+      # - uses: xu-cheng/texlive-action/full@v1
+      #   with:
+      #     run: |
+      #       apk add make
+      #       make pdf
+      #       mv main.pdf main.adobe.pdf
+
 
 
       # - name: Config Latex env
@@ -73,4 +78,9 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          path: main.pdf
+          path: main.*.pdf
+
+
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     path: main.pdf
