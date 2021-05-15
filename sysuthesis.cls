@@ -143,7 +143,7 @@
 % 表格与图片标题设定
 % https://blog.csdn.net/uncle_gy/article/details/78313861
 % https://tex.stackexchange.com/questions/101591/setting-font-size-for-caption-package
-\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \setlength\heavyrulewidth{0.2em}
 % F19 图题表题 宋体五号
 \DeclareCaptionFormat{sysucaption}{\fontsize{10.5}{10.5}\selectfont#1#2#3}
@@ -829,7 +829,7 @@
     % \paragraph{}
     % \setlength{\baselineskip}{20pt}
     \@cabstract
-    \paragraph{\textbf{【关键词】}}\@ckeywords
+    \paragraph{\textbf{关键词：}}\@ckeywords
 }
 
 % 英文摘要、关键字标题：小四号新罗马体(Time New Roman)加粗并加方括号
@@ -870,7 +870,7 @@
     % F7 英文关键词，小四号，加粗
     \zihao{-4}
     \@eabstract
-    \paragraph{\textbf{[Keywords]}}\@ekeywords
+    \paragraph{\textbf{Keywords:}}\@ekeywords
 }
 
 \newcommand\makeabstract{
@@ -907,8 +907,9 @@
           format = {\centering},
           % F10 正文各章标题 黑体三号居中
           nameformat = {\zihao{3}\heiti},
-          name = {,、},
-          aftername = {},
+          name = {,},
+          number = {\arabic{chapter}},
+          % aftername = {},
           titleformat = {\zihao{3}\heiti}
          },
         section = {
