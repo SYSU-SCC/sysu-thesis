@@ -202,6 +202,7 @@
 \newtheorem{definition}{{定义}}[chapter]
 \newtheorem{remark}{{注记}}[chapter]
 \newtheorem{eg}{例}[chapter]
+\newtheorem{assumption}{假设}[chapter]
 
 \renewcommand{\proofname}{{\heiti 证明}}
 \renewcommand{\@biblabel}[1]{[#1]\hfill}
