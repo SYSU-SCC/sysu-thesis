@@ -24,7 +24,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Config Latex env
+      - name: Init Fonts
         run: |
           sudo apt update
           sudo apt install -y wget
@@ -32,9 +32,11 @@ jobs:
           cd fonts
           ./init_fonts.sh
           cd ..
+          sed -i ""  's| fontset=fandol,| fontset=adobe2,|' sysuthesis.cls
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
+            apk add make
             make pdf
 
       # - name: Config Latex env
