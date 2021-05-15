@@ -24,14 +24,17 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: Config Latex env
+        run: |
+          sudo apt update
+          sudo apt install -y wget
+          # sudo apt install -y language-pack-zh-hans language-pack-zh-hant
+          cd fonts
+          ./init_fonts.sh
+          cd ..
       - uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            apt update
-            apt install -y language-pack-zh-hans language-pack-zh-hant
-            cd fonts
-            ./init_fonts.sh
-            cd ..
             make pdf
 
       # - name: Config Latex env
