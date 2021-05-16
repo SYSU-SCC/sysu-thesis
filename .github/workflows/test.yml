@@ -19,68 +19,31 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container:
-      image: wwyf/overleaf:2.5.2-full
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Compile Latex
+      - name: Config Latex env
         run: |
-          make pdf
-          mv main.pdf main.fondol.pdf
-
-      # - uses: xu-cheng/texlive-action/full@v1
-      #   with:
-      #     run: |
-      #       apk add make
-      #       make pdf
-      #       mv main.pdf main.fondol.pdf
-
-      # - name: Init Adobe Fonts
-      #   run: |
-      #     sudo apt update
-      #     sudo apt install -y wget
-      #     # sudo apt install -y language-pack-zh-hans language-pack-zh-hant
-      #     cd fonts
-      #     ./init_fonts.sh
-      #     cd ..
-      #     sed -i  's| fontset=fandol,| fontset=adobe2,|' sysuthesis.cls
-      # - uses: xu-cheng/texlive-action/full@v1
-      #   with:
-      #     run: |
-      #       apk add make
-      #       make pdf
-      #       mv main.pdf main.adobe.pdf
-
-
-
-      # - name: Config Latex env
-        # run: |
-          # sudo apt update
+          sudo apt update
           # 安装中文包和git控制器
-          # sudo apt install -y language-pack-zh-hans language-pack-zh-hant texlive-full
+          sudo apt install -y language-pack-zh-hans language-pack-zh-hant texlive-full
           # 处理字体
-          # sudo mkdir -p /usr/share/fonts/opentype
-          # git clone https://github.com/a20185/adobefonts
-          # sudo chmod +x adobefonts/runner.sh
-          # sudo adobefonts/runner.sh
+          sudo mkdir -p /usr/share/fonts/opentype
+          git clone https://github.com/a20185/adobefonts
+          sudo chmod +x adobefonts/runner.sh
+          sudo adobefonts/runner.sh
           # 刷新缓存以及之后的操作
-          # sudo fc-cache -f -v
+          sudo fc-cache -f -v
           # 将Times New Roman 更换为 Nimbus No9 L字体
-          # sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
-          # rm -R adobefonts
+          sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
+          rm -R adobefonts
 
-      # - name: Compile
-        # run: make pdf
+      - name: Compile
+        run: make pdf
 
       - uses: actions/upload-artifact@v2
         with:
-          path: main.*.pdf
-
-
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     path: main.pdf
+          path: main.pdf
