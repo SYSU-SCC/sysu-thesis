@@ -883,6 +883,10 @@
     \newclearpage
 }
 \newcommand\maketableofcontents{
+    % 设置目录标题与页眉的距离
+    % \setlength{\cftbeforetoctitleskip}{0em}
+    % 设置目录标题与目录正文的距离
+    % \setlength{\cftaftertoctitleskip}{0em}
     \pagestyle{plain}
     \tableofcontents
     \newclearpage
