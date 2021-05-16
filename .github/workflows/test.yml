@@ -19,6 +19,8 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container:
+      image: wwyf/texlive-container:sha-d64fad8
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -27,22 +29,22 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Config Latex env
-        run: |
-          sudo apt update
-          # 安装中文包和git控制器
-          sudo apt install -y language-pack-zh-hans language-pack-zh-hant texlive-full
-          # 处理字体
-          tlmgr install gbt7714
-          sudo mkdir -p /usr/share/fonts/opentype
-          git clone https://github.com/a20185/adobefonts
-          sudo chmod +x adobefonts/runner.sh
-          sudo adobefonts/runner.sh
-          # 刷新缓存以及之后的操作
-          sudo fc-cache -f -v
-          # 将Times New Roman 更换为 Nimbus No9 L字体
-          sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
-          rm -R adobefonts
+      # - name: Config Latex env
+      #   run: |
+      #     sudo apt update
+      #     # 安装中文包和git控制器
+      #     sudo apt install -y language-pack-zh-hans language-pack-zh-hant texlive-full
+      #     # 处理字体
+      #     tlmgr install gbt7714
+      #     sudo mkdir -p /usr/share/fonts/opentype
+      #     git clone https://github.com/a20185/adobefonts
+      #     sudo chmod +x adobefonts/runner.sh
+      #     sudo adobefonts/runner.sh
+      #     # 刷新缓存以及之后的操作
+      #     sudo fc-cache -f -v
+      #     # 将Times New Roman 更换为 Nimbus No9 L字体
+      #     sed -i 's/Times New Roman/Nimbus Roman No9 L/g' sysuthesis.cls
+      #     rm -R adobefonts
 
       - name: Compile
         run: make pdf

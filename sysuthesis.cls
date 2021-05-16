@@ -219,7 +219,7 @@
 }
 
 % 参考文献引用标记格式：右上角，带方括号
-\RequirePackage{packages/gbt7714-bibtex-style/gbt7714}
+\RequirePackage{gbt7714}
 
 % 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
