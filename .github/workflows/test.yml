@@ -47,7 +47,9 @@ jobs:
       #     rm -R adobefonts
 
       - name: Compile
-        run: make pdf
+        run: |
+          apt install -y make
+          make pdf
 
       - uses: actions/upload-artifact@v2
         with:
