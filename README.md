@@ -10,6 +10,8 @@
 make pdf
 ```
 
+即可生成 `main.pdf` 文件。
+
 ## TODO List
 
 - [ ] 增加 [overleaf](https://www.overleaf.com/) 等模板库的自动发布，可一键在 overleaf 中打开项目。
