@@ -219,8 +219,7 @@
 }
 
 % 参考文献引用标记格式：右上角，带方括号
-\RequirePackage{gbt7714}
-\bibliographystyle{gbt7714-numerical}
+\RequirePackage{packages/gbt7714-bibtex-style/gbt7714}
 
 % 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
@@ -969,7 +968,7 @@
     }
 
     % 引用样式
-    % \bibliographystyle{gbt7714-numgbt7714erical}
+    \bibliographystyle{gbt7714-numerical}
     % F15 参考文献内容 宋体五号
     {\zihao{5}\rmfamily\songti\bibliography{main}}    % 引用文献列表
     \endgroup
