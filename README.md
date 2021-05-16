@@ -1,25 +1,28 @@
-# 中山大学 $\LaTeX$ 论文项目模板
+# 中山大学 $LaTeX$ 毕业论文模板
 
-本项目现已得到中山大学计算机学院老师支持，我们正在努力增加 feature，满足我院毕业设计的要求，并争取进一步完善，成为中大官方 $\LaTeX$ 毕设模板。
+本项目现已得到中山大学计算机学院老师支持，我们正在努力增加 feature ，满足我院毕业设计的要求，并争取进一步完善，成为中大官方 $LaTeX$ 毕设模板。
 
-此项目将会得到长期维护，目前重点在于：
+## 如何使用
 
-- [x] 增加 Github Action 支持，编译结果上传到[action](https://github.com/SYSU-SCC/sysu-thesis/actions)中的 artifact，免去配置本地环境的烦恼。
-- [x] 增加了一种新的封面，可见[#8](https://github.com/SYSU-SCC/sysu-thesis/pull/8)
-- [x] 校验排版格式要求，满足相关文件中的格式要求。 如[附件 1.中山大学本科生毕业论文（设计）写作与印制规范.doc](./specifications/附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc)
-  - 本科生版本 done，可见 [#9](https://github.com/SYSU-SCC/sysu-thesis/pull/9) [#10](https://github.com/SYSU-SCC/sysu-thesis/pull/10)
-  - 已 merge 到主线，学院老师已确认。
-- [x] 增加使用说明，可见 [#12](https://github.com/SYSU-SCC/sysu-thesis/pull/12)
-- [ ] 增加更多的例子、完善文献引用样式
-- [ ] 增加 CTAN、[overleaf](https://www.overleaf.com/) 等模板库的自动发布，可一键在 overleaf 中打开项目。
+本模板需要使用texlive(>=2020)进行编译，编译命令如下：
 
-未来将要支持的 feature 如下：
+```
+make pdf
+```
 
-- [ ] 拆分本科、硕士、与博士的 cls 并抽取出三者共同的基础 cls 配置
+## TODO List
+
+- [ ] 增加 [overleaf](https://www.overleaf.com/) 等模板库的自动发布，可一键在 overleaf 中打开项目。
 - [ ] 进一步完善答辩 ppt 的模板
-- [ ] 待增加
+- [ ] 进一步优化代码，可支持多种需求
 
 希望大家踊跃提出自己的想法，提交 pr，一起完善该 $\LaTeX$ 模板， Make **SYS**U Great Again！
+
+## 需要注意的问题
+
+1. 字体问题，见 [#29](https://github.com/SYSU-SCC/sysu-thesis/issues/29)
+
+
 
 ## 相关规范
 
