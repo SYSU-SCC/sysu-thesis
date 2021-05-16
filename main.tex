@@ -46,12 +46,17 @@
 % 实际上参考文献是属于论文主体部分
 \makereferences
 
-\include{docs/ack}    % 致谢
-\newclearpage
 % 附录
+{
 \appendix
 \include{docs/appendix1}
 \newclearpage
+}
+
+\include{docs/ack}    % 致谢
+\newclearpage
+
+
 % \makeGrade      % 成绩评定记录表
 \end{document}
 

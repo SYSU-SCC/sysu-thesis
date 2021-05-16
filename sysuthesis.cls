@@ -977,9 +977,9 @@
 % 附录样式
 \renewcommand\appendix{\par
     \@mainmattertrue
-    \fancypagestyle{plain}{
-        \fancyhead[R]{\zihao{-5} 附录\thechapter \leftmark}
-    }
+    % \fancypagestyle{plain}{
+    %     \fancyhead[R]{\zihao{-5} 附录\thechapter \leftmark}
+    % }
     \pagestyle{plain}
     \setcounter{chapter}{0}
     \setcounter{section}{0}
