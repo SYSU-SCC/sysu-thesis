@@ -219,7 +219,7 @@
 }
 
 % 参考文献引用标记格式：右上角，带方括号
-\RequirePackage[square,super]{natbib}
+\RequirePackage{gbt7714}
 
 % 相关信息宏定义
 \newcommand\ctitle[1]{\def\@ctitle{#1}}
@@ -968,10 +968,7 @@
     }
 
     % 引用样式
-    %\bibliographystyle{bibtex-style/ieeetr}         % 国际标准样式
-    \bibliographystyle{bibtex-style/gbt7714-2005}    % 国标文后参考文献著录规则
-    %\bibliographystyle{bibtex-style/sysuthesis}     % 历史遗留模板
-    %\bibliographystyle{bibtex-style/sysuthesis2}     % 2017年由程建生师兄提供的模板
+    \bibliographystyle{gbt7714-numerical}
     % F15 参考文献内容 宋体五号
     {\zihao{5}\rmfamily\songti\bibliography{main}}    % 引用文献列表
     \endgroup
