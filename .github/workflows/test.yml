@@ -33,6 +33,7 @@ jobs:
           # 安装中文包和git控制器
           sudo apt install -y language-pack-zh-hans language-pack-zh-hant texlive-full
           # 处理字体
+          tlmgr install gbt7714
           sudo mkdir -p /usr/share/fonts/opentype
           git clone https://github.com/a20185/adobefonts
           sudo chmod +x adobefonts/runner.sh
