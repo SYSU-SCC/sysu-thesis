@@ -32,6 +32,7 @@ jobs:
       - name: Compile
         run: |
           apt install -y make
+          apt-get -y install fonts-noto-cjk
           make pdf
           mv main.pdf main.fandol.pdf
           sed -i  's| fontset=fandol,| fontset=ubuntu,|' sysuthesis.cls
