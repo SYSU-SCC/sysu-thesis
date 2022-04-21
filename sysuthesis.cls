@@ -1,7 +1,6 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}[2017/05/06 v4.5.3 Sun Yat-Sen University undergraduate thesis document class]
-\RequirePackage{ifthen}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 
 % 算法语言相关参数
