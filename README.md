@@ -23,8 +23,8 @@ make pdf
 步骤如下：
 
 1. 进入网站https://overleaf.com并登录账号
-2. 左侧`New Project`选择`Blank Project`建立新项目
-3. 左侧上传图标上传`sysu-thesis-master.zip`压缩包
+2. 左侧`New Project`选择`Upload Project`
+3. 上传`sysu-thesis-master.zip`压缩包，建立新项目
 4. 点击`menu`，滑动到下方`Settings`的`Compiler`选择`XeLaTeX`
 5. 打开`main.tex`文件，点击中间右侧上方的`Recompile`进行编译
 6. 如果顺利可以看到pdf的预览
