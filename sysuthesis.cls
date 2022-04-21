@@ -4,22 +4,25 @@
 \RequirePackage{ifthen}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 
-% 算法语言相关
+% 算法语言相关参数
+\newif\ifalgocn\algocntrue
+\newif\ifalgocnnokw\algocnnokwfalse
+\newif\ifalgoen\algoenfalse
 % 全中文
-\newboolean{algo-cn@sysuthesis} \setboolean{algo-cn@sysuthesis}{false}
 \DeclareOption{algo-cn}{
-    \setboolean{algo-cn@sysuthesis}{true}
+    \algocntrue
 }
-% 中文，不包含关键字
-\newboolean{algo-cn-nokw@sysuthesis} \setboolean{algo-cn-nokw@sysuthesis}{false}
+% 中文，不包含关键字的翻译
 \DeclareOption{algo-cn-nokw}{
-    \setboolean{algo-cn-nokw@sysuthesis}{true}
+    \algocnnokwtrue
+    \algocnfalse
 }
 % 全英文
-\newboolean{algo-en@sysuthesis} \setboolean{algo-en@sysuthesis}{false}
 \DeclareOption{algo-en}{
-    \setboolean{algo-en@sysuthesis}{true}
+    \algoentrue
+    \algocnfalse
 }
+
 \ProcessOptions\relax
 
 \LoadClass[
@@ -72,20 +75,14 @@
 % 引入调整段落整体宽度的宏包
 \RequirePackage{changepage}
 
-% 算法
-\ifthenelse{\boolean{algo-cn-nokw@sysuthesis}}{
+% 算法伪代码
+\ifalgocn
+    \RequirePackage[chinese,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 默认全中文
+\else\ifalgocnnokw
     \RequirePackage[chinese-nokw,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 仅关键字(e.g, if, for, while)英文
-}{
-    \ifthenelse{\boolean{algo-cn@sysuthesis}}{
-        \RequirePackage[chinese,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 全英文
-    }{
-        \ifthenelse{\boolean{algo-en@sysuthesis}}{
-            \RequirePackage[english,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 全英文
-        }{
-            \RequirePackage[chinese,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 默认全中文
-        }
-    }
-}
+\else\ifalgoen
+    \RequirePackage[english,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 全英文
+\fi\fi\fi
 
 % Insert a TRUE blank page which has no header or footer
 \let\origdoublepage\cleardoublepage
