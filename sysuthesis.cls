@@ -1,6 +1,15 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}[2017/05/06 v4.5.3 Sun Yat-Sen University undergraduate thesis document class]
+\newcommand{\newclearpage}{\clearpage} % 设置文章为电子版格式（不添加多余空白页）
+\DeclareOption{print-both-sides}{ % 设置文章为双面打印格式（添加多余空白页保证每个表格、章节开头为奇数页面）
+    \renewcommand{\newclearpage}{
+        \clearpage{
+            \pagestyle{empty}
+            \cleardoublepage
+        }
+    }
+}  
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions\relax
 
@@ -16,8 +25,7 @@
     zihao=-4
 ]{ctexbook}
 
-\def\@printtwoside{0} % 设置文章为电子版格式（不添加多余空白页）
-%\def\@printtwoside{1} % 设置文章为双面打印格式（添加多余空白页保证每个表格、章节开头为奇数页面）
+
 
 % 配置英文字体
 \RequirePackage{fontspec}
@@ -56,23 +64,6 @@
 
 % 引入调整段落整体宽度的宏包
 \RequirePackage{changepage}
-
-% Insert a TRUE blank page which has no header or footer
-\let\origdoublepage\cleardoublepage
-\newcommand{\clearemptydoublepage}{
-    \clearpage{
-        \pagestyle{empty}
-        \origdoublepage
-    }
-}
-% 定义了一种新的clearpage方式，允许一个变量切换电子版及双面打印版
-\newcommand{\newclearpage}{
-    \if\@printtwoside1
-        \clearemptydoublepage
-    \else
-        \clearpage
-    \fi
-}
 
 % 设定时间为中文日期
 \ctexset{today=small}
