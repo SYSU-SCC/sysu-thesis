@@ -1,6 +1,15 @@
 % 定义模板样式
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sysuthesis}[2017/05/06 v4.5.3 Sun Yat-Sen University undergraduate thesis document class]
+\newcommand{\newclearpage}{\clearpage} % 设置文章为电子版格式（不添加多余空白页）
+\DeclareOption{print-both-sides}{ % 设置文章为双面打印格式（添加多余空白页保证每个表格、章节开头为奇数页面）
+    \renewcommand{\newclearpage}{
+        \clearpage{
+            \pagestyle{empty}
+            \cleardoublepage
+        }
+    }
+}  
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 
 % 算法语言相关参数
@@ -36,8 +45,7 @@
     zihao=-4
 ]{ctexbook}
 
-\def\@printtwoside{0} % 设置文章为电子版格式（不添加多余空白页）
-%\def\@printtwoside{1} % 设置文章为双面打印格式（添加多余空白页保证每个表格、章节开头为奇数页面）
+
 
 % 配置英文字体
 \RequirePackage{fontspec}

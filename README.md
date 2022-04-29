@@ -23,8 +23,8 @@ make pdf
 步骤如下：
 
 1. 进入网站https://overleaf.com并登录账号
-2. 左侧`New Project`选择`Blank Project`建立新项目
-3. 左侧上传图标上传`sysu-thesis-master.zip`压缩包
+2. 左侧`New Project`选择`Upload Project`
+3. 上传`sysu-thesis-master.zip`压缩包，建立新项目
 4. 点击`menu`，滑动到下方`Settings`的`Compiler`选择`XeLaTeX`
 5. 打开`main.tex`文件，点击中间右侧上方的`Recompile`进行编译
 6. 如果顺利可以看到pdf的预览
@@ -67,7 +67,7 @@ make pdf
 本维护项目由 17 届中大数据院软件工程校友黄俊杰(@huangjj27)发起, 发起理由如下:
 
 1. 中山大学在 github 上[LaTeX 官方模板项目](http://github.com/sysu/sysuthesis)已经有 2 年多的时间没有维护
-1. [@chunkwong](https://github.com/chungkwong)师兄在 github 上放出了中大的第一个[非官方的本科论文 LaTeX 模板](https://github.com/chungkwong/sysu_thesis), 并由[@GoYchen](https://github.com/GoYchen)师兄接力改进
+1. [@chunkwong](https://github.com/chungkwong)师兄在 github 上放出了中大的第一个[非官方的本科论文 LaTeX 模板](https://github.com/chungkwong/sysu_thesis), 并由[@guanyingc](https://github.com/guanyingc)师兄接力改进
 1. 上述两位师兄毕业后均无法抽空维护项目
 
 基于以上理由, 本项目维护小组成立, 并**_诚邀各届校友参与开发维护, 为中大莘莘学子编写毕业论文提供方便_**
@@ -80,7 +80,7 @@ _注意:　最新代码在 dev 分支上, 获取代码前请先确认分支._
 ## 致谢
 
 1. 感谢[@chunkwong](https://github.com/chungkwong)师兄在 Github 上放出了中大第一个[非官方的本科论文 LaTex 模板](https://github.com/chungkwong/sysu_thesis)
-1. 感谢[@GoYchen](https://github.com/GoYchen)师兄在模板结构化分解上作出了[极大的贡献](https://github.com/GoYchen/sysu_thesis)
+1. 感谢[@guanyingc](https://github.com/guanyingc)师兄在模板结构化分解上作出了[极大的贡献](https://github.com/guanyingc/SYSU-LaTex-Thesis)
 1. 感谢@huangjj27 师兄在模板样式规范化做出极大的贡献
 1. 感谢@a20185 @Kinpzz @yttty @perqin @noeagles 等人[对 v4.6.0 作出极大的贡献](https://gitlab.com/sysu-gitlab/latex-group/thesis/merge_requests/32)
 1. PPT 的模板源自<http://far.tooold.cn/post/latex/beamertsinghua>
