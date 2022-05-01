@@ -91,23 +91,6 @@
     \RequirePackage[english,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 全英文
 \fi\fi\fi
 
-% Insert a TRUE blank page which has no header or footer
-\let\origdoublepage\cleardoublepage
-\newcommand{\clearemptydoublepage}{
-    \clearpage{
-        \pagestyle{empty}
-        \origdoublepage
-    }
-}
-% 定义了一种新的clearpage方式，允许一个变量切换电子版及双面打印版
-\newcommand{\newclearpage}{
-    \if\@printtwoside1
-        \clearemptydoublepage
-    \else
-        \clearpage
-    \fi
-}
-
 % 设定时间为中文日期
 \ctexset{today=small}
 
