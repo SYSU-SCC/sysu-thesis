@@ -11,6 +11,26 @@
     }
 }  
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+
+% 算法语言相关参数
+\newif\ifalgocn\algocntrue
+\newif\ifalgocnnokw\algocnnokwfalse
+\newif\ifalgoen\algoenfalse
+% 全中文
+\DeclareOption{algo-cn}{
+    \algocntrue
+}
+% 中文，不包含关键字的翻译
+\DeclareOption{algo-cn-nokw}{
+    \algocnnokwtrue
+    \algocnfalse
+}
+% 全英文
+\DeclareOption{algo-en}{
+    \algoentrue
+    \algocnfalse
+}
+
 \ProcessOptions\relax
 
 \LoadClass[
@@ -44,9 +64,6 @@
 \RequirePackage{listings}
 \RequirePackage{longtable}
 \RequirePackage[section]{placeins}
-% TODO: 伪代码要用中文吗？
-% \RequirePackage[onelanguage,linesnumbered,algochapter,ruled,vlined]{algorithm2e}
-\RequirePackage[chinese, onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e}
 \RequirePackage{enumitem}
 \RequirePackage{bbm}
 \RequirePackage{bm}
@@ -64,6 +81,15 @@
 
 % 引入调整段落整体宽度的宏包
 \RequirePackage{changepage}
+
+% 算法伪代码
+\ifalgocn
+    \RequirePackage[chinese,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 默认全中文
+\else\ifalgocnnokw
+    \RequirePackage[chinese-nokw,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 仅关键字(e.g, if, for, while)英文
+\else\ifalgoen
+    \RequirePackage[english,onelanguage,linesnumbered,algochapter,ruled,vlined]{packages/algorithm2e} % 全英文
+\fi\fi\fi
 
 % 设定时间为中文日期
 \ctexset{today=small}

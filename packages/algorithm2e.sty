@@ -1,23 +1,30 @@
 %  algorithm2e.sty --- style file for algorithms
 %                      almost everything can be customized by users. See the document for more explanations
-%% Copyright 1996-2013 Christophe Fiorio
+%% Copyright 1996-2017 Christophe Fiorio
 %
-% This program may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.2
-% of this license or (at your option) any later version.
-% The latest version of this license is in
-%   http://www.latex-project.org/lppl.txt
-% and version 1.2 or later is part of all distributions of LaTeX 
-% version 1999/12/01 or later.
+% This work may be distributed and/or modified under the conditions of the LaTeX Project
+% Public License, either version 1.3 of this license or (at your option) any later version.
+% The latest version of this license is in http://www.latex-project.org/lppl.txt and
+% version 1.3 or later is part of all distributions of LaTeX version 2005/12/01 or later.
 %
-% This program consists of the files algorithm2e.sty and algorithm2e.tex and algorithm2e-compatibility.sty
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is M. Christophe Fiorio
+%
+% This work consists of the files algorithm2e.sty and algorithm2e.tex 
+% and the associated example files algorithm2e_exAlgoDisjdecomp.tex,
+% algorithm2e_exIR.tex, algorithm2e_ex01.tex, algorithm2e_exProg.tex,
+% algorithm2e_ex02.tex, algorithm2e_exfor.tex, algorithm2e_ex03.tex,
+% algorithm2e_exgeneric.tex, algorithm2e_ex04.tex,  algorithm2e_exgeneric2.tex,
+% algorithm2e_ex05.tex, algorithm2e_exnlsty.tex, algorithm2e_ex06.tex,
+% algorithm2e_exrepeat.tex, algorithm2e_ex07.tex, algorithm2e_exswitch.tex
 %  
 %  Report bugs and comments to:
 %  - algorithm2e-announce@lirmm.fr  mailing list for announcement about releases^^J%
 %  - algorithm2e-discussion@lirmm.fr mailing list for discussion about package^^J%
 %  subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'^^J%
 %
-%  $Id: algorithm2e.sty,v 5.0 2013/01/06 14:40:35 cfiorio Exp $
+%  $Id: algorithm2e.sty,v 5.2 2017/07/18 15:26:26 fioriochristophe Exp $
 %
 %  PACKAGES REQUIRED:
 %
@@ -26,7 +33,7 @@
 %  - xspace  (in packages/tools)
 %  - relsize (in contrib/misc/relsize.sty)
 %
-%%%%%%%%%%%%%%%  Release 5.0
+%%%%%%%%%%%%%%%  Release 5.2
 %
 %   Package options: 
 %   ---------------
@@ -149,8 +156,136 @@
 %
 %   History: 
 %
+%   -  July 18 2017 - revision 5.2
+%                   * FIX: There was an overfull box 0.8pt with boxruled algorithm. This is fixed.
+%                   * FIX: problem when mixing caption package and figure option. This bug was partially corrected
+%                            in 5.0 for one side document but with false indentation and not working for two side
+%                            document. This is now fully fixed.
+%                   * FIX: misaligned lines numbers with noline option
+%                   * FIX: Fix croation keywords thanks to Ivan Kolan
+%                   * FIX: there was an overfull hbox of 8.5pt when using [H] and ruled caption. This is fixed.
+%                   * FIX: \SetCustomAlgoRuledWidth only changed midrule. This is fixed, it changes all the rules
+%   -  October 19 2015 - revision 5.1
+%                   * CHANGE/ADD: l commands  (the ones as \lIf) can now be used with a
+%                              star. If done, no end of line are done, so you can enclose
+%                              l command into another one. For example, you can write:
+%                              \lForEach{$i$}{\lIf*{foo}{bar}}.
+%                               Note that when you use a star, side comments are not allowed.
+%                   * CHANGE/ADD: Now you can have a side comment at end of macros which
+%                               have a block. For example you can do : 
+%                               \Begin(\tcc*[h]{side comment for begin}{text}(\tcc*[h]{side comment after end})
+%                               Note: there are some side effects for some commands:
+%                              \SetKwProg : macro defined thanks to \SetKwProg are allowed
+%                                                   to have no end marker. In this case,
+%                                                   beware to end side comment, this can
+%                                                   do weird output (but no error)
+%                   * CHANGE: \SetKwSwitch defines also an \uOther command which was not
+%                               the case until this release.
+%                   * CHANGE: \SetStartEndCondition{typo1}{typo2}{typo3} defined two end
+%                               conditions (type2 and typo3) : typo3 is no more used for
+%                               case condition as typo2 is used which is more consistent
+%                               since there is a condition followed by a keyword as for
+%                               if-then or other command that are defined using typo2.
+%                   * CHANGE: keywords was not language dependant to allow to use multiple
+%                               languages in the same document, but some keywords in
+%                               different language were having the same keyword that lead
+%                               last one declared to replace first one and so you could have some
+%                               spanish keywords printed as you were in portuguese. So
+%                               this behavior is changed from now:
+%                               - localized keywords are defined if according language
+%                                  option is defined ; 
+%                               - if you want to keep old behaviour and use localized
+%                                  keywords without using language option (keep old
+%                                  behavior), you can use languagekw option
+%                                  (e.g. frenchkw, germankw, ...). Note that you can use
+%                                  multiple languagekw options at the same time, in
+%                                  contrary of language option. Note also that if you use
+%                                  multiple languagekw options, you can get back the same
+%                                  problem as previously when keywords was not language
+%                                  dependant.
+%                   * ADD: new typo styles:
+%                               - Arguments of functions have now their own style. By
+%                                  default, FuncArgSty is the same as ArgSty. 
+%                               - Name of KwProg have now their own sty (they used ArgSty
+%                                  previously). By default, ProgSty is still ArgSty.
+%                               As usual, \SetFuncArgSty{}, FuncArgSty{} and
+%                               \SetProgSty{}, ProgSty{} are macros to set and use these
+%                               typo styles.
+%                   * ADD: Options to manage algorithm hangindent
+%                            Until this revision, long statement acts as classical text and
+%                            continue on next line starting from the same point. This makes
+%                            difficult to notice that the new lines of text is not a new
+%                            statement. Now, hangindent is managed and when a long
+%                            statement continue on next lines, lines, except the first,
+%                            are indented.
+%                            Option: noalgohanging
+%                               By default, long statement are indented on subsequent
+%                               lines; with this option you get old behavior and lines are
+%                               no more indented
+%                            Option: hangingcomment 
+%                               Comment that are alone on a line (not side comment) are
+%                               not driven by algo hanging: subsequent lines of long
+%                               comments are indented according to width of start comment
+%                               marker. With this option, comment are indented like normal
+%                               statement.
+%                            Option: hanginginout
+%                               As for comment, by default, in/out keywords and input
+%                               keywords (defined by \SetKwInOut or \SetKwInput) are not
+%                               indented by algorithm hangindent. They are indented
+%                               according to width of input keyword. If you want that these
+%                               keywords acts like normal statement, use this option.
+%                            \SetAlgoHangIndent{length}
+%                               This macro allows you to set your own indent length. By
+%                               default, \SetAlgoHangIndent{0.5em}
+%                   * ADD: Group markers. 
+%                            This option is related to block markers of release 5.0. Some
+%                            have ask to put also block markers for single line
+%                            command. This new feature has been implemented to do this.
+%                            So, you can now ask package to put begin and end keywords
+%                            automatically at start and end of single line command (see
+%                            example in documentation).
+%                            These new group markers macros are:
+%                            - \AlgoDisplayGroupMarkers and \AlgoDontDisplayGroupMarkers
+%                            Note that a new option has also been added: displaygroupmarkers
+%                   * ADD: \SetCustomAlgoRuledWidth{length}
+%                             set a custom ruled width of ruled and algoruled options ;
+%                             note that by the moment you use this macro, rules will have
+%                             this fixed length: this can cause strange behavior in
+%                             multicolumn mode or other layout that change the line
+%                             width. 
+%                   * ADD: turkish language option
+%                   * FIX: a spurious whitespace which results in a spurious indent in the
+%                            user's text right after the end of the algorithm environment
+%                            was introduced  in release 5.0. This is fixed now thanks to
+%                            Alexander Malkis.
+%                   * FIX: there was a problem with margins in caption when option figure
+%                            was use with caption package. This is fixed.
+%                   * FIX: when changing font size in caption with, interline skip stayed
+%                            unchanged and so with a small font was to large. This is fixed.
+%                   * FIX: in contrary of that is written in the documentation, ':' what
+%                            not in KwSty typo for KwIn and KwOut command. This is fixed. 
+%                   * FIX: strange behaviour with label and lines numbered: @currentlabel
+%                            was updated according to algo line number not in all
+%                            situation. For e.g, with hyperref package, always updated ;
+%                            with \nlset also updated, but with \nl or linesnumbered
+%                            option, not updated. This "feature" causes different output
+%                            with \label command according to options used which is not
+%                            that one want. This is solved now, and @currentlabel is
+%                            always updated so \label command works always is the same way.
+%                   * FIX: some czech keywords
+%                   * FIX: some spanish keywords
+%                   * FIX: some croatian keywords
+%                   * FIX: krantz class changes definition of chapter and get one more
+%                            option that classical classes as book.cls or report.cls and
+%                            broke fix for hyperref on chapter definition. This is now
+%                            fixed and algorithm detects use of krantz class and use then
+%                            a definition of chapter working with krantz class.
+%                   * FIX: an issue with internal macro which causes ([Q]) use as argument
+%                            of some environment to be misprinted (thanks to Martin Schröder).
+%                   * FIX: mispelled name of hyperrefcounter inside internal macro.
+%
 %   - January 06 2013 - revision 5.0
-%                     * CHANGE: SetKwSwith takes now 9 args: 9th arg is the same as
+%                     * CHANGE: SetKwSwitch takes now 9 args: 9th arg is the same as
 %                                previous 8th arg ('end of switch' keyword). New 8th arg is
 %                                'end of case' keyword. This is due to change of release
 %                                3.2 which introduce end after case block... as I never
@@ -161,7 +296,7 @@
 %                                option, no empty line is printed (before: a blank end was
 %                                printed, so a blank line appeared)
 %                     * Internal Change: add some internal function to improve readibility
-%                                        (thanks to Philip K. F. H\鰈zenspies)
+%                                        (thanks to Philip K. F. H\ölzenspies)
 %                     * ADD: Block markers. 
 %                            You can now ask package to put begin and end keywords automatically at begin
 %                            and end of blocks, it means each group of commands shifted and enclosed in
@@ -195,7 +330,7 @@
 %                            followed by args followed by 'is' then 'text' is put below inside a block ended
 %                            by 'end'. If no 'end' is specified, nothing is written (no
 %                            blank line is inserted). Useful to typeset function or prog for example:
-%                            \SetKwProg{Fn}{Function}{is}{end} makes \Fn{afunc(i: int) : int}{return 0\;}                    
+%                            \SetKwProg{Fn}{Function}{ is}{end} makes \Fn{afunc(i: int) : int}{return 0\;}                    
 %                            writes: 
 %                            Function afunc(i: int) : int is
 %                            | return 0;
@@ -212,7 +347,8 @@
 %                            | else:
 %                            |     return 0
 %                            with appropriate typo.
-%                     * ADD: option croatian: croation keywords (thanks to Ivan Gavran)
+%                     * ADD: option croatian: croatian keywords (thanks to Ivan Kohan and
+%                                                           Yvan Gavran)
 %                     * ADD: option ngerman: same as german option but so can be used with global option ngerman
 %                            of babel
 %                     * ADD: option spanish: Spanish support (thanks to Mario Abarca)
@@ -411,7 +547,7 @@
 %                      * FIX: - line number is now correctly vertically aligned with math display.
 %                      * FIX: - references with hyperref. No more same identifier or missing name error. BUT now
 %                               you must NOT use naturalnames option of hyperref packages if you do PdfLaTeX
-%                      * FIX: - autoref with hyperref package (thanks to J鰎g Sommer who notices the problem).
+%                      * FIX: - autoref with hyperref package (thanks to Jörg Sommer who notices the problem).
 %                      * FIX: - titlenumbered was not working! fixed.
 %                      * FIX: - Else(){} acted like uElse. Corrected.
 %                      * FIX: - noend management: when a block was inside another and end of block was following
@@ -587,7 +723,7 @@
 %                        note: this is just documentation of a macro which was already in the package.
 %   - December 14 2003 - revision 2.52 -
 %                      * output message shorter
-%                      * french keyword macro \PourTous was missing for longend option, it has been added.
+%                      * French keyword macro \PourTous was missing for longend option, it has been added.
 %                      * TitleofAlgo prints Function or Procedure in corresponding environments.
 %
 %   - October 27 2003  - revision 2.51 - Revision submitted to CTAN archive
@@ -619,7 +755,7 @@
 %                        predefined keywords
 %
 %   - December 23 2002 - revision 2.40
-%                      * add some french keyword missing
+%                      * add some French keyword missing
 %                      * add function* and procedure* environment like algorithme* environment: print in one column
 %                        even if twocolumn option is specified for the document.
 %                      * add a new macro \SetKwComment to define macro which writes comments in the text. First
@@ -744,7 +880,7 @@
 %
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
 %
-\ProvidesPackage{algorithm2e}[2013/01/06 v5.00 algorithms environments]
+\ProvidesPackage{algorithm2e}[2017/07/18 v5.2 algorithms environments]
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%% Initial Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -754,12 +890,23 @@
 %%%%%%% Utilities:
 % \ifArgumentEmpty<c><t><e> ; if c is empty, i.e. {}, then t, else e.
 %    Function used internally, but may as well expose it to the user; it's useful
-\long\def\ifArgumentEmpty#1{\bgroup
+\begingroup
 \catcode`\Q=3
 \catcode`\T=3
-\long\def\@tempa##1##2Q##3##4##5T{##4}%
-\xdef\@tempa{\@tempa#1QQ{\noexpand\@secondoftwo}{\noexpand\@firstoftwo}T}%
-\egroup\@tempa}
+\long\gdef\ALGOCF@argemptyaux#1#2Q#3#4#5T{#4}
+\long\gdef\ifArgumentEmpty#1{%
+  \begingroup\long\edef\@tempa{\endgroup
+    \ALGOCF@argemptyaux#1QQ{\noexpand\@secondoftwo}{\noexpand\@firstoftwo}T%
+  }\@tempa
+}
+\endgroup
+% \long\def\ifArgumentEmpty#1{\bgroup
+% 	\catcode`\Q=3
+% 	\catcode`\T=3
+% 	\long\def\@tempa##1##2Q##3##4##5T{##4}%
+% 	\xdef\@tempa{\@tempa#1QQ{\noexpand\@secondoftwo}{\noexpand\@firstoftwo}T}%
+% \egroup\@tempa}
+%%%%%%%%%%%
 %
 % \algocf@longdef -> shorthand to reduce
 %    \expandafter\long\expandafter\def
@@ -774,8 +921,8 @@
 %  - if the command exists already, then \renewcommand, rather than \newcommand
 \def\algocf@newcommand#1{\expandafter\algocf@new@command\csname#1\endcsname}
 \def\algocf@new@command#1{%
-  \begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
-  \expandafter\@ifundefined\@gtempa\newcommand\renewcommand#1}%
+	\begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
+	\expandafter\@ifundefined\@gtempa\newcommand\renewcommand#1}%
 %
 % \algocf@newcmdside<name><arity><body>
 %   The largest time-saver; many commands we define have the pattern:
@@ -791,12 +938,53 @@
 %     \foo(){bar}
 %   Technically this is new behaviour, but it shouldn't really occur...
 \algocf@longdef\algocf@newcmdside#1#2#3{%
+	\expandafter\def\csname#1\endcsname{%
+		\@ifnextchar({\csname algocf@#1strip\endcsname}{\csname algocf@#1strip\endcsname()}%
+	}%
+	\expandafter\algocf@longdef\csname algocf@#1strip\endcsname(##1){\csname algocf@#1main\endcsname{##1}}%
+	\algocf@newcommand{algocf@#1main}[#2]{#3}%
+}
+%
+% a serie of newcmdside macro for block that allows a comment after the end
+%     \<name>(<side_text>)<argX><argY>...(<side_text>)% 
+%
+% 1. kind of begin-end : for command with only one block as begin-end 
+\algocf@longdef\algocf@newcmdside@kobe#1#2{% <name of cmd><body of cmd>
+  % command starts by checking for side comment at beginning
   \expandafter\def\csname#1\endcsname{%
     \@ifnextchar({\csname algocf@#1strip\endcsname}{\csname algocf@#1strip\endcsname()}%
   }%
-  \expandafter\algocf@longdef\csname algocf@#1strip\endcsname(##1){\csname algocf@#1main\endcsname{##1}}%
-  \algocf@newcommand{algocf@#1main}[#2]{#3}%
-}
+  % next we strip comment and include it in cmd that get body and check last side comment
+  \expandafter\algocf@longdef\csname algocf@#1strip\endcsname(##1)##2{\csname algocf@#1checkcomfol\endcsname{##1}{##2}}%
+  % now check for last side comment; args are : <first side com (could be empty)>, <body of cmd>
+  \expandafter\algocf@longdef\csname algocf@#1checkcomfol\endcsname##1##2{\@ifnextchar({\csname algocf@#1withendcom\endcsname{##1}{##2}}{\csname algocf@#1noendcom\endcsname{##1}{##2}}}% call macro that manages end of command, with or without last side comment
+  % finally manage end of macro... with end side comment...
+  \expandafter\algocf@longdef\csname algocf@#1withendcom\endcsname##1##2(##3){%
+    \csname algocf@#1main\endcsname{##1}{##2}{##3}}%
+  % ... or without end side comment
+  \expandafter\algocf@longdef\csname algocf@#1noendcom\endcsname##1##2{%
+    \csname algocf@#1main\endcsname{##1}{##2}{}}%
+  \algocf@newcommand{algocf@#1main}[3]{#2}%
+}%
+%
+% 2. kind of if-else : for command with two blocks as if-then-else 
+\algocf@longdef\algocf@newcmdside@koif#1#2{% <name of cmd><body of cmd>
+  % command starts by checking for side comment at beginning
+  \expandafter\def\csname#1\endcsname{%
+    \@ifnextchar({\csname algocf@#1strip\endcsname}{\csname algocf@#1strip\endcsname()}%
+  }%
+  % next we strip comment and include it in cmd that get body and check last side comment
+  \expandafter\algocf@longdef\csname algocf@#1strip\endcsname(##1)##2##3{\csname algocf@#1checkcomfol\endcsname{##1}{##2}{##3}}%
+  % now check for last side comment; args are : <1st side com>, <1st body of cmd>, <2nd body of cmd>
+  \expandafter\algocf@longdef\csname algocf@#1checkcomfol\endcsname##1##2##3{\@ifnextchar({\csname algocf@#1withendcom\endcsname{##1}{##2}{##3}}{\csname algocf@#1noendcom\endcsname{##1}{##2}{##3}}}% call macro that manages end of command, with or without last side comment
+  % finally manage end of macro... with end side comment...
+  \expandafter\algocf@longdef\csname algocf@#1withendcom\endcsname##1##2##3(##4){%
+    \csname algocf@#1main\endcsname{##1}{##2}{##3}{##4}}%
+  % ... or without end side comment
+  \expandafter\algocf@longdef\csname algocf@#1noendcom\endcsname##1##2##3{%
+    \csname algocf@#1main\endcsname{##1}{##2}{##3}{}}%
+  \algocf@newcommand{algocf@#1main}[4]{#2}%
+}%
 %
 % \algocf@newcmdsides<name><arity><body><tail><closing>
 %   Like the command above, but with an optional side text at the end
@@ -807,12 +995,12 @@
 %   fuzzy. This function behaves as if:
 %     <body'> = <body><if end_text: tail{end_text}><closing>
 \algocf@longdef\algocf@newcmdsides#1#2#3#4#5{%
-  \expandafter\def\csname#1\endcsname{%
-    \@ifnextchar({\csname algocf@#1strip\endcsname}{\csname algocf@#1strip\endcsname()}%
-  }%
-  \expandafter\algocf@longdef\csname algocf@#1strip\endcsname(##1){\csname algocf@#1main\endcsname{##1}}%
-  \algocf@newcommand{algocf@#1main}[#2]{#3\@ifnextchar({\csname algocf@#1end\endcsname}{#4#5}}%
-  \expandafter\algocf@longdef\csname algocf@#1end\endcsname(##1){#4{##1}\strut\par}%
+	\expandafter\def\csname#1\endcsname{%
+		\@ifnextchar({\csname algocf@#1strip\endcsname}{\csname algocf@#1strip\endcsname()}%
+	}%
+	\expandafter\algocf@longdef\csname algocf@#1strip\endcsname(##1){\csname algocf@#1main\endcsname{##1}}%
+	\algocf@newcommand{algocf@#1main}[#2]{#3\@ifnextchar({\csname algocf@#1end\endcsname}{#4#5}}%
+	\expandafter\algocf@longdef\csname algocf@#1end\endcsname(##1){#4{##1}\strut\par}%
 }%
 %
 % definition of commands which can be redefined in options of the package.
@@ -856,12 +1044,16 @@
 % \def\chapter{\expandafter\addtocontents{loa}{\protect\addvspace{10\p@}}\algocf@original@chapter}%
 %
 % bug correction with hyperref submitted by Hubert Meier
-\begingroup\expandafter\expandafter\expandafter\endgroup
-\expandafter\ifx\csname @chapter\endcsname\relax\else
-  % \let\algocf@original@chapter=\chapter% 
-  % \def\chapter{\addtocontents{loa}{\protect\addvspace{10\p@}}\algocf@original@chapter}% 
-  \let\algocf@original@chapter=\@chapter% 
-  \def\@chapter[#1]#2{\algocf@original@chapter[#1]{#2}\addtocontents{loa}{\protect\addvspace{10\p@}}}% 
+\begingroup\expandafter\expandafter\expandafter\endgroup 
+\expandafter\ifx\csname @chapter\endcsname\relax\else 
+% \let\algocf@original@chapter=\chapter% 
+% \def\chapter{\addtocontents{loa}{\protect\addvspace{10\p@}}\algocf@original@chapter}% 
+\let\algocf@original@chapter=\@chapter%
+\@ifclassloaded{krantz}{%
+\def\@chapter[#1][#2]#3{\algocf@original@chapter[#1][#2]{#3}\addtocontents{loa}{\protect\addvspace{10\p@}}}% 
+}{%
+\def\@chapter[#1]#2{\algocf@original@chapter[#1]{#2}\addtocontents{loa}{\protect\addvspace{10\p@}}}% 
+}%
 \fi
 %
 %% if@restonecol is defined in article and book but some other classes don't define it and we need it, so we do
@@ -875,7 +1067,11 @@
 \newboolean{algocf@displayblockmarkers}\setboolean{algocf@displayblockmarkers}{false}%
 \DeclareOption{displayblockmarkers}{%
   \setboolean{algocf@displayblockmarkers}{true}%
-}
+}%
+\newboolean{algocf@displaygroupmarkers}\setboolean{algocf@displaygroupmarkers}{false}
+\DeclareOption{displaygroupmarkers}{%
+  \setboolean{algocf@displaygroupmarkers}{true}%
+}%
 %
 \newboolean{algocf@nokwfunc}\setboolean{algocf@nokwfunc}{false}%
 \DeclareOption{nokwfunc}{%
@@ -915,92 +1111,114 @@
   \setboolean{algocf@slide}{true}%
 }%
 %
+\newboolean{algocf@figurecaption}\setboolean{algocf@figurecaption}{false}%
 \DeclareOption{figure}{%
-  \renewcommand{\algocf@list}{lof}%
-  \renewcommand{\algocf@float}{figure}%
+\renewcommand{\algocf@list}{lof}%
+\renewcommand{\algocf@float}{figure}%
+\AtBeginDocument{\@ifpackageloaded{caption}{\setboolean{algocf@figurecaption}{true}}{}}%
 }%
 %
 \newboolean{algocf@optonelanguage}\setboolean{algocf@optonelanguage}{false}%
 \DeclareOption{onelanguage}{\setboolean{algocf@optonelanguage}{true}}%
 %
 \newcommand{\algocf@languagechoosen}{english}%
-%
-\DeclareOption{chinese}{%
-  \renewcommand{\listalgorithmcfname}{算法目录}%
-  \renewcommand{\algorithmcfname}{算法}%
-  \renewcommand{\algorithmautorefname}{算法}%
-  \renewcommand{\algorithmcflinename}{行}%
-  \renewcommand{\algocf@typo}{}%
-  \renewcommand{\@algocf@procname}{过程}%
-  \renewcommand{\@algocf@funcname}{函数}%
-  \renewcommand{\procedureautorefname}{过程}%
-  \renewcommand{\functionautorefname}{函数}%
-  \renewcommand{\algocf@languagechoosen}{chinese}%
+\newboolean{algocf@localkw@english}\setboolean{algocf@localkw@english}{true}%
+\DeclareOption{englishkw}{%
+\setboolean{algocf@localkw@english}{true}%
 }%
 %
 \DeclareOption{english}{%
-  \renewcommand{\listalgorithmcfname}{List of Algorithms}%
-  \renewcommand{\algorithmcfname}{Algorithm}%
-  \renewcommand{\algorithmautorefname}{algorithm}%
-  \renewcommand{\algorithmcflinename}{line}%
-  \renewcommand{\algocf@typo}{}%
-  \renewcommand{\@algocf@procname}{Procedure}%
-  \renewcommand{\@algocf@funcname}{Function}%
-  \renewcommand{\procedureautorefname}{procedure}%
-  \renewcommand{\functionautorefname}{function}%
-  \renewcommand{\algocf@languagechoosen}{english}%
+\renewcommand{\listalgorithmcfname}{List of Algorithms}%
+\renewcommand{\algorithmcfname}{Algorithm}%
+\renewcommand{\algorithmautorefname}{algorithm}%
+\renewcommand{\algorithmcflinename}{line}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{Procedure}%
+\renewcommand{\@algocf@funcname}{Function}%
+\renewcommand{\procedureautorefname}{procedure}%
+\renewcommand{\functionautorefname}{function}%
+\renewcommand{\algocf@languagechoosen}{english}%
+}%
+%
+%----
+\newboolean{algocf@localkw@french}\setboolean{algocf@localkw@french}{false}%
+\DeclareOption{frenchkw}{%
+\setboolean{algocf@localkw@french}{true}%
 }%
 %
 \DeclareOption{french}{%
-  \renewcommand{\listalgorithmcfname}{Liste des Algorithmes}%
-  \renewcommand{\algorithmcfname}{Algorithme}%
-  \renewcommand{\algorithmautorefname}{algorithme}%
-  \renewcommand{\algorithmcflinename}{ligne}%
-  \renewcommand{\algocf@typo}{\ }%
-  \renewcommand{\@algocf@procname}{Proc\'edure}%
-  \renewcommand{\@algocf@funcname}{Fonction}%
-  \renewcommand{\procedureautorefname}{proc\'edure}%
-  \renewcommand{\functionautorefname}{fonction}%
-  \renewcommand{\algocf@languagechoosen}{french}%
+\renewcommand{\listalgorithmcfname}{Liste des Algorithmes}%
+\renewcommand{\algorithmcfname}{Algorithme}%
+\renewcommand{\algorithmautorefname}{algorithme}%
+\renewcommand{\algorithmcflinename}{ligne}%
+\renewcommand{\algocf@typo}{\ }%
+\renewcommand{\@algocf@procname}{Proc\'edure}%
+\renewcommand{\@algocf@funcname}{Fonction}%
+\renewcommand{\procedureautorefname}{proc\'edure}%
+\renewcommand{\functionautorefname}{fonction}%
+\renewcommand{\algocf@languagechoosen}{french}%
+}%
+%
+%----
+\newboolean{algocf@localkw@czech}\setboolean{algocf@localkw@czech}{false}%
+\DeclareOption{czechkw}{%
+\setboolean{algocf@localkw@czech}{true}%
 }%
 %
 \DeclareOption{czech}{%
-  \renewcommand{\listalgorithmcfname}{Seznam algoritm\v{u}}%
-  \renewcommand{\algorithmcfname}{Algoritmus}%
-  \renewcommand{\algorithmautorefname}{\algorithmcfname}%
-  \renewcommand{\algorithmcflinename}{Radek}%
-  \renewcommand{\algocf@typo}{}%
-  \renewcommand{\@algocf@procname}{Procedura}%
-  \renewcommand{\@algocf@funcname}{Funkce}%
-  \renewcommand{\procedureautorefname}{\@algocf@procname}%
-  \renewcommand{\functionautorefname}{\@algocf@funcname}%
-  \renewcommand{\algocf@languagechoosen}{czech}%
+\renewcommand{\listalgorithmcfname}{Seznam algoritm\r{u}}%
+\renewcommand{\algorithmcfname}{Algoritmus}%
+\renewcommand{\algorithmautorefname}{\algorithmcfname}%
+\renewcommand{\algorithmcflinename}{Radek}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{Procedura}%
+\renewcommand{\@algocf@funcname}{Funkce}%
+\renewcommand{\procedureautorefname}{\@algocf@procname}%
+\renewcommand{\functionautorefname}{\@algocf@funcname}%
+\renewcommand{\algocf@languagechoosen}{czech}%
+}%
+%
+%----
+\newboolean{algocf@localkw@german}\setboolean{algocf@localkw@german}{false}%
+\DeclareOption{germankw}{%
+\setboolean{algocf@localkw@german}{true}%
 }%
 %
 \DeclareOption{german}{%
-  \renewcommand{\listalgorithmcfname}{Liste der Algorithmen}%
-  \renewcommand{\algorithmcfname}{Algorithmus}%
-  \renewcommand{\algorithmautorefname}{\algorithmcfname}%
-  \renewcommand{\algorithmcflinename}{Zeile}%
-  \renewcommand{\algocf@typo}{\ }%
-  \renewcommand{\@algocf@procname}{Prozedur}%
-  \renewcommand{\@algocf@funcname}{Funktion}%
-  \renewcommand{\procedureautorefname}{\@algocf@procname}%
-  \renewcommand{\functionautorefname}{\@algocf@funcname}%
-  \renewcommand{\algocf@languagechoosen}{german}%
+\renewcommand{\listalgorithmcfname}{Liste der Algorithmen}%
+\renewcommand{\algorithmcfname}{Algorithmus}%
+\renewcommand{\algorithmautorefname}{\algorithmcfname}%
+\renewcommand{\algorithmcflinename}{Zeile}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{Prozedur}%
+\renewcommand{\@algocf@funcname}{Funktion}%
+\renewcommand{\procedureautorefname}{\@algocf@procname}%
+\renewcommand{\functionautorefname}{\@algocf@funcname}%
+\renewcommand{\algocf@languagechoosen}{german}%
+}%
+%
+%----
+\DeclareOption{ngermankw}{%
+\setboolean{algocf@localkw@german}{true}%
 }%
 %
 \DeclareOption{ngerman}{%
-  \renewcommand{\listalgorithmcfname}{Liste der Algorithmen}%
-  \renewcommand{\algorithmcfname}{Algorithmus}%
-  \renewcommand{\algorithmautorefname}{\algorithmcfname}%
-  \renewcommand{\algorithmcflinename}{Zeile}%
-  \renewcommand{\algocf@typo}{\ }%
-  \renewcommand{\@algocf@procname}{Prozedur}%
-  \renewcommand{\@algocf@funcname}{Funktion}%
-  \renewcommand{\procedureautorefname}{\@algocf@procname}%
-  \renewcommand{\functionautorefname}{\@algocf@funcname}%
-  \renewcommand{\algocf@languagechoosen}{german}%
+\renewcommand{\listalgorithmcfname}{Liste der Algorithmen}%
+\renewcommand{\algorithmcfname}{Algorithmus}%
+\renewcommand{\algorithmautorefname}{\algorithmcfname}%
+\renewcommand{\algorithmcflinename}{Zeile}%
+\renewcommand{\algocf@typo}{\ }%
+\renewcommand{\@algocf@procname}{Prozedur}%
+\renewcommand{\@algocf@funcname}{Funktion}%
+\renewcommand{\procedureautorefname}{\@algocf@procname}%
+\renewcommand{\functionautorefname}{\@algocf@funcname}%
+\renewcommand{\algocf@languagechoosen}{german}%
+}%
+%
+%----
+\newboolean{algocf@localkw@portuguese}\setboolean{algocf@localkw@portuguese}{false}%
+\DeclareOption{portuguesekw}{%
+\setboolean{algocf@localkw@portuguese}{true}%
 }%
 %
 \DeclareOption{portuguese}{%
@@ -1016,30 +1234,48 @@
 \renewcommand{\algocf@languagechoosen}{portuguese}%
 }%
 %
+%----
+\newboolean{algocf@localkw@italiano}\setboolean{algocf@localkw@italiano}{false}%
+\DeclareOption{italianokw}{%
+\setboolean{algocf@localkw@italiano}{true}%
+}%
+%
 \DeclareOption{italiano}{%
-  \renewcommand{\listalgorithmcfname}{Elenco degli algoritmi}%
-  \renewcommand{\algorithmcfname}{Algoritmo}%
-  \renewcommand{\algorithmautorefname}{algoritmo}%
-  \renewcommand{\algorithmcflinename}{riga}%
-  \renewcommand{\algocf@typo}{}%
-  \renewcommand{\@algocf@procname}{Procedura}%
-  \renewcommand{\@algocf@funcname}{Funzione}%
-  \renewcommand{\procedureautorefname}{procedura}%
-  \renewcommand{\functionautorefname}{funzione}%
-  \renewcommand{\algocf@languagechoosen}{italiano}%
+\renewcommand{\listalgorithmcfname}{Elenco degli algoritmi}%
+\renewcommand{\algorithmcfname}{Algoritmo}%
+\renewcommand{\algorithmautorefname}{algoritmo}%
+\renewcommand{\algorithmcflinename}{riga}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{Procedura}%
+\renewcommand{\@algocf@funcname}{Funzione}%
+\renewcommand{\procedureautorefname}{procedura}%
+\renewcommand{\functionautorefname}{funzione}%
+\renewcommand{\algocf@languagechoosen}{italiano}%
 }%
+%----
+\newboolean{algocf@localkw@spanish}\setboolean{algocf@localkw@spanish}{false}%
+\DeclareOption{spanishkw}{%
+\setboolean{algocf@localkw@spanish}{true}%
+}%
+%
 \DeclareOption{spanish}{%
-  \renewcommand{\listalgorithmcfname}{\'Indice de algoritmos}%
-  \renewcommand{\algorithmcfname}{Algoritmo}%
-  \renewcommand{\algorithmautorefname}{algoritmo}%
-  \renewcommand{\algorithmcflinename}{l\'inea}%
-  \renewcommand{\algocf@typo}{}%
-  \renewcommand{\@algocf@procname}{Procedimiento}%
-  \renewcommand{\@algocf@funcname}{Funci\'on}%
-  \renewcommand{\procedureautorefname}{procedimiento}%
-  \renewcommand{\functionautorefname}{funci\'on}%
-  \renewcommand{\algocf@languagechoosen}{spanish}%
+\renewcommand{\listalgorithmcfname}{\'Indice de algoritmos}%
+\renewcommand{\algorithmcfname}{Algoritmo}%
+\renewcommand{\algorithmautorefname}{algoritmo}%
+\renewcommand{\algorithmcflinename}{l\'inea}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{Procedimiento}%
+\renewcommand{\@algocf@funcname}{Funci\'on}%
+\renewcommand{\procedureautorefname}{procedimiento}%
+\renewcommand{\functionautorefname}{funci\'on}%
+\renewcommand{\algocf@languagechoosen}{spanish}%
 }%
+%----
+\newboolean{algocf@localkw@slovak}\setboolean{algocf@localkw@slovak}{false}%
+\DeclareOption{slovakkw}{%
+\setboolean{algocf@localkw@slovak}{true}%
+}%
+%
 \DeclareOption{slovak}{%
 \renewcommand{\listalgorithmcfname}{Zoznam algoritmov}%
 \renewcommand{\algorithmcfname}{Algoritmus}%
@@ -1053,19 +1289,76 @@
 \renewcommand{\algocf@languagechoosen}{slovak}%
 }%
 %
-\DeclareOption{croatian}{%
-  \renewcommand{\listalgorithmcfname}{Popis algoritama}%
-  \renewcommand{\algorithmcfname}{Algoritam}%
-  \renewcommand{\algorithmautorefname}{\algorithmcfname}%
-  \renewcommand{\algorithmcflinename}{linija}%
-  \renewcommand{\algocf@typo}{}%
-  \renewcommand{\@algocf@procname}{Procedura}%
-  \renewcommand{\@algocf@funcname}{Funkcija}%
-  \renewcommand{\procedureautorefname}{\@algocf@procname}%
-  \renewcommand{\functionautorefname}{\@algocf@funcname}%
-  \renewcommand{\algocf@languagechoosen}{croatian}%
+%----
+\newboolean{algocf@localkw@croatian}\setboolean{algocf@localkw@croatian}{false}%
+\DeclareOption{croatiankw}{%
+\setboolean{algocf@localkw@croatian}{true}%
 }%
 %
+\DeclareOption{croatian}{%
+\renewcommand{\listalgorithmcfname}{Popis algoritama}%
+\renewcommand{\algorithmcfname}{Algoritam}%
+\renewcommand{\algorithmautorefname}{\algorithmcfname}%
+\renewcommand{\algorithmcflinename}{redak}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{Procedura}%
+\renewcommand{\@algocf@funcname}{Funkcija}%
+\renewcommand{\procedureautorefname}{\@algocf@procname}%
+\renewcommand{\functionautorefname}{\@algocf@funcname}%
+\renewcommand{\algocf@languagechoosen}{croatian}%
+}%
+%%% adding 'turkish' option customization
+%
+%----
+\newboolean{algocf@localkw@turkish}\setboolean{algocf@localkw@turkish}{false}%
+\DeclareOption{turkishkw}{%
+\setboolean{algocf@localkw@turkish}{true}%
+}%
+\DeclareOption{turkish}{%
+\renewcommand{\listalgorithmcfname}{Algoritma Listesi}%
+\renewcommand{\algorithmcfname}{Algoritma}%
+\renewcommand{\algorithmautorefname}{algoritma}%
+\renewcommand{\algorithmcflinename}{\c{c}izgi}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{Prosed\"ur}%
+\renewcommand{\@algocf@funcname}{Fonksiyon}%
+\renewcommand{\procedureautorefname}{prosed\"ur}%
+\renewcommand{\functionautorefname}{fonksiyon}%
+\renewcommand{\algocf@languagechoosen}{turkish}%
+}%
+%
+%----
+\newboolean{algocf@localkw@chinese}\setboolean{algocf@localkw@chinese}{false}%
+\DeclareOption{chinese}{%
+\setboolean{algocf@localkw@chinese}{true}%
+}%
+%
+\DeclareOption{chinese}{%
+\renewcommand{\listalgorithmcfname}{算法目录}%
+\renewcommand{\algorithmcfname}{算法}%
+\renewcommand{\algorithmautorefname}{算法}%
+\renewcommand{\algorithmcflinename}{行}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{过程}%
+\renewcommand{\@algocf@funcname}{函数}%
+\renewcommand{\procedureautorefname}{过程}%
+\renewcommand{\functionautorefname}{函数}%
+\renewcommand{\algocf@languagechoosen}{chinese}%
+}%
+%
+\DeclareOption{chinese-nokw}{%
+\renewcommand{\listalgorithmcfname}{算法目录}%
+\renewcommand{\algorithmcfname}{算法}%
+\renewcommand{\algorithmautorefname}{算法}%
+\renewcommand{\algorithmcflinename}{行}%
+\renewcommand{\algocf@typo}{}%
+\renewcommand{\@algocf@procname}{过程}%
+\renewcommand{\@algocf@funcname}{函数}%
+\renewcommand{\procedureautorefname}{过程}%
+\renewcommand{\functionautorefname}{函数}%
+\renewcommand{\algocf@languagechoosen}{chinese-nokw}%
+}%
+%----
 % OPTIONs plain, boxed, ruled, algoruled & boxruled
 %
 \newcommand{\algocf@style@plain}{\renewcommand{\algocf@style}{plain}}%
@@ -1095,20 +1388,54 @@
 \DeclareOption{resetcount}{\renewcommand{\@ResetCounterIfNeeded}{\setcounter{AlgoLine}{0}}}%
 \DeclareOption{noresetcount}{\renewcommand{\@ResetCounterIfNeeded}{}}%
 %
+% OPTIONs algorithm hanging for long lines
+%
+\newlength{\algocf@hangindent}\setlength{\algocf@hangindent}{.5em}
+\newcommand{\SetAlgoHangIndent}[1]{\setlength{\algocf@hangindent}{#1}}
+%
+\newboolean{algocf@hanging}\setboolean{algocf@hanging}{true}% hanging is handle by default
+\newboolean{algocf@hanginginout}\setboolean{algocf@hanginginout}{false}% inout are managed as previously: hanging set by inout keywords
+\newboolean{algocf@hangingcomment}\setboolean{algocf@hangingcomment}{false}% comment that are not side comment are indented accordingly to comment mark, not as normal text
+\newcommand{\algocf@everyparnl}{\relax}%
+\newcommand{\algocf@everyparhanging}{\hangafter=1\hangindent=\algocf@hangindent\relax}%
+\newcommand{\algocf@everypar}{\algocf@everyparnl\algocf@everyparhanging}%
+\newcommand{\algocf@seteverypar}{%
+  \ifthenelse{\boolean{algocf@hanging}}{\everypar{\algocf@everypar}}{\relax}%
+}%
+%
+\newcommand{\algocf@seteveryparnl}[1]{\renewcommand{\algocf@everyparnl}{#1}\everypar{\algocf@everypar}}%
+\newcommand{\algocf@seteveryparhanging}[1]{%
+\let\algocf@oldeveryparhanging=\algocf@everyparhanging%
+\renewcommand{\algocf@everyparhanging}{#1}\everypar{\algocf@everypar}%
+}%
+\newcommand{\algocf@reseteveryparhanging}{%
+\let\algocf@everyparhanging=\algocf@oldeveryparhanging%
+\everypar{\algocf@everypar}%
+}%
+\DeclareOption{hanginginout}{\setboolean{algocf@hanginginout}{true}}%
+\DeclareOption{hangingcomment}{\setboolean{algocf@hangingcomment}{true}}%
+\DeclareOption{noalgohanging}{%
+  \setboolean{algocf@hanginginout}{false}%
+  \setboolean{algocf@hangingcomment}{false}%
+  \setboolean{algocf@hanging}{false}%
+}%
+%\newcommand{
+%
+%
 % OPTION linesnumbered
 %
 \newboolean{algocf@linesnumbered}\setboolean{algocf@linesnumbered}{false}%
 \newcommand{\algocf@linesnumbered}{\relax}%
 \DeclareOption{linesnumbered}{%
   \setboolean{algocf@linesnumbered}{true}%
-  \renewcommand{\algocf@linesnumbered}{\everypar={\nl}}%
+  \renewcommand{\algocf@linesnumbered}{\algocf@seteveryparnl{\nl}}%
 }%
 %
 % OPTION linesnumberedhidden
 %
 \DeclareOption{linesnumberedhidden}{%
   \setboolean{algocf@linesnumbered}{true}%
-  \renewcommand{\algocf@linesnumbered}{\everypar{\stepcounter{AlgoLine}}}%
+  \renewcommand{\algocf@linesnumbered}{\algocf@seteveryparnl{\stepcounter{AlgoLine}}}%
 }%
 %
 % OPTION commentsnumbered inoutnumbered
@@ -1138,9 +1465,9 @@
 %
 % OPTIONs lined, vlined & noline
 %
-\DeclareOption{lined}{\AtBeginDocument{\SetAlgoLined}}%   \SetAlgoLined
+\DeclareOption{lined}{\AtBeginDocument{\SetAlgoLined}}%   \SetAlgoLined (default)
 \DeclareOption{vlined}{\AtBeginDocument{\SetAlgoVlined}}% \SetAlgoVlined
-\DeclareOption{noline}{\AtBeginDocument{\SetAlgoNoLine}}%\SetAlgoNoLine (default)
+\DeclareOption{noline}{\AtBeginDocument{\SetAlgoNoLine}}%\SetAlgoNoLine
 %
 % OPTIONs longend, shotend & noend
 %
@@ -1196,6 +1523,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%% Package Loading %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
+\RequirePackage{ifoddpage}%
 \RequirePackage{xspace}%
 %
 \ifthenelse{\boolean{algocf@endfloat}}{%
@@ -1220,21 +1548,21 @@
 % if loa in toc required, load tocbibind package if not already done.
 \ifthenelse{\boolean{algocf@dotocloa}}{%
   \ifx\@tocextra\undefined%
-    \RequirePackage{tocbibind}%
+  \RequirePackage{tocbibind}%
   \fi%
 }{\relax}%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Part %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \newcommand{\algocf@name}{algorithm2e}%
-\newcommand{\algocf@date}{january 06 2013}%
-\newcommand{\algocf@version}{Release 5.0}%
+\newcommand{\algocf@date}{July 18 2017}%
+\newcommand{\algocf@version}{Release 5.2}%
 \newcommand{\algocf@id}{\algocf@version\space -- \algocf@date\space --}%
-\typeout{********************************************************^^JPackage `\algocf@name'\space\algocf@id^^J%
-  - algorithm2e-announce@lirmm.fr  mailing list for announcement about releases^^J%
-  - algorithm2e-discussion@lirmm.fr mailing list for discussion about package^^J%
-  subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'^^J%
-  - Author: Christophe Fiorio (cfiorio@um2.fr)^^J********************************************************}%
+% \typeout{********************************************************^^JPackage `\algocf@name'\space\algocf@id^^J%
+%          - algorithm2e-announce@lirmm.fr  mailing list for announcement about releases^^J%
+%          - algorithm2e-discussion@lirmm.fr mailing list for discussion about package^^J%
+%          subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'^^J%
+%          - Author: Christophe Fiorio (christophe.fiorio@umontpellier.fr)^^J********************************************************}%
 %%
 %%
 %%
@@ -1242,10 +1570,10 @@
 %%
 %%
 %%%% hyperref compatibility tricks: Hyperref package defines H counters from
-% standard counters (i.e \theHpage from \thepage) and check some particular
-% counters of some packages, unfortunately it doesn't do the same for
-% algorithm2e package but act as Hcounter was defined. To avoid errors we
-% defined \theHalgocf ourself
+   % standard counters (i.e \theHpage from \thepage) and check some particular
+   % counters of some packages, unfortunately it doesn't do the same for
+   % algorithm2e package but act as Hcounter was defined. To avoid errors we
+   % defined \theHalgocf ourself
 %%%%
 %
 \@ifundefined{theHalgocf}{\def\theHalgocf{\thealgocf}}{}%
@@ -1283,6 +1611,15 @@
 \newcommand{\@algoinsideskip}{\relax}%
 \newcommand{\SetAlgoInsideSkip}[1]{\renewcommand{\@algoinsideskip}{\csname#1\endcsname}}%
 %
+% ruledwidth
+%
+\newlength{\algocf@ruledwidth}\setlength{\algocf@ruledwidth}{\linewidth}%
+\newboolean{algocf@customruledwidth}\setboolean{algocf@customruledwidth}{false}%
+\newcommand{\SetCustomAlgoRuledWidth}[1]{%
+  \setboolean{algocf@customruledwidth}{true}%
+  \ifthenelse{\boolean{algocf@customruledwidth}}{\setlength{\algocf@ruledwidth}{#1}}{\relax}%
+}%
+%
 \newsavebox{\algocf@inoutbox}%
 \newsavebox{\algocf@inputbox}%
 %%
@@ -1293,9 +1630,9 @@
 %%
 \newcommand{\vespace}{1ex}%
 \newcommand{\SetInd}[2]{%
-  \skiprule=#1%
-  \skiptext=#2%
-  \skiplength=\skiptext\advance\skiplength by \skiprule\advance\skiplength by 0.4pt}%
+\skiprule=#1%
+\skiptext=#2%
+\skiplength=\skiptext\advance\skiplength by \skiprule\advance\skiplength by 0.4pt}%
 \SetInd{0.5em}{1em}
 \algomargin=\leftskip\advance\algomargin by \parindent%
 \newcommand{\IncMargin}[1]{\advance\algomargin by #1}%
@@ -1322,6 +1659,7 @@
 \newcommand{\Indpp}{\advance\leftskip by 0.5em}%
 \newcommand{\Indm}{\algocf@adjustskipindent\advance\leftskip by -\algoskipindent}
 \newcommand{\Indmm}{\advance\leftskip by -0.5em}%
+%
 %%
 %%
 %% Line Numbering
@@ -1354,7 +1692,7 @@
 }%
 \newcommand{\nl}{%
   \@ifundefined{hyper@refstepcounter}{% if not hyperref then do a simple refstepcounter
-    \refstepcounter{AlgoLine}%
+    \refstepcounter{AlgoLine}\gdef\@currentlabel{\theAlgoLine}%
   }{% else if hyperref, do the anchor so 2 lines in two differents algorithms cannot have the same href
     \stepcounter{AlgoLine}\algocf@nl@sethref{\theAlgoLine}%
   }% now we can do the line numbering
@@ -1364,8 +1702,8 @@
 \newcommand{\nllabel}[1]{\label{#1}}%
 %
 \newcommand{\enl}{%
-  \@ifundefined{hyper@refstepcounte}{% if not hyperref then do a simple refstepcounter
-    \refstepcounter{AlgoLine}%
+  \@ifundefined{hyper@refstepcounter}{% if not hyperref then do a simple refstepcounter
+    \refstepcounter{AlgoLine}\gdef\@currentlabel{\theAlgoLine}%
   }{% else if hyperref, do the anchor so 2 lines in two differents algorithms cannot have the same href
     \stepcounter{AlgoLine}\algocf@nl@sethref{\theAlgoLine}%
   }% now we can do the line numbering
@@ -1397,14 +1735,14 @@
 %
 % line numbering
 %
-\newcommand{\LinesNumbered}{\setboolean{algocf@linesnumbered}{true}\renewcommand{\algocf@linesnumbered}{\everypar={\nl}}}%
+\newcommand{\LinesNumbered}{\setboolean{algocf@linesnumbered}{true}\renewcommand{\algocf@linesnumbered}{\algocf@seteveryparnl{\nl}}}%
 \newcommand{\LinesNotNumbered}{%
   \setboolean{algocf@linesnumbered}{false}%
   \renewcommand{\algocf@linesnumbered}{\relax}%
 }%
 %
 \newcommand{\LinesNumberedHidden}{%
-  \setboolean{algocf@linesnumbered}{true}\renewcommand{\algocf@linesnumbered}{\everypar{\stepcounter{AlgoLine}}}}%
+  \setboolean{algocf@linesnumbered}{true}\renewcommand{\algocf@linesnumbered}{\algocf@seteveryparnl{\stepcounter{AlgoLine}}}}%
 \newcommand{\ShowLn}{\nlset{\theAlgoLine}\ignorespaces}% display the line number on this line (without labelling)
 \newcommand{\ShowLnLabel}[1]{\lnlset{#1}{\theAlgoLine}\ignorespaces}% display the line number and label this line
 %
@@ -1450,15 +1788,19 @@
 \newcommand{\SetKwSty}[1]{\renewcommand{\KwSty}[1]{\textnormal{\csname#1\endcsname{##1}}\unskip}}%
 \newcommand{\ArgSty}[1]{\textnormal{\emph{#1}}\unskip}%\SetArgSty{emph}
 \newcommand{\SetArgSty}[1]{\renewcommand{\ArgSty}[1]{\textnormal{\csname#1\endcsname{##1}}\unskip}}%
+\newcommand{\FuncArgSty}[1]{\textnormal{\emph{#1}}\unskip}%\SetFuncArgSty{emph}
+\newcommand{\SetFuncArgSty}[1]{\renewcommand{\FuncArgSty}[1]{\textnormal{\csname#1\endcsname{##1}}\unskip}}%
 \newcommand{\FuncSty}[1]{\textnormal{\texttt{#1}}\unskip}%\SetFuncSty{texttt}
 \newcommand{\SetFuncSty}[1]{\renewcommand{\FuncSty}[1]{\textnormal{\csname#1\endcsname{##1}}\unskip}}%
+\newcommand{\ProgSty}[1]{\textnormal{\emph{#1}}\unskip}%\SetProgSty{emphg}
+\newcommand{\SetProgSty}[1]{\renewcommand{\ArgSty}[1]{\textnormal{\csname#1\endcsname{##1}}\unskip}}%
 \newcommand{\DataSty}[1]{\textnormal{\textsf{#1}}\unskip}%%\SetDataSty{textsf}
 \newcommand{\SetDataSty}[1]{\renewcommand{\DataSty}[1]{\textnormal{\csname#1\endcsname{##1}}\unskip}}%
 \newcommand{\CommentSty}[1]{\textnormal{\texttt{#1}}\unskip}%%\SetDataSty{texttt}
 \newcommand{\SetCommentSty}[1]{\renewcommand{\CommentSty}[1]{\textnormal{\csname#1\endcsname{##1}}\unskip}}%
 \newcommand{\TitleSty}[1]{#1\unskip}%\SetTitleSty{}{}
 \newcommand{\SetTitleSty}[2]{\renewcommand{\TitleSty}[1]{%
-    \csname#1\endcsname{\csname#2\endcsname##1}}\unskip}%
+\csname#1\endcsname{\csname#2\endcsname##1}}\unskip}%
 \newcommand{\BlockMarkersSty}[1]{\KwSty{#1}}%
 \newcommand{\SetBlockMarkersSty}[1]{\renewcommand{\BlockMarkersSty}[1]{\textnormal{\csname#1\endcsname{##1}}\unskip}}%
 %
@@ -1469,8 +1811,12 @@
 %
 \newcommand{\algocf@push}[1]{\advance\skiptotal by #1\moveright #1}%
 \newcommand{\algocf@pop}[1]{\advance\skiptotal by -#1}%
-\newcommand{\algocf@addskiptotal}{\advance\skiptotal by 0.4pt\advance\hsize by -0.4pt\advance\hsize by -\skiplength}% 0.4 pt=width of \vrule
-\newcommand{\algocf@subskiptotal}{\advance\skiptotal by -0.4pt\advance\hsize by 0.4pt\advance\hsize by \skiplength}% 0.4 pt=width of \vrule
+\newcommand{\algocf@addskiptotal}{%
+    \advance\hsize by -\skiplength%
+}% \skiplength=skiptext+0.4 pt that is the width of \vrule
+\newcommand{\algocf@subskiptotal}{%
+    \advance\hsize by \skiplength%
+}% \skiplength=skiptext+0.4 pt that is the width of \vrule
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -1482,11 +1828,19 @@
 \newcommand{\algocf@eblock}{\BlockMarkersSty{end}}%
 \newcommand{\AlgoDisplayBlockMarkers}{\setboolean{algocf@displayblockmarkers}{true}}%
 \newcommand{\AlgoDontDisplayBlockMarkers}{\setboolean{algocf@displayblockmarkers}{false}}%
+\newcommand{\AlgoDisplayGroupMarkers}{\setboolean{algocf@displaygroupmarkers}{true}}%
+\newcommand{\AlgoDontDisplayGroupMarkers}{\setboolean{algocf@displaygroupmarkers}{false}}%
 \newcommand{\algocf@bblockcode}{%
   \ifthenelse{\boolean{algocf@displayblockmarkers}}{\algocf@bblock\par}{\relax}%
 }%
 \newcommand{\algocf@eblockcode}{%
   \ifthenelse{\boolean{algocf@displayblockmarkers}}{\algocf@eblock\par}{\relax}%
+}%
+\newcommand{\algocf@bgroupcode}{%
+  \ifthenelse{\boolean{algocf@displaygroupmarkers}}{\algocf@bblock}{\relax}%
+}%
+\newcommand{\algocf@egroupcode}{%
+  \ifthenelse{\boolean{algocf@displaygroupmarkers}}{\algocf@eblock}{\relax}%
 }%
 \newcommand{\SetAlgoBlockMarkers}[2]{%
   \ifArgumentEmpty{#1}{%
@@ -1533,7 +1887,7 @@
   \hbox{%
     \vtop{\algocf@push{\skiptext}%
       \vtop{\algocf@addskiptotal #1}}}% inside the block
-  \algocf@pop{\skiprule}%
+  \algocf@pop{\skiprule}%\algocf@subskiptotal%
   \algocf@eblockcode%
   % \nointerlineskip% no vskip after
 }%
@@ -1542,14 +1896,16 @@
 %% default=NoLine
 %
 \newcommand{\algocf@group}[1]{\algocf@Noline{#1}}% group: set of instruction depending from another (ex: then part of the If)
-\newcommand{\algocf@@@block}[2]{#1\ifArgumentEmpty{#2}{\relax}{\KwSty{\@algocf@endoption{#2}}\strut\par}}% block: group with a end keyword.
-\newcommand{\algocf@@block}[2]{\algocf@@@block{#1}{#2}}% block: group with a end keyword.
-\newcommand{\algocf@block}[2]{\algocf@@block{#1}{#2}}% command that will be used and redefined accordingly to noend option
+\newcommand{\algocf@@@eblock}[2]{#1\ifArgumentEmpty{#2}{\relax}{\KwSty{\@algocf@endoption{#2}}\strut\par}}% block: group with a end keyword.
+\newcommand{\algocf@@@block}[3]{#1\ifArgumentEmpty{#2}{\ifArgumentEmpty{#3}{\relax}{ #3\relax}}{\KwSty{\@algocf@endoption{#2}}\ifArgumentEmpty{#3}{\relax}{ #3}\strut\par}}% block: group with a end keyword.
+\newcommand{\algocf@@block}[3]{\algocf@@@block{#1}{#2}{#3}}% block: group with a end keyword.
+\newcommand{\algocf@block}[3]{\algocf@@block{#1}{#2}{#3}}% command that will be used and redefined accordingly to noend option
+%\newcommand{\algocf@nblock}[3]{\algocf@@block{#1}{#2}{#3}}% command that will be used and redefined accordingly to noend option
 \newcommand{\algocf@setBlock}{%
   \ifthenelse{\boolean{algocf@optnoend}}{%     if no end option
-    \renewcommand{\algocf@block}[2]{\algocf@group{##1}}%     block will be a group
+    \renewcommand{\algocf@block}[3]{\algocf@group{##1}}%     block will be a group
   }{%                                          else
-    \renewcommand{\algocf@block}[2]{\algocf@@block{##1}{##2}}% block stays a block
+    \renewcommand{\algocf@block}[3]{\algocf@@block{##1}{##2}{##3}}% block stays a block
   }%
 }%
 %
@@ -1573,26 +1929,31 @@
   \renewcommand{\@algocf@endoption}[1]{}%
   \algocf@setBlock}%
 %
+\newboolean{algocf@optAlgoNoLine}\setboolean{algocf@optAlgoNoLine}{false}
 \newcommand{\SetAlgoNoLine}{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Noline
-  \renewcommand{\algocf@@block}[2]{\algocf@@@block{\algocf@Noline{##1}}{##2}}%
-  \renewcommand{\algocf@group}[1]{\algocf@Noline{##1}}%
-  \renewcommand{\Hlne}{}}%
+\setboolean{algocf@optAlgoNoLine}{true}%
+\renewcommand{\algocf@@block}[2]{\algocf@@@block{\algocf@Noline{##1}}{##2}}%
+\renewcommand{\algocf@group}[1]{\algocf@Noline{##1}}%
+\renewcommand{\Hlne}{}}%
 %
 \newcommand{\SetAlgoVlined}{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Vline
-  \renewcommand{\algocf@@block}[2]{\algocf@Vline{##1}}%
-  \renewcommand{\algocf@group}[1]{\algocf@Vsline{##1}}%\ifthenelse{\boolean{algocf@optnoend}}{\relax}{\strut\ignorespaces}}%
-  \renewcommand{\Hlne}{\algocf@Hlne}}%
+\setboolean{algocf@optAlgoNoLine}{false}%
+\renewcommand{\algocf@@block}[2]{\algocf@Vline{##1}}%
+\renewcommand{\algocf@group}[1]{\algocf@Vsline{##1}}%\ifthenelse{\boolean{algocf@optnoend}}{\relax}{\strut\ignorespaces}}%
+\renewcommand{\Hlne}{\algocf@Hlne}}%
 %
 \newcommand{\SetAlgoLined}{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Line
-  \renewcommand{\algocf@@block}[2]{\algocf@@@block{\strut\algocf@Vsline{##1}}{##2}}% no skip after a block so garantie at least one line
-  \renewcommand{\algocf@group}[1]{\algocf@Vsline{##1}}%\ifthenelse{\boolean{algocf@optnoend}}{\relax}{\strut\ignorespaces}}%
-  \renewcommand{\Hlne}{}}%
+\setboolean{algocf@optAlgoNoLine}{false}%
+\renewcommand{\algocf@@block}[2]{\algocf@@@block{\strut\algocf@Vsline{##1}}{##2}}% no skip after a block so garantie at least one line
+\renewcommand{\algocf@group}[1]{\algocf@Vsline{##1}}%\ifthenelse{\boolean{algocf@optnoend}}{\relax}{\strut\ignorespaces}}%
+\renewcommand{\Hlne}{}}%
 %
 \newcommand{\SetNothing}{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Noline
-  \renewcommand{\algocf@@block}[2]{\algocf@Noline{##1}\par}%
-  %\long
-  \renewcommand{\algocf@group}[1]{\algocf@Noline{##1}}%
-  \renewcommand{\Hlne}{}}%
+\setboolean{algocf@optAlgoNoLine}{true}%
+\renewcommand{\algocf@@block}[2]{\algocf@Noline{##1}\par}%
+%\long
+\renewcommand{\algocf@group}[1]{\algocf@Noline{##1}}%
+\renewcommand{\Hlne}{}}%
 %
 %%
 %%
@@ -1608,29 +1969,31 @@
 %
 \newcommand{\algocf@newinout}{\par\parindent=\inoutindent}% to put right indentation after a \\ in the KwInOut
 \newcommand{\SetKwInOut}[2]{%
-  \sbox\algocf@inoutbox{\KwSty{#2}\algocf@typo:}%
+  \sbox\algocf@inoutbox{\KwSty{#2\algocf@typo:}}%
   \expandafter\ifx\csname InOutSizeDefined\endcsname\relax% if first time used
     \newcommand\InOutSizeDefined{}\setlength{\inoutsize}{\wd\algocf@inoutbox}%
-    \sbox\algocf@inoutbox{\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo\hfill:}~}\setlength{\inoutindent}{\wd\algocf@inoutbox}%
+    \sbox\algocf@inoutbox{\parbox[t]{\inoutsize}{\KwSty{#2\algocf@typo\hfill:}}~}\setlength{\inoutindent}{\wd\algocf@inoutbox}%
   \else% else keep the larger dimension
     \ifdim\wd\algocf@inoutbox>\inoutsize%
-      \setlength{\inoutsize}{\wd\algocf@inoutbox}%
-      \sbox\algocf@inoutbox{\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo\hfill:}~}\setlength{\inoutindent}{\wd\algocf@inoutbox}%
+    \setlength{\inoutsize}{\wd\algocf@inoutbox}%
+    \sbox\algocf@inoutbox{\parbox[t]{\inoutsize}{\KwSty{#2\algocf@typo\hfill:}}~}\setlength{\inoutindent}{\wd\algocf@inoutbox}%
     \fi%
   \fi% the dimension of the box is now defined.
   \algocf@newcommand{#1}[1]{%
-    \ifthenelse{\boolean{algocf@inoutnumbered}}{\relax}{\everypar={\relax}}%
-    %     {\let\\\algocf@newinout\hangindent=\wd\algocf@inoutbox\hangafter=1\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo\hfill:}~##1\par}%
-    {\let\\\algocf@newinout\hangindent=\inoutindent\hangafter=1\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo\hfill:}~##1\par}%
+    \ifthenelse{\boolean{algocf@hanginginout}}{\relax}{\algocf@seteveryparhanging{\relax}}%
+    \ifthenelse{\boolean{algocf@inoutnumbered}}{\relax}{\algocf@seteveryparnl{\relax}}%
+%     {\let\\\algocf@newinout\hangindent=\wd\algocf@inoutbox\hangafter=1\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo\hfill:}~##1\par}%
+    {\let\\\algocf@newinout\hangindent=\inoutindent\hangafter=1\parbox[t]{\inoutsize}{\KwSty{#2\algocf@typo\hfill:}}~##1\par}%
     \algocf@linesnumbered% reset the numbering of the lines
+    \ifthenelse{\boolean{algocf@hanginginout}}{\relax}{\algocf@reseteveryparhanging}%
   }}%
 %
 %% allow to ajust the skip size of InOut
 %%
 \newcommand{\ResetInOut}[1]{%
-  \sbox\algocf@inoutbox{\hbox{\KwSty{#1}\algocf@typo:\ }}%
+  \sbox\algocf@inoutbox{\hbox{\KwSty{#1\algocf@typo:}\ }}%
   \setlength{\inoutsize}{\wd\algocf@inoutbox}%
-}%
+  }%
 %
 % 
 %%%
@@ -1639,16 +2002,18 @@
 \newcommand{\algocf@newinput}{\par\parindent=\wd\algocf@inputbox}% to put right indentation after a \\ in the KwInput
 \newcommand{\SetKwInput}[2]{%
   \algocf@newcommand{#1}[1]{%
-    \sbox\algocf@inputbox{\hbox{\KwSty{#2}\algocf@typo: }}%
-    \ifthenelse{\boolean{algocf@inoutnumbered}}{\relax}{\everypar={\relax}}%
+    \sbox\algocf@inputbox{\hbox{\KwSty{#2\algocf@typo:} }}%
+    \ifthenelse{\boolean{algocf@hanginginout}}{\relax}{\algocf@seteveryparhanging{\relax}}%
+    \ifthenelse{\boolean{algocf@inoutnumbered}}{\relax}{\algocf@seteveryparnl{\relax}}%
     {\let\\\algocf@newinput\hangindent=\wd\algocf@inputbox\hangafter=1\unhbox\algocf@inputbox##1\par}%
     \algocf@linesnumbered% reset the numbering of the lines
+    \ifthenelse{\boolean{algocf@hanginginout}}{\relax}{\algocf@reseteveryparhanging}%
   }}%
 \newcommand{\SetKwData}[2]{%
   \algocf@newcommand{@#1}[1]{\DataSty{#2(}\ArgSty{##1}\DataSty{)}}%
   \algocf@newcommand{#1}{%
     \@ifnextchar\bgroup{\csname @#1\endcsname}{\DataSty{#2}\xspace}}%
-}%
+  }%
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1711,49 +2076,66 @@
 %
 \newcommand{\SetKwComment}[3]{%
   \algocf@newcommand{#1}{\@ifstar{\csname algocf@#1@star\endcsname}{\csname algocf@#1\endcsname}}%
-  \algocf@newcommand{algocf@#1}[1]{%
-    \sbox\algocf@inputbox{\CommentSty{\hbox{#2}}}%
-    \ifthenelse{\boolean{algocf@commentsnumbered}}{\relax}{\everypar={\relax}}%
-    {\renewcommand{\algocf@endmarkcomment}{#3}%
-      \let\\\algocf@endstartcomment%
-      \algocf@startcomment\CommentSty{%
-        \strut\ignorespaces##1\strut\algocf@fillcomment#3}\par}%
-    \algocf@linesnumbered% reset the numbering of the lines
-  }%
+	\algocf@newcommand{algocf@#1}[1]{%
+      \ifthenelse{\boolean{algocf@hangingcomment}}{\relax}{\algocf@seteveryparhanging{\relax}}%
+      \sbox\algocf@inputbox{\CommentSty{\hbox{#2}}}%
+      \ifthenelse{\boolean{algocf@commentsnumbered}}{\relax}{\algocf@seteveryparnl{\relax}}%
+      {\renewcommand{\algocf@endmarkcomment}{#3}%
+        \let\\\algocf@endstartcomment%
+        \algocf@startcomment\CommentSty{%
+          \strut\ignorespaces##1\strut\algocf@fillcomment#3}\par}%
+      \algocf@linesnumbered% reset the numbering of the lines
+      \ifthenelse{\boolean{algocf@hangingcomment}}{\relax}{\algocf@reseteveryparhanging}%
+    }%
   %%% side comment definitions
-  \algocf@newcommand{algocf@#1@star}[2][]{%
-    \ifArgumentEmpty{##1}\relax{% TODO: Is this even necessary, with all those \ifx's?
-      \ifthenelse{\boolean{algocf@scleft}}{\setboolean{algocf@sidecomment}{true}}{\setboolean{algocf@sidecomment}{false}}%
-      \ifx##1h\setboolean{algocf@altsidecomment}{true}\SetSideCommentLeft\fi%
-      \ifx##1f\setboolean{algocf@altsidecomment}{true}\SetSideCommentRight\fi%
-      \ifx##1l\setboolean{algocf@altsidecomment}{false}\SetSideCommentLeft\fi%
-      \ifx##1r\setboolean{algocf@altsidecomment}{false}\SetSideCommentRight\fi%
-    }%
-    \sbox\algocf@inputbox{\CommentSty{\hbox{#2}}}%
-    \ifthenelse{\boolean{algocf@commentsnumbered}}{\relax}{\everypar={\relax}}%
-    {%
-      \renewcommand{\algocf@endmarkcomment}{#3}%
-      \let\\\algocf@endstartsidecomment%
-      % here is the comment
-      \ifthenelse{\boolean{algocf@altsidecomment}}{\relax}{\@endalgocfline\ }%
-      \algocf@scrfill\algocf@startsidecomment\CommentSty{%
-        \strut\ignorespaces##2\strut\algocf@sclfill#3}\algocf@scpar%
-    }%
-    \algocf@linesnumbered% reset the numbering of the lines
-    \ifArgumentEmpty{##1}\relax{%
-      \ifthenelse{\boolean{algocf@sidecomment}}{\setboolean{algocf@scleft}{true}}{\setboolean{algocf@scleft}{false}}%
-      \setboolean{algocf@altsidecomment}{false}%
-    }%
+	\algocf@newcommand{algocf@#1@star}[2][]{%
+      \ifArgumentEmpty{##1}\relax{% TODO: Is this even necessary, with all those \ifx's?
+        \ifthenelse{\boolean{algocf@scleft}}{\setboolean{algocf@sidecomment}{true}}{\setboolean{algocf@sidecomment}{false}}%
+        \ifx##1h\setboolean{algocf@altsidecomment}{true}\SetSideCommentLeft\fi%
+        \ifx##1f\setboolean{algocf@altsidecomment}{true}\SetSideCommentRight\fi%
+        \ifx##1l\setboolean{algocf@altsidecomment}{false}\SetSideCommentLeft\fi%
+        \ifx##1r\setboolean{algocf@altsidecomment}{false}\SetSideCommentRight\fi%
+      }%
+      \sbox\algocf@inputbox{\CommentSty{\hbox{#2}}}%
+      \ifthenelse{\boolean{algocf@commentsnumbered}}{\relax}{\algocf@seteveryparnl{\relax}}%
+      {%
+        \renewcommand{\algocf@endmarkcomment}{#3}%
+        \let\\\algocf@endstartsidecomment%
+        % here is the comment
+        \ifthenelse{\boolean{algocf@altsidecomment}}{\relax}{\@endalgocfline\ }%
+        \algocf@scrfill\algocf@startsidecomment\CommentSty{%
+          \strut\ignorespaces##2\strut\algocf@sclfill#3}\algocf@scpar%
+      }%
+      \algocf@linesnumbered% reset the numbering of the lines
+      \ifArgumentEmpty{##1}\relax{%
+        \ifthenelse{\boolean{algocf@sidecomment}}{\setboolean{algocf@scleft}{true}}{\setboolean{algocf@scleft}{false}}%
+        \setboolean{algocf@altsidecomment}{false}%
+      }%
+	}%
   }%
-}%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % KwProg
 %
-\newcommand{\SetKwProg}[4]{%
-\algocf@newcmdside{#1} 3{\KwSty{#2}\ifArgumentEmpty{#2}\relax{\ }\ArgSty{##2}\KwSty{#3}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##3}{#4}}%
-\algocf@newcmdside{l#1}3{\KwSty{#2} \ArgSty{##2}\KwSty{#3} ##3\@endalgocfline\ifArgumentEmpty{##1}\relax{##1}\strut\par}%
+\newcommand{\SetKwProg}[4]{%\SetKwProg{Env}{Title}{is}{end} 
+	\algocf@newcmdside@koif{#1}{\KwSty{#2}\ifArgumentEmpty{#2}\relax{\ }\ProgSty{##2}\KwSty{#3}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##3}{#4}{##4}}%
+    \algocf@newcommand{l#1}{\@ifstar{\csname algocf@l#1star\endcsname}{\csname algocf@l#1\endcsname}}%
+	\algocf@newcmdside{algocf@l#1}{3}{\KwSty{#2} \ProgSty{##2}\KwSty{#3}\algocf@bgroupcode\ ##3\algocf@egroupcode\@endalgocfline\ifArgumentEmpty{##1}\relax\ {##1}\strut\par}%
+	\algocf@newcmdside{algocf@l#1star}{3}{\KwSty{#2} \ProgSty{##2}\KwSty{#3}\algocf@bgroupcode\ ##3\algocf@egroupcode}%
+}%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% KwProgFn
+%
+\newcommand{\SetKwProgFn}[4]{%\SetKwProg{Env}{Title}{is}{end} 
+	\algocf@newcmdsides{#1}{4}{\KwSty{#2}\ifArgumentEmpty{#2}\relax{\ }{##2}\KwSty{#3}{##3}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@group{##4}\KwSty{#4}}{\relax}{\strut\par}%
+    \algocf@newcommand{l#1}{\@ifstar{\csname algocf@l#1star\endcsname}{\csname algocf@l#1\endcsname}}%
+	\algocf@newcmdside{algocf@l#1}{3}{\KwSty{#2} \ProgSty{##2}\KwSty{#3}\algocf@bgroupcode\ ##3\algocf@egroupcode\@endalgocfline\ifArgumentEmpty{##1}\relax\ {##1}\strut\par}%
+	\algocf@newcmdside{algocf@l#1star}{3}{\KwSty{#2} \ProgSty{##2}\KwSty{#3}\algocf@bgroupcode\ ##3\algocf@egroupcode}%
 }%
 %
 %
@@ -1763,8 +2145,8 @@
 % Kw
 %
 \newcommand{\SetKw}[2]{%
-  \algocf@newcommand{@#1}[1]{\KwSty{#2} \ArgSty{##1}}
-  \algocf@newcommand{#1}{\@ifnextchar\bgroup{\csname @#1\endcsname}{\KwSty{#2}\xspace}}%
+	\algocf@newcommand{@#1}[1]{\KwSty{#2} \ArgSty{##1}}
+	\algocf@newcommand{#1}{\@ifnextchar\bgroup{\csname @#1\endcsname}{\KwSty{#2}\xspace}}%
 }%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1773,9 +2155,9 @@
 %
 \newcommand{\SetKwFunction}[2]{%
 %%% use of gdef since newcommand doesn't manage to define the macro when SetKwFunction is used in \algocf@caption@proc
-\expandafter\gdef\csname @#1\endcsname##1{\FuncSty{#2(}\ArgSty{##1}\FuncSty{)}}%
-\expandafter\gdef\csname#1\endcsname{%
-  \@ifnextchar\bgroup{\csname @#1\endcsname}{\FuncSty{#2}\xspace}}%
+  \expandafter\gdef\csname @#1\endcsname##1{\FuncSty{#2(}\FuncArgSty{##1}\FuncSty{)}}%
+  \expandafter\gdef\csname#1\endcsname{%
+    \@ifnextchar\bgroup{\csname @#1\endcsname}{\FuncSty{#2}\xspace}}%
 }%
 %
 %
@@ -1785,9 +2167,9 @@
 %
 \newcommand{\SetKwArray}[2]{%
 %%% use of gdef since newcommand doesn't manage to define the macro when SetKwFunction is used in \algocf@caption@proc
-\expandafter\gdef\csname @#1\endcsname##1{\DataSty{#2[}\ArgSty{##1}\DataSty{]}}%
-\expandafter\gdef\csname#1\endcsname{%
-  \@ifnextchar\bgroup{\csname @#1\endcsname}{\DataSty{#2}\xspace}}%
+  \expandafter\gdef\csname @#1\endcsname##1{\DataSty{#2[}\ArgSty{##1}\DataSty{]}}%
+  \expandafter\gdef\csname#1\endcsname{%
+    \@ifnextchar\bgroup{\csname @#1\endcsname}{\DataSty{#2}\xspace}}%
 }%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1795,34 +2177,44 @@
 % KwBlock
 %
 \newcommand{\SetKwBlock}[3]{%
-  \algocf@newcmdside{#1}{2}
-  {\KwSty{#2}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##2}{#3}\par}
+	\algocf@newcmdside@kobe{#1}%
+    {\KwSty{#2}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##2}{#3}{##3}\par}%
 }%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % condition typo
 %
-\newcommand{\algocf@scond}{ }
-\newcommand{\algocf@econd}{ }
+\newcommand{\algocf@scond}{\ }
+\newcommand{\algocf@econd}{\ }
 \newcommand{\algocf@ucond}{}
 \newcommand{\SetStartEndCondition}[3]{%
-  \renewcommand{\algocf@scond}{#1}\renewcommand{\algocf@econd}{#2}\renewcommand{\algocf@ucond}{#3}}
+  \renewcommand{\algocf@scond}{#1}\renewcommand{\algocf@econd}{#2}\renewcommand{\algocf@ucond}{#3}}%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % For Switch
 %
 \newcommand{\SetKwSwitch}[9]{% #1=\Switch #2=\Case #3=\Other #4=switch #5=do #6=case #7=otherwise #8=endcase #9=endsw
-  \algocf@newcmdside{#1}{3}
-  {\KwSty{#4}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#5}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##3}{#9}}
-  %%%% Case
-  \algocf@newcmdside{#2}{3}{\KwSty{#6}\algocf@scond\ArgSty{##2}\algocf@ucond\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##3}{#8}}%
-  \algocf@newcmdside{u#2}{3}{\KwSty{#6}\algocf@scond\ArgSty{##2}\algocf@ucond\ifArgumentEmpty{##1}\relax{ ##1}\algocf@group{##3}}%
-  \algocf@newcmdside{l#2}{3}{\KwSty{#6}\algocf@scond\ArgSty{##2}\algocf@ucond\ ##3\@endalgocfline\ifArgumentEmpty{##1}\relax{ ##1}\strut\par}%
-  %%%% Other 
-  \algocf@newcmdside{#3}{2}{\KwSty{#7}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##2}{#8}}%
-  \algocf@newcmdside{l#3}{2}{\KwSty{#7}\ ##2\@endalgocfline\ifArgumentEmpty{##1}\relax{ ##1}\strut\par}%
+%	\algocf@newcmdside{#1}{3}%
+	\algocf@newcmdside@koif{#1}%
+		{\KwSty{#4}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#5}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##3}{#9} {##4\relax}}%
+%%%% Case
+	\algocf@newcmdside@koif{#2}{\KwSty{#6}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#5}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##3}{#8}{##4\relax}}%
+    %uCase
+	\algocf@newcmdside{u#2}{3}{\KwSty{#6}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#5}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@group{##3}}%
+    %lcase
+    \algocf@newcommand{l#2}{\@ifstar{\csname algocf@l#2star\endcsname}{\csname algocf@l#2\endcsname}}%
+	\algocf@newcmdside{algocf@l#2}{3}{\KwSty{#6}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#5}\algocf@bgroupcode\ ##3\@endalgocfline\algocf@egroupcode\ifArgumentEmpty{##1}\ \relax{ ##1}\strut\par}%
+	\algocf@newcmdside{algocf@l#2star}{3}{\KwSty{#6}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#5}\algocf@bgroupcode\ ##3\algocf@egroupcode}%
+%%%% Other 
+	\algocf@newcmdside@kobe{#3}{\KwSty{#7} \KwSty{#5}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##2}{#8}{##3\relax}}%
+    %lOther
+    \algocf@newcommand{l#3}{\@ifstar{\csname algocf@l#3star\endcsname}{\csname algocf@l#3\endcsname}}%
+	\algocf@newcmdside{algocf@l#3}{2}{\KwSty{#7} \KwSty{#5}\algocf@bgroupcode\ ##2\@endalgocfline\algocf@egroupcode\ifArgumentEmpty{##1}\relax\ {##1}\strut\par}%
+	\algocf@newcmdside{algocf@l#3star}{2}{\KwSty{#7} \KwSty{#5}\algocf@bgroupcode\ ##2\algocf@egroupcode}%
+    %uOther
+	\algocf@newcmdside{u#3}{3}{\KwSty{#7} \KwSty{#5}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@group{##2}}%
 }%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1831,34 +2223,44 @@
 \newcommand{\SetKwIF}[8]{% #1=\If #2=\ElseIf #3=\Else #4=if #5=then #6=elseif #7=else #8=endif
 % 
 % common text
-\algocf@newcommand{#1@ifthen}[1]{\KwSty{#4}\algocf@scond\ArgSty{##1}\algocf@econd\KwSty{#5}}%
-\algocf@newcommand{#1@endif} [1]{\algocf@block{##1}{#8}}%
-\algocf@newcommand{#1@noend} [1]{\algocf@group{##1}}%
-\algocf@newcommand{#1@else}  [1]{\algocf@group{##1}\KwSty{#7}}%
-\algocf@newcommand{#2@elseif}[1]{\KwSty{#6}\algocf@scond\ArgSty{##1}\algocf@econd\KwSty{#5}}%
-\algocf@newcommand{#3@else}     {\KwSty{#7}}%
+	\algocf@newcommand{#1@ifthen}[1]{\KwSty{#4}\algocf@scond\ArgSty{##1}\algocf@econd\KwSty{#5}}%
+	\algocf@newcommand{#1@endif} [2]{\algocf@block{##1}{#8}{##2}}%
+	\algocf@newcommand{#1@noend} [1]{\algocf@group{##1}}%
+	\algocf@newcommand{#1@else}  [1]{\algocf@group{##1}\KwSty{#7}}%
+	\algocf@newcommand{#2@elseif}[1]{\KwSty{#6}\algocf@scond\ArgSty{##1}\algocf@econd\KwSty{#5}}%
+	\algocf@newcommand{#3@else}     {\KwSty{#7}}%
 %%%% If then { } endif
-\algocf@newcmdside{#1}3{\csname #1@ifthen\endcsname{##2}\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@endif\endcsname{##3}}%
+	\algocf@newcmdside@koif{#1}{\csname #1@ifthen\endcsname{##2}\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@endif\endcsname{##3}{##4\relax}}%
 %%%% If then {} else {} endif
-% first command to handle optional side comment of else (so just after first braces)
-\algocf@newcmdside{algocf@e#1thenelse}2{\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@endif\endcsname{##2}}
-% the definition of if-then-else command using command above 
-\algocf@newcmdside{e#1}3{\csname #1@ifthen\endcsname{##2}\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@else\endcsname{##3}\csname algocf@e#1thenelse\endcsname}%
-%%% leif
-\algocf@newcmdside{le#1}4{\csname #1@ifthen\endcsname{##2} ##3 \csname #3@else\endcsname\ ##4\@endalgocfline\ifArgumentEmpty{##1}\relax{##1}\strut\par}
+    % first command to handle optional side comment of else (so just after first braces)
+ 	\algocf@newcmdside@kobe{algocf@e#1thenelse}{\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@endif\endcsname{##2}{##3}}%
+    % the definition of if-then-else command using command above 
+	\algocf@newcmdside{e#1}{3}{\csname #1@ifthen\endcsname{##2}\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@else\endcsname{##3}\csname algocf@e#1thenelse\endcsname}%
+    %%% leif
+    \algocf@newcommand{le#1}{\@ifstar{\csname algocf@le#1star\endcsname}{\csname algocf@le#1\endcsname}}%
+    \algocf@newcmdside{algocf@le#1}{4}{\csname #1@ifthen\endcsname{##2} \algocf@bgroupcode##3 \csname #3@else\endcsname\ ##4\@endalgocfline\ \algocf@egroupcode\ifArgumentEmpty{##1}\relax{##1}\strut\par}%
+    \algocf@newcmdside{algocf@le#1star}{4}{\csname #1@ifthen\endcsname{##2} \algocf@bgroupcode##3 \csname #3@else\endcsname\ ##4\algocf@egroupcode}%
 %%%% If then 
-\algocf@newcmdside{l#1}3{\csname #1@ifthen\endcsname{##2} ##3\@endalgocfline\ifArgumentEmpty{##1}\relax{##1}\strut\par}%
-\algocf@newcmdside{u#1}3{\csname #1@ifthen\endcsname{##2}\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@noend\endcsname{##3}}%
+	% \algocf@newcmdside{l#1}{3}{\csname #1@ifthen\endcsname{##2}\algocf@bgroupcode\
+    % ##3\@endalgocfline\algocf@egroupcode\ifArgumentEmpty{##1}\relax\ {##1}\strut\par}%
+    \algocf@newcommand{l#1}{\@ifstar{\csname algocf@l#1star\endcsname}{\csname algocf@l#1\endcsname}}%
+	\algocf@newcmdside{algocf@l#1}{3}{\csname #1@ifthen\endcsname{##2}\algocf@bgroupcode\ ##3\@endalgocfline\algocf@egroupcode\ifArgumentEmpty{##1}\relax\ {##1}\strut\par}%
+	\algocf@newcmdside{algocf@l#1star}{3}{\csname #1@ifthen\endcsname{##2}\algocf@bgroupcode\ ##3\algocf@egroupcode}%
+	\algocf@newcmdside{u#1}{3}{\csname #1@ifthen\endcsname{##2}\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@noend\endcsname{##3}}%
 %%%% ElseIf {} endif
-\algocf@newcmdside{#2} 3{\csname #2@elseif\endcsname{##2}\relax\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@endif\endcsname{##3}}%
+	\algocf@newcmdside@koif{#2}{\csname #2@elseif\endcsname{##2}\relax\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@endif\endcsname{##3}{##4\relax}}%
 %%%% ElseIf
-\algocf@newcmdside{l#2}3{\csname #2@elseif\endcsname{##2} ##3\@endalgocfline\ifArgumentEmpty{##1}\relax{##1}\strut\par}%
-\algocf@newcmdside{u#2}3{\csname #2@elseif\endcsname{##2}\relax\ifArgumentEmpty{##1}\relax{ ##1}\csname #1@noend\endcsname{##3}}%
+    \algocf@newcommand{l#2}{\@ifstar{\csname algocf@l#2star\endcsname}{\csname algocf@l#2\endcsname}}%
+	\algocf@newcmdside{algocf@l#2}{3}{\csname #2@elseif\endcsname{##2}\algocf@bgroupcode\ ##3\@endalgocfline\algocf@egroupcode\ifArgumentEmpty{##1}\relax\ {##1}\strut\par}%
+	\algocf@newcmdside{algocf@l#2star}{3}{\csname #2@elseif\endcsname{##2}\algocf@bgroupcode\ ##3\algocf@egroupcode}%
+	\algocf@newcmdside{u#2}{3}{\csname #2@elseif\endcsname{##2}\relax\ifArgumentEmpty{##1}\relax{##1}\csname #1@noend\endcsname{##3}}%
 %%%% Else {} endif
-\algocf@newcmdside{#3} 2{\csname #3@else\endcsname\ifArgumentEmpty{##1}\relax\ ##1\csname #1@endif\endcsname{##2}}%
+	\algocf@newcmdside@kobe{#3}{\csname #3@else\endcsname\ifArgumentEmpty{##1}\relax\ ##1\csname #1@endif\endcsname{##2}{##3\relax}}%
 %%%% Else 
-\algocf@newcmdside{l#3}2{\csname #3@else\endcsname\ ##2\@endalgocfline\ifArgumentEmpty{##1}\relax{##1}\strut\par}%
-\algocf@newcmdside{u#3}2{\csname #3@else\endcsname     \ifArgumentEmpty{##1}\relax{\                ##1\relax}\csname #1@noend\endcsname{##2}}%
+    \algocf@newcommand{l#3}{\@ifstar{\csname algocf@l#3star\endcsname}{\csname algocf@l#3\endcsname}}%
+	\algocf@newcmdside{algocf@l#3}{2}{\csname #3@else\endcsname\algocf@bgroupcode\ ##2\@endalgocfline\algocf@egroupcode\ifArgumentEmpty{##1}\relax\ {##1}\strut\par}%
+	\algocf@newcmdside{algocf@l#3star}{2}{\csname #3@else\endcsname\algocf@bgroupcode\ ##2\algocf@egroupcode}%
+	\algocf@newcmdside{u#3}{2}{\csname #3@else\endcsname\ifArgumentEmpty{##1}\relax\ {##1\relax}\csname #1@noend\endcsname{##2}}%
 }% 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1866,8 +2268,10 @@
 % For macros
 %
 \newcommand{\SetKwFor}[4]{%
-\algocf@newcmdside{#1} 3{\KwSty{#2}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#3}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##3}{#4}}%
-\algocf@newcmdside{l#1}3{\KwSty{#2}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#3} ##3\@endalgocfline\ifArgumentEmpty{##1}\relax{##1}\strut\par}%
+	\algocf@newcmdside@koif{#1}{\KwSty{#2}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#3}\ifArgumentEmpty{##1}\relax{ ##1}\algocf@block{##3}{#4}{##4\relax}}%
+    \algocf@newcommand{l#1}{\@ifstar{\csname algocf@l#1star\endcsname}{\csname algocf@l#1\endcsname}}%
+	\algocf@newcmdside{algocf@l#1}{3}{\KwSty{#2}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#3}\algocf@bgroupcode\ ##3\@endalgocfline\algocf@egroupcode\ifArgumentEmpty{##1}\relax\ {##1}\strut\par}%
+	\algocf@newcmdside{algocf@l#1star}{3}{\KwSty{#2}\algocf@scond\ArgSty{##2}\algocf@econd\KwSty{#3}\algocf@bgroupcode\ ##3\algocf@egroupcode}%
 }%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1875,20 +2279,22 @@
 % Repeat macros
 %
 \newsavebox{\algocf@untilbox}% to handle width of until keyword needed to have good skip
-% for line numbers
+  % for line numbers
 \newskip\algocf@skipuntil
 \newcommand{\SetKwRepeat}[3]{%
-\algocf@newcmdsides{#1}{3}{%
-  \sbox\algocf@untilbox{\KwSty{#3}\algocf@scond}\algocf@skipuntil=\wd\algocf@untilbox%
-  \KwSty{#2}\ifArgumentEmpty{##1}\relax{##1}\algocf@group{##3}%
-  \KwSty{#3}\algocf@scond% until keyword and start condition typo
-  \advance\skiptotal by\algocf@skipuntil%
-  \ArgSty{##2}%
-  \advance\skiptotal by-\algocf@skipuntil%
-  \algocf@ucond%
-  \algocf@skipuntil=0pt% reset counter
-}{\@endalgocfline}{\strut\par}%
-\algocf@newcmdside{l#1}3{\KwSty{#2} ##3 \KwSty{#3}\algocf@scond\ArgSty{##2}\algocf@ucond\@endalgocfline\ifArgumentEmpty{##1}\relax{ ##1}\strut\par}%
+	\algocf@newcmdsides{#1}{3}{%
+      \sbox\algocf@untilbox{\KwSty{#3}\algocf@scond}\algocf@skipuntil=\wd\algocf@untilbox%
+      \KwSty{#2}\ifArgumentEmpty{##1}\relax{##1}\algocf@group{##3}%
+      \KwSty{#3}\algocf@scond% until keyword and start condition typo
+      %\advance\skiptotal by\algocf@skipuntil%
+      \ArgSty{##2}%
+      %\advance\skiptotal by-\algocf@skipuntil%
+      \algocf@ucond%
+      \algocf@skipuntil=0pt% reset counter
+    }{\@endalgocfline}{\strut\par}%
+    \algocf@newcommand{l#1}{\@ifstar{\csname algocf@l#1star\endcsname}{\csname algocf@l#1\endcsname}}%
+	\algocf@newcmdside{algocf@l#1}{3}{\KwSty{#2}\algocf@bgroupcode\ ##3\algocf@egroupcode\ \KwSty{#3}\algocf@scond\ArgSty{##2}\algocf@ucond\@endalgocfline\ifArgumentEmpty{##1}\relax{ ##1}\strut\par}%
+	\algocf@newcmdside{algocf@l#1star}{3}{\KwSty{#2}\algocf@bgroupcode\ ##3\algocf@egroupcode\ \KwSty{#3}\algocf@scond\ArgSty{##2}\algocf@ucond}%
 }%
 %
 % 
@@ -1912,7 +2318,7 @@
 \newcommand{\SetAlgoCaptionSeparator}[1]{\renewcommand{\algocf@capseparator}{#1}}%
 \newcommand{\algocf@captiontext}[2]{%
   \algocf@captionlayout{\AlCapSty{\AlCapFnt #1\algocf@typo\algocf@capseparator}\nobreakspace%
-    \AlCapNameSty{\AlCapNameFnt{}#2}}}% text of caption
+    \AlCapNameSty{\AlCapNameFnt{}#2\endgraf}}}% text of caption
 %
 %%%%% default caption of algorithm: used if no specific style caption is defined
 \newcommand{\algocf@makecaption}[2]{%
@@ -1935,15 +2341,17 @@
   \addtolength{\hsize}{-\algomargin}%
   \global\sbox\algocf@capbox{\algocf@makecaption{#1}{#2}}%
   \addtolength{\hsize}{\algomargin}%
-}%
+ }%
 %
+\newlength{\algocf@lcaptionbox}%
 \newcommand{\algocf@makecaption@plainruled}[2]{\algocf@makecaption@plain{#1}{#2}}%
 \newcommand{\algocf@makecaption@tworuled}[2]{\algocf@makecaption@ruled{#1}{#2}}%
 \newcommand{\algocf@makecaption@algoruled}[2]{\algocf@makecaption@ruled{#1}{#2}}%
 \newcommand{\algocf@makecaption@boxruled}[2]{\algocf@makecaption@ruled{#1}{#2}}%
 \newcommand{\algocf@makecaption@ruled}[2]{%
   \global\sbox\algocf@capbox{\hskip\AlCapHSkip% .5\algomargin%
-    \parbox[t]{\hsize}{\algocf@captiontext{#1}{#2}}}% then caption is not centered
+    \setlength{\algocf@lcaptionbox}{\hsize}\addtolength{\algocf@lcaptionbox}{-\AlCapHSkip}%
+    \parbox[t]{\algocf@lcaptionbox}{\algocf@captiontext{#1}{#2}}}% then caption is not centered
 }%
 %
 \newlength{\algoheightruledefault}\setlength{\algoheightruledefault}{0.8pt}%
@@ -1953,21 +2361,21 @@
 \newcommand{\algocf@caption@plain}{\vskip\AlCapSkip\box\algocf@capbox}%
 \newcommand{\algocf@caption@plainruled}{\algocf@caption@plain}%
 \newcommand{\algocf@caption@boxed}{\vskip\AlCapSkip\box\algocf@capbox}%
-\newcommand{\algocf@caption@ruled}{\box\algocf@capbox\kern\interspacetitleruled\hrule  height\algotitleheightrule depth0pt\kern\interspacealgoruled}%
+\newcommand{\algocf@caption@ruled}{\box\algocf@capbox\kern\interspacetitleruled\hrule
+  width\algocf@ruledwidth height\algotitleheightrule depth0pt\kern\interspacealgoruled}%
 \newcommand{\algocf@caption@tworuled}{\box\algocf@capbox\hrule  height0pt depth0pt\kern\interspacealgoruled}%
 \newcommand{\algocf@caption@algoruled}{\algocf@caption@ruled}%
 \newcommand{\algocf@caption@boxruled}{%
-  \addtolength{\hsize}{-0.8pt}%
-  \hbox to\hsize{%
-    \vrule%\hskip-0.35pt%
+  \hbox{%
+    \vrule%
     \vbox{%
+      \addtolength{\hsize}{-0.8pt}%
       \hrule\vskip\interspacetitleboxruled%
       \hbox to\hsize{\unhbox\algocf@capbox\hfill}\vskip\interspacetitleboxruled%
+      \addtolength{\hsize}{0.8pt}%
     }% 
-    %\hskip-0.35pt%
     \vrule%
   }\nointerlineskip%
-  \addtolength{\hsize}{0.8pt}%
 }%
 %
 %
@@ -1989,7 +2397,7 @@
       \renewcommand{\theHalgocf}{\algocf@algocfref}}%else if SetAlgoRefName done, take this name as ref.
     \hyper@refstepcounter{algocf}%set algocf as category of ref
   }%
-  \algocf@latexcaption{#1}[{#2}]{{#3}}% call original caption
+   \algocf@latexcaption{#1}[{#2}]{{#3}}% call original caption
 }%
 %
 % beamer define is own caption overrinding latex caption!
@@ -2012,7 +2420,7 @@
 % \ifx\beamer@makecaption\undefined%
 % \else% beamer detected
 \ifx\@makecaption\undefined%
-  \newcommand{\@makecaption}[2]{\relax}%
+\newcommand{\@makecaption}[2]{\relax}%
 \fi%
 %%
 
@@ -2031,7 +2439,7 @@
   \ifthenelse{\boolean{algocf@func}}{\def\@proc@func{algocffunc}}{\def\@proc@func{algocfproc}}%
   \@ifundefined{hyper@refstepcounter}{\relax}{% if hyper@refstepcounter undefind, no hyperref, else...
     \ifthenelse{\boolean{algocf@procnumbered}}{% 
-      \expandafter\def\csname theH\@proc@func\endcsname{\algocf@captname#3@}%if procnumbered, take \thealgocf as ref
+      \expandafter\def\csname theH\@proc@func\endcsname{\thealgocf}%if procnumbered, take \thealgocf as ref
     }{%
       \expandafter\def\csname theH\@proc@func\endcsname{\algocf@captname#3@}%else take procedure or function name
     }%
@@ -2093,14 +2501,14 @@
 \setcounter{algocfline}{0}%                 % different in different algorithms
 \newcounter{algocfproc}% counter to count all algo environment (proc, func), just used by hyperref to avoir "same
 \setcounter{algocfproc}{0}% identifier" error caused by algocf being set to '-' for procedure or function or not
-% changed if no caption is given.
+  % changed if no caption is given.
 %
 \expandafter\ifx\csname algocf@within\endcsname\relax% if \algocf@within doesn't exist
-  \newcounter{algocf}%                        % just define a new counter
-  \renewcommand{\thealgocf}{\@arabic\c@algocf}% and the way it is printed
+\newcounter{algocf}%                        % just define a new counter
+\renewcommand{\thealgocf}{\@arabic\c@algocf}% and the way it is printed
 \else%                                     else
-  \newcounter{algocf}[\algocf@within]%        % counter is numbered within \algocf@within
-  \renewcommand\thealgocf{\csname the\algocf@within\endcsname.\@arabic\c@algocf}%
+\newcounter{algocf}[\algocf@within]%        % counter is numbered within \algocf@within
+\renewcommand\thealgocf{\csname the\algocf@within\endcsname.\@arabic\c@algocf}%
 \fi%
 %
 \def\fps@algocf{htbp}%        % default
@@ -2109,27 +2517,26 @@
 \newcommand{\fnum@algocf}{\AlCapSty{\AlCapFnt\algorithmcfname\nobreakspace\thealgocf}}%
 \newcommand{\algocf@resetfnum}{\renewcommand{\fnum@algocf}{\AlCapSty{\AlCapFnt\algorithmcfname\nobreakspace\thealgocf}}}%
 \newenvironment{algocf}%      % float environment for algorithms
-{\@float{algocf}}%
-{\end@float}%
+               {\@float{algocf}}%
+               {\end@float}%
 \newenvironment{algocf*}%     % float* environment for algorithms
-{\@dblfloat{algocf}}%
-{\end@dblfloat}%
+               {\@dblfloat{algocf}}%
+               {\end@dblfloat}%
 %
 \def\algocf@seclistalgo{}%
 \ifx\l@chapter\undefined\let\algocf@seclistalgo=\section\else\let\algocf@seclistalgo=\chapter\fi%
 \@ifundefined{if@restonecol}{\newif\if@restonecol}\relax%
 \newcommand\listofalgocfs{%
-  \ifx\algocf@seclistalgo\chapter%
-    \if@twocolumn\@restonecoltrue\onecolumn\else\@restonecolfalse\fi%
-  \fi%
-  \algocf@seclistalgo*{\listalgorithmcfname}%
-  \@mkboth{\MakeUppercase\listalgorithmcfname}%
-  {\MakeUppercase\listalgorithmcfname}%
-  \zihao{-4}\songti
-  \@starttoc{loa}%
-  \ifx\algocf@seclistalgo\chapter%
-    \if@restonecol\twocolumn\fi%
-  \fi%
+     \ifx\algocf@seclistalgo\chapter%
+      \if@twocolumn\@restonecoltrue\onecolumn\else\@restonecolfalse\fi%
+    \fi%
+     \algocf@seclistalgo*{\listalgorithmcfname}%
+       \@mkboth{\MakeUppercase\listalgorithmcfname}%
+               {\MakeUppercase\listalgorithmcfname}%
+     \@starttoc{loa}%
+    \ifx\algocf@seclistalgo\chapter%
+      \if@restonecol\twocolumn\fi%
+    \fi%
 }
 %
 \newcommand*\l@algocf{\@dottedtocline{1}{1em}{2.3em}}% line of the list
@@ -2148,19 +2555,19 @@
 \def\@algocf@post@plain{\relax}% action to be done after printing the algo.
 \def\@algocf@capt@plain{bottom}% where the caption should be localized.
 \def\@algocf@pre@boxed{\noindent\begin{lrbox}{\algocf@algoframe}}
-    \def\@algocf@post@boxed{\end{lrbox}\framebox[\hsize]{\box\algocf@algoframe}\par}%
+\def\@algocf@post@boxed{\end{lrbox}\framebox[\hsize]{\box\algocf@algoframe}\par}%
 \def\@algocf@capt@boxed{under}%
-\def\@algocf@pre@ruled{\hrule height\algoheightrule depth0pt\kern\interspacetitleruled}%
-\def\@algocf@post@ruled{\kern\interspacealgoruled\hrule height\algoheightrule\relax}%
+\def\@algocf@pre@ruled{\hrule width\algocf@ruledwidth height\algoheightrule depth0pt\kern\interspacetitleruled}%
+\def\@algocf@post@ruled{\kern\interspacealgoruled\hrule width\algocf@ruledwidth height\algoheightrule\relax}%
 \def\@algocf@capt@ruled{top}%
-\def\@algocf@pre@algoruled{\hrule height\algoheightrule depth0pt\kern\interspacetitleruled}%
-\def\@algocf@post@algoruled{\kern\interspacealgoruled\hrule height\algoheightrule \relax}%
+\def\@algocf@pre@algoruled{\hrule width\algocf@ruledwidth height\algoheightrule depth0pt\kern\interspacetitleruled}%
+\def\@algocf@post@algoruled{\kern\interspacealgoruled\hrule width\algocf@ruledwidth height\algoheightrule \relax}%
 \def\@algocf@capt@algoruled{top}%
 \def\@algocf@pre@tworuled{\hrule height\algoheightrule depth0pt\kern\interspacetitleruled}%
 \def\@algocf@post@tworuled{\kern\interspacealgoruled\hrule height\algoheightrule\relax}%
 \def\@algocf@capt@tworuled{top}%
 \def\@algocf@pre@boxruled{\noindent\begin{lrbox}{\algocf@algoframe}}%
-    \def\@algocf@post@boxruled{\end{lrbox}\framebox[\hsize]{\box\algocf@algoframe}\par}%
+\def\@algocf@post@boxruled{\end{lrbox}\framebox[\hsize]{\box\algocf@algoframe}\par}%
 \def\@algocf@capt@boxruled{above}%
 \def\@algocf@pre@plainruled{\@algocf@pre@ruled}%  action to be done before printing the algo.
 \def\@algocf@post@plainruled{\@algocf@post@ruled\kern\interspacealgoruled}%  action to be done before printing the algo.
@@ -2168,11 +2575,11 @@
 %
 \newcommand{\noalgocaption}{\def\@algocf@capt@ruled{none}}
 %
-%% before algocf or figure environment
+%% before algocf environment (not figure environment)
 \newcommand{\@algocf@init@caption}{%
   \ifthenelse{\boolean{algocf@procenvironment}}{% if we are inside a procedure/function environment
     \@algocf@proctitleofalgo% set Titleofalgo to Procedure: or Function:
-    % accordingly to the environment
+                            % accordingly to the environment
     \let\old@thealgocf=\thealgocf\ifthenelse{\boolean{algocf@procnumbered}}{\relax}{%
       \renewcommand{\thealgocf}{-}}%
   }{% else inside environment algorithm
@@ -2185,12 +2592,12 @@
 \newcommand{\@algocf@init}{%
   \refstepcounter{algocfline}%
   \stepcounter{algocfproc}%to have a different counter for each environment and being abble to make the difference
-  %between href of algoline in different algorithms.
+    %between href of algoline in different algorithms.
   \ifthenelse{\boolean{algocf@optnoend}}{%
-    \renewcommand{\algocf@block}[2]{\algocf@group{##1}}%
-  }{%
-    \renewcommand{\algocf@block}[2]{\algocf@@block{##1}{##2}}%
-  }%
+      \renewcommand{\algocf@block}[3]{\algocf@group{##1}}%
+    }{%
+      \renewcommand{\algocf@block}[3]{\algocf@@block{##1}{##2}{##3}}%
+    }%
 }%
 %% after the end of algocf or figure environment
 \newcommand{\@algocf@term@caption}{%
@@ -2200,7 +2607,7 @@
 \newcommand{\@algocf@term}{%
   \setboolean{algocf@algoH}{false}% no H by default
   \ifthenelse{\boolean{algocf@optnoend}}{%
-    \renewcommand{\algocf@block}[2]{\algocf@@block{##1}{##2}}%
+    \renewcommand{\algocf@block}[3]{\algocf@@block{##1}{##2}{##3}}%
   }{%
     \renewcommand{\algocf@block}[2]{\algocf@group{##1}}%
   }%
@@ -2220,18 +2627,18 @@
     % precommand according to the style
     \csname @algocf@pre@\algocf@style\endcsname%
     % place caption at top if needed  bye the style
-    \ifthenelse{\equal{\csname @algocf@capt@\algocf@style\endcsname}{top}}%
-    {\csname algocf@caption@\algocf@style\endcsname}{}%
+     \ifthenelse{\equal{\csname @algocf@capt@\algocf@style\endcsname}{top}}%
+     {\csname algocf@caption@\algocf@style\endcsname}{}%
     %
     \box\algocf@algobox% the algo
     % place caption at bottom if needed  bye the style
-    \ifthenelse{\equal{\csname @algocf@capt@\algocf@style\endcsname}{bottom}}%
-    {\csname algocf@caption@\algocf@style\endcsname}{}%
+     \ifthenelse{\equal{\csname @algocf@capt@\algocf@style\endcsname}{bottom}}%
+     {\csname algocf@caption@\algocf@style\endcsname}{}%
     % postcommand according to the style
     \csname @algocf@post@\algocf@style\endcsname%
     % place caption under if needed  bye the style
-    \ifthenelse{\equal{\csname @algocf@capt@\algocf@style\endcsname}{under}}%
-    {\csname algocf@caption@\algocf@style\endcsname}{}%
+     \ifthenelse{\equal{\csname @algocf@capt@\algocf@style\endcsname}{under}}%
+     {\csname algocf@caption@\algocf@style\endcsname}{}%
   }%
 }%
 %%%%%%%%%%%%%%%%%%%
@@ -2241,27 +2648,28 @@
 \newcommand{\@algocf@start}{%
   \@algoskip%
   \begin{lrbox}{\algocf@algobox}%
-    \setlength{\algowidth}{\hsize}%
-    \vbox\bgroup% save all the algo in a box
-    \hbox to\algowidth\bgroup\hbox to \algomargin{\hfill}\vtop\bgroup%
-    \ifthenelse{\boolean{algocf@slide}}{\parskip 0.5ex\color{black}}{}%
-    % initialization
-    \addtolength{\hsize}{-1.5\algomargin}%
-    \let\@mathsemicolon=\;\def\;{\ifmmode\@mathsemicolon\else\@endalgoln\fi}%
-    \raggedright\AlFnt{}%
-    \ifthenelse{\boolean{algocf@slide}}{\IncMargin{\skipalgocfslide}}{}%
-    \@algoinsideskip%
-    %   \let\@emathdisplay=\]\def\]{\algocf@endline\@emathdisplay\nl}%
-    }%
-    %
-    %% at the end of algocf or figure environment
-    \newcommand{\@algocf@finish}{%
-    \@algoinsideskip%
-    \egroup%end of vtop which contain all the text
-    \hfill\egroup%end of hbox wich contains [margin][vtop]
-    \ifthenelse{\boolean{algocf@slide}}{\DecMargin{\skipalgocfslide}}{}%
-    %
-    \egroup%end of main vbox
+  \setlength{\algowidth}{\hsize}%
+  \vbox\bgroup% save all the algo in a box
+  \hbox to\algowidth\bgroup\hbox to \algomargin{\hfill}\vtop\bgroup%
+  \ifthenelse{\boolean{algocf@slide}}{\parskip 0.5ex\color{black}}{}%
+  % initialization
+  \addtolength{\hsize}{-\algomargin}\addtolength{\hsize}{-1.5em}% 1.5em to let space for line numbering
+  \let\@mathsemicolon=\;\def\;{\ifmmode\@mathsemicolon\else\@endalgoln\fi}%
+  \raggedright%
+  \AlFnt{}%
+  \ifthenelse{\boolean{algocf@slide}}{\IncMargin{\skipalgocfslide}}{}%
+  \@algoinsideskip%
+%   \let\@emathdisplay=\]\def\]{\algocf@endline\@emathdisplay\nl}%
+}%
+%
+%% at the end of algocf or figure environment
+\newcommand{\@algocf@finish}{%
+  \@algoinsideskip%
+  \egroup%end of vtop which contain all the text
+  \hfill\egroup%end of hbox wich contains [margin][vtop]
+  \ifthenelse{\boolean{algocf@slide}}{\DecMargin{\skipalgocfslide}}{}%
+  %
+  \egroup%end of main vbox
   \end{lrbox}%
   \algocf@makethealgo% print the algo
   \@algoskip%
@@ -2285,55 +2693,77 @@
 \newenvironment{algocf@Here}{\noindent%
   \def\@captype{algocf}% if not defined, caption exit with an error
   \begin{minipage}{\hsize}%
-    }{%
+}{%
   \end{minipage}%\par%
 }%
 %%% real algorithm environment which manages H and * option
 %    \let\algocf@originalfloatboxreset=\@floatboxreset%
 %    \let\@floatboxreset=\@algofloatboxreset%
-\newenvironment{algocf@algorithm}[1][htbp]{
-  \@algocf@init%
-  \ifthenelse{\equal{\algocf@float}{figure}}{% if option figure set
-    \ifthenelse{\boolean{algocf@algostar}}{% if algorithm* with figure option
-      \begin{figure*}[#1]% call figure*
-    }{% else algorithm environment with figure option
-      \begin{figure}[#1]%  call figure
-    }%
-  }{% else normal algorithm environment
-    \@algocf@init@caption%
-    \ifthenelse{\equal{#1}{H}}{% if [H] algorithm
-      \if@twocolumn\@latex@error{[H] in two columns mode is not allowed for algorithms}\fi% TODO: SCREAM if H in two colums!
-      \setboolean{algocf@algoH}{true}\begin{algocf@Here}% call corresponding environment
-    }{% else floating algorithm environment
-      \ifthenelse{\boolean{algocf@algostar}}{% if algorithm*
-        \begin{algocf*}[#1]% call algocf*
-      }{% else algorithm environment
-        \begin{algocf}[#1]%  call algcf
-          }%
-          }%
-          }% fin test option figure ou pas
-          \@algocf@start% 
-          \@ResetCounterIfNeeded%
-          \algocf@linesnumbered\ignorespaces%
-          }{%
-          \@algocf@finish%
-          \ifthenelse{\equal{\algocf@float}{figure}}{%
-          \ifthenelse{\boolean{algocf@algostar}}{% if algorithm* with figure option
-            \end{figure*}% call figure*
-          }{% else algorithm environment with figure option
-            \end{figure}%  call figure
-          }%
-          }{%
-          \@algocf@term@caption%
-          \ifthenelse{\boolean{algocf@algoH}}{% if [H] algorithm
-          \end{algocf@Here}\par% call corresponding environment
-          }{% else floating algorithm environment
-          \ifthenelse{\boolean{algocf@algostar}}{% if algorithm*
-          \end{algocf*}% call algocf*
-          }{% else algorithm environment
-        \end{algocf}%  call algocf
-      }%
-    }%
+\newenvironment{algocf@algorithm}[1][htbp]{%
+   \@algocf@init%
+   \ifthenelse{\equal{\algocf@float}{figure}}{% if option figure set
+     \ifthenelse{\boolean{algocf@algostar}}{% if algorithm* with figure option
+       \begin{figure*}[#1]% call figure*
+         \ifthenelse{\boolean{algocf@customruledwidth}}{\relax}{\setlength{\algocf@ruledwidth}{\linewidth}}%
+         \let\algocf@oldeverypar=\everypar%
+         \algocf@seteverypar%
+         \addtolength{\linewidth}{-\algomargin}% caption package use \linewidth as basic width of caption
+     }{% else algorithm environment with figure option
+       \begin{figure}[#1]%  call figure
+         \ifthenelse{\boolean{algocf@customruledwidth}}{\relax}{\setlength{\algocf@ruledwidth}{\linewidth}}%
+          \let\algocf@oldeverypar=\everypar%
+         \algocf@seteverypar%
+         \addtolength{\linewidth}{-\algomargin}% so now \linewidth==\hsize. Needed by caption package that uses \linewidth as basic width of caption
+     }%
+   }{% else normal algorithm environment
+     \@algocf@init@caption%
+     \ifthenelse{\equal{#1}{H}}{% if [H] algorithm
+       \if@twocolumn\@latex@error{[H] in two columns mode is not allowed for algorithms}\fi% TODO: SCREAM if H in two colums!
+       \setboolean{algocf@algoH}{true}\begin{algocf@Here}% call corresponding environment
+         \ifthenelse{\boolean{algocf@customruledwidth}}{\relax}{\setlength{\algocf@ruledwidth}{\linewidth}}%
+         \let\algocf@oldeverypar=\everypar%
+         \algocf@seteverypar%
+     }{% else floating algorithm environment
+       \ifthenelse{\boolean{algocf@algostar}}{% if algorithm*
+         \begin{algocf*}[#1]% call algocf*
+           \ifthenelse{\boolean{algocf@customruledwidth}}{\relax}{\setlength{\algocf@ruledwidth}{\linewidth}}%
+           \let\algocf@oldeverypar=\everypar%
+           \algocf@seteverypar%
+       }{% else algorithm environment
+         \begin{algocf}[#1]%  call algocf
+           \ifthenelse{\boolean{algocf@customruledwidth}}{\relax}{\setlength{\algocf@ruledwidth}{\linewidth}}%
+           \let\algocf@oldeverypar=\everypar%
+           \algocf@seteverypar%
+       }%
+     }%
+   }% fin test option figure ou pas
+   \@algocf@start% 
+   \@ResetCounterIfNeeded%
+   \algocf@linesnumbered\ignorespaces%
+}{%
+  \@algocf@finish%
+  \ifthenelse{\equal{\algocf@float}{figure}}{%
+     \ifthenelse{\boolean{algocf@algostar}}{% if algorithm* with figure option
+       \let\everypar=\algocf@oldeverypar%
+       \end{figure*}% call figure*
+     }{% else algorithm environment with figure option
+       \let\everypar=\algocf@oldeverypar%
+       \end{figure}%  call figure
+     }%
+  }{%
+    \@algocf@term@caption%
+    \ifthenelse{\boolean{algocf@algoH}}{% if [H] algorithm
+      \let\everypar=\algocf@oldeverypar%
+      \end{algocf@Here}\par% call corresponding environment
+     }{% else floating algorithm environment
+       \ifthenelse{\boolean{algocf@algostar}}{% if algorithm*
+         \let\everypar=\algocf@oldeverypar%
+         \end{algocf*}% call algocf*
+       }{% else algorithm environment
+         \let\everypar=\algocf@oldeverypar%
+         \end{algocf}%  call algocf
+       }%
+     }%
   }%
   \@algocf@term\ignorespacesafterend%
 }%
@@ -2343,7 +2773,7 @@
   \setboolean{algocf@algostar}{false}%
   \setboolean{algocf@procenvironment}{false}\gdef\algocfautorefname{\algorithmautorefname}%
   \begin{algocf@algorithm}[#1]\ignorespaces%
-    }{%
+}{%
   \end{algocf@algorithm}\ignorespacesafterend%
 }%
 %%% user algorithm* environment
@@ -2351,7 +2781,7 @@
   \setboolean{algocf@algostar}{true}%
   \setboolean{algocf@procenvironment}{false}\gdef\algocfautorefname{\algorithmautorefname}%
   \begin{algocf@algorithm}[#1]\ignorespaces%
-    }{%
+}{%
   \end{algocf@algorithm}\ignorespacesafterend%
 }%
 %
@@ -2377,13 +2807,13 @@
 %%% Text of caption for Procedure or Function
 \newcommand{\algocf@captionproctext}[2]{%
   {%
-      \ProcSty{\ProcFnt\algocf@procname\ifthenelse{\boolean{algocf@procnumbered}}{\nobreakspace\thealgocf\algocf@typo\algocf@capseparator}{\relax}}%
-      \nobreakspace\ProcNameSty{\ProcNameFnt\algocf@captname #2@}% Name of the procedure in ProcName Style. 
-      \ifthenelse{\equal{\algocf@captparam #2@}{\arg@e}}{}{% if no argument, write nothing
-        \ProcNameSty{\ProcNameFnt(}\ProcArgSty{\ProcArgFnt\algocf@captparam #2@}\ProcNameSty{\ProcNameFnt)}%else put arguments in ProcArgSty:
-      }% endif
-      \algocf@captother #2@%
-    }%
+    \ProcSty{\ProcFnt\algocf@procname\ifthenelse{\boolean{algocf@procnumbered}}{\nobreakspace\thealgocf\algocf@typo\algocf@capseparator}{\relax}}%
+    \nobreakspace\ProcNameSty{\ProcNameFnt\algocf@captname #2@}% Name of the procedure in ProcName Style. 
+    \ifthenelse{\equal{\algocf@captparam #2@}{\arg@e}}{}{% if no argument, write nothing
+      \ProcNameSty{\ProcNameFnt(}\ProcArgSty{\ProcArgFnt\algocf@captparam #2@}\ProcNameSty{\ProcNameFnt)}%else put arguments in ProcArgSty:
+    }% endif
+    \algocf@captother #2@%
+  }%
 }%
 %
 %
@@ -2394,7 +2824,7 @@
   \setboolean{algocf@procenvironment}{true}\setboolean{algocf@func}{false}%
   \newcommand{\algocf@procname}{\@algocf@procname}\gdef\algocfprocautorefname{\procedureautorefname}%
   \begin{algocf@algorithm}[#1]\ignorespaces%
-    }{%
+}{%
   \end{algocf@algorithm}\ignorespacesafterend%
 }%
 \newenvironment{function}[1][htbp]{%
@@ -2402,7 +2832,7 @@
   \setboolean{algocf@procenvironment}{true}\setboolean{algocf@func}{true}%
   \newcommand{\algocf@procname}{\@algocf@funcname}\gdef\algocffuncautorefname{\functionautorefname}%
   \begin{algocf@algorithm}[#1]\ignorespaces%
-    }{%
+}{%
   \end{algocf@algorithm}\ignorespacesafterend%
 }%
 %
@@ -2411,7 +2841,7 @@
   \setboolean{algocf@procenvironment}{true}\setboolean{algocf@func}{false}%
   \newcommand{\algocf@procname}{\@algocf@procname}\gdef\algocfprocautorefname{\procedureautorefname}%
   \begin{algocf@algorithm}[#1]\ignorespaces%
-    }{%
+}{%
   \end{algocf@algorithm}\ignorespacesafterend%
 }%
 \newenvironment{function*}[1][htbp]{%
@@ -2419,7 +2849,7 @@
   \setboolean{algocf@procenvironment}{true}\setboolean{algocf@func}{true}%
   \newcommand{\algocf@procname}{\@algocf@funcname}\gdef\algocffuncautorefname{\functionautorefname}%
   \begin{algocf@algorithm}[#1]\ignorespaces%
-    }{%
+}{%
   \end{algocf@algorithm}\ignorespacesafterend%
 }%
 %
@@ -2428,56 +2858,56 @@
 %% definition of algondfloat environment
 %%
 \ifthenelse{\boolean{algocf@endfloat}}{% if endfloat option then
-  \newcommand{\algoplace}{% macro which is used to writhe algorithm about there
-    \begin{center}%
-      [\algorithmcfname~\thepostfig\ about here.]%
-    \end{center}%
-  }%
-  \newcommand{\algoendfloat}{% use as a \begin{algoendfloat} environment to start scanning of line
-    %  \immediate\openout\@mainfff\jobname.fff%
-    \efloat@condopen{fff}
-    \efloat@iwrite{fff}{\string\begin{\algocf@envname}}%
-        \if@domarkers%
-          \ifthenelse{\equal{\algocf@list}{lof}}{%
-            \addtocounter{postfig}{1}%
-          }{%
-            \addtocounter{postalgo}{1}%
-          }%
-          \algoplace%
-        \fi%
-        \bgroup%
-        \let\do\ef@makeinnocent\dospecials%
-        \ef@makeinnocent\^^L% and whatever other special cases
-        \endlinechar`\^^M \catcode`\^^M=12 \ef@xalgocfendfloat}%
-        }{\relax}%%%% end of endfloat option ifthenelse
-        %% some macros useful for endfloat option that cannot be defined inside the ifthenelse
-        %scan algoendfloat algorithm and write the text into .fff file
-        {\catcode`\^^M=12 \endlinechar=-1 %
-        \gdef\ef@xalgocfendfloat#1^^M{% scan the lines inside algoendfloat environment being read by latex
-        \def\test{#1}% test is the line being currently scan by latex
-        \ifx\test\ef@endalgocftest% if it is \end{algoendfloat}
-        \def\next{% define next as to not continue the scan and write \end{algorithm} into .fff file
-        \egroup\end{algoendfloat}%
-        \efloat@iwrite{fff}{\string\end{\algocf@envname}}%
-    \efloat@iwrite{fff}{\string\efloatseparator}%
-    \efloat@iwrite{fff}{ }%
-  }%
-  \else% else write the current line being scanned by latex and set next to continue the scan
-  \efloat@iwrite{fff}{#1}%
-  \let\next\ef@xalgocfendfloat%
-  \fi% endif
-  \next}% next is continue if it was else condition, else it does not continue the scan and write end to file
+\newcommand{\algoplace}{% macro which is used to writhe algorithm about there
+   \begin{center}%
+     [\algorithmcfname~\thepostfig\ about here.]%
+   \end{center}%
+}%
+\newcommand{\algoendfloat}{% use as a \begin{algoendfloat} environment to start scanning of line
+%  \immediate\openout\@mainfff\jobname.fff%
+  \efloat@condopen{fff}
+  \efloat@iwrite{fff}{\string\begin{\algocf@envname}}%
+    \if@domarkers%
+       \ifthenelse{\equal{\algocf@list}{lof}}{%
+         \addtocounter{postfig}{1}%
+       }{%
+         \addtocounter{postalgo}{1}%
+       }%
+       \algoplace%
+    \fi%
+    \bgroup%
+    \let\do\ef@makeinnocent\dospecials%
+    \ef@makeinnocent\^^L% and whatever other special cases
+    \endlinechar`\^^M \catcode`\^^M=12 \ef@xalgocfendfloat}%
+}{\relax}%%%% end of endfloat option ifthenelse
+%% some macros useful for endfloat option that cannot be defined inside the ifthenelse
+%scan algoendfloat algorithm and write the text into .fff file
+{\catcode`\^^M=12 \endlinechar=-1 %
+ \gdef\ef@xalgocfendfloat#1^^M{% scan the lines inside algoendfloat environment being read by latex
+   \def\test{#1}% test is the line being currently scan by latex
+   \ifx\test\ef@endalgocftest% if it is \end{algoendfloat}
+     \def\next{% define next as to not continue the scan and write \end{algorithm} into .fff file
+       \egroup\end{algoendfloat}%
+       \efloat@iwrite{fff}{\string\end{\algocf@envname}}%
+       \efloat@iwrite{fff}{\string\efloatseparator}%
+       \efloat@iwrite{fff}{ }%
+     }%
+     \else% else write the current line being scanned by latex and set next to continue the scan
+       \efloat@iwrite{fff}{#1}%
+       \let\next\ef@xalgocfendfloat%
+     \fi% endif
+     \next}% next is continue if it was else condition, else it does not continue the scan and write end to file
 }%
 % test if the scan is finish by looking at the string \end{algoendfloat}
 {\escapechar=-1%
-\xdef\ef@endalgocftest{\string\\end\string\{algoendfloat\string\}}%
+ \xdef\ef@endalgocftest{\string\\end\string\{algoendfloat\string\}}%
 }%
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % 
-\newcommand{\TitleOfAlgo}[1]{\@titleprefix\
+\newcommand{\TitleOfAlgo}[1]{\@titleprefix\ 
   \TitleSty{#1}\par\smallskip}%
 %
 \newcommand{\SetAlgorithmName}[3]{%
@@ -2507,8 +2937,30 @@
 %\newcommand{\algocf@defaults@common}{
 %
 %
-% french keywords
+% english keywords (default)
 %
+\SetKwHangingKw{KwHData}{Data$\rightarrow$}
+\SetKwInput{KwIn}{Input}%
+\SetKwInput{KwOut}{Output}%
+\SetKwInput{KwData}{Data}%
+\SetKwInput{KwResult}{Result}%
+\SetKw{KwTo}{to}
+\SetKw{KwRet}{return}%
+\SetKw{Return}{return}%
+\SetKwBlock{Begin}{begin}{end}%
+\SetKwRepeat{Repeat}{repeat}{until}%
+%
+\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{end if}%
+\SetKwSwitch{Switch}{Case}{Other}{switch}{do}{case}{otherwise}{end case}{end switch}%
+\SetKwFor{For}{for}{do}{end for}%
+\SetKwFor{ForPar}{for}{do in parallel}{end forpar}
+\SetKwFor{ForEach}{foreach}{do}{end foreach}%
+\SetKwFor{ForAll}{forall}{do}{end forall}%
+\SetKwFor{While}{while}{do}{end while}%
+%
+% French keywords
+%
+\ifthenelse{\boolean{algocf@localkw@french}\OR\equal{\algocf@languagechoosen}{french}}{%
 %\SetKwInOut{AlgDonnees}{Donn\'ees}\SetKwInOut{AlgRes}{R\'esultat}
 \SetKwHangingKw{HDonnees}{Donnees$\rightarrow$}
 \SetKwInput{Donnees}{Donn\'ees}%
@@ -2527,30 +2979,11 @@
 \SetKwFor{PourCh}{pour chaque}{faire}{fin pour chaque}%
 \SetKwFor{PourTous}{pour tous les}{faire}{fin pour tous}%
 \SetKwFor{Tq}{tant que}{faire}{fin tq}%
-%
-% english keywords
-%
-\SetKwHangingKw{KwHData}{Data$\rightarrow$}
-\SetKwInput{KwIn}{Input}%
-\SetKwInput{KwOut}{Output}%
-\SetKwInput{KwData}{Data}%
-\SetKwInput{KwResult}{Result}%
-\SetKw{KwTo}{to}
-\SetKw{KwRet}{return}%
-\SetKw{Return}{return}%
-\SetKwBlock{Begin}{begin}{end}%
-\SetKwRepeat{Repeat}{repeat}{until}%
-%
-\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{end if}%
-\SetKwSwitch{Switch}{Case}{Other}{switch}{do}{case}{otherwise}{end case}{end switch}%
-\SetKwFor{For}{for}{do}{end for}%
-\SetKwFor{ForPar}{for}{do in parallel}{end forpar}
-\SetKwFor{ForEach}{foreach}{do}{end foreach}%
-\SetKwFor{ForAll}{forall the}{do}{end forall}%
-\SetKwFor{While}{while}{do}{end while}%
+}{}%
 %
 % --- German keywords
 %
+\ifthenelse{\boolean{algocf@localkw@german}\OR\equal{\algocf@languagechoosen}{german}}{%
 \SetKwInput{Ein}{Eingabe}%KwIn
 \SetKwInput{Aus}{Ausgabe}%KwOut
 \SetKwInput{Daten}{Daten}%KwData
@@ -2568,15 +3001,19 @@
 \SetKwFor{FuerJedes}{f\"ur jedes}{tue}{Ende f\"ur}%ForEach
 \SetKwFor{FuerAlle}{f\"ur alle}{tue}{Ende f\"ur}%ForAll
 \SetKwFor{Solange}{solange}{tue}{Ende solange}%While
+}{}%
 %
 % --- Czech keywords
 %
+\ifthenelse{\boolean{algocf@localkw@czech}\OR\equal{\algocf@languagechoosen}{czech}}{%
 \SetKwInput{Vst}{Vstup}%
 \SetKwInput{Vyst}{V\'{y}stup}%
 \SetKwInput{Vysl}{V\'{y}sledek}%
+}{}%
 %
 % --- Portuguese keywords
 %
+\ifthenelse{\boolean{algocf@localkw@portuguese}\OR\equal{\algocf@languagechoosen}{portuguese}}{%
 \SetKwInput{Entrada}{Entrada}%
 \SetKwInput{Saida}{Sa\'{i}da}%
 \SetKwInput{Dados}{Dados}%
@@ -2594,9 +3031,11 @@
 \SetKwFor{ParaCada}{para cada}{fa\c{c}a}{fim para cada}%
 \SetKwFor{ParaTodo}{para todo}{fa\c{c}a}{fim para todo}%
 \SetKwFor{Enqto}{enquanto}{fa\c{c}a}{fim enqto}%
+}{}%
 %
 % --- Italian keywords
 %
+\ifthenelse{\boolean{algocf@localkw@italiano}\OR\equal{\algocf@languagechoosen}{italiano}}{%
 \SetKwInput{KwIng}{Ingresso}%
 \SetKwInput{KwUsc}{Uscita}%
 \SetKwInput{KwDati}{Dati}%
@@ -2614,9 +3053,11 @@
 \SetKwFor{PerCiascun}{per ciascun}{fai}{fine per ciascun}%
 \SetKwFor{PerTutti}{per tutti i}{fai}{fine per tutti}%
 \SetKwFor{Finche}{finch\'e}{fai}{fine finch\'e}%
+}{}%
 %
 % --- Spanish keywords
 %
+\ifthenelse{\boolean{algocf@localkw@spanish}\OR\equal{\algocf@languagechoosen}{spanish}}{%
 \SetKwInput{Datos}{Datos}
 \SetKwInput{Resultado}{Resultado}
 \SetKwInput{Entrada}{Entrada}
@@ -2634,12 +3075,14 @@
 \SetKwFor{ParaCada}{para cada}{hacer}{fin para cada}
 \SetKwFor{ParaTodo}{para todo}{hacer}{fin para todo}
 \SetKwRepeat{Repetir}{repetir}{hasta que}
+}{}%
 %
 % Croatian keywords
 %
+\ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{croatian}}{%
 \SetKwInput{KwUlaz}{Ulaz}%KwIn
 \SetKwInput{KwIzlaz}{Izlaz}%KwOut
-\SetKwInput{KwPodaci}{Podaci}%KwData
+\SetKwInput{KwPodatci}{Podatci}%KwData
 \SetKwInput{KwRezultat}{Rezultat}%KwResult
 \SetKw{KwDo}{do}%KwTo
 \SetKw{KwVrati}{vrati}%KwRet
@@ -2647,15 +3090,39 @@
 \SetKwBlock{Pocetak}{po\v{c}etak}{kraj}%Begin
 \SetKwRepeat{Ponavljaj}{ponavljaj}{dok ne bude}%Repeat
 %
-\SetKwIF{Ako}{InaceAko}{Inace}{ako}{onda}{ina\v{c}e ako}{ina\v{c}e}{kraj}%gIf
-\SetKwSwitch{Granaj}{Slucaj}{Inace}{granaj}{\v{c}ini}{slu\v{c}aj}{ina\v{c}e}{kraj}{kraj}%Switch
-\SetKwFor{Za}{za}{\v{c}ini}{kraj}%For
-\SetKwFor{ZaPar}{za}{izvr\v{s}avaj paralelno}{kraj}%ForPar
-\SetKwFor{ZaSvaki}{za svaki}{\v{c}ini}{kraj}%mForEach
-\SetKwFor{ZaSvaku}{za svaku}{\v{c}ini}{kraj}%fForEach
-\SetKwFor{ZaSvako}{za svako}{\v{c}ini}{kraj}%nForEach
-\SetKwFor{ZaSve}{za sve}{\v{c}ini}{kraj}%ForAll
-\SetKwFor{Dok}{dok}{\v{c}ini}{kraj}%While
+\SetKwIF{Ako}{InaceAko}{Inace}{ako}{onda}{ina\v{c}e ako}{ina\v{c}e}{kraj ako}%gIf
+\SetKwSwitch{Granaj}{Slucaj}{OstaliSlucajevi}{granaj}{\v{c}ini}{slu\v{c}aj}{ostali slu\v{c}ajevi}{kraj slu\v{c}aj}{kraj granaj}%Switch
+\SetKwFor{Za}{za}{\v{c}ini}{kraj za}%For
+\SetKwFor{ZaPar}{za}{\v{c}ini paralelno}{kraj za paralelno}%ForPar
+\SetKwFor{ZaSvaki}{za svaki}{\v{c}ini}{kraj za svaki}%mForEach
+\SetKwFor{ZaSvaku}{za svaku}{\v{c}ini}{kraj za svaku}%fForEach
+\SetKwFor{ZaSvako}{za svako}{\v{c}ini}{kraj za svako}%nForEach
+\SetKwFor{ZaSve}{za sve}{\v{c}ini}{kraj za sve}%ForAll
+\SetKwFor{Dok}{dok}{\v{c}ini}{kraj dok}%While
+}{}%
+%
+%
+% --- Turkish keywords
+%
+\ifthenelse{\boolean{algocf@localkw@turkish}\OR\equal{\algocf@languagechoosen}{turkish}}{%
+\SetKwInput{KwIn}{Girdi}%
+\SetKwInput{KwOut}{\c{C}{\i}kt{\i}}%
+\SetKwInput{KwData}{Veri}%
+\SetKwInput{KwResult}{Sonu\c{c}}%
+\SetKw{KwTo}{to}
+\SetKw{KwRet}{return}%
+\SetKw{Return}{return}%
+\SetKwBlock{Begin}{begin}{end}%
+\SetKwRepeat{Repeat}{repeat}{until}%
+% %
+\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{end if}%
+\SetKwSwitch{Switch}{Case}{Other}{switch}{do}{case}{otherwise}{end case}{end switch}%
+\SetKwFor{For}{for}{do}{end for}%
+\SetKwFor{ForPar}{for}{do in parallel}{end forpar}
+\SetKwFor{ForEach}{foreach}{do}{end foreach}%
+\SetKwFor{ForAll}{forall}{do}{end forall}%
+\SetKwFor{While}{while}{do}{end while}%
+}{}%
 %
 % --- End 
 %}
@@ -2664,62 +3131,43 @@
 %
 % option onelanguage redefinition
 %
-\ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{chinese}}{%
-  \SetKwInput{KwIn}{输入}%
-  \SetKwInput{KwOut}{输出}%
-  \SetKwInput{KwData}{数据结构}%
-  \SetKwInput{KwResult}{结果}%
-  \SetKw{KwTo}{转到}
-  \SetKw{KwRet}{返回}%
-  \SetKw{Return}{返回}%
-  \SetKwBlock{Begin}{开始}{结束}%
-  \SetKwRepeat{Repeat}{重复}{直至}%
-  %
-  \SetKwIF{If}{ElseIf}{Else}{如果}{则}{否则如果}{否则}{分支结束}%
-  \SetKwSwitch{Switch}{Case}{Other}{对}{进行选择}{对于}{在其它情况}{情况结束}{选择结束}%
-  \SetKwFor{For}{对于}{进行}{循环结束}%
-  \SetKwFor{ForPar}{对于}{并行地进行}{并行结束}
-  \SetKwFor{ForEach}{对于每个}{进行}{循环结束}%
-  \SetKwFor{ForAll}{对于所有}{进行}{循环结束}%
-  \SetKwFor{While}{当}{进行}{循环结束}%
-}{}%
 \ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{french}}{%
-  \SetKwInput{KwIn}{Entr\'ees}%
-  \SetKwInput{KwOutSortie}{Sorties}%
-  \SetKwInput{KwData}{Donn\'ees}%
-  \SetKwInput{KwResult}{R\'esultat}%
-  \SetKw{KwTo}{\`a}%
-  \SetKw{KwRet}{retourner}%
-  \SetKw{Return}{retourner}%
-  \SetKwBlock{Begin}{d\'ebut}{fin}%
-  \SetKwRepeat{Repeat}{r\'ep\'eter}{jusqu'\`a}%
-  %
-  \SetKwIF{If}{ElseIf}{Else}{si}{alors}{sinon si}{sinon}{fin si}%
-  \SetKwSwitch{Switch}{Case}{Other}{suivant}{faire}{cas o\`u}{autres cas}{fin cas}{fin d'alternative}%
-  \SetKwFor{For}{pour}{faire}{fin pour}%
-  \SetKwFor{ForPar}{pour}{faire en parall\`ele}{fin pour}%
-  \SetKwFor{ForEach}{pour chaque}{faire}{fin pour chaque}%
-  \SetKwFor{ForAll}{pour tous les}{faire}{fin pour tous}%
-  \SetKwFor{While}{tant que}{faire}{fin tq}%
+\SetKwInput{KwIn}{Entr\'ees}%
+\SetKwInput{KwOutSortie}{Sorties}%
+\SetKwInput{KwData}{Donn\'ees}%
+\SetKwInput{KwResult}{R\'esultat}%
+\SetKw{KwTo}{\`a}%
+\SetKw{KwRet}{retourner}%
+\SetKw{Return}{retourner}%
+\SetKwBlock{Begin}{d\'ebut}{fin}%
+\SetKwRepeat{Repeat}{r\'ep\'eter}{jusqu'\`a}%
+%
+\SetKwIF{If}{ElseIf}{Else}{si}{alors}{sinon si}{sinon}{fin si}%
+\SetKwSwitch{Switch}{Case}{Other}{suivant}{faire}{cas o\`u}{autres cas}{fin cas}{fin d'alternative}%
+\SetKwFor{For}{pour}{faire}{fin pour}%
+\SetKwFor{ForPar}{pour}{faire en parall\`ele}{fin pour}%
+\SetKwFor{ForEach}{pour chaque}{faire}{fin pour chaque}%
+\SetKwFor{ForAll}{pour tous}{faire}{fin pour tous}%
+\SetKwFor{While}{tant que}{faire}{fin tq}%
 }{}%
 \ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{german}}{%
-  \SetKwInput{KwIn}{Eingabe}%KwIn
-  \SetKwInput{KwOut}{Ausgabe}%KwOut
-  \SetKwInput{KwData}{Daten}%KwData
-  \SetKwInput{KwResult}{Ergebnis}%KwResult
-  \SetKw{KwTo}{bis}%KwTo
-  \SetKw{KwRet}{zur\"uck}%KwRet
-  \SetKw{Return}{zur\"uck}%Return
-  \SetKwBlock{Begin}{Beginn}{Ende}%Begin
-  \SetKwRepeat{Repeat}{wiederhole}{bis}%Repeat
-  %
-  \SetKwIF{If}{ElseIf}{Else}{wenn}{dann}{sonst wenn}{sonst}{Ende wenn}%gIf
-  \SetKwSwitch{Switch}{Case}{Other}{unterscheide}{tue}{Fall}{sonst}{Ende Fall}{Ende Unt.}%Switch
-  \SetKwFor{For}{f\"ur}{tue}{Ende f\"ur}%For
-  \SetKwFor{ForPar}{f\"ur}{tue gleichzeitig}{Ende gleichzeitig}%ForPar
-  \SetKwFor{ForEach}{f\"ur jedes}{tue}{Ende f\"ur}%ForEach
-  \SetKwFor{ForAll}{f\"ur alle}{tue}{Ende f\"ur}%ForAll
-  \SetKwFor{While}{solange}{tue}{Ende solange}%While
+\SetKwInput{KwIn}{Eingabe}%KwIn
+\SetKwInput{KwOut}{Ausgabe}%KwOut
+\SetKwInput{KwData}{Daten}%KwData
+\SetKwInput{KwResult}{Ergebnis}%KwResult
+\SetKw{KwTo}{bis}%KwTo
+\SetKw{KwRet}{zur\"uck}%KwRet
+\SetKw{Return}{zur\"uck}%Return
+\SetKwBlock{Begin}{Beginn}{Ende}%Begin
+\SetKwRepeat{Repeat}{wiederhole}{bis}%Repeat
+%
+\SetKwIF{If}{ElseIf}{Else}{wenn}{dann}{sonst wenn}{sonst}{Ende wenn}%gIf
+\SetKwSwitch{Switch}{Case}{Other}{unterscheide}{tue}{Fall}{sonst}{Ende Fall}{Ende Unt.}%Switch
+\SetKwFor{For}{f\"ur}{tue}{Ende f\"ur}%For
+\SetKwFor{ForPar}{f\"ur}{tue gleichzeitig}{Ende gleichzeitig}%ForPar
+\SetKwFor{ForEach}{f\"ur jedes}{tue}{Ende f\"ur}%ForEach
+\SetKwFor{ForAll}{f\"ur alle}{tue}{Ende f\"ur}%ForAll
+\SetKwFor{While}{solange}{tue}{Ende solange}%While
 }{}%
 \ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{portuguese}}{%
 \SetKwInput{KwIn}{Entrada}%
@@ -2741,62 +3189,110 @@
 \SetKwFor{While}{enquanto}{fa\c{c}a}{fim enqto}%
 }{}%
 \ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{italiano}}{%
-  \SetKwInput{KwIn}{Ingresso}%
-  \SetKwInput{KwOut}{Uscita}%
-  \SetKwInput{KwData}{Dati}%
-  \SetKwInput{KwResult}{Risultato}%
-  \SetKw{KwTo}{a}%
-  \SetKw{KwRet}{ritorna}%
-  \SetKw{Return}{ritorna}%
-  \SetKwBlock{Begin}{inizio}{fine}%
-  \SetKwRepeat{Repeat}{ripeti}{finch\'e}%
-  %
-  \SetKwIF{If}{ElseIf}{Else}{se}{allora}{altrimenti se}{allora}{fine se}%
-  \SetKwSwitch{Switch}{Case}{Other}{switch}{do}{case}{otherwise}{end case}{endsw}%
-  \SetKwFor{For}{per}{fai}{fine per}%
-  \SetKwFor{ForPar}{per}{fai in parallelo}{fine per}%
-  \SetKwFor{ForEach}{per ciascun}{fai}{fine per ciascun}%
-  \SetKwFor{ForAll}{per tutti i}{fai}{fine per tutti}%
-  \SetKwFor{While}{finch\'e}{fai}{fine finch\'e}%
+\SetKwInput{KwIn}{Ingresso}%
+\SetKwInput{KwOut}{Uscita}%
+\SetKwInput{KwData}{Dati}%
+\SetKwInput{KwResult}{Risultato}%
+\SetKw{KwTo}{a}%
+\SetKw{KwRet}{ritorna}%
+\SetKw{Return}{ritorna}%
+\SetKwBlock{Begin}{inizio}{fine}%
+\SetKwRepeat{Repeat}{ripeti}{finch\'e}%
+%
+\SetKwIF{If}{ElseIf}{Else}{se}{allora}{altrimenti se}{allora}{fine se}%
+\SetKwSwitch{Switch}{Case}{Other}{switch}{do}{case}{otherwise}{end case}{endsw}%
+\SetKwFor{For}{per}{fai}{fine per}%
+\SetKwFor{ForPar}{per}{fai in parallelo}{fine per}%
+\SetKwFor{ForEach}{per ciascun}{fai}{fine per ciascun}%
+\SetKwFor{ForAll}{per tutti i}{fai}{fine per tutti}%
+\SetKwFor{While}{finch\'e}{fai}{fine finch\'e}%
 }{}%
 \ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{spanish}}{%
-  \SetKwInput{KwIn}{Entrada}%
-  \SetKwInput{KwOut}{Salida}%
-  \SetKwInput{KwData}{Datos}%
-  \SetKwInput{KwResult}{Resultado}%
-  \SetKw{KwTo}{a}%
-  \SetKw{KwRet}{devolver}%
-  \SetKw{Return}{devolver}%
-  \SetKwBlock{Begin}{inicio}{fin}%
-  \SetKwRepeat{Repeat}{repetir}{hasta que}%
-  %
-  \SetKwIF{If}{ElseIf}{Else}{si}{entonces}{sin\'o, si}{en otro caso}{fin si}
-  \SetKwSwitch{Switch}{Case}{Other}{seleccionar}{hacer}{caso}{sin\'o}{fin caso}{fin seleccionar}
-  \SetKwFor{For}{per}{fai}{fine per}%
-  \SetKwFor{ForPar}{par}{hacer in paralelo}{fin para}%
-  \SetKwFor{ForEach}{para cada}{hacer}{fin para cada}
-  \SetKwFor{ForAll}{para todo}{hacer}{fin para todo}
-  \SetKwFor{While}{mientras}{hacer}{fin mientras}
+\SetKwInput{KwIn}{Entrada}%
+\SetKwInput{KwOut}{Salida}%
+\SetKwInput{KwData}{Datos}%
+\SetKwInput{KwResult}{Resultado}%
+\SetKw{KwTo}{a}%
+\SetKw{KwRet}{devolver}%
+\SetKw{Return}{devolver}%
+\SetKwBlock{Begin}{inicio}{fin}%
+\SetKwRepeat{Repeat}{repetir}{hasta que}%
+%
+\SetKwIF{If}{ElseIf}{Else}{si}{entonces}{si no, si}{en otro caso}{fin si}
+\SetKwSwitch{Switch}{Case}{Other}{seleccionar}{hacer}{caso}{si no}{fin caso}{fin seleccionar}
+\SetKwFor{For}{para}{hacer}{fin para}%
+\SetKwFor{ForPar}{para}{hacer in paralelo}{fin para}%
+\SetKwFor{ForEach}{para cada}{hacer}{fin para cada}
+\SetKwFor{ForAll}{para todo}{hacer}{fin para todo}
+\SetKwFor{While}{mientras}{hacer}{fin mientras}
 }{}%
 %
 \ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{croatian}}{%
-  \SetKwInput{KwIn}{Ulaz}%KwIn
-  \SetKwInput{KwOut}{Izlaz}%KwOut
-  \SetKwInput{KwData}{Podaci}%KwData
-  \SetKwInput{KwResult}{Rezultat}%KwResult
-  \SetKw{KwTo}{do}%KwTo
-  \SetKw{KwRet}{vrati}%KwRet
-  \SetKw{Return}{vrati}%Return
-  \SetKwBlock{Begin}{po\v{c}etak}{kraj}%Begin
-  \SetKwRepeat{Repeat}{ponavljaj}{dok ne bude}%Repeat
-  %
-  \SetKwIF{If}{ElseIf}{Else}{ako}{onda}{ina\v{c}e ako}{ina\v{c}e}{kraj}%gIf
-  \SetKwSwitch{Switch}{Case}{Other}{granaj}{\v{c}ini}{slu\v{c}aj}{ina\v{c}e}{kraj}{kraj}%Switch
-  \SetKwFor{For}{za}{\v{c}ini}{kraj}%For
-  \SetKwFor{ForPar}{za}{izvr\v{s}avaj paralelno}{kraj}%ForPar
-  \SetKwFor{ForEach}{za svaki}{\v{c}ini}{kraj}%ForEach
-  \SetKwFor{ForAll}{za sve}{\v{c}ini}{kraj}%ForAll
-  \SetKwFor{While}{dok}{\v{c}ini}{kraj}%While
+\SetKwInput{KwIn}{Ulaz}%KwIn
+\SetKwInput{KwOut}{Izlaz}%KwOut
+\SetKwInput{KwData}{Podatci}%KwData
+\SetKwInput{KwResult}{Rezultat}%KwResult
+\SetKw{KwTo}{do}%KwTo
+\SetKw{KwRet}{vrati}%KwRet
+\SetKw{Return}{vrati}%Return
+\SetKwBlock{Begin}{po\v{c}etak}{kraj}%Begin
+\SetKwRepeat{Repeat}{ponavljaj}{dok ne bude}%Repeat
+%
+\SetKwIF{If}{ElseIf}{Else}{ako}{onda}{ina\v{c}e ako}{ina\v{c}e}{kraj ako}%gIf
+\SetKwSwitch{Switch}{Case}{Other}{granaj}{\v{c}ini}{slu\v{c}aj}{ostali slu\v{c}ajevi}{kraj slu\v{c}aj}{kraj granaj}%Switch
+\SetKwFor{For}{za}{\v{c}ini}{kraj za}%For
+\SetKwFor{ForPar}{za}{\v{c}ini paralelno}{kraj za paralelno}%ForPar
+\SetKwFor{ForEach}{za svaki}{\v{c}ini}{kraj za svaki}%ForEach
+\SetKwFor{ForAll}{za sve}{\v{c}ini}{kraj za sve}%ForAll
+\SetKwFor{While}{dok}{\v{c}ini}{kraj dok}%While
+}{}%
+%
+\ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{turkish}}{%
+%
+\SetKwInput{KwIn}{Girdi}%
+\SetKwInput{KwOut}{\c{C}{\i}kt{\i}}%
+\SetKwInput{KwData}{Veri}%
+\SetKwInput{KwResult}{Sonu\c{c}}%
+\SetKw{KwTo}{to}
+\SetKw{KwRet}{return}%
+\SetKw{Return}{return}%
+\SetKwBlock{Begin}{begin}{end}%
+\SetKwRepeat{Repeat}{repeat}{until}%
+%
+\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{end if}%
+\SetKwSwitch{Switch}{Case}{Other}{switch}{do}{case}{otherwise}{end switch}%
+\SetKwFor{For}{for}{do}{end for}%
+\SetKwFor{ForPar}{for}{do in parallel}{end forpar}
+\SetKwFor{ForEach}{foreach}{do}{end foreach}%
+\SetKwFor{ForAll}{forall}{do}{end forall}%
+\SetKwFor{While}{while}{do}{end while}%
+}{}%
+%
+\ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{chinese}}{%
+\SetKwInput{KwIn}{输入}%
+\SetKwInput{KwOut}{输出}%
+\SetKwInput{KwData}{数据}%
+\SetKwInput{KwResult}{结果}%
+\SetKw{KwTo}{转到}
+\SetKw{KwRet}{返回}%
+\SetKw{Return}{返回}%
+\SetKwBlock{Begin}{开始}{结束}%
+\SetKwRepeat{Repeat}{重复}{直至}%
+%
+\SetKwIF{If}{ElseIf}{Else}{如果}{则}{否则如果}{否则}{分支结束}%
+\SetKwSwitch{Switch}{Case}{Other}{对}{进行选择}{对于}{在其它情况}{情况结束}{选择结束}%
+\SetKwFor{For}{对于}{进行}{循环结束}%
+\SetKwFor{ForPar}{对于}{并行地进行}{并行结束}
+\SetKwFor{ForEach}{对于每个}{进行}{循环结束}%
+\SetKwFor{ForAll}{对于所有}{进行}{循环结束}%
+\SetKwFor{While}{当}{进行}{循环结束}%
+}{}%
+%
+\ifthenelse{\boolean{algocf@optonelanguage}\AND\equal{\algocf@languagechoosen}{chinese-nokw}}{%
+\SetKwInput{KwIn}{输入}%
+\SetKwInput{KwOut}{输出}%
+\SetKwInput{KwData}{数据}%
+\SetKwInput{KwResult}{结果}%
 }{}%
 %
 %%%% old commands compatibility
@@ -2840,7 +3336,7 @@
 \SetKwInput{Data}{Data}%
 \SetKwInput{Result}{Result}%
 }{%
-\relax%
+  \relax%
 }%
 %
 %
