@@ -41,19 +41,22 @@ jobs:
           apt-get update -y
           apt-get install --no-install-recommends -y ttf-mscorefonts-installer make fonts-arphic-ukai fonts-noto-cjk-extra
           fc-cache
-          make pdf -C presentation
           make pdf
           mv main.pdf main.fandol.pdf
           sed -i  's| fontset=fandol,| fontset=ubuntu,|' sysuthesis.cls
           make pdf
           mv main.pdf main.ubuntu.pdf
-          mv presentation/pre.pdf pre.pdf
+          make pdf -C presentation
+          mv presentation/pre.pdf pre.fandol.pdf
+          sed -i  's| fontset=fandol,| fontset=ubuntu,|' presentation/pre.tex
+          make pdf
+          mv presentation/pre.pdf pre.ubuntu.pdf
 
       - uses: actions/upload-artifact@v3
         with:
           path: |
             main.*.pdf
-            pre.pdf
+            pre.*.pdf
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -61,4 +64,4 @@ jobs:
         with:
           files: |
             main.*.pdf
-            pre.pdf
+            pre.*.pdf

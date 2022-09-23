@@ -1,89 +1,209 @@
-\documentclass[UTF8, xcolor=table]{beamer}
-\usepackage[BoldFont,SlantFont]{xeCJK}
-% \setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{AdobeSongStd-Light}
-% \setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{SimSum} %Windows先编译使用这个字体
+\documentclass[
+    % fontset=ubuntu, % 生僻字可用思源字体，如“昇腾”
+    fontset=fandol,
+    xcolor=svgnames % SeaGreen
+]{ctexbeamer}
 
-\usepackage{latexsym,amssymb,amsmath,amsbsy,amsopn,amstext,xcolor,multicol}
-\usepackage{graphicx,wrapfig,fancybox}
-\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
-\usepackage{thubeamer}
-\usepackage[backend=bibtex,sorting=none]{biblatex} % [参考文献格式](https://www.sharelatex.com/blog/2013/07/31/getting-started-with-biblatex.html) %mac IEEE not found
-\usepackage{array}
-\usepackage{bm}
-\usepackage{caption}
-\RequirePackage[font=footnotesize]{subcaption}
-\usepackage{multirow}
-\usepackage{booktabs}
-\usepackage{tikz}
-\usepackage{tikzscale}
-\usepackage{animate}
+\usetheme[
+    % compress % 进度条压缩在一行，可选
+]{Berlin}
 
-\defbibheading{bibliography}[\bibname]{} %avoid printbibliography 自动生成目录
-\addbibresource{../main.bib}
-\setbeamertemplate{bibliography item}[text] 
+\usecolortheme[named=SeaGreen]{structure}
 
-\usepackage{boxedminipage} %for: bvh border
-\def\fourgraphicswidth{0.35} %0.3\textwidth
+\title{{\LaTeX} Template for SYSU Graduation Thesis}
 
-\usepackage{algorithm} %%format of the algorithm
-\usepackage{algpseudocode}
-\floatname{algorithm}{算法}
-\renewcommand{\algorithmicrequire}{\textbf{输入:}} % Use Input in the format of Algorithm
-\renewcommand{\algorithmicensure}{\textbf{输出:}} % UseOutput in the format of Algorithm
-\algrenewcommand{\algorithmiccomment}[1]{ $//$ #1}
+\subtitle[申请中山大学工学学士学位论文答辩报告]{
+    ~\\
+    (申请中山大学工学学士学位论文答辩报告)
+}
 
-\usepackage{listings}
-\renewcommand\lstlistingname{代码}
-\renewcommand\lstlistlistingname{代码}
+\author[王小明]{
+    \texorpdfstring{
+        学生：王小明\\
+        ~\\
+        \href{mailto:yourname@mail2.sysu.edu.cn}{yourname@mail2.sysu.edu.cn}
+    }{PDF Bookmark Version}
+}
 
-\lstset{framexleftmargin=1.4em,
-        xleftmargin=1.8em,
-        basicstyle=\ttfamily\small,
-        %frame=shadowbox, numberstyle=\tiny, breaklines=true,
-        frame=single,
-        numberstyle=\tiny, breaklines=true,
-        keywordstyle=\color{blue!70}\bfseries,
-        %commentstyle=\color{red!50!green!50!blue!50},
-        rulesepcolor=\color{red!20!green!20!blue!20},
-        numbers=none,fontadjust=true}
-\lstdefinelanguage{shader}{morekeywords={uniform, layout, uniform, vec2, vec3, vec4, in, out, gl_Position, dot, flat, int ,float, gl_VertexID, xyz, w, x, y, z, location, version, sampler2DRect, bgr, gl_FragData, texture2DRect, gl_TexCoord,for,xy},morecomment=[l]{//}}
+\institute[中山大学~计算机学院（软件学院）]{
+    \includegraphics[height=0.1\textheight]{../image/template/logo.png}
+    \includegraphics[height=0.1\textheight]{../image/template/sysu-logo.pdf} % 这里可以放一排所在实验室的logo，可以去学院官网底部或实验室主页弄到，如 <http://nscc-gz.cn/_layout/themes/cs/images/logo0409.png>
+}
+
+% \logo{} % 这个是每页都会出现的水印，可能会影响观感，自行决定放不放
+
+\date{
+    %\today
+    二〇二二年五月
+}
 
 \begin{document}
 
-\setbeamerfont{footnote}{size=\tiny}
-\setbeamerfont{caption}{size=\scriptsize}
-\setbeamertemplate{caption}[numbered]
-\setbeamerfont{subsection in toc}{size=\footnotesize}
-\renewcommand*{\bibfont}{\footnotesize}
+\section{Intro}
 
-\graphicspath{{../}}
+\begin{frame}
 
-\title[融合长短记忆神经网络与卷积特征学习的图像语义分割]{中山大学本科毕业论文演示文稿非正式模版}
-\author[陈冠英]{}%{(申请中山大学工学学士学位论文答辩报告)\\ \vskip 20pt 学~~~~~~生：陈~冠~英}
-\institute[中山大学~电子信息与工程学院~\&~自动化]{}%{\small \vskip 38pt 电子信息与工程学院~自动化}
-\date{} %{\small \vskip -17pt二〇一六年五月}
+    \titlepage
 
-%% make title %%
-\frame{
-        \titlepage
-        \vspace{-23mm}
-        \begin{figure}[h]
-                \centering
-                \includegraphics[width=\textwidth]{image/chap04/illustration/networkstructure.pdf}
-        \end{figure}
-}
+\end{frame}
 
-\frame {
-        \frametitle{目录}
-        %\begin{multicols}{2}
-        \tableofcontents[sections={<1-7>}]
-}
+\subsection{选题背景}
 
-\include{chap01}
-\include{chap02}
-\include{chap03}
-\include{chap04}
-\include{chap05}
-\include{chap06}
+\begin{frame}
 
+    \begin{block}{要点一\footnote{引用一}}
+        \begin{itemize}
+            \item 条目一，每一行字不要太密
+            \item 条目二
+            \item 条目三
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{要点二}
+        \begin{itemize}
+            \item 条目一\footnote{引用二}
+            \item 条目二
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
+\section{相关概念与面临的挑战}
+
+\subsection{图像搭配单页说明}
+
+\begin{frame}
+
+    \begin{block}{生僻字测试}
+        \begin{itemize}
+            \item 华为昇腾异构处理器\footnote{\url{https://www.hisilicon.com/cn/products/Ascend}}
+            \item 条目二
+        \end{itemize}
+    \end{block}
+
+    \begin{figure}
+        \includegraphics[width=0.618\textwidth]{../image/chap04/illustration/hole.pdf}
+        \caption{单张图像}
+        \label{fig:hole}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+
+    \begin{block}{要点一}
+        \begin{itemize}
+            \item 条目一
+            \item 条目二
+        \end{itemize}
+    \end{block}
+
+    \begin{figure} %文中的Grid-LSTM模型做的语义图像分割的例子
+        \centering
+        \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_000799.jpg}
+        \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_002094.jpg}
+        \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_004483.jpg}
+        \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_003194.jpg}
+        \\
+        \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_000799.pdf}
+        \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_002094.pdf}
+        \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_004483.pdf}
+        \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_003194.pdf}
+        \caption{并排的多张图像}
+        \label{fig:multi-image-example1}
+    \end{figure}
+
+\end{frame}
+
+\subsection{单页大图}
+
+\begin{frame}
+
+    \begin{figure}
+        \includegraphics[width=0.9\textwidth]{../image/chap03/overleaf-example.jpg}
+        \caption{Overleaf使用例子，这里的描述可以长一些}
+        \label{fig:overleaf-example}
+    \end{figure}
+
+\end{frame}
+
+\section{算法设计}
+
+\subsection{图像搭配单页说明}
+
+\begin{frame}
+
+    \begin{block}{再试试公式}
+        \begin{itemize}
+            \item 看下面！
+        \end{itemize}
+    \end{block}
+
+    \begin{equation}
+        e^{i\pi}+1=0
+    \end{equation}
+
+\end{frame}
+
+\section{实验与结果}
+
+\begin{frame}
+
+    \begin{block}{最后还有表格}
+        \begin{itemize}
+            \item 往下看！
+        \end{itemize}
+    \end{block}
+
+    \begin{table}
+        \begin{tabular}{ccc}
+            \hline
+            姓名       & 学号 & 性别   \\
+            \hline
+            Steve Jobs & 001  & Male   \\
+            Bill Gates & 002  & Female \\
+            \hline
+        \end{tabular}
+        \caption{表格示例，乱写的}
+        \label{fig:table-example}
+    \end{table}
+
+\end{frame}
+
+\section{总结与展望}
+
+\begin{frame}
+
+    \begin{block}{要点一\footnote{引用一}}
+        \begin{itemize}
+            \item 条目一
+            \item 条目二
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{要点二}
+        \begin{itemize}
+            \item 条目一\footnote{引用二}
+            \item 条目二
+            \item 条目三
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
+\section{Q \& A}
+
+\begin{frame}
+
+    \begin{block}{Questions?}
+        ~\\
+        ~\\
+        \center{\Large{Thank you!}}\\
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+    \end{block}
+
+\end{frame}
 \end{document}
