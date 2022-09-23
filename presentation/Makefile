@@ -2,10 +2,8 @@ src = pre
 xelatex: 
 	xelatex $(src)
 pdf : clean $(src).tex
-	xelatex $(src)
-	bibtex $(src)
-	xelatex $(src)
-	xelatex $(src)
+	xelatex $(src).tex
+	xelatex $(src).tex
 show:
 	xdg-open $(src).pdf
 clean:
