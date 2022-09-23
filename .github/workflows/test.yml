@@ -49,7 +49,7 @@ jobs:
           make pdf -C presentation
           mv presentation/pre.pdf pre.fandol.pdf
           sed -i  's| fontset=fandol,| fontset=ubuntu,|' presentation/pre.tex
-          make pdf
+          make pdf -C presentation
           mv presentation/pre.pdf pre.ubuntu.pdf
 
       - uses: actions/upload-artifact@v3
