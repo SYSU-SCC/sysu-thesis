@@ -467,8 +467,8 @@
     \begin{longtable}{|p{\textwidth}|}
         % 第一页出现的表头
         \hline
-        论文(设计)题目:                                                                                                             \\
-        Thesis (Design) Title: \@ctitle
+        论文(设计)题目: \@ctitle                                                                                                            \\
+        Thesis (Design) Title: \@etitle
         \endfirsthead
 
         % 中间页出现的表头
