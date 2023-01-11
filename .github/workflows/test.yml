@@ -36,8 +36,7 @@ jobs:
         run: |
           apt-get update -y
           apt install --no-install-recommends -y apt-transport-https ca-certificates software-properties-common
-          apt-add-repository non-free
-          apt-add-repository contrib
+          sed -i '/^\([^#].*main\)*$/s/main/& contrib non-free/' /etc/apt/sources.list
           apt-get update -y
           apt-get install --no-install-recommends -y ttf-mscorefonts-installer make fonts-arphic-ukai fonts-noto-cjk-extra
           fc-cache
