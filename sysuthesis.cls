@@ -29,7 +29,8 @@
 
 % 配置英文字体
 \RequirePackage{fontspec}
-\setmainfont{Times New Roman}
+%\setmainfont{Times New Roman}
+\RequirePackage{newtxtext} % 文本自动采用新罗马字体
 
 % \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
 \RequirePackage[top=25mm, bottom=20mm, left=30mm, right=30mm,a4paper]{geometry}
@@ -40,6 +41,7 @@
 \RequirePackage[labelsep=space]{caption}
 \RequirePackage[font=footnotesize]{subcaption}
 \RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{newtxmath,bm} % 公式使用新罗马字体
 \RequirePackage{ragged2e} % 实现两端对齐
 \RequirePackage{listings}
 \RequirePackage{longtable}
