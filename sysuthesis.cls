@@ -28,8 +28,8 @@
 
 
 % 配置英文字体
-\RequirePackage{fontspec}
-\setmainfont{Times New Roman}
+%\RequirePackage{fontspec}
+%\setmainfont{Times New Roman}
 \RequirePackage{newtxtext} % 文本自动采用新罗马字体
 
 % \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
