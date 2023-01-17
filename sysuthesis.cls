@@ -970,7 +970,7 @@
     % 引用样式
     \bibliographystyle{gbt7714-numerical}
     % F15 参考文献内容 宋体五号
-    {\zihao{5}\songti\bibliography{main}}    % 引用文献列表
+    {\zihao{5}\rmfamily\songti\bibliography{main}}    % 引用文献列表
     \endgroup
 }
 
