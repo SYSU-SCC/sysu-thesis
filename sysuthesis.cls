@@ -30,9 +30,9 @@
 % 配置英文字体
 \RequirePackage{fontspec}
 % 如果\RequirePackage{newtxtext}能正常通过编译请注释以下三行，并取消第四行的注释
-\setmainfont{Times New Roman} % 如果注释掉能正常编译，请注释
 \renewcommand*{\rmdefault}{ntxtlf} % always TLF for math
 \renewcommand*{\familydefault}{\rmdefault}
+\setmainfont{Times New Roman} % 如果注释掉能正常编译，请注释
 %\RequirePackage{newtxtext} % 文本自动采用新罗马字体
 
 % \RequirePackage[margin=1in,headsep=.2in, headheight=2in]{geometry}
