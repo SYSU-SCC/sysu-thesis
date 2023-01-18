@@ -17,6 +17,8 @@
 \setCJKfamilyfont { zhsong } { AdobeSongStd-Light.otf       }
   [ 
     Path = ./fonts/,
+    BoldFont   = AdobeHeitiStd-Regular.otf,
+    ItalicFont = AdobeKaitiStd-Regular.otf
   ]
 \setCJKfamilyfont { zhhei  } { AdobeHeitiStd-Regular.otf    }
   [ 
