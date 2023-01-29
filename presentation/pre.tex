@@ -27,14 +27,14 @@
 
 \institute[中山大学~计算机学院（软件学院）]{
     \includegraphics[height=0.1\textheight]{../image/template/logo.png}
-    \includegraphics[height=0.1\textheight]{../image/template/sysu-logo.pdf} % 这里可以放一排所在实验室的logo，可以去学院官网底部或实验室主页弄到，如 <http://nscc-gz.cn/_layout/themes/cs/images/logo0409.png>
+    % \includegraphics[height=0.1\textheight]{../image/template/sysu-logo.pdf} % 这里可以放一排所在实验室的logo，可以去学院官网底部或实验室主页弄到，如 <http://nscc-gz.cn/_layout/themes/cs/images/logo0409.png>
 }
 
-% \logo{} % 这个是每页都会出现的水印，可能会影响观感，自行决定放不放
+\logo{\includegraphics[height=0.1\textheight]{../image/template/sysu-logo.pdf}} % 这个是每页都会出现的水印，可能会影响观感，自行决定放不放
 
 \date{
     %\today
-    二〇二二年五月
+    二〇二三年五月
 }
 
 \begin{document}
@@ -99,7 +99,6 @@
     \end{block}
 
     \begin{figure} %文中的Grid-LSTM模型做的语义图像分割的例子
-        \centering
         \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_000799.jpg}
         \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_002094.jpg}
         \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_004483.jpg}
@@ -111,6 +110,30 @@
         \includegraphics[width=.2\textwidth,height=.15\textwidth]{../image/chap04/example/2007_003194.pdf}
         \caption{并排的多张图像}
         \label{fig:multi-image-example1}
+    \end{figure}
+
+\end{frame}
+
+\subsection{单页双图}
+
+\begin{frame}
+
+    \begin{block}{要点一}
+        \begin{itemize}
+            \item 条目一
+            \item 条目二
+        \end{itemize}
+    \end{block}
+
+    \begin{figure}
+        \begin{minipage}{0.49\textwidth}
+            \includegraphics[height=0.45\textheight]{../image/chap04/example/2007_004483.pdf}
+            \caption{一}
+        \end{minipage}
+        \begin{minipage}{0.49\textwidth}
+            \includegraphics[height=0.45\textheight]{../image/chap04/example/2007_003194.pdf}
+            \caption{二}
+        \end{minipage}
     \end{figure}
 
 \end{frame}
@@ -172,22 +195,28 @@
 
 \section{总结与展望}
 
+\subsection{其他块语法示例}
+
 \begin{frame}
 
-    \begin{block}{要点一\footnote{引用一}}
-        \begin{itemize}
-            \item 条目一
+    \begin{block}{带标号的条目\footnote{引用一}}
+        \begin{enumerate}
+            \item 条目一，每一行字不要太密
             \item 条目二
-        \end{itemize}
+        \end{enumerate}
     \end{block}
 
-    \begin{block}{要点二}
+    \begin{alertblock}{重要理论}
         \begin{itemize}
-            \item 条目一\footnote{引用二}
-            \item 条目二
-            \item 条目三
+            \item 条目一\footnote{引用二}和\alert{高亮字色}
         \end{itemize}
-    \end{block}
+    \end{alertblock}
+
+    \begin{examples}
+        \begin{itemize}
+            \item 举个栗子
+        \end{itemize}
+    \end{examples}
 
 \end{frame}
 

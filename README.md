@@ -14,8 +14,6 @@ make pdf
 
 即可生成 `main.pdf` 文件。
 
-
-
 ### overleaf 编辑
 
 本模板可以使用[overleaf](https://www.overleaf.com/) 在线编辑。
@@ -32,12 +30,9 @@ make pdf
 
 此时可以得到完整的`main.pdf`文件。
 
-
-
 ## TODO List
 
 - [ ] 增加 [overleaf](https://www.overleaf.com/) 等模板库的自动发布，可一键在 overleaf 中打开项目。
-- [ ] 进一步完善答辩 ppt 的模板
 - [ ] 进一步优化代码，可支持多种需求
 
 希望大家踊跃提出自己的想法，提交 pr，一起完善该 $\LaTeX$ 模板， Make **SYSU** Great Again！
@@ -46,12 +41,19 @@ make pdf
 
 1. 字体问题，见 [#29](https://github.com/SYSU-SCC/sysu-thesis/issues/29)
 
-
-
 ## 相关规范
 
 1. [本科生](./specifications/附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc)
 2. [研究生](http://graduate.sysu.edu.cn/rules)
+
+## 关于展示
+
+答辩展示的样式涉及到不同人的需求，且学校未对格式做要求，目前本仓库在[presentation](./presentation/)目录下提供了一个最简单的模板供大家学习和上手调整，在 overleaf 中需要点击`menu`，滑动到下方`Settings`的`Main document`选择`presentation/pre.tex`。此处给出[overleaf的Beamer教程](https://overleaf.com/learn/latex/Beamer)。
+
+我们欢迎大家自己定制一些符合自己要求的模板，并向我们提交 PR，在下方增加一个指向你的模板的链接作为推荐，参见 #65 。
+
+- [Lovely-XPP/SYSU-PRE](https://github.com/Lovely-XPP/SYSU-PRE)
+- [NelsonCheung-cn/SYSU-beamer-template](https://github.com/NelsonCheung-cn/SYSU-beamer-template)
 
 ## 一些说明
 
