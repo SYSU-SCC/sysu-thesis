@@ -13,9 +13,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -29,25 +26,23 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-        with:
-          submodules: recursive
 
       - name: Compile
         run: |
           apt-get update -y
-          apt install --no-install-recommends -y apt-transport-https ca-certificates software-properties-common
+          apt-get install --no-install-recommends -y apt-transport-https ca-certificates software-properties-common
           sed -i '/^\([^#].*main\)*$/s/main/& contrib non-free/' /etc/apt/sources.list
           apt-get update -y
           apt-get install --no-install-recommends -y ttf-mscorefonts-installer make fonts-arphic-ukai fonts-noto-cjk-extra
           fc-cache
           make pdf
           mv main.pdf main.fandol.pdf
-          sed -i  's| fontset=fandol,| fontset=ubuntu,|' sysuthesis.cls
+          sed -i 's| fontset=fandol,| fontset=ubuntu,|' sysuthesis.cls
           make pdf
           mv main.pdf main.ubuntu.pdf
           make pdf -C presentation
           mv presentation/pre.pdf pre.fandol.pdf
-          sed -i  's| fontset=fandol,| fontset=ubuntu,|' presentation/pre.tex
+          sed -i 's| fontset=fandol,| fontset=ubuntu,|' presentation/pre.tex
           make pdf -C presentation
           mv presentation/pre.pdf pre.ubuntu.pdf
 
