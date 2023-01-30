@@ -1,10 +1,30 @@
 # 中山大学 $\LaTeX$ 毕业论文模板
 
-本项目现已得到中山大学计算机学院老师支持，我们正在努力增加 feature ，满足我院毕业设计的要求，并争取进一步完善，成为中大官方 $\LaTeX$ 毕设模板。
+本项目现已得到中山大学计算机学院支持。我们正在努力增加 feature ，满足本院毕业设计的要求，并争取进一步完善，成为中大官方 $\LaTeX$ 毕设模板。Demo 与源码可在 [releases](https://github.com/SYSU-SCC/sysu-thesis/releases) 页面下载。
 
 ## 如何使用
 
-### texlive 编辑
+### overleaf 编辑（在线）
+
+本模板可以使用 [overleaf](https://www.overleaf.com/) 在线编辑，需要在 [releases](https://github.com/SYSU-SCC/sysu-thesis/releases) 页面提前下载 `Source code (zip)`。
+
+步骤如下：
+
+1. 进入 [overleaf](https://overleaf.com) 并登录账号
+2. 左侧 `New Project` 选择 `Upload Project`
+3. 上传 `.zip` 压缩包，建立新项目
+4. 点击 `menu`，滑动到下方 `Settings` 的 `Compiler` 选择 `XeLaTeX`
+5. 打开 `main.tex` 文件，点击中间右侧上方的 `Recompile` 进行编译
+6. 如果顺利可以看到 pdf 的预览
+7. 如果无法加载图片只有路径信息，点击 `Recompile` 旁边的倒三角，其中的 `Compile Mode` 选择 `Normal` 模式
+
+此时可以得到完整的 `main.pdf` 文件。
+
+### GitHub Actions 自动构建（在线）
+
+点击 [Use this template](https://github.com/SYSU-SCC/sysu-thesis/generate) 创建自己的论文仓库（推荐创建为私有仓库），随后直接在自己的仓库进行修改，随后 GitHub Actions 会自动进行构建，可在 Actions 中下载对应 artifact。亦可以使用 `git tag`，其会像本仓库一样将构建好的 artifact 发布到 [releases](https://github.com/SYSU-SCC/sysu-thesis/releases) 中。
+
+### texlive 编辑（本地）
 
 本模板需要使用 texlive(>=2020) 进行编译，编译命令如下：
 
@@ -12,23 +32,7 @@
 make pdf
 ```
 
-即可生成 `main.pdf` 文件。
-
-### overleaf 编辑
-
-本模板可以使用 [overleaf](https://www.overleaf.com/) 在线编辑。
-
-步骤如下：
-
-1. 进入 [overleaf](https://overleaf.com) 并登录账号
-2. 左侧 `New Project` 选择 `Upload Project`
-3. 上传 `sysu-thesis-master.zip` 压缩包，建立新项目
-4. 点击 `menu`，滑动到下方 `Settings` 的 `Compiler` 选择 `XeLaTeX`
-5. 打开 `main.tex` 文件，点击中间右侧上方的 `Recompile` 进行编译
-6. 如果顺利可以看到 pdf 的预览
-7. 如果无法加载图片只有路径信息，点击 `Recompile` 旁边的倒三角，其中的 `Compile Mode` 选择 `Normal` 模式
-
-此时可以得到完整的 `main.pdf` 文件。
+即可生成 `main.pdf` 文件。如有环境问题，推荐对照 [GitHub Actions](./.github/workflows/test.yml) 中的环境进行配置。
 
 ## TODO List
 
