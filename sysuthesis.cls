@@ -18,7 +18,7 @@
     fontset=fandol,    % texlive自带，可移植字体库，只有常用的6763个汉字
     %fontset=ubuntu,
     %fontset=mac,
-    %fontset=windows,
+    %fontset=windows, % 在windows系统下使用这一行的命令以显示生僻字
     a4paper,
     %openright,
     openany,
@@ -968,6 +968,7 @@
     }
 
     % 引用样式
+    \setlength{\bibsep}{0em}
     \bibliographystyle{gbt7714-numerical}
     % F15 参考文献内容 宋体五号
     {\zihao{5}\rmfamily\songti\bibliography{main}}    % 引用文献列表
