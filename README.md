@@ -22,7 +22,9 @@
 
 ### GitHub Actions 自动构建（在线）
 
-点击 [Use this template](https://github.com/SYSU-SCC/sysu-thesis/generate) 创建自己的论文仓库（推荐创建为私有仓库），随后直接在自己的仓库进行修改，随后 GitHub Actions 会自动进行构建，可在 Actions 中下载对应 artifact。亦可以使用 `git tag`，其会像本仓库一样将构建好的 artifact 发布到 [releases](https://github.com/SYSU-SCC/sysu-thesis/releases) 中。
+点击 [Use this template](https://github.com/SYSU-SCC/sysu-thesis/generate) 创建自己的论文仓库（推荐创建为私有仓库），随后直接在自己的仓库进行修改，随后 GitHub Actions 会自动进行构建，可在 Actions 中下载对应 artifact。此处给出一个[示例](https://github.com/wu-kan/bachelor-thesis)。
+
+还可以使用 `git tag`，其会像本仓库一样将构建好的 artifact 永久发布到 [releases](https://github.com/SYSU-SCC/sysu-thesis/releases) 中。
 
 ### texlive 编辑（本地）
 
