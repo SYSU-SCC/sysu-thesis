@@ -1,6 +1,6 @@
 % 说明：
 % 本科生毕业论文规范中并未明确指出在论文中插入代码的要求，该文件定义的代码风格尽量保持简洁与美观
-% 目前仅支持Python和C/C++，若需添加listing包所支持的其他语言，可参考本文件方法进行定义，尽量保持全文的代码风格一致
+% 目前仅支持Python、C/C++以及终端bash，若需添加listing包所支持的其他语言，可参考本文件方法进行定义，尽量保持全文的代码风格一致
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{sysucode}[2021/01/21 v0.1 code style format defined for sysuthesis]
 
@@ -67,3 +67,18 @@
         identifierstyle=\color{blue}
 }
 \lstnewenvironment{cpp}[1][]{\lstset{style=sysucpp}}{}
+
+% 定义终端输出
+% 使用方法 \begin{bash} ... \end{bash}
+\lstdefinestyle{sysubash}{
+        language=bash,
+        tabsize=4,
+        basicstyle=\ttfamily\footnotesize, % 设置字号和字体
+        breaklines=true, % 当代码过长时，自动换行
+        frame=L, % 设置代码显示边框
+        keywordstyle=\bfseries\color{keywordcolor},
+        commentstyle=\itshape\color{commentcolor},
+        stringstyle=\color{stringcolor},
+        identifierstyle=\color{blue}
+}
+\lstnewenvironment{bash}[1][]{\lstset{style=sysubash}}{}
