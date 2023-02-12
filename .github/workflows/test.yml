@@ -6,13 +6,18 @@ name: test
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [master, dev]
+    branches: [master] # 其他分支可通过给 master 分支创建一个 WIP 的 PR 查看结果是否正确
     tags: ["v*"]
   pull_request:
-    branches: [master, dev]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+# For softprops/action-gh-release
+permissions:
+  contents: write
+  discussions: write
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:

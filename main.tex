@@ -1,4 +1,9 @@
-﻿\documentclass{sysuthesis} % 默认使用电子版（不填充空白页）。如果需要双面打印版，请注释掉本行并启用下一行
+﻿% 可自定义论文时间戳 \today
+% \year=2021
+% \month=5
+% \day=20
+
+\documentclass{sysuthesis} % 默认使用电子版（不填充空白页）。如果需要双面打印版，请注释掉本行并启用下一行
 % \documentclass[print-both-sides]{sysuthesis} % 使用双面打印版（填充额外空白页以保证每一章开头都在奇数页）
 \usepackage{sysucode}  % 在论文中使用代码
 
@@ -36,8 +41,6 @@
 \newclearpage
 \include{docs/chap05}
 \newclearpage
-\include{docs/chap06}
-\newclearpage
 
 % 结语
 
@@ -49,15 +52,13 @@
 
 % 附录
 {
-\appendix
-\include{docs/appendix1}
-\newclearpage
+    \appendix
+    \include{docs/appendix1}
+    \newclearpage
 }
 
 \include{docs/ack}    % 致谢
 \newclearpage
 
-
 % \makeGrade      % 成绩评定记录表
 \end{document}
-

@@ -70,6 +70,12 @@
 % 引入调整段落整体宽度的宏包
 \RequirePackage{changepage}
 
+% 作图宏包
+\RequirePackage{pgfplots}
+
+% Fix <https://github.com/SYSU-SCC/sysu-thesis/issues/71>
+\RequirePackage{notoccite}
+
 % 设定时间为中文日期
 \ctexset{today=small}
 
