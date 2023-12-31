@@ -314,7 +314,7 @@ old
 *.lot
 *.out
 *.toc
-main2.pdf
+main.pdf
 missfont.log
 svn-commit.tmp
 sysuthesis.tar.gz
