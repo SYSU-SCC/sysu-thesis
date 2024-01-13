@@ -112,8 +112,8 @@
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{0pt}
 \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
-% 采用带圈数字符号代替*号脚注
-\xeCJKsetcharclass{`①}{`⑩}{1}
+% 采用带圈数字1-20符号代替*号脚注
+\xeCJKsetcharclass{"2460}{"2473}{1}
 % 默认页面页眉页脚样式
 \fancypagestyle{plain}{
     \fancyhf{}
@@ -1114,10 +1114,12 @@
 % 暂时不能处理引理，推论
 
 
-\renewcommand{\@fnsymbol}[1]{
-    \ifcase#1\or \text{①}\or \text{②}\or \text{③}\or    \text{④}\or \text{⑤}\or \text{⑥}\or \text{⑦}\or \text{⑧} \or \text{⑨} \or \text{⑩}
-    \else
-        \@ctrerr
-    \fi
+% 脚注标号拓展为1-20，超出标号会出现错误
+\newcommand\sysu@textcircled[1]{%
+  \ifnum\value{#1}<21\relax
+    {\symbol{\numexpr\value{#1} + "245F\relax}}%
+  \else
+    \@ctrerr % Cannot display more than 20 footnotes
+  \fi
 }
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand{\thefootnote}{\sysu@textcircled{footnote}}
