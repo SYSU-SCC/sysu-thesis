@@ -36,6 +36,7 @@ jobs:
       - name: Compile
         run: |
           apt-get update -y
+          apt-get install --no-install-recommends -y dbus-user-session # 2024.01.13 fix workflow
           apt-get install --no-install-recommends -y apt-transport-https ca-certificates software-properties-common
           sed -i '/^\([^#].*main\)*$/s/main/& contrib non-free/' /etc/apt/sources.list
           apt-get update -y
