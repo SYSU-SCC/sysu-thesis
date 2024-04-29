@@ -1,8 +1,7 @@
 {
-    "build":{
+    "build": {
         "dockerfile": "Dockerfile"
     },
-
     "customizations": {
         "vscode": {
             "extensions": [

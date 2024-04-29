@@ -26,6 +26,18 @@
 
 还可以使用 `git tag`，其会像本仓库一样将构建好的 artifact 永久发布到 [releases](https://github.com/SYSU-SCC/sysu-thesis/releases) 中。
 
+### Devcontainer 编辑（本地 & 在线）
+
+> [!IMPORTANT]  
+> 无论是本地还是在线编辑，都需要首先创建自己的论文仓库，在自己的仓库进行修改，并建议及时 `commit & push` 到远程仓库进行备份。
+
+本模板提供了 [VS Code Remote - Containers](https://code.visualstudio.com/docs/remote/containers) 相关配置文件，包含了 texlive 2022 和 VS Code 中文和 LaTeX Workshop 插件，可用于本地或在线容器化编辑。
+
+- 对于在线编辑，可以使用 [GitHub Codespaces](https://docs.github.com/zh/codespaces/developing-in-a-codespace/creating-a-codespace-for-a-repository) 通过浏览器版本的 VS Code 进行编辑。（请注意，GitHub Codespaces 每月免费额度有限，请注意用量）。
+- 而对于本地编辑，需要安装 [Docker](https://docs.docker.com/get-docker/) 和 [VS Code](https://code.visualstudio.com/)，并在 VSCode 中安装 [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) 插件。随后打开本仓库，键入 `F1`，选择 `Remote-Containers: Reopen in Container` 即可构建进入容器环境。
+
+在容器环境中，可以使用 `make pdf` 进行编译并生成 `main.pdf` 文件，或者使用 LaTeX Workshop 插件进行编译与预览。
+
 ### texlive 编辑（本地）
 
 本模板需要使用 texlive(>=2020) 进行编译，编译命令如下：
