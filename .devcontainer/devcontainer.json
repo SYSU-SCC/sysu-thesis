@@ -1,0 +1,14 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-ceintl.vscode-language-pack-zh-hans",
+                "james-yu.latex-workshop",
+                "nickfode.latex-formatter"
+            ]
+        }
+    }
+}
