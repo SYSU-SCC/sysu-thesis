@@ -1,4 +1,4 @@
-FROM pandoc/latex:latest-ubuntu
+FROM dockershelf/latex:full
 
 # Install additional packages & fonts
 RUN apt-get update -y \
