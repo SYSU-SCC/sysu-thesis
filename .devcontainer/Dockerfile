@@ -1,4 +1,4 @@
-FROM pandoc/latex
+FROM pandoc/latex:latest-ubuntu
 
 # Install additional packages & fonts
 RUN apt-get update -y \
