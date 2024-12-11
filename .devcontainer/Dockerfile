@@ -1,4 +1,4 @@
-FROM leplusorg/latex
+FROM textlive/textlive
 
 # Install additional packages & fonts
 RUN apt-get update -y \
