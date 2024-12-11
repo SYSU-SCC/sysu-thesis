@@ -1,4 +1,4 @@
-FROM dockershelf/latex:full
+FROM leplusorg/latex
 
 # Install additional packages & fonts
 RUN apt-get update -y \
