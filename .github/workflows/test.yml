@@ -26,7 +26,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container:
-      image: textlive/textlive
+      image: texlive/texlive:TL2022-historic
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

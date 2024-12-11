@@ -1,4 +1,4 @@
-FROM textlive/textlive
+FROM texlive/texlive:TL2022-historic
 
 # Install additional packages & fonts
 RUN apt-get update -y \
