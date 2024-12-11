@@ -1,4 +1,4 @@
-FROM texlive/texlive:TL2022-historic
+FROM pandoc/latex
 
 # Install additional packages & fonts
 RUN apt-get update -y \
