@@ -49,7 +49,7 @@ jobs:
           xelatex -shell-escape pre.tex
           xelatex -shell-escape pre.tex
           mv pre.pdf pre.fandol.pdf
-          sed -i 's| fontset=fandol,| fontset=ubuntu,|' presentation/pre.tex
+          sed -i 's| fontset=fandol,| fontset=ubuntu,|' pre.tex
           xelatex -shell-escape pre.tex
           xelatex -shell-escape pre.tex
           mv pre.pdf pre.ubuntu.pdf
