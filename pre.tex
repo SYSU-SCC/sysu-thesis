@@ -3,6 +3,7 @@
     fontset=fandol,
     xcolor=x11names % SeaGreen4
 ]{ctexbeamer}
+\usepackage{minted}
 
 \usetheme[
     % compress % 进度条压缩在一行，可选
@@ -26,11 +27,11 @@
 }
 
 \institute[中山大学~计算机学院（软件学院）]{
-    \includegraphics[height=0.1\textheight]{../image/template/logo.png}
-    % \includegraphics[height=0.1\textheight]{../image/template/sysu-logo.pdf} % 这里可以放一排所在实验室的logo，可以去学院官网底部或实验室主页弄到，如 <http://nscc-gz.cn/_layout/themes/cs/images/logo0409.png>
+    \includegraphics[height=0.1\textheight]{./image/template/logo.png}
+    % \includegraphics[height=0.1\textheight]{./image/template/sysu-logo.pdf} % 这里可以放一排所在实验室的logo，可以去学院官网底部或实验室主页弄到，如 <http://nscc-gz.cn/_layout/themes/cs/images/logo0409.png>
 }
 
-\logo{\includegraphics[width=.08\linewidth]{../image/template/sysu-logo.pdf}} % 这个是每页都会出现的水印，可能会影响观感，自行决定放不放
+\logo{\includegraphics[width=.08\linewidth]{./image/template/sysu-logo.pdf}} % 这个是每页都会出现的水印，可能会影响观感，自行决定放不放
 
 \date{
     %\today
@@ -82,7 +83,7 @@
     \end{block}
 
     \begin{figure}
-        \includegraphics[width=0.618\linewidth]{../image/chap04/illustration/hole.pdf}
+        \includegraphics[width=0.618\linewidth]{./image/chap04/illustration/hole.pdf}
         \caption{单张图像}
         \label{fig:hole}
     \end{figure}
@@ -99,15 +100,15 @@
     \end{block}
 
     \begin{figure} %文中的Grid-LSTM模型做的语义图像分割的例子
-        \includegraphics[width=.2\linewidth,height=.15\linewidth]{../image/chap04/example/2007_000799.jpg}
-        \includegraphics[width=.2\linewidth,height=.15\linewidth]{../image/chap04/example/2007_002094.jpg}
-        \includegraphics[width=.2\linewidth,height=.15\linewidth]{../image/chap04/example/2007_004483.jpg}
-        \includegraphics[width=.2\linewidth,height=.15\linewidth]{../image/chap04/example/2007_003194.jpg}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_000799.jpg}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_002094.jpg}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_004483.jpg}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_003194.jpg}
         \\
-        \includegraphics[width=.2\linewidth,height=.15\linewidth]{../image/chap04/example/2007_000799.pdf}
-        \includegraphics[width=.2\linewidth,height=.15\linewidth]{../image/chap04/example/2007_002094.pdf}
-        \includegraphics[width=.2\linewidth,height=.15\linewidth]{../image/chap04/example/2007_004483.pdf}
-        \includegraphics[width=.2\linewidth,height=.15\linewidth]{../image/chap04/example/2007_003194.pdf}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_000799.pdf}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_002094.pdf}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_004483.pdf}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_003194.pdf}
         \caption{并排的多张图像}
         \label{fig:multi-image-example1}
     \end{figure}
@@ -128,7 +129,7 @@
     \end{minipage}\begin{minipage}{.6\linewidth}
 
     \begin{figure}
-        \includegraphics[width=.95\linewidth]{../image/chap03/overleaf-example.jpg}
+        \includegraphics[width=.95\linewidth]{./image/chap03/overleaf-example.jpg}
     \end{figure}
 
     \end{minipage}
@@ -148,11 +149,11 @@
 
     \begin{figure}
         \begin{minipage}{0.49\linewidth}
-            \includegraphics[height=0.45\textheight]{../image/chap04/example/2007_004483.pdf}
+            \includegraphics[height=0.45\textheight]{./image/chap04/example/2007_004483.pdf}
             \caption{一}
         \end{minipage}
         \begin{minipage}{0.49\linewidth}
-            \includegraphics[height=0.45\textheight]{../image/chap04/example/2007_003194.pdf}
+            \includegraphics[height=0.45\textheight]{./image/chap04/example/2007_003194.pdf}
             \caption{二}
         \end{minipage}
     \end{figure}
@@ -164,7 +165,7 @@
 \begin{frame}
 
     \begin{figure}
-        \includegraphics[width=0.9\linewidth]{../image/chap03/overleaf-example.jpg}
+        \includegraphics[width=0.9\linewidth]{./image/chap03/overleaf-example.jpg}
         \caption{Overleaf使用例子，这里的描述可以长一些}
         \label{fig:overleaf-example}
     \end{figure}
@@ -172,6 +173,34 @@
 \end{frame}
 
 \section{算法设计}
+
+\subsection{代码块}
+
+\begin{frame}[fragile] % 注意
+
+\begin{minipage}{.49\linewidth}
+
+\begin{figure}
+\begin{minted}[linenos]{python3}
+for i in range(N):
+  A[i] += 1
+\end{minted}
+\caption{python3 代码段}
+\end{figure}
+
+\end{minipage}\begin{minipage}{.49\linewidth}
+
+\begin{figure}
+\begin{minted}{cpp}
+for (int i = 0; i < N; ++i)
+  A[i] += 1;
+\end{minted}
+\caption{cpp 代码段}
+\end{figure}
+
+\end{minipage}
+    
+\end{frame}
 
 \subsection{图像搭配单页说明}
 
