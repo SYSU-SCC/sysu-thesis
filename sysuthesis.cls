@@ -9,7 +9,7 @@
 %
 
 \NeedsTeXFormat{LaTeX2e}[2017/04/15]
-\newcommand\sysuthesisversion{4.0.0-beta.6}
+\newcommand\sysuthesisversion{v2.0.0-beta1}
 \ProvidesClass{sysuthesis}[2025/02/25 v\sysuthesisversion\space sysu thesis template]
 
 % 报错和警告
@@ -199,6 +199,10 @@
     },
     default = auto,
   },
+  logo-path = {
+     name = logo@path,
+     default = image/template/, % 此处修改 logo 目录，方便后面不与论文图片混在一起
+   },
   fontset = {
     choices = {
       auto,
@@ -1903,7 +1907,7 @@
   	  \raggedleft\heiti\fontsize{12bp}{12bp}\selectfont
   	  \null\sysu@secret@level\par}\par
 %  	  \vskip 0.5cm%
-    \includegraphics[width=11cm]{image/template/SYSULogo}\\
+    \includegraphics[width=11cm]{\sysu@logo@path/SYSULogo}\\
   	\vskip 1.2cm%
   	{\rmfamily\bfseries\fontsize{26bp}{26bp}\selectfont
   		\sysu@thesis@name\par}%
@@ -1952,7 +1956,7 @@
     \sysu@pdfbookmark{Cover}%
     \centering
     \vskip 0.5cm%
-    \includegraphics[width=3cm]{image/template/sysu-logo.pdf}
+    \includegraphics[width=3cm]{\sysu@logo@path/sysu-logo.pdf}
     \vskip 1.2cm%
       {\zihao{-0}\textcolor{sysugreen}{\rmfamily\textbf{\ \sysu@thesis@name}}}
     \vspace{\baselineskip}
