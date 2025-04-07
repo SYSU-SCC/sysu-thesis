@@ -1,10 +1,10 @@
 src = main
 
 pdf: clean main.tex main.bib
-	xelatex -shell-escape $(src)
-	bibtex $(src)
-	xelatex -shell-escape $(src)
-	xelatex -shell-escape $(src)
+	xelatex -shell-escape $(src).tex
+	bibtex $(src).bib
+	xelatex -shell-escape $(src).tex
+	xelatex -shell-escape $(src).tex
 
 show:
 	xdg-open $(src).pdf

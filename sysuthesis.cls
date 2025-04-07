@@ -430,7 +430,7 @@
 \RequirePackage{booktabs}
 \RequirePackage{xcolor}
 \RequirePackage{colortbl}
-\RequirePackage{minted}
+% \RequirePackage{minted}
 \RequirePackage{titletoc}
 \RequirePackage{caption}
 \RequirePackage{subcaption}
