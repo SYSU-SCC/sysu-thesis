@@ -289,21 +289,21 @@
 本模版支持在论文中插入代码片段，或直接从源码文件进行插入。{\color{red}{注意}}，此功能需要安装 Python 以及对应的 Pygments 库才能运行，否则会报错。
 例如，在论文中插入代码片段的效果为：
 
-% \begin{minted}[linenos]{python3}
-% def func():
-%     print("hello world")
-%     with open('./output.txt', 'w') as f:
-%     L = f.readlines()
+\begin{minted}[linenos]{python3}
+def func():
+    print("hello world")
+    with open('./output.txt', 'w') as f:
+    L = f.readlines()
 
-% if __name__ == "__main__":
-%     # this is a comment line
-%     func()
-% \end{minted}
+if __name__ == "__main__":
+    # this is a comment line
+    func()
+\end{minted}
 
-% 也可在行内插入代码片段，例如：Python中重载加法运算符的函数为\mintinline{python3}{__add__}，类的标识符为\mintinline{python3}{class}。
-% 此外，还可直接插入代码文件，例如插入\texttt{./code/demo.cpp}的效果为：
+也可在行内插入代码片段，例如：Python中重载加法运算符的函数为\mintinline{python3}{__add__}，类的标识符为\mintinline{python3}{class}。
+此外，还可直接插入代码文件，例如插入\texttt{./code/demo.cpp}的效果为：
 
-% \inputminted{cpp}{code/demo.cpp}
+\inputminted{cpp}{code/demo.cpp}
 
 \section{其他的一些用法}
 \label{sec:font}
