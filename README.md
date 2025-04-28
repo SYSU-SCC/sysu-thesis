@@ -2,6 +2,8 @@
 
 本项目现已得到中山大学计算机学院支持。我们正在努力增加 feature ，满足本院毕业设计的要求，并争取进一步完善，成为中大官方 $\LaTeX$ 毕设模板。Demo 与源码可在 [releases](https://github.com/SYSU-SCC/sysu-thesis/releases) 页面下载。
 
+**诚挚邀请广大校友加入本项目维护，详见 [#67](https://github.com/SYSU-SCC/sysu-thesis/issues/67)、[#105](https://github.com/SYSU-SCC/sysu-thesis/pull/105)。希望加入 collaborator 团队的同学可联系 [@wu-kan](https://github.com/wu-kan)。**
+
 ## 如何使用
 
 ### overleaf 编辑（在线）
