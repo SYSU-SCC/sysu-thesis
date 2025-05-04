@@ -1,8 +1,8 @@
 src = main
 
-pdf: clean main.tex main.bib
+pdf: clean main.tex reference.bib
 	xelatex -shell-escape $(src)
-	bibtex $(src)
+	bibtex reference
 	xelatex -shell-escape $(src)
 	xelatex -shell-escape $(src)
 
