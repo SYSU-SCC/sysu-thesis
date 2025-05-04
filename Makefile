@@ -2,7 +2,7 @@ src = main
 
 pdf: clean main.tex reference.bib
 	xelatex -shell-escape $(src)
-	bibtex reference
+	bibtex $(src)
 	xelatex -shell-escape $(src)
 	xelatex -shell-escape $(src)
 
