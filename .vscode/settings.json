@@ -1,24 +1,10 @@
 {
+    "latex-workshop.intellisense.unimathsymbols.enabled": true,
     "latex-workshop.latex.recipes": [
         {
-            "name": "xelatex ➞ bibtex ➞ xelatex × 2",
+            "name": "latexmk (xelatex)",
             "tools": [
-                "xelatex",
-                "bibtex",
-                "xelatex",
-                "xelatex"
-            ]
-        },
-        {
-            "name": "latexmk 🔃",
-            "tools": [
-                "latexmk"
-            ]
-        },
-        {
-            "name": "latexmk (latexmkrc)",
-            "tools": [
-                "latexmk_rconly"
+                "xelatexmk"
             ]
         },
         {
@@ -26,58 +12,17 @@
             "tools": [
                 "lualatexmk"
             ]
-        },
-        {
-            "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
-            "tools": [
-                "pdflatex",
-                "bibtex",
-                "pdflatex",
-                "pdflatex"
-            ]
-        },
-        {
-            "name": "Compile Rnw files",
-            "tools": [
-                "rnw2tex",
-                "latexmk"
-            ]
-        },
-        {
-            "name": "Compile Jnw files",
-            "tools": [
-                "jnw2tex",
-                "latexmk"
-            ]
-        },
-        {
-            "name": "tectonic",
-            "tools": [
-                "tectonic"
-            ]
         }
     ],
     "latex-workshop.latex.tools": [
         {
-            "name": "xelatex",
-            "command": "xelatex",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "--shell-escape",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "latexmk",
+            "name": "xelatexmk",
             "command": "latexmk",
             "args": [
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
-                "-pdf",
+                "-xelatex",
                 "-outdir=%OUTDIR%",
                 "%DOC%"
             ],
@@ -96,70 +41,5 @@
             ],
             "env": {}
         },
-        {
-            "name": "latexmk_rconly",
-            "command": "latexmk",
-            "args": [
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "pdflatex",
-            "command": "pdflatex",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "bibtex",
-            "command": "bibtex",
-            "args": [
-                "%DOCFILE%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "rnw2tex",
-            "command": "Rscript",
-            "args": [
-                "-e",
-                "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
-            ],
-            "env": {}
-        },
-        {
-            "name": "jnw2tex",
-            "command": "julia",
-            "args": [
-                "-e",
-                "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
-            ],
-            "env": {}
-        },
-        {
-            "name": "jnw2texmintex",
-            "command": "julia",
-            "args": [
-                "-e",
-                "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
-            ],
-            "env": {}
-        },
-        {
-            "name": "tectonic",
-            "command": "tectonic",
-            "args": [
-                "--synctex",
-                "--keep-logs",
-                "%DOC%.tex"
-            ],
-            "env": {}
-        }
-    ],
-    "latex-workshop.latex.recipe.default": "first"
+    ]
 }

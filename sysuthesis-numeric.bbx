@@ -1,0 +1,116 @@
+\ProvidesFile{sysuthesis-numeric.bbx}[2025/04/04 v1.0 SYSUThesis biblatex
+  bibliography style]
+
+\RequireBibliographyStyle{gb7714-2015}
+
+\ExecuteBibliographyOptions{
+  gbpub     = false,
+  gbalign   = left,
+  gbpunctin = false,
+  url       = false,
+  doi       = false,
+}
+
+\DeclareFieldFormat{sentencecase}{%
+  \iftoggle{bbx:titlelink}{%
+    \iffieldundef{url}{#1}{%
+      \href{\thefield{url}}{\MakeSentenceCase*{#1}}%
+    }%
+  }{%
+    \MakeSentenceCase{#1}%
+  }%
+}
+
+% 将会议论文集析出形式由 [C]// 改为 [C].
+\DefineBibliographyStrings{english}{
+  in   = {},
+  incn = {},
+}
+
+%
+%   重设title的输出
+%
+%   20180425，v1.0k，为标题增加字体控制命令，Hu Zhenzhen
+%   原理方法:将文献类型标识符输出出去，原输出来自biblatex.def文件
+%   利用toggle做标识符是否输出的判断
+\renewbibmacro*{title}{%
+  \ifboolexpr{%
+    test{\iffieldundef{title}}%
+    and
+    test{\iffieldundef{subtitle}}%
+  }%
+    {}%
+    {\printtext[title]{\bibtitlefont%增加字体控制命令
+       \printfield[sentencecase]{title}%
+       \ifboolexpr{test {\iffieldundef{subtitle}}}%这里增加了对子标题的判断，解决不判断多一个点的问题
+       {}{\setunit{\subtitlepunct}%
+       \printfield[sentencecase]{subtitle}}%
+       \iffieldundef{titleaddon}{}%判断一下titleaddon，否则直接加可能多一个空格
+        {\setunit{\subtitlepunct}\printfield{titleaddon}}%
+        \iftoggle{bbx:gbtype}{%
+         \iffieldundef{entrysubtype}{\printfield[gbtypeflag]{usera}}%在标题后直接给出文献标识字母，判断一下，是否是报纸和标准
+        {\iffieldequalstr{entrysubtype}{standard}{\printfield[gbtypeflags]{usera}}%判断是否为标准
+                                         {\iffieldequalstr{entrysubtype}{news}{\printfield[gbtypeflagn]{usera}}%判断是否为报纸
+                                                                      {\printfield[gbtypeflag]{usera}}}%其它
+        }}{}%
+     %\iffieldundef{booktitle}{\newunit}{}%当title是析出时，不要标点
+     %\newunit
+}%
+}}
+
+\renewbibmacro*{maintitle}{%
+  \ifboolexpr{
+    test {\iffieldundef{maintitle}}
+    and
+    test {\iffieldundef{mainsubtitle}}
+  }
+    {}
+    {\printtext[maintitle]{%
+       % 在 maintitle+title 使用 sentence case，但是在 maintitle+booktitle 使用 title case
+       \printfield[titlecase]{maintitle}%
+       \iffieldundef{booktitle}{%
+         \printfield[sentencecase]{maintitle}%
+       }{%
+         \printfield[titlecase]{maintitle}%
+       }%
+       \setunit{\subtitlepunct}%
+       % \printfield[titlecase]{mainsubtitle}%
+       \iffieldundef{booktitle}{%
+         \printfield[sentencecase]{maintitle}%
+       }{%
+         \printfield[titlecase]{maintitle}%
+       }%
+      }%
+     \newunit}%
+  \printfield{maintitleaddon}}
+
+
+%
+%   重设专利title的输出，将文献类型标识符输出出去
+%
+\renewbibmacro*{patenttitle}{%原输出来自biblatex.def文件
+  \ifboolexpr{%
+    test{\iffieldundef{title}}%
+    and%
+    test{\iffieldundef{subtitle}}%
+  }%
+    {}%
+    {\printtext[title]{\bibtitlefont%
+       \printfield[sentencecase]{title}%
+       \ifboolexpr{test {\iffieldundef{subtitle}}}
+       {}{\setunit{\subtitlepunct}%
+       \printfield[sentencecase]{subtitle}}%
+       \iffieldundef{titleaddon}{}
+        {\setunit{\subtitlepunct}\printfield{titleaddon}}%
+       % \setunit{\subtitlepunct}\printfield{number}%写专利号
+       \setunit{\subtitlepunct}%
+       \iflistundef{location}{}
+        {\printlist{location}\setunit{\addcomma\space}}% 专利国别
+       \printfield{number}%写专利号
+       \iftoggle{bbx:gbtype}{\printfield[gbtypeflag]{usera}}{}%
+     %\iffieldundef{booktitle}{\newunit}{}%当title是析出时，不要标点
+     %\newunit
+     }%
+}%
+\clearlist{location}\clearlist{address}%
+}

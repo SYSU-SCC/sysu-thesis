@@ -1,64 +1,45 @@
-﻿% 可自定义论文时间戳 \today
-% \year=2021
-% \month=5
-% \day=20
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+% !TeX spellcheck = en_US
 
-\documentclass{sysuthesis} % 默认使用电子版（不填充空白页）。如果需要双面打印版，请注释掉本行并启用下一行
-% \documentclass[print-both-sides]{sysuthesis} % 使用双面打印版（填充额外空白页以保证每一章开头都在奇数页）
-\usepackage{minted}  % 在论文中使用代码
+\documentclass[degree=bachelor]{sysuthesis}
+% degree      = doctor | master | bachelor
+% degree-type = academic | professional
+% language    = chinese | english
+% fontset     = windows | mac | ubuntu | fandol
 
-\input{docs/info}     % 论文相关信息
-\input{docs/proposal}   % 开题报告内容
-\input{docs/abstract}     % 摘要内容
-\input{docs/grading}    % 成绩评定记录表评语
-\input{docs/progress}   % 过程检查报告数据
+% 加载宏包、全部的配置
+\input{sysusetup.tex}
+
+
 \begin{document}
-% 论文前置部分
+
+\maketitle
+\copyrightpage
+
 \frontmatter
-\pagenumbering{Roman}
-\makeUndergraduateCover    % 封面
-\makeUndergraduateTitlePage    % 扉页
-% \makeProposal% 开题报告
-% \makeProgressCheck  % 过程检查记录表
-% \makeDefenseRecord  % 答辩情况等级表
-\makedisclaim       % 学术诚信声明
-\makeabstract       % 中英文摘要
-\maketableofcontents        % 目录
-\makelistoffiguretable
+\input{docs/abstract.tex}
+\tableofcontents
+\listoffigures
+\listoftables
+% \listoffiguresandtables
+\input{docs/notation.tex}
 
-% 论文主体部分
 \mainmatter
-% 引言
+\input{docs/chap01.tex}
+\input{docs/chap02.tex}
+\input{docs/chap03.tex}
+\input{docs/chap04.tex}
+\input{docs/chap05.tex}
 
-% 正文
-\include{docs/chap01}
-\newclearpage
-\include{docs/chap02}
-\newclearpage
-\include{docs/chap03}
-\newclearpage
-\include{docs/chap04}
-\newclearpage
-\include{docs/chap05}
-\newclearpage
+\bibliography{reference}  % 参考文献使用 BibTeX 编译
+% \printbibliography       % 参考文献使用 BibLaTeX 编译
 
-% 结语
+\appendix
+\input{docs/complementary.tex}
 
-% 附录部分
 \backmatter
-% 参考文献. 因不需要纳入章节目录, 故放入附录部分
-% 实际上参考文献是属于论文主体部分
-\makereferences
+\input{docs/acknowledgements.tex}
+\input{docs/achievements.tex}
 
-% 附录
-{
-    \appendix
-    \include{docs/appendix1}
-    \newclearpage
-}
-
-\include{docs/ack}    % 致谢
-\newclearpage
-
-% \makeGrade      % 成绩评定记录表
 \end{document}
