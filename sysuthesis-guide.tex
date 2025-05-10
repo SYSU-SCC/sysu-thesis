@@ -1,0 +1,641 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+% !TeX spellcheck = en_US
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3c
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%    https://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2008 or later.
+%
+
+\documentclass[a4paper]{ltxdoc}
+
+\usepackage[UTF8]{ctex}
+\usepackage{unicode-math}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[perpage]{footmisc}
+\usepackage{hypdoc}
+
+\makeatletter
+
+% 设置字体
+\IfFileExists{/System/Library/Fonts/Times.ttc}{
+  \setmainfont{Times}
+  \setsansfont[Scale=MatchLowercase]{Helvetica}
+  \setmonofont[Scale=MatchLowercase]{Menlo}
+  \xeCJKsetwidth{‘’“”}{1em}
+}{}
+\unimathsetup{
+  math-style=ISO,
+  bold-style=ISO,
+}
+\IfFontExistsTF{xits-math.otf}{
+  \setmathfont[
+    Extension    = .otf,
+    BoldFont     = *bold,
+    StylisticSet = 8,
+  ]{xits-math}
+  \setmathfont[range={cal,bfcal},StylisticSet=1]{xits-math.otf}
+}{
+  \setmathfont[
+    Extension    = .otf,
+    BoldFont     = XITSMath-Bold,
+    StylisticSet = 8,
+  ]{XITSMath-Regular}
+  \setmathfont[range={cal,bfcal},StylisticSet=1]{XITSMath-Regular.otf}
+}
+
+% 定义一些命令用于写文档
+\newcommand\TeXLive{\TeX{} Live}
+\newcommand\unicodechar[1]{U+#1（\symbol{"#1}）}
+\DeclareRobustCommand\file{\nolinkurl}
+\DeclareRobustCommand\env{\texttt}
+\DeclareRobustCommand\pkg{\textsf}
+\DeclareRobustCommand\cls{\textsf}
+\DeclareRobustCommand\opt{\texttt}
+
+% 在 doc 的基础上增加 option 的描述
+\def\DescribeOption{\leavevmode\@bsphack\begingroup\MakePrivateLetters
+  \Describe@Option}
+\def\Describe@Option#1{\endgroup
+              \marginpar{\raggedleft\PrintDescribeOption{#1}}%
+              \SpecialEnvIndex{#1}\@esphack\ignorespaces}
+\@ifundefined{PrintDescribeOption}
+   {\def\PrintDescribeOption#1{\strut \MacroFont #1\ }}{}
+
+% 调整列表的格式
+\setlength\partopsep{\z@}
+\def\@listi{\leftmargin\leftmargini
+            \parsep \z@
+            \topsep \z@
+            \itemsep \z@}
+\let\@listI\@listi
+\@listi
+
+% listings 的样式
+\lstdefinestyle{lstshell}{
+  basicstyle      = \small\ttfamily,
+  backgroundcolor = \color{lightgray},
+  language        = bash,
+}
+\newcommand\shellcmd[1]{\colorbox{lightgray}{\lstinline[style=lstshell]|#1|}}
+\lstnewenvironment{shell}{\lstset{style=lstshell, gobble=2}}{}
+\lstnewenvironment{latex}{%
+  \lstset{
+    basicstyle = \small\ttfamily,
+    frame      = single,
+    gobble     = 2,
+    language   = [LaTeX]TeX,
+  }%
+}{}
+
+\hypersetup{
+  allcolors         = blue,
+  bookmarksnumbered = true,
+  bookmarksopen     = true,
+}
+\makeatother
+
+
+\begin{document}
+
+
+
+\title{\cls{sysuthesis} 使用说明}
+\author{1FCENdoge\footnotemark[1] \and Marc-Antoine\footnotemark[1] \and SYSU-SCC\footnotemark[3] \and Zeping Lee\footnotemark[2]}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext[1]{中山大学中法核工程与技术学院}
+\footnotetext[2]{中国科学技术大学数学科学学院}
+\footnotetext[3]{中山大学超算队}
+\date{\today}
+\maketitle
+
+
+
+\section{简介}
+
+本模板 \cls{sysuthesis} 是中山大学本科生和研究生学位论文的 \LaTeX{}
+模板，参照中国科学技术大学学位论文 \LaTeX{}
+模板编辑得到，部分格式参照中科大本科、研究生论文格式，
+再将中山大学本科和研究生部分论文格式进行统一。
+
+本模板主要依据中山大学 \LaTeX{} 论文项目模板（wu-kan 维护）、
+中山大学毕业论文模板（huangjj27 开发）以及本人写硕士论文期间所用的模板编写。
+2025年3月，本人将几个模板进行整合梳理，新模板的主要亮点：支持本科和研究生模板一键切换。
+
+下载地址：
+\begin{itemize}
+  \item 主要地址：\url{https://github.com/1FCENdoge/sysuthesis/releases}
+\end{itemize}
+
+用户在使用 \pkg{sysuthesis} 模板前，应先了解学校对论文写作的要求。
+如果在使用的过程中遇到问题，可以阅读
+\href{https://github.com/ustctug/ustcthesis/wiki}{常见问题}，
+或者在 \href{https://github.com/1FCENdoge/sysuthesis/issues}{GitHub Issues}
+中反馈。
+
+
+
+\section{编译方法}
+
+
+\subsection{文件组成}
+本模板的主要文件如表~\ref{tab:files}：
+\begin{table}[htb]
+  \centering\small
+  \caption{模板的文件组成}
+  \label{tab:files}
+  \begin{tabular}{lll}
+    \toprule
+    类别     & 文件                      & 说明                         \\
+    \midrule
+    模板文件 & \file{sysuthesis.cls}     & 模板文件                     \\
+             & \file{sysuthesis-numerical.bst}   & \BibTeX{} 参考文献表格式   \\
+             & \file{sysuthesis-numeric.bbx}    & BibLaTeX 参考文献表格式  \\
+             & \file{figures/sysu*.pdf} & 校徽图片               \\
+    \midrule
+    使用说明 & \file{sysuthesis-guide.tex} & 模板使用说明的源代码         \\
+             & \file{sysuthesis-guide.pdf} & （你正在阅读的）模板使用说明 \\
+    \midrule
+    示例文档 & \file{main.tex}           & 主文档                       \\
+             & \file{sysusetup.tex}      & 配置文件                     \\
+             & \file{chapters/*.tex}     & 示例文档的各个章节           \\
+             & \file{figures/}           & 放置图片的目录               \\
+             & \file{tables/}            & 放置表格的目录               \\
+             & \file{reference.bib}       & \BibTeX{} 示例数据库         \\
+    \midrule
+    其他     & \file{README.md}          & 基本说明                     \\
+             & \file{CHANGELOG.md}       & 修改记录                     \\
+             & \file{latexmkrc}          & latexmk 的配置文件           \\
+             & \file{Makefile}           & GNU make 的配置文件          \\
+             & \file{.vscode/}           & VS Code 的配置文件           \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+示例文档包括了常用的 \LaTeX{} 命令，建议新手从此入手，用自己的内容进行替换。
+
+
+\subsection{依赖宏包}
+
+本模板要求使用 TeX Live、MacTeX 或 MiKTeX 不低于 2017 年的发行版，
+推荐升级到最新的版本。
+
+模板直接依赖的宏包有：
+\pkg{amsmath},
+\pkg{caption},
+\pkg{color},
+\pkg{ctex},
+\pkg{makecell},
+\pkg{fancyhdr},
+\pkg{footmisc},
+\pkg{geometry},
+\pkg{graphicx},
+\pkg{notoccite},
+\pkg{titletoc},
+\pkg{url},
+\pkg{booktabs},
+\pkg{csvsimple},
+\pkg{unicode-math}。
+
+另外，模板还对其他宏包提供了支持，包括：
+\pkg{amsthm},
+\pkg{algorithm2e},
+\pkg{natbib},
+\pkg{biblatex},
+\pkg{hyperref},
+\pkg{nomencl},
+\pkg{siunitx}。
+这些宏包并非必需，用户可以根据需要选择使用。
+模板在检测到这些宏包被调用后会自动进行配置。
+
+注意，本模板\emph{不}兼容的宏包有：
+\pkg{amsfonts},
+\pkg{amssymb},
+\pkg{bm},
+\pkg{cite},
+\pkg{mathrsfs},
+\pkg{newtx},
+\pkg{upgreek}。
+
+
+\subsection{开始编译}
+
+\begin{enumerate}
+
+\item GNU make \\
+Linux/Mac用户，可以直接使用 GNU make 工具，这是最简单的方法。
+编译论文 \file{main.pdf}：
+\begin{shell}
+  make
+\end{shell}
+编译说明文档 \file{sysuthesis-guide.pdf}：
+\begin{shell}
+  make doc
+\end{shell}
+另外还可以用 \shellcmd{make clean} 清理辅助文件。
+
+\item |latexmk| \\
+Windows 用户可能无法使用GNU make，使用 |latexmk| 也是一个比较简单的方法，
+配置文件由 \file{latexmkrc} 给出，其参数设置为 |-xelatex|，用户编译论文
+只需使用命令：
+\begin{shell}
+  latexmk -xelatex main.tex
+\end{shell}
+编译说明文档：
+\begin{shell}
+  latexmk -xelatex sysuthesis-guide.tex
+\end{shell}
+清理辅助文件可以用 \shellcmd{latexmk -c}。图形界面用户应参考编辑器的使用说明。
+
+\item 手动编译 \\
+手动编译是最繁琐的方法，用户可能需要运行多遍，以确保论文的交叉引用等信息全部正确。
+
+编译论文 \file{main.pdf}：
+\begin{shell}
+  xelatex main.tex
+  bibtex main.aux
+  xelatex main.tex
+  xelatex main.tex
+\end{shell}
+编译说明文档 \file{sysuthesis-guide.pdf}：
+\begin{shell}
+  xelatex sysuthesis-guide.tex
+  xelatex sysuthesis-guide.tex
+\end{shell}
+\end{enumerate}
+
+
+
+\section{模板设置}
+
+
+\subsection{文档类参数}
+\DescribeOption{degree}
+选择学位，支持 \opt{bachelor}，\opt{master}，\opt{doctor}（默认）。
+\begin{latex}
+  \documentclass[degree=doctor]{sysuthesis}
+\end{latex}
+
+\DescribeOption{degree-type}
+学位类型。可选：学术型 \opt{academic}（默认），专业型 \opt{professional}。
+\begin{latex}
+  \documentclass[degree-type=professional]{sysuthesis}
+\end{latex}
+
+\DescribeOption{language}
+论文全文的主要语言。可选：\opt{chinese}（默认），\opt{english}。
+\begin{latex}
+  \documentclass[language=english]{sysuthesis}
+\end{latex}
+
+\DescribeOption{output}
+输出 PDF 的类型：
+\begin{itemize}
+  \item \opt{print}（默认）：用于双面打印纸质论文
+  \item \opt{electronic}：单面，并保留超链接颜色
+\end{itemize}
+\begin{latex}
+  \documentclass[output=electronic]{sysuthesis}
+\end{latex}
+
+\DescribeOption{section-style}
+本科生专用，章节标题的样式。可选：\opt{chinese}（默认），\opt{arabic}。
+\begin{itemize}
+  \item \opt{chinese}（默认）：汉字序号
+  \item \opt{arabic}：阿拉伯数字序号
+\end{itemize}
+\begin{latex}
+  \documentclass[section-style=arabic]{sysuthesis}
+\end{latex}
+
+
+\subsection{字体设置}
+模板默认会自动根据操作系统配置合适的字体，
+\DescribeOption{fontset}
+用户也可以通过 \opt{fontset} 时指定使用预设的字库，如：
+\begin{latex}
+  \documentclass[fontset=windows]{sysuthesis}
+\end{latex}
+允许的选项有 \opt{windows}、\opt{mac}、\opt{ubuntu} 和 \opt{fandol}，
+具体使用的字体见表~\ref{tab:fontset}。
+用户也可以设置为 \opt{none} 并自行配置字体。
+
+\begin{table}[htb]
+  \centering
+  \caption{模板预设的字体}
+  \label{tab:fontset}
+  \begin{tabular}{cccc}
+    \toprule
+    \opt{windows} & \opt{mac}    & \opt{ubuntu} & \opt{fandol} \\
+    \midrule
+    Times New Roman  & Times New Roman & TeX Gyre Termes & TeX Gyre Termes \\
+    Arial            & Arial           & TeX Gyre Heros  & TeX Gyre Heros  \\
+    Courier          & Menlo           & TeX Gyre Cursor & TeX Gyre Cursor \\
+    中易宋体         & 华文宋体        & 思源宋体        & Fandol 宋体     \\
+    中易黑体         & 华文黑体        & 思源黑体        & Fandol 黑体     \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+然而自动配置的字体只能保证编译通过，但是还存在一些问题：
+\begin{enumerate}
+  \item 在其他平台上配置的 TeX Gyre 系列字体，虽然在风格上比较接近 Times 和 Arial，
+    但是毕竟跟《撰写手册》要求的字体不完全一致；
+  \item Fandol 字库的字形较少，常常出现缺字的情况；
+  \item 华文字库和 Fandol 字库虽然不违反《撰写手册》的要求，
+    但是其字形跟中易字库有所差别，可能被审查老师认为格式不符合要求。
+\end{enumerate}
+
+所以建议在提交最终版前使用 Windows 平台的字体进行编译。
+
+
+
+\section{论文内容}
+
+\subsection{封面与声明}
+
+“封面”的名字让人有些混淆，它既可以指由印刷厂统一制作的硬皮封面（cover），也可
+以指书打开后的第一页（title page）。在这里指的是后者，所以本模板从 title page
+开始。
+
+\DescribeMacro{\maketitle}
+封面由 \cs{maketitle} 命令生成，其中的各项信息使用 \cs{sysusetup} 命令以
+key-value 的方式填写，如：
+\begin{latex}
+  \sysusetup{
+    title  = {论文中文题目},
+    title* = {Thesis English Title},
+  }
+\end{latex}
+模板提供的选项见表~\ref{tab:covercmds}，
+\begin{table}[htb]
+  \centering\small
+  \caption{录入封面信息的命令}
+  \label{tab:covercmds}
+  \begin{tabular}{lll}
+    \toprule
+    命令               & 命令（英文）        & 说明          \\
+    \midrule
+    \opt{title}        & \opt{title*}        & 论文标题      \\
+    \opt{author}       & \opt{author*}       & 作者姓名      \\
+    \opt{speciality}   & \opt{speciality*}   & 学科专业      \\
+    \opt{supervisor}   & \opt{supervisor*}   & 导师      \\
+    \opt{practice-supervisor} & \opt{practice-supervisor*} & 实践导师 \\
+    \opt{date}         & -                   & 完成时间      \\
+    \opt{secret-level} & \opt{secret-level*} & 密级          \\
+    \opt{secret-year}  & -                   & 保密/控阅年限 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+有几点说明：
+\begin{itemize}
+  \item \cs{sysusetup} 使用 \pkg{kvsetkeys} 机制，配置项之间不能有空行，否则会报错。
+  \item 其中带 |*| 后缀的选项用于设置英文封面。
+  \item 导师姓名 \opt{supervisor} 允许多个姓名，使用“,”（西文逗号 U+002C）隔开。
+  \item 完成时间 \opt{date} 应使用 ISO 格式（yyyy-mm-dd），默认为当前日期。
+\end{itemize}
+
+\DescribeMacro{\copyrightpage}
+声明页由 \cs{copyrightpage} 命令生成。模板会根据 \opt{secret-level} 和
+\opt{secret-year} 的内容自动填写。
+
+
+\subsection{摘要和章节}
+\DescribeEnv{abstract}
+\DescribeEnv{abstract*}
+\DescribeEnv{abstract**}
+\DescribeEnv{notation}
+\DescribeEnv{acknowledgements}
+\DescribeEnv{achievements}
+对于特殊的章节，\cls{sysuthesis} 还提供了相应的环境：
+\begin{itemize}
+  \item 中文摘要：\env{abstract}
+  \item 英文摘要：\env{abstract*}
+  \item 第三种语言摘要（如果需要）：\env{abstract**}
+  \item 符号说明：\env{notation}
+  \item 致谢：    \env{acknowledgements}
+  \item 科研成果：\env{achievements}
+  \item 科研成果列表：\env{theachievements}
+\end{itemize}
+
+\DescribeOption{keywords}
+\DescribeOption{keywords*}
+\DescribeOption{keywords**}
+摘要的关键词应使用 \cs{sysusetup} 的接口进行设置，在录入时使用西文逗号隔开，为满足中法核的需要，本科论文加入了法语摘要，
+比如：
+\begin{latex}
+  \begin{abstract}
+    这里是摘要。
+    \sysusetup{
+      keywords  = {学位论文, 摘要, 关键词},
+      keywords* = {Dissertation, Abstract, Keywords},
+      keywords** = {Mémoire de bachelor, L'Abstract, Mots-clés},
+    }
+  \end{abstract}
+\end{latex}
+
+\DescribeMacro{\tableofcontents}
+\DescribeMacro{\listoffigures}
+\DescribeMacro{\listoftables}
+\DescribeMacro{\listoffiguresandtables}
+目录、插图和附表清单可以使用命令自动生成：
+\begin{itemize}
+  \item 目录：  \cs{tableofcontents}
+  \item 插图清单：\cs{listoffigures}
+  \item 附表清单：\cs{listoftables}
+  \item 插图和附表清单：\cs{listoffiguresandtables}
+\end{itemize}
+
+
+\subsection{插图和表格}
+
+图题置于图的下方，表题置于表的上方。
+\LaTeX{} 的 \cs{caption} 命令并不能控制标题的位置，
+需要作者注意写在合适的地方。
+
+\DescribeMacro{\figurenote}
+本模板还提供了 \cs{note}\marg{notes} 命令，用于在图表中添加注释。
+
+关于图片的并排，推荐使用较新的 \pkg{subcaption} 宏包，不建议使用
+\pkg{subfigure} 或 \pkg{subfig}。
+
+更多的表格样式参见 \pkg{booktabs}（三线表）、\pkg{longtable}（跨页表格）。
+
+算法可以使用 \pkg{algorithms} 宏包或者较新的 \pkg{algorithm2e}。
+
+
+\subsection{数学}
+
+《撰写手册》要求数学符号遵循 GB/T 3102.11—1993《物理科学和技术中使用的数学符号》
+\footnote{原 GB 3102.11—1993，自 2017 年 3 月 23 日起，该标准转为推荐性标准。}。
+该标准参照采纳 ISO 31-11:1992 \footnote{目前已更新为 ISO 80000-2:2019。}，
+但是与 \TeX{} 默认的美国数学学会（AMS）的习惯有许多差异。
+这将在下文详细论述。
+
+\DescribeOption{math-style}
+用户可以通过设置 \opt{math-style} 选择数学符号样式（可选：
+\opt{GB}（中文默认），\opt{TeX}（英文默认）和 \opt{ISO}），比如：
+\begin{latex}
+  \sysusetup{
+    math-style = ISO,
+  }
+\end{latex}
+
+用户也可以逐项修改数学样式。
+\newcommand\dif{\mathop{}\!\mathrm{d}}
+\begin{enumerate}
+  \item \DescribeOption{uppercase-greek}
+    大写希腊字母的正/斜体，可选：\opt{italic}、\opt{upright}。
+    有限增量符号 $\increment x$ 固定使用正体，推荐使用 \cs{increment} 表示。
+  \item \DescribeOption{less-than-or-equal}
+    小于等于号和大于等于号的字形，可选：\opt{slanted}、\opt{horizontal}。
+    这将控制 \cs{le}、\cs{ge}、\cs{leq} 和 \cs{geq} 的符号
+    是“$\leqslant$、$\geqslant$”还是“$\leq$、$\geq$”。
+  \item \DescribeOption{integral}
+    积分号的正/斜体，可选：\opt{upright}、\opt{slanted}。
+    该选项需要字体的支持，目前仅限 \opt{xits}、\opt{stix}、
+    \opt{libertinus} 和 \opt{newcm}。参考下文关于数学字体的选择。
+  \item \DescribeOption{integral-limits}
+    积分号上下限的位置，可选：\opt{true}（在上下）、\opt{false}（在右侧）。
+    这个设置只影响行间公式，行内公式统一居右侧，不受影响。
+  \item \DescribeOption{partial}
+    偏微分符号的正/斜体，可选：\opt{upright}、\opt{slanted}。
+  \item \DescribeOption{math-ellipsis}
+    省略号 \cs{dots} 的样式，可选：\opt{centered}（按照中文的习惯固定居中）、
+    \opt{lower} 和 \opt{AMS}（取决于前后符号的位置）。
+    其他的省略号命令如 \cs{lots}、\cs{cdots} 则不受影响。
+  \item \DescribeOption{real-part}
+    实部 \cs{Re} 和虚部 \cs{Im} 的字体，可选：\opt{roman} 和 \opt{fraktur}。
+\end{enumerate}
+
+如果数学符号选择国标样式 |math-style = GB|，相当于设置了
+\begin{latex}
+  \sysusetup{
+    uppercase-greek    = italic,
+    less-than-or-equal = slanted,
+    integral           = upright,
+    integral-limits    = false,
+    partial            = upright,
+    math-ellipsis      = centered,
+    real-part          = roman,
+  }
+\end{latex}
+
+另外，国标的数学样式与 AMS 还有些差异，但无法在模板中统一设置。用户需要在写作时进行处理。
+\begin{enumerate}
+  \item 数学常数和特殊函数名用正体，如 $\uppi = 3.14\dots$；$\symup{i}^2 = -1$；
+    $\symup{e} = \lim_{n \to \infty} \left( 1 + \frac{1}{n} \right)^n$。
+  \item 微分号使用正体，比如 $\dif y / \dif x$。
+  \item 向量、矩阵和张量用粗斜体（\cs{symbf}），如 $\symbf{x}$、$\symbf{\Sigma}$、$\symbfsf{T}$。
+  \item 自然对数用 $\ln x$ 不用 $\log x$。
+\end{enumerate}
+
+需要注意，上述关于数学符号风格的设置在设置数学字体（\opt{math-font}）时才会生效。
+
+\DescribeOption{math-font}
+模板使用默认使用 XITS Math 作为数学字体。
+用户也可以使用 \opt{math-font} 选项切换其他数学字体，可选：
+\opt{stix}（STIX Two Math）、
+\opt{libertinus}（Libertinus Math）、
+\opt{newcm}（New Computer Modern Math）、
+\opt{lm}（Latin Modern Math）。
+
+其中 \opt{lm} 和 \opt{newcm} 的字形比较搭配 TeX 原生的 Computer Modern 字体，
+但与《指南》要求的西文字体 Times New Roman 并不搭配。
+可能会造成正文和公式中的数字字体不一致，需要谨慎使用。
+
+以上字体都是 OpenType 格式的字体，需要配合
+\href{http://mirrors.ctan.org/macros/latex/contrib/unicode-math/unicode-math.pdf}{\pkg{unicode-math}}
+宏包使用。
+全部数学符号的命令参考
+\href{http://mirrors.ctan.org/macros/latex/contrib/unicode-math/unimath-symbols.pdf}{\pkg{unimath-symbols}}。
+注意，\pkg{unicode-math} 宏包与 \pkg{amsfonts}、\pkg{amssymb}、\pkg{bm}、
+\pkg{mathrsfs}、\pkg{upgreek} 等宏包\emph{不}兼容。
+模板作了处理，用户可以直接使用这些宏包的命令，如 \cs{bm}、\cs{mathscr}、
+\cs{uppi}。
+
+另外，模板还为 \opt{math-font} 提供了传统的 Type 1 字体 \opt{newtx}。
+该选项会调用 \pkg{newtxmath} 宏包。
+但是，如果西文字体已经使用了 OpenType 的 Times New Roman，
+混用 Type 1 字体可能会导致问题，尤其是使用 \pkg{siunitx} 宏包时。
+该选项还处于测试阶段，需要谨慎使用。
+
+\subsection{参考文献}
+
+参考文献支持使用 \BibTeX{} 生成。
+
+
+\subsubsection{\BibTeX}
+
+\BibTeX{} 是 \LaTeX{} 处理参考文献的传统的方式。
+在本模板中需要载入 \pkg{natbib} 宏包：
+\begin{latex}
+  % 顺序编码制
+  \usepackage[sort]{natbib}
+  \bibliographystyle{sysuthesis-numerical}
+\end{latex}
+并且在生成参考文献表的位置使用 \cs{bibliography} 设置 \file{.bib} 数据库的路径。
+然后使用 \file{bibtex} 编译生成 \file{.bbl} 文件。
+这里使用参考文献样式（\file{.bst} 文件）是在
+\href{https://ctan.org/pkg/gbt7714}{\pkg{gbt7714}}
+的基础上进行了少量修改。
+
+顺序编码制的文内引用标注分为两种样式：
+\begin{enumerate}
+  \item 上标样式（\opt{super}）， 如“张教授\textsuperscript{[2-3]}认为……
+    形成了多种物理模型\textsuperscript{[7,9,11-13]}”。
+  \item 与正文平排（\opt{inline}），文献序号作为叙述文字的一部分，
+    如“张教授\textsuperscript{[4]}认为……根据文献[4]\textsuperscript{101-105}”。
+\end{enumerate}
+
+模板默认为上标样式，也可以将引用标注统一设为 \opt{inline} 样式。
+\begin{latex}
+  \sysusetup{
+    cite-style = inline,
+  }
+\end{latex}
+或者使用 \cs{inlinecite} 在局部与正文平排。
+
+著者-出版年制的文献引用标注也有两种主要模式：
+\begin{enumerate}
+  \item \cs{citet}：著者姓名作为正文的一部分，比如“Zhang (2008)”，
+    同默认的 \cs{cite} 命令一样。
+  \item \cs{citep}：著者与年份均在括号中，比如“(Zhang, 2008)”。
+\end{enumerate}
+
+参考文献表采用著者-出版年制组织时，各篇文献首先按文种集中， 然后按著者字顺和出版年排列；
+中文文献可以按著者汉语拼音字顺排列，也可以按著者的笔画笔顺排列。
+但由于 \BibTeX{} 功能的局限性，无法自动获取著者姓名的拼音或笔画笔顺进行正确排序。
+一种解决方法是在 \file{.bib} 数据库的中文文献的 |key| 域手动录入著者姓名的拼音：
+\begin{latex}
+  @book{capital,
+    author = {马克思 and 恩格斯},
+    key    = {ma3 ke4 si1 & en1 ge2 si1},
+    ...
+  }
+\end{latex}
+如果中文文献数量较多，推荐使用 BibLaTeX 处理参考文献。
+
+\paragraph{与 \pkg{chapterbib} 的兼容性}
+如果在每一章添加独立的参考文献，可以使用 \pkg{chapterbib} 宏包。
+需要注意以下几点：
+\begin{enumerate}
+  \item \pkg{chapterbib} 宏包与 \pkg{natbib} 的载入顺序不重要。
+  \item 根据 \pkg{natbib} 的文档，\opt{sectionbib} 参数（将参考文献的标题改为节标题）
+    需要传给 \pkg{natbib} 而不是 \pkg{chapterbib}。
+    模板作了设置，如载入 \pkg{chapterbib}，\pkg{natbib} 就会有 \opt{sectionbib} 的效果。
+  \item 每章的内容需要写在单独的 \file{tex} 文件，并且在主文档中使用 \cs{include}，
+    不带 \file{.tex} 后缀。
+  \item 每章都要使用 \cs{bibliographystyle} 和 \cs{bibliography} 命令。
+\end{enumerate}
+
+
+\end{document}
