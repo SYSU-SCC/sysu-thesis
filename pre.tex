@@ -3,7 +3,7 @@
     fontset=fandol,
     xcolor=x11names % SeaGreen4
 ]{ctexbeamer}
-\usepackage{minted}
+\usepackage{listings}
 
 \usetheme[
     % compress % 进度条压缩在一行，可选
@@ -181,20 +181,33 @@
 \begin{minipage}{.49\linewidth}
 
 \begin{figure}
-\begin{minted}[linenos]{python3}
+\begin{lstlisting}[
+ numbers=left,
+ language=Python,
+ basicstyle=\ttfamily,
+ breaklines=true,
+ keywordstyle=\bfseries\color{SeaGreen4},
+ columns=flexible
+]
 for i in range(N):
   A[i] += 1
-\end{minted}
-\caption{python3 代码段}
+\end{lstlisting}
+\caption{python 代码段}
 \end{figure}
 
 \end{minipage}\begin{minipage}{.49\linewidth}
 
 \begin{figure}
-\begin{minted}{cpp}
+\begin{lstlisting}[
+ language=Cpp,
+ basicstyle=\ttfamily,
+ breaklines=true,
+ keywordstyle=\bfseries\color{SeaGreen4},
+ columns=flexible
+]
 for (int i = 0; i < N; ++i)
   A[i] += 1;
-\end{minted}
+\end{lstlisting}
 \caption{cpp 代码段}
 \end{figure}
 
