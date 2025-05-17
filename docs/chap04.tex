@@ -286,24 +286,31 @@
 
 \section{代码}
 
-本模版支持在论文中插入代码片段，或直接从源码文件进行插入。
+本模版支持在论文中插入代码片段，或直接从源码文件进行插入\footnote{请参考\url{https://www.overleaf.com/learn/latex/Code_listing}}。
+
 例如，在论文中插入代码片段的效果为：
 
-\begin{minted}[linenos]{python3}
-def func():
-    print("hello world")
-    with open('./output.txt', 'w') as f:
-    L = f.readlines()
+\begin{lstlisting}[
+ numbers=left,
+ basicstyle=\ttfamily,
+ breaklines=true,
+ keywordstyle=\color{SeaGreen4},
+ caption=Python example,
+ language=Python
+]
+for i in range(N):
+  A[i] += 1
+\end{lstlisting}
 
-if __name__ == "__main__":
-    # this is a comment line
-    func()
-\end{minted}
-
-也可在行内插入代码片段，例如：Python中重载加法运算符的函数为\mintinline{python3}{__add__}，类的标识符为\mintinline{python3}{class}。
+也可在行内插入代码片段，例如：Python中重载加法运算符的函数为\lstinline[language=Python,keywordstyle=\color{SeaGreen4}]{__add__}。
 此外，还可直接插入代码文件，例如插入\texttt{./code/demo.cpp}的效果为：
 
-\inputminted{cpp}{code/demo.cpp}
+\lstinputlisting[
+ basicstyle=\ttfamily,
+ breaklines=true,
+ keywordstyle=\color{SeaGreen4},
+ language=C++
+]{code/demo.cpp}
 
 \section{其他的一些用法}
 \label{sec:font}

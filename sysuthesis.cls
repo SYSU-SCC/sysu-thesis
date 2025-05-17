@@ -59,7 +59,7 @@
 \RequirePackage{tocloft}
 \RequirePackage{wrapfig}
 \RequirePackage{colortbl}
-\RequirePackage{xcolor}
+\RequirePackage[dvipsnames,x11names]{xcolor}
 \RequirePackage{array}
 \RequirePackage{makecell}
 \RequirePackage[bottom, perpage]{footmisc}

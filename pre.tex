@@ -3,7 +3,7 @@
     fontset=fandol,
     xcolor=x11names % SeaGreen4
 ]{ctexbeamer}
-\usepackage{minted}
+\usepackage{listings}
 
 \usetheme[
     % compress % 进度条压缩在一行，可选
@@ -13,10 +13,7 @@
 
 \title{{\LaTeX} Template for SYSU Graduation Thesis}
 
-\subtitle[申请中山大学工学学士学位论文答辩报告]{
-    ~\\
-    (申请中山大学工学学士学位论文答辩报告)
-}
+\subtitle{申请中山大学工学学士学位论文答辩报告}
 
 \author[王小明]{
     \texorpdfstring{
@@ -178,25 +175,34 @@
 
 \begin{frame}[fragile] % 注意
 
+参考 \url{https://www.overleaf.com/learn/latex/Code_listing}。
+
 \begin{minipage}{.49\linewidth}
 
-\begin{figure}
-\begin{minted}[linenos]{python3}
+\begin{lstlisting}[
+ numbers=left,
+ basicstyle=\ttfamily,
+ breaklines=true,
+ keywordstyle=\color{SeaGreen4},
+ caption=Python example,
+ language=Python
+]
 for i in range(N):
   A[i] += 1
-\end{minted}
-\caption{python3 代码段}
-\end{figure}
+\end{lstlisting}
 
 \end{minipage}\begin{minipage}{.49\linewidth}
 
-\begin{figure}
-\begin{minted}{cpp}
+\begin{lstlisting}[
+ basicstyle=\ttfamily,
+ breaklines=true,
+ keywordstyle=\color{SeaGreen4},
+ caption=C++ example,
+ language=C++
+]
 for (int i = 0; i < N; ++i)
   A[i] += 1;
-\end{minted}
-\caption{cpp 代码段}
-\end{figure}
+\end{lstlisting}
 
 \end{minipage}
     
