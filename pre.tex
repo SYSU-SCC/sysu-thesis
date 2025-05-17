@@ -176,40 +176,36 @@
 
 \subsection{代码块}
 
-\begin{frame}[fragile] % 注意
+\begin{frame}
+
+参考 \url{https://www.overleaf.com/learn/latex/Code_listing}。
 
 \begin{minipage}{.49\linewidth}
 
-\begin{figure}
 \begin{lstlisting}[
  numbers=left,
- language=Python,
  basicstyle=\ttfamily,
  breaklines=true,
- keywordstyle=\bfseries\color{SeaGreen4},
- columns=flexible
+ keywordstyle=\color{SeaGreen4},
+ caption=Python example,
+ language=Python
 ]
 for i in range(N):
   A[i] += 1
 \end{lstlisting}
-\caption{python 代码段}
-\end{figure}
 
 \end{minipage}\begin{minipage}{.49\linewidth}
 
-\begin{figure}
 \begin{lstlisting}[
- language=Cpp,
  basicstyle=\ttfamily,
  breaklines=true,
- keywordstyle=\bfseries\color{SeaGreen4},
- columns=flexible
+ keywordstyle=\color{SeaGreen4},
+ caption=C++ example,
+ language=C++
 ]
 for (int i = 0; i < N; ++i)
   A[i] += 1;
 \end{lstlisting}
-\caption{cpp 代码段}
-\end{figure}
 
 \end{minipage}
     
