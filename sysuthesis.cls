@@ -579,7 +579,7 @@
     \def\listtablename{附表目录}%
     \def\sysu@list@figure@table@name{插图和附表目录}%
     \ctexset{
-      chapter/name   = {第,章},
+      chapter/name   = {},
     }%
     \def\bibname{参考文献}%
     \def\appendixname{附录}%
@@ -1594,8 +1594,8 @@
   \else
     %
     % 本科生要求除封面、扉页外，每面上部加页眉，
-    % 用小 5 号字（9 bp）标注“中山大学本科毕业论文”，居中；
-    \def\sysu@hf@font{\fontsize{9bp}{12bp}\selectfont}
+    % 用 5 号字（10.5 bp）标注“中山大学本科毕业论文”，居中；
+    \def\sysu@hf@font{\fontsize{10.5bp}{17.5bp}\selectfont}
     \fancyhead[C]{\sysu@hf@font 中山大学本科毕业论文}%
     \fancyfoot[C]{\sysu@hf@font\thepage}%
     \let\@mkboth\@gobbletwo
@@ -2300,6 +2300,15 @@
     section = {
       format = \sffamily\fontsize{14bp}{25.67bp}\selectfont,
     },
+    subsection = {
+      indent = 2em,
+    },
+    subsubsection = {
+      indent = 2em,
+    },
+    paragraph = {
+      indent = 2em,
+    },
   }
 \fi
 
@@ -2324,13 +2333,13 @@
 
 % 中文摘要环境。
 \newcommand\sysu@keywords@text{%
-  \sysu@clist@use{\sysu@keywords}{；}%
+  \sysu@clist@use{\sysu@keywords}{，}%
 }
 \newcommand\sysu@keywords@en@text{%
   \ifsysu@degree@graduate
     \sysu@clist@use{\sysu@keywords@en}{, }%
   \else
-    \sysu@clist@use{\sysu@keywords@en}{; }%
+    \sysu@clist@use{\sysu@keywords@en}{, }%
   \fi
 }
 
@@ -2365,7 +2374,12 @@
   \let\clearpage\relax
   \sysu@chapter{摘\hspace{2em}要}%
   \else
-  \sysu@chapter{【摘\hspace{\ccwd}要】}%
+  \clearpage
+  \sysu@pdfbookmark{摘要}%
+  \vspace*{24bp}%
+  {\centering\sffamily\fontsize{16bp}{29.33bp}\selectfont
+   \textbf{摘\hspace{\ccwd}要}\par}%
+  \vspace{18bp}%
   \fi
 }{
   \par\null\par\noindent\hangindent=4em\relax
@@ -2406,13 +2420,13 @@
     \begingroup
       % 本科生的英文摘要使用三号衬线体
       \ctexset{chapter/format=\centering\bfseries\fontsize{16bp}{33bp}\selectfont}%
-      \sysu@chapter{[ABSTRACT]}%
+      \sysu@chapter{ABSTRACT}%
     \endgroup
   \fi
 }{
   \par\null\par\noindent
   \ifsysu@degree@bachelor
-    \renewcommand\sysu@keywords@label{Key Words}%
+    \renewcommand\sysu@keywords@label{Keywords}%
   \fi
   \savebox\sysu@keywords@box{\textbf{\sysu@keywords@label}: }%
   \sysu@keywords@width=\linewidth
