@@ -578,9 +578,12 @@
     \def\listfigurename{插图目录}%
     \def\listtablename{附表目录}%
     \def\sysu@list@figure@table@name{插图和附表目录}%
-    \ctexset{
-      chapter/name   = {},
-    }%
+    \ifsysu@degree@bachelor
+      \ctexset{chapter/name   = {},}%
+    \else
+      \ctexset{chapter/name   = {第,章},}%
+    \fi
+
     \def\bibname{参考文献}%
     \def\appendixname{附录}%
     \def\sysu@acknowledgements@name{致谢}%
