@@ -79,6 +79,7 @@ make main
 
 - [Lovely-XPP/SYSU-PRE](https://github.com/Lovely-XPP/SYSU-PRE)
 - [NelsonCheung-cn/SYSU-beamer-template](https://github.com/NelsonCheung-cn/SYSU-beamer-template)
+- [Very-White/sysu_ppt_template](https://github.com/Very-White/sysu_ppt_template)
 
 ## 一些说明
 
