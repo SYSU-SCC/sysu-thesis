@@ -1,0 +1,18 @@
+\ProvidesFile{sysuthesis-inline.cbx}[2025/04/12 v1.0 SYSUThesis biblatex
+  citation style]
+
+\RequireCitationStyle{gb7714-2015}
+
+\ExecuteBibliographyOptions{
+  autocite = inline,
+}
+
+\DeclareCiteCommand{\cite}%[\mkbibbrackets]
+  {[\usebibmacro{cite:init}%]
+   \usebibmacro{prenote}}%
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {%[
+  \usebibmacro{cite:dump}]%
+   \mkbibsuperscript{\printfield{postnote}}}

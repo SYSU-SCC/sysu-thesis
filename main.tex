@@ -1,11 +1,8 @@
-% !TeX encoding = UTF-8
-% !TeX program = xelatex
-% !TeX spellcheck = en_US
+% !TEX encoding = UTF-8
+% !TEX program = xelatex
+% !TEX spellcheck = en_US
 
-\documentclass[
-    fontset=fandol,
-    degree=bachelor
-]{sysuthesis}
+\documentclass[degree=bachelor]{sysuthesis}
 % degree      = doctor | master | bachelor
 % degree-type = academic | professional
 % language    = chinese | english
@@ -21,28 +18,27 @@
 \copyrightpage
 
 \frontmatter
-\input{docs/abstract.tex}
+\input{chapters/abstract.tex}
 \tableofcontents
 \listoffigures
 \listoftables
 % \listoffiguresandtables
-\input{docs/notation.tex}
+\input{chapters/notation.tex}
 
 \mainmatter
-\input{docs/chap01.tex}
-\input{docs/chap02.tex}
-\input{docs/chap03.tex}
-\input{docs/chap04.tex}
-\input{docs/chap05.tex}
+\input{chapters/chap01.tex}
+\input{chapters/chap02.tex}
+\input{chapters/chap03.tex}
+\input{chapters/chap04.tex}
 
 \bibliography{reference}  % 参考文献使用 BibTeX 编译
 % \printbibliography       % 参考文献使用 BibLaTeX 编译
 
 \appendix
-\input{docs/complementary.tex}
+\input{chapters/complementary.tex}
 
 \backmatter
-\input{docs/acknowledgements.tex}
-\input{docs/achievements.tex}
+\input{chapters/acknowledgements.tex}
+\input{chapters/achievements.tex}
 
 \end{document}

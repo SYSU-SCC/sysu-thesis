@@ -9,7 +9,8 @@
 %
 
 \NeedsTeXFormat{LaTeX2e}[2017/04/15]
-\ProvidesClass{sysuthesis}[2025/02/25 sysu thesis template]
+\newcommand\sysuthesisversion{2.0.0-beta6}
+\ProvidesClass{sysuthesis}[2026/03/16 v\sysuthesisversion\space SYSU thesis template]
 
 % 报错和警告
 \newcommand\sysu@error[1]{%
@@ -200,7 +201,7 @@
   },
   logo-path = {
     name = logo@path,
-    default = image/template/, % 此处修改 logo 目录，方便后面不与论文图片混在一起
+    default = figures/, % 此处修改 logo 目录，方便后面不与论文图片混在一起
   },
   fontset = {
     choices = {
@@ -349,6 +350,13 @@
       false,
     },
     default = false,
+  },
+  eqn-paren-style = {
+    name = eqn@paren@style,
+    choices = {
+      full,
+      half,
+    }
   },
 }
 
@@ -520,17 +528,11 @@
 
 % 带圈数字和星号使用中文字体。
 \ifLuaTeX
-  % ctex 将带圈数字 U+2460–U+24FF 归入字符范围 3（ALchar），这里改回范围 6（JAchar）
-  \ltjdefcharrange{3}{%
-    "2000-"243F, "2500-"27BF, "2900-"29FF, "2B00-"2BFF}
-  \ltjdefcharrange{6}{%
-    "2460-"24FF, "2E80-"2EFF, "3000-"30FF, "3190-"319F, "31F0-"4DBF,
-    "4E00-"9FFF, "F900-"FAFF, "FE10-"FE1F, "FE30-"FE6F, "FF00-"FFEF,
-    "1B000-"1B16F, "1F100-"1F2FF, "20000-"3FFFF, "E0100-"E01EF}
+  % ctex 将带圈数字 U+2460–U+2473 归入字符范围 3（ALchar），这里改回范围 6（JAchar）
+  \ltjdefcharrange{6}{"2460-"2473, "2605}
 \else
   \ifXeTeX
-    \xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-    \xeCJKDeclareCharClass{CJK}{"2605}
+    \xeCJKDeclareCharClass{CJK}{"2460 -> "2473, "2605}
   \fi
 \fi
 
@@ -578,12 +580,11 @@
     \def\listfigurename{插图目录}%
     \def\listtablename{附表目录}%
     \def\sysu@list@figure@table@name{插图和附表目录}%
-    \ifsysu@degree@bachelor
-      \ctexset{chapter/name   = {},}%
+    \ifsysu@degree@graduate
+      \ctexset{chapter/name = {第,章},}%
     \else
-      \ctexset{chapter/name   = {第,章},}%
+      \ctexset{chapter/name = {},}%
     \fi
-
     \def\bibname{参考文献}%
     \def\appendixname{附录}%
     \def\sysu@acknowledgements@name{致谢}%
@@ -712,11 +713,12 @@
       \ifsysu@system@mac
         \sysusetup{fontset = mac}
       \else
-        \IfFontExistsTF{Noto Serif CJK SC}{
-          \sysusetup{fontset = ubuntu}
-        }{
-          \sysusetup{fontset = fandol}
-        }
+        % \IfFontExistsTF{Noto Serif CJK SC}{
+        %   \sysusetup{fontset = ubuntu}
+        % }{
+        %   \sysusetup{fontset = fandol}
+        % }
+        \sysusetup{fontset = fandol}
       \fi
     }
   \fi
@@ -1285,7 +1287,8 @@
     }%
     %
     % 兼容 \pkg{amsthm} 的 \cs{qedsymbol}。
-    \renewcommand\sysu@qed{\ensuremath{\QED}}%
+    % \renewcommand\sysu@qed{\ensuremath{\QED}}%
+    \renewcommand\sysu@qed{\ensuremath{\square}}% 将证明完成后的实心方块换成空心方块。
   }%
 }
 
@@ -1557,15 +1560,18 @@
 \ifsysu@degree@graduate
   \geometry{
     paper      = a4paper,
-    vmargin    = 2.54cm,
-    hmargin    = 3.17cm,
     headheight = 0.53cm,
     headsep    = 0.25cm,
     footskip   = 0.79cm,
+    vmargin    = 2.54cm,
+    hmargin    = 3.17cm,
   }
 \else
   \geometry{
   	paper      = a4paper,
+    headheight = 0.53cm,
+    headsep    = 0.25cm,
+    footskip   = 0.79cm,
   	top        = 2.5cm,
   	bottom     = 2.0cm,
   	hmargin    = 3.0cm,
@@ -1904,10 +1910,10 @@
   \begin{titlepage}%
   	\sysu@pdfbookmark{封面}%
   	\centering
-%   扉页右上角标注密级  	
-  	\parbox[t][0.6cm][t]{\textwidth}{%
-  	  \raggedleft\heiti\fontsize{12bp}{12bp}\selectfont
-  	  \null\sysu@secret@level\par}\par
+%   扉页右上角标注密级
+%  	\parbox[t][0.6cm][t]{\textwidth}{%
+%  	  \raggedleft\heiti\fontsize{12bp}{12bp}\selectfont
+%  	  \null\sysu@secret@level\par}\par
 %  	  \vskip 0.5cm%
     \includegraphics[width=11cm]{\sysu@logo@path/SYSULogo}\\
   	\vskip 1.2cm%
@@ -1919,7 +1925,7 @@
   	{\textwidth}{>{\centering\arraybackslash\hyphenpenalty=10000\exhyphenpenalty=10000}X}
   	{\centering\sffamily\fontsize{16bp}{32bp}\selectfont
   	  \sysu@title\par}\par
-  	{\centerlast\rmfamily\fontsize{16bp}{29bp}\selectfont
+  	{\centering\rmfamily\fontsize{16bp}{29bp}\selectfont
   	  \sysu@title@en\par}
   	\end{tabularx}
     \vskip 16bp%
@@ -2024,7 +2030,7 @@
   	\ \vskip 1cm%
   	\ \\
     \parbox[t]{13cm}{%
-      \centerlast\sffamily\bfseries\fontsize{22bp}{37bp}\selectfont
+      \centering\sffamily\bfseries\fontsize{22bp}{37bp}\selectfont
       \sysu@title@en\par
     }\par
   }
@@ -2083,8 +2089,8 @@
 \newcommand\sysu@underline[2][3.2cm]{\underline{\hb@xt@ #1{\hss#2\hss}}}
 
 \newcommand\sysu@checkbox{%
-  \makebox[0bp][l]{$\square$}%
-  \raisebox{-0.2ex}{\hspace{0.1em}$\checkmark$}%
+  \makebox[0bp][l]{\raisebox{-0.2ex}{\hspace{0.1em}$\checkmark$}}%
+  $\square$%
 }
 
 \newcommand\sysu@copyrightpage@graduate{%
@@ -2096,8 +2102,8 @@
       论文原创性声明\par}%
     \vskip 0.7cm%
     \sysu@originality\par
-    \vskip 1.3cm%
-    学位论文作者签名：\hspace{3cm} \par %
+    \vskip 0.6cm%
+    学位论文作者签名：\par %
     \vskip 0.5cm%
     日期：\hspace{1.1cm} 年 \hspace{0.7cm} 月 \hspace{0.7cm} 日\par
     \vskip 1.9cm%
@@ -2107,13 +2113,13 @@
     \sysu@authorization\par
     \vskip 0.6cm%
 %    \ifx\sysu@secret@level\@empty
-%      \sysu@checkbox{} 公开\quad
-%      $\square$ 控阅（\sysu@underline[0.85cm]{}年）\par
+%      \sysu@checkbox\hbox{}公开\quad
+%      $\square$\hbox{}控阅（\sysu@underline[2em]{}年）\par
 %    \else
-%      $\square$ 公开\quad
-%      \sysu@checkbox{} 控阅（\sysu@underline[0.8cm]{\sysu@secret@year}年）\par
+%      $\square$\hbox{}公开\quad
+%      \sysu@checkbox\hbox{}控阅（\sysu@underline[2em]{\sysu@secret@year}年）\par
 %    \fi
-    \vskip 0.5cm%
+%    \vskip 0.5cm%
     学位论文作者签名：\hspace{3cm}%
     导师签名：\par
     \vskip 0.5cm%
@@ -2140,7 +2146,7 @@
 		学术诚信声明\par}%
 	\vskip 0.7cm%
 	\sysu@integrity\par
-	\vskip 2.4cm%
+	\vskip 1.2cm%
 	
 	\begin{flushright}
 		\makebox[2.1cm][s]{作者签名：} \makebox[5cm]{\hspace{1cm}} \\
@@ -2215,6 +2221,8 @@
     aftername   = \quad,
     beforeskip  = 24bp,
     afterskip   = 18bp,
+    lofskip     = 0pt,
+    lotskip     = 0pt,
     fixskip     = true,
   },
 }
@@ -2290,7 +2298,7 @@
   % 正文中的标题分章、节、段三级；章、节标题居中，段标题居左，
   % 分别用三号（16 bp）黑体、四号（14 bp）黑体、小四号（12 bp）加粗宋体。
     chapter = {
-      format = {
+      format = {%
         \centering\sffamily
         \if@mainmatter
           \fontsize{16bp}{29.33bp}\selectfont
@@ -2336,21 +2344,15 @@
 
 % 中文摘要环境。
 \newcommand\sysu@keywords@text{%
-  \sysu@clist@use{\sysu@keywords}{，}%
-}
-\newcommand\sysu@keywords@en@text{%
   \ifsysu@degree@graduate
-    \sysu@clist@use{\sysu@keywords@en}{, }%
+    \sysu@clist@use{\sysu@keywords}{；}%
   \else
-    \sysu@clist@use{\sysu@keywords@en}{, }%
+    \sysu@clist@use{\sysu@keywords}{，}%
   \fi
 }
-
-\ifsysu@degree@bachelor
-\newcommand\sysu@keywords@fr@text{%
-  \sysu@clist@use{\sysu@keywords@fr}{; }%
+\newcommand\sysu@keywords@en@text{%
+    \sysu@clist@use{\sysu@keywords@en}{, }%
 }
-\fi
 
 \newenvironment{abstract}{%
   \sysusetup{language=chinese}%
@@ -2380,13 +2382,12 @@
   \clearpage
   \sysu@pdfbookmark{摘要}%
   \vspace*{24bp}%
-  {\centering\sffamily\fontsize{16bp}{29.33bp}\selectfont
-   \textbf{摘\hspace{\ccwd}要}\par}%
+  {\centering\sffamily\fontsize{16bp}{29.33bp}\selectfont{摘\hspace{\ccwd}要}\par}%
   \vspace{18bp}%
   \fi
 }{
   \par\null\par\noindent\hangindent=4em\relax
-  \textbf{关键词}：\sysu@keywords@text\par
+  \textbf{关键词：}\sysu@keywords@text\par
   \sysu@reset@main@language
   \newpage
 }
@@ -2394,7 +2395,7 @@
 \newbox\sysu@keywords@box
 \newlength\sysu@keywords@width
 % 英文摘要环境
-\newcommand\sysu@keywords@label{KEY WORDS}%
+\newcommand\sysu@keywords@label{KEYWORDS}%
 
 \newenvironment{abstract*}{%
   \sysusetup{language=english}%
@@ -2420,11 +2421,16 @@
     }%
     \sysu@chapter{ABSTRACT}%
   \else
-    \begingroup
-      % 本科生的英文摘要使用三号衬线体
-      \ctexset{chapter/format=\centering\bfseries\fontsize{16bp}{33bp}\selectfont}%
-      \sysu@chapter{ABSTRACT}%
-    \endgroup
+    % \begingroup
+    %   % 本科生的英文摘要使用三号衬线体
+    %   \ctexset{chapter/format=\centering\bfseries\fontsize{16bp}{33bp}\selectfont}%
+    %   \sysu@chapter{ABSTRACT}%
+    % \endgroup
+    \clearpage
+    \sysu@pdfbookmark{ABSTRACT}%
+    \vspace*{24bp}%
+    {\centering\bfseries\fontsize{16bp}{33bp}\selectfont{ABSTRACT}\par}%
+    \vspace{18bp}%
   \fi
 }{
   \par\null\par\noindent
@@ -2440,29 +2446,6 @@
   \fi
   \sysu@reset@main@language
 }
-
-
-% 法语摘要环境，适用于中法核工程与技术学院本科论文中文、英文、法语三语摘要
-\ifsysu@degree@bachelor
-  \newenvironment{abstract**}{%
-	\sysusetup{language=english}%
-
-	\begingroup
-	% 中法核本科生的法语摘要使用三号衬线体
-	\ctexset{chapter/format=\centering\bfseries\fontsize{16bp}{33bp}\selectfont}%
-	\sysu@chapter{[ABSTRACT]}%
-	\endgroup
-  }{
-	\par\null\par\noindent
-	\renewcommand\sysu@keywords@label{Mots-clés }%
-	\savebox\sysu@keywords@box{\textbf{\sysu@keywords@label}: }%
-	\sysu@keywords@width=\linewidth
-	\advance\sysu@keywords@width-\wd\sysu@keywords@box
-	\textbf{\sysu@keywords@label}: \parbox[t]{\sysu@keywords@width}{\sysu@keywords@fr@text\par}\par
-	\newpage
-	\sysu@reset@main@language
-}
-\fi
 
 
 % \subsection{目录}
@@ -2734,6 +2717,9 @@
 \fi
 
 % 中英文双标题
+\AtBeginOfPackageFile*{bicaption}{
+  \let\captionmainlanguage\sysu@main@language
+}
 \AtEndOfPackageFile*{bicaption}{
   \captionsetup[bi-first]{lang = chinese}% 第一种语言图、表标题
   \captionsetup[bi-second]{% 第二种语言图、表标题
@@ -2890,6 +2876,38 @@
 \patchcmd{\@getpen}{\@M}{\@Mi}
   {}{\sysu@patch@error{\@getpen}}
 
+% \subsection{表达式}
+
+% 重定义 `\eqref`，使`式~\eqref` 这样的写法不产生额外的空格。
+% \DeclareRobustCommand{\eqref}[1]{\textup{\tagform@{\ref{#1}}}}
+\DeclareRobustCommand{\eqref}[1]{%
+  \ifsysu@language@chinese
+    \ifsysu@eqn@paren@style@full
+      \unskip
+    \fi
+  \fi
+  \textup{\tagform@{\ref{#1}}}%
+  \ifsysu@language@chinese
+    \ifsysu@eqn@paren@style@full
+      \ignorespaces
+    \fi
+  \fi
+}
+
+% 修改 `amsmath` 的 `\tagform@`
+% \def\tagform@#1{\maketag@@@{(\ignorespaces#1\unskip\@@italiccorr)}}
+\def\tagform@#1{%
+  \ifsysu@language@chinese
+    \ifsysu@eqn@paren@style@full
+     % 防止中文左括号与前面文字的距离过窄
+      \maketag@@@{\kern 0pt\relax （\ignorespaces#1\unskip\@@italiccorr）}%
+    \else
+      \maketag@@@{(\ignorespaces#1\unskip\@@italiccorr)}%
+    \fi
+  \else
+    \maketag@@@{(\ignorespaces#1\unskip\@@italiccorr)}%
+  \fi
+}
 
 % \subsection{参考文献}
 
@@ -3494,14 +3512,36 @@
 % \pkg{mathtools} 会修改 \pkg{unicode-math} 的 `\underbrace` 和 `\overbrace`，
 % 需要还原为 `\LaTeXunderbrace` 和 `\LaTeXoverbrace`，
 % 参考 \url{https://tex.stackexchange.com/q/521394/82731}。
+%
+% \pkg{mathtools} 的 `showonlyrefs` 选项修改了 `\eqref`，
+% 需要重新处理括号与前后文字的空白。
+% 见 <https://github.com/tuna/thuthesis/issues/1043>。
 \AtEndOfPackageFile*{mathtools}{
   \@ifpackageloaded{unicode-math}{
     \let\underbrace\LaTeXunderbrace
     \let\overbrace\LaTeXoverbrace
   }{}
+  \expandafter\def\csname MT_extended_eqref:n\endcsname#1{%
+    \ifustc@language@chinese
+      \ifustc@eqn@paren@style@full
+        \unskip
+      \fi
+    \fi
+    \protected@write\@auxout{}
+      {\string\MT@newlabel{#1}}%
+    \textup{\let\df@label\@empty\csname MT_prev_tagform:n\endcsname{\ref{#1}}}%
+    \ifustc@language@chinese
+      \ifustc@eqn@paren@style@full
+        \ignorespaces
+      \fi
+    \fi
+  }
+  \expandafter\MakeRobust\csname MT_extended_eqref:n\endcsname
 }
 
 % \subsubsection{\pkg{nomencl} 宏包}
+
+\PassOptionsToPackage{notocbasic}{nomencl}
 
 \AtEndOfPackageFile*{nomencl}{
   \let\nomname\sysu@notation@name

@@ -1,21 +1,21 @@
-% !TeX root = ./main.tex
+% !TEX root = ./main.tex
 
 \sysusetup{
   title                = {中山大学毕业论文/设计 \LaTeX\ 模板},
   title*               = {\LaTeX\ template for thesis/dissertation of Sun Yat-sen University},
-  author               = {王小明},
-  author*              = {WANG Xiaoming},
-  speciality           = {计算机科学与技术},
-  speciality*          = {Computer Science and Technology},
-  supervisor           = {王大明~教授},
-  supervisor*          = {Prof. WANG Daming},
+  author               = {1FCENdoge},
+  author*              = {1FCENdoge},
+  speciality           = {核工程与核技术},
+  speciality*          = {Nuclear Engineering and Technology},
+  supervisor           = {XXX~副教授},
+  supervisor*          = {Assoc. Prof. XXX},
   % practice-supervisor  = {XXX~教授, XXX~教授},
   % practice-supervisor* = {Prof. XXX, Prof. XXX},
   % date                 = {2017-05-01},  % 完成时间，默认为今日
   % professional-type    = {专业学位类型},
   % professional-type*   = {Professional degree type},
-   department           = {计算机学院},  % 院系，本科生需要填写
-   student-id           = {12350004},  % 学号，本科生需要填写
+   department           = {中法核工程与技术学院},  % 院系，本科生需要填写
+   student-id           = {15356000},  % 学号，本科生需要填写
   % secret-level         = {秘密},     % 绝密|机密|秘密|控阅，注释本行则公开
   % secret-level*        = {Secret},  % Top secret | Highly secret | Secret
   % secret-year          = {10},      % 保密/控阅期限
@@ -24,17 +24,12 @@
   % 数学字体
   % math-style           = GB,  % 可选：GB, TeX, ISO
   math-font            = xits,  % 可选：stix, xits, libertinus
-  cite-style           = super,
 }
 
-% 自动检测我们定制的 Dev Container 环境并替换 CJK 字体，保持跨平台兼容性
-\IfFileExists{/.sysu-thesis.devcontainer}{
-  \sysusetup{cjk-font = noto}
-}{}
-
-%\renewcommand{\thefigure}{\thechapter-\arabic{figure}}% 将正文和目录的图片标题由x.x改为x-x，慎用
-%\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}% 将正文和目录的表格标题由x.x改为x-x，慎用
-%\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}% 将正文的公式序号由(x.x)改为(x-x)，慎用
+% 以下三行代码会将图片、表格、公式的标题由x.x改为x-x，慎用
+%\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+%\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
+%\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
 
 % 加载宏包
 
@@ -63,15 +58,20 @@
 % 参考文献使用 BibTeX + natbib 宏包
 % 顺序编码制
 \usepackage[sort]{natbib}
-\bibliographystyle{sysuthesis-numerical}
+\bibliographystyle{gbt7714-numerical}
+% 著者-出版年制
+% \usepackage{natbib}
+% \bibliographystyle{gbt7714-author-year}
 
 % 参考文献使用 BibLaTeX 宏包
-% \usepackage[style=sysuthesis-numeric]{biblatex}
+% \usepackage[style=gb7714-2015]{biblatex}
+% \usepackage[bibstyle=gb7714-2015,citestyle=biblatexfiles/sysuthesis-inline]{biblatex}
+% \usepackage[style=gb7714-2015ay]{biblatex}
 % 声明 BibLaTeX 的数据库
 % \addbibresource{reference.bib}
 
 % 配置图片的默认目录
-% \graphicspath{{image/}}
+\graphicspath{{figures/}}
 
 % 数学命令
 \makeatletter

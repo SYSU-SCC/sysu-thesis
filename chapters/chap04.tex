@@ -1,0 +1,63 @@
+% !TEX root = ../main.tex
+
+\chapter{引用文献的标注}
+
+模板使用 \pkg{natbib} 宏包来设置参考文献引用的格式，
+更多引用方法可以参考该宏包的使用说明。
+
+
+
+\section{顺序编码制}
+
+\subsection{角标数字标注法}
+
+\sysusetup{
+  cite-style = super,
+}
+\noindent
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\cite{knuth86a}|         & \cite{knuth86a}         \\
+  \verb|\citet{knuth86a}|        & \citet{knuth86a}        \\
+  \verb|\cite[42]{knuth86a}|     & \cite[42]{knuth86a}     \\
+  \verb|\cite{knuth86a,tlc2}|    & \cite{knuth86a,tlc2}    \\
+  \verb|\cite{knuth86a,knuth84}| & \cite{knuth86a,knuth84} \\
+\end{tabular}
+
+
+\subsection{数字标注法}
+
+\sysusetup{
+  cite-style = inline,
+}
+\noindent
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\cite{knuth86a}|         & \cite{knuth86a}         \\
+  \verb|\citet{knuth86a}|        & \citet{knuth86a}        \\
+  \verb|\cite[42]{knuth86a}|     & \cite[42]{knuth86a}     \\
+  \verb|\cite{knuth86a,tlc2}|    & \cite{knuth86a,tlc2}    \\
+  \verb|\cite{knuth86a,knuth84}| & \cite{knuth86a,knuth84} \\
+\end{tabular}
+
+
+
+\section{著者-出版年制标注法}
+
+\sysusetup{
+  cite-style = authoryear,
+}
+\noindent
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\cite{knuth86a}|         & \cite{knuth86a}         \\
+  \verb|\citep{knuth86a}|        & \citep{knuth86a}        \\
+  \verb|\citet[42]{knuth86a}|    & \citet[42]{knuth86a}    \\
+  \verb|\citep[42]{knuth86a}|    & \citep[42]{knuth86a}    \\
+  \verb|\cite{knuth86a,tlc2}|    & \cite{knuth86a,tlc2}    \\
+  \verb|\cite{knuth86a,knuth84}| & \cite{knuth86a,knuth84} \\
+\end{tabular}
+
+\sysusetup{
+  cite-style = super,
+}
+
+% 下面这行代码用于测试时展示参考文献样式，写论文时请注释或删除
+\nocite{*}
