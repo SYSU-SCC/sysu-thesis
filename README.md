@@ -77,7 +77,7 @@ make main
 
 我们欢迎大家自己定制一些符合自己要求的模板，并向我们提交 PR，在下方增加一个指向你的模板的链接作为推荐，参见 [#65](https://github.com/SYSU-SCC/sysu-thesis/issues/65) 。
 
-- 中大官微模板：[2023] (https://mp.weixin.qq.com/s/B5vDwqDRvPbPnlbXye1dFA)、[2024（百年校庆）](https://mp.weixin.qq.com/s/EQtiV_7qflidBKk-MtrnuQ)、[2025](https://mp.weixin.qq.com/s/JE7-Y3qww-O7hGhVQxBbvQ)、[2026](https://mp.weixin.qq.com/s/hY1a6V5lpVSz4058A4fdog)
+- 中大官微模板：[2023](https://mp.weixin.qq.com/s/B5vDwqDRvPbPnlbXye1dFA)、[2024（百年校庆）](https://mp.weixin.qq.com/s/EQtiV_7qflidBKk-MtrnuQ)、[2025](https://mp.weixin.qq.com/s/JE7-Y3qww-O7hGhVQxBbvQ)、[2026](https://mp.weixin.qq.com/s/hY1a6V5lpVSz4058A4fdog)
 - [Lovely-XPP/SYSU-PRE](https://github.com/Lovely-XPP/SYSU-PRE)
 - [NelsonCheung-cn/SYSU-beamer-template](https://github.com/NelsonCheung-cn/SYSU-beamer-template)
 - [Very-White/sysu_ppt_template](https://github.com/Very-White/sysu_ppt_template)
