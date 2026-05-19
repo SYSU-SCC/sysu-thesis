@@ -2420,11 +2420,11 @@
     }%
     \sysu@chapter{ABSTRACT}%
   \else
-    \begingroup
-      % 本科生的英文摘要使用三号衬线体
-      \ctexset{chapter/format=\centering\bfseries\fontsize{16bp}{33bp}\selectfont}%
-      \sysu@chapter{ABSTRACT}%
-    \endgroup
+    \clearpage
+    \sysu@pdfbookmark{ABSTRACT}%
+    \vspace*{24bp}%
+    {\centering\bfseries\fontsize{16bp}{33bp}\selectfont{ABSTRACT}\par}%
+    \vspace{18bp}%
   \fi
 }{
   \par\null\par\noindent
