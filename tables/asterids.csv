@@ -1,0 +1,25 @@
+﻿Clade,Order,Family,Species,Best hit of AtDOG1
+Asterids,Lamiales,Lamiaceae,\textit{Tectona grandis},tgr|Tg17g09620.tl
+Asterids,Lamiales,Phrymaceae,\textit{Erythranthe guttata},egu|Migut.M00720.1.p
+Asterids,Lamiales,Pedaliaceae,\textit{Sesamum indicum},sin|SIN\_1001511
+Asterids,Lamiales,Plantaginaceae,\textit{Antirrhinum majus},ant|Am03g04660.T01
+Asterids,Boraginales,Boraginaceae,\textit{Lithospermum erythrorhizon},ler|Leryth\_022290\-t1
+Asterids,Solanales,Convolvulaceae,\textit{Ipomoea nil},ini|LOC109187235
+Asterids,Solanales,Solanaceae,\textit{Solanum lycopersicum},sly|Solyc05g056410.1.1
+Asterids,Gentianales,Apocynaceae,\textit{Catharanthus roseus},cro|CRO\_T019591
+Asterids,Gentianales,Gelsemiaceae,\textit{Gelsemium sempervirens},gse|maker\-scaffold\_349\-snap\-gene\-0.58\-mRNA\-1
+Asterids,Gentianales,Rubiaceae,\textit{Coffea canephora},cca|Cc02\_g15150
+Asterids,Apiales,Apiaceae,\textit{Daucus carota},dca|DCAR\_013177
+Asterids,Apiales,Araliaceae,\textit{Panax ginseng},pgilPg\_S7323.3
+Asterids,Asterales,Asteraceae,\textit{Lactuca sativa},lsa|Lsat\_1\_v5\_gn\_9\_99800.1
+Asterids,Asterales,Campanulaceae,\textit{Platycodon grandiflorus},pgj|PGJG290470.1
+Asterids,Ericales,Ericaceae,\textit{Vaccinium corymbosum},vco|maker\-VaccDscaff6\-augustus\-gene\-283.21\-mRNA\-1
+Asterids,Ericales,Ericaceae,\textit{Rhododendron delavayi},rde|DUH009720.1
+Asterids,Ericales,Actinidiaceae,\textit{Actinidia chinensis},ach|Achn124821
+Asterids,Ericales,Theaceae,\textit{Camellia sinensis},csi|CSS0007731
+Asterids,Ericales,Ebenaceae,\textit{Diospyros oleifera},dol|evm.model.original\_scaffold\_2141.20
+Asterids,Ericales,Primulaceae,\textit{Primula veris},pve|BG8814345\-TI
+Asterids,Cornales,Nyssaceae,\textit{Nyssa sinensis},nsi|KAA8515094.1
+Outgroup,Vitales,Vitaceae,\textit{Vitis vinifera},vvi|GSVIVT01022365001
+Outgroup,Brassicales,Brassicaceae,\textit{Arabidopsis thaliana},ath|AT5G45830.1
+Outgroup,Proteales,Nelumbonaceae,\textit{Nelumbo nucifera},nnu|evm.model.chr1.3633

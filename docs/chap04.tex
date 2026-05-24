@@ -6,144 +6,14 @@
 \section{图像的插入}
 
 \subsection{文中的图像}
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{image/chap04/confusion.pdf}
+    \includegraphics[width=0.5\textwidth]{image/template/sysu-logo.pdf}
     \caption{文中的图像}
     \label{fig:image-embedding-text}
 \end{figure}
 论文主体是毕业论文的主要部分，必须言之成理，论据可靠，严格遵循本学科国际通行的学术规范。在写作上要注意结构合理、层次分明、重点突出，章节标题、公式图表符号必须规范统一。论文主体的内容根据不同学科有不同的特点，一般应包括以下几个方面： （1）毕业论文（设计）总体方案或选题的论证； （2）毕业论文（设计）各部分的设计实现，包括实验数据的获取、数据可行性及有效性的处理与分析、各部分的设计计算等； （3）对研究内容及成果的客观阐述，包括理论依据、创新见解、创造性成果及其改进与实际应用价值等； （4）论文主体的所有数据必须真实可靠，凡引用他人观点、方案、资料、数据等，无论曾否发表，无论是纸质或电子版，均应详加注释。自然科学论文应推理正确、结论清晰；人文和社会学科的论文应把握论点正确、论证充分、论据可靠，恰当运用系统分析和比较研究的方法进行模型或方案设计，注重实证研究和案例分析，根据分析结果提出建议和改进措施等。
-论文主体是毕业论文的主要部分，必须言之成理，论据可靠，严格遵循本学科国际通行的学术规范。在写作上要注意结构合理、层次分明、重点突出，章节标题、公式图表符号必须规范统一。论文主体的内容根据不同学科有不同的特点，一般应包括以下几个方面： （1）毕业论文（设计）总体方案或选题的论证； （2）毕业论文（设计）各部分的设计实现，包括实验数据的获取、数据可行性及有效性的处理与分析、各部分的设计计算等； （3）对研究内容及成果的客观阐述，包括理论依据、创新见解、创造性成果及其改进与实际应用价值等； （4）论文主体的所有数据必须真实可靠，凡引用他人观点、方案、资料、数据等，无论曾否发表，无论是纸质或电子版，均应详加注释。自然科学论文应推理正确、结论清晰；人文和社会学科的论文应把握论点正确、论证充分、论据可靠，恰当运用系统分析和比较研究的方法进行模型或方案设计，注重实证研究和案例分析，根据分析结果提出建议和改进措施等。
 
-
-
-\subsection{单张图像的插入}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{image/chap04/illustration/hole.pdf}
-    \caption{单张图像}
-    \label{fig:hole}
-\end{figure}
-
-
-\subsection{多张图像的并排插入}
-
-
-\begin{figure}[h!]%文中的Grid-LSTM模型做的语义图像分割的例子
-    \centering
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_000799.jpg}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_002094.jpg}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_004483.jpg}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_003194.jpg}
-    \\
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_000799.pdf}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_002094.pdf}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_004483.pdf}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_003194.pdf}
-    \caption{并排的多张图像}
-    \label{fig:multi-image-example1}
-\end{figure}
-
-
-\begin{figure}[h]
-    \centering
-    \makebox[0.11\textwidth]{\scriptsize 图像}
-    \enspace
-    \makebox[0.11\textwidth]{\scriptsize 真值}
-    \enspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{1}}
-    \enspace\thinspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{2}}
-    \enspace\thinspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{3}}
-    \enspace\thinspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{4}}
-    \enspace\thinspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{5}}\\
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663.jpg}
-    \enspace\thinspace %\hfill
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_1.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_2.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_3.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_4.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_5.png}
-    \enspace\thinspace
-    \caption{并排的多张图像加各自的注解}
-    \label{fig:improvement}
-\end{figure}
-
-
-\subsection{两列图像的插入}
-
-\begin{figure}[h!] % image examples & compare
-    \begin{subfigure}{0.55\textwidth}
-        \makebox[0.18\textwidth]{\scriptsize Grid-5LSTM}
-        \makebox[0.18\textwidth]{\scriptsize FCN-8s\cite{long2015fully}}
-        \makebox[0.18\textwidth]{\scriptsize SDS\cite{hariharan2014simultaneous}}
-        \makebox[0.18\textwidth]{\scriptsize 真值}
-        \makebox[0.18\textwidth]{\scriptsize 图像} \\
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/my_horse.pdf}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/fcn_horse.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/sds_horse.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/gt_horse.pdf}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/im_horse.pdf}
-        \\
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/my_motor.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/fcn_motor.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/sds_motor.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/2007_005173.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/2007_005173.jpg}
-        \\
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/my_sheep.pdf}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/fcn_sheep.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/sds_sheep.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/gt_sheep.pdf}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/im_sheep.pdf}
-        \\
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/my_boat.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/fcn_boat.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/sds_boat.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/2007_004241.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/2007_004241.jpg}
-        \caption{左边的图像}
-        \label{fig:compare1}
-    \end{subfigure}
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        %		\makebox[0.3\textwidth]{} \\
-        %		\makebox[0.3\textwidth]{} \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2010_005284.jpg}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2007_003349.jpg}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2009_004507.jpg}
-        \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2010_005284.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2007_003349.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2009_004507.png} \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/zoom_bus.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/zoom_bird.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/zoom_dog.png} \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/deeplab_bus.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/deeplab_bird.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/deeplab_dog.png} \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/my_bus.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/my_bird.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/my_dog.png}
-        \caption{右边的图像}
-        \label{fig:compare2}
-    \end{subfigure}
-    \caption{复杂的两列对象的插入}
-    \label{fig:complex}
-\end{figure}
-
-
-\clearpage
 
 \section{表格的插入}
 
