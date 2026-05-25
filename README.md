@@ -68,8 +68,8 @@ make main
 
 ## 相关规范
 
-1. [本科生](./specifications/附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc)
-2. [研究生](http://graduate.sysu.edu.cn/rules)
+1. [本科生](https://spa.sysu.edu.cn/zh-hans/article/1744)
+2. 研究生（见本仓库）
 
 ## 关于展示
 
