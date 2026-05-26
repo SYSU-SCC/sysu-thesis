@@ -105,7 +105,7 @@ FUNCTION {load.config}
   #1 'control.entry.type.id :=
   #0 'control.space.before.type.id :=
   #1 'control.entry.medium.id :=
-  #1 'control.slash :=
+  #0 'control.slash :=
   #0 'control.in :=
   #0 'control.emph.booktitle :=
   #0 'control.emph.journal :=
