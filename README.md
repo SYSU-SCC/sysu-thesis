@@ -69,7 +69,7 @@ make main
 ## 相关规范
 
 1. [本科生](https://spa.sysu.edu.cn/zh-hans/article/1744)
-2. 研究生（见本仓库）
+2. [研究生](https://lifesciences.sysu.edu.cn/sites/default/files/2025-03/%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%94%9F%E5%AD%A6%E4%BD%8D%E8%AE%BA%E6%96%87%E6%A0%BC%E5%BC%8F%E8%A6%81%E6%B1%82.pdf)
 
 ## 关于展示
 
