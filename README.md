@@ -1,7 +1,7 @@
 # 中山大学 $\LaTeX$ 毕业论文模板（本科/研究生）
 
 [![GitHub release](https://img.shields.io/github/release/SYSU-SCC/sysu-thesis/all.svg)](https://github.com/SYSU-SCC/sysu-thesis/releases/latest)
-[![GitHub commits](https://img.shields.io/github/commits-since/SYSU-SCC/sysu-thesis/latest.svg)](https://github.com/SYSU-SCC/sysu-thesis/commits/main/)
+[![GitHub commits](https://img.shields.io/github/commits-since/SYSU-SCC/sysu-thesis/latest.svg)](https://github.com/SYSU-SCC/sysu-thesis/commits/master/)
 [![Test](https://github.com/SYSU-SCC/sysu-thesis/actions/workflows/test.yml/badge.svg)](https://github.com/SYSU-SCC/sysu-thesis/actions/workflows/test.yml)
 
 本项目是中山大学的毕业论文/设计 LaTeX 模板 sysu-thesis，现已得到中山大学计算机学院等学院的支持，兼容最新版的 TeX Live、MacTeX 、MiKTeX 发行版，支持跨平台使用。
@@ -104,7 +104,7 @@
 5. 在 [GitHub Issues](https://github.com/1FCENdoge/sysuthesis/issues)中提出新 issue。
 
 如果导师或者院系在格式上有额外的要求，请将老师的邮件截图放在 issue 中或者在QQ群中反馈。作者会考虑增加接口以便修改格式。QQ群号：929324613，或者扫描下方二维码：
-
+<img width="1284" height="2283" alt="IMG_0515" src="https://github.com/user-attachments/assets/35a835fa-05a8-472e-a14b-3ce8adea3c0e" />
 
 ## 更多资料
 
