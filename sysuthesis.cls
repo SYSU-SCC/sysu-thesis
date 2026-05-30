@@ -1909,7 +1909,7 @@
   	  \raggedleft\heiti\fontsize{12bp}{12bp}\selectfont
   	  \null\sysu@secret@level\par}\par
 %  	  \vskip 0.5cm%
-    \includegraphics[width=11cm]{\sysu@logo@path/SYSULogo}\\
+    \includegraphics[width=11cm]{\sysu@logo@path/SYSULogo.pdf}\\
   	\vskip 1.2cm%
   	{\rmfamily\bfseries\fontsize{26bp}{26bp}\selectfont
   		\sysu@thesis@name\par}%
