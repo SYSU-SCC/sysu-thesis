@@ -107,12 +107,9 @@
 
 
 
-\title{\cls{sysuthesis} 使用说明}
-\author{1FCENdoge\footnotemark[1] \and Marc-Antoine\footnotemark[1] \and SYSU-SCC\footnotemark[3] \and Zeping Lee\footnotemark[2]}
+\title{\cls{sysu-thesis} 使用说明}
+\author{SYSU-SCC \and 1FCENdoge}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-\footnotetext[1]{中山大学中法核工程与技术学院}
-\footnotetext[2]{中国科学技术大学数学科学学院}
-\footnotetext[3]{中山大学超算队}
 \date{\today}
 \maketitle
 
@@ -120,24 +117,31 @@
 
 \section{简介}
 
-本模板 \cls{sysuthesis} 是中山大学本科生和研究生学位论文的 \LaTeX{}
-模板，参照中国科学技术大学学位论文 \LaTeX{}
-模板编辑得到，部分格式参照中科大本科、研究生论文格式，
-再将中山大学本科和研究生部分论文格式进行统一。
+本模板 \cls{sysu-thesis} 是中山大学本科生和研究生学位论文的 \LaTeX{}
+模板，代码架构借鉴中国科学技术大学学位论文 \LaTeX{}
+模板魔改得到。
 
-本模板主要依据中山大学 \LaTeX{} 论文项目模板（wu-kan 维护）、
-中山大学毕业论文模板（huangjj27 开发）以及本人写硕士论文期间所用的模板编写。
-2025年3月，本人将几个模板进行整合梳理，新模板的主要亮点：支持本科和研究生模板一键切换。
+本模板依据《中山大学本科毕业论文（设计）写作与印制规范》以及 1FCENdoge 等人写
+硕士/博士论文期间所使用的格式进行编写，主要由 
+\href{https://github.com/huangjj27}{huangjj27}、\href{https://github.com/wu-kan}{wu-kan}、
+\href{https://github.com/a20185}{a20185}、\href{https://github.com/1FCENdoge}{1FCENdoge} 
+等人进行开发和维护。
+
+新模板主要亮点：
+\begin{itemize}
+  \item 支持本科生和研究生模板一键切换
+  \item 支持 GB/T 7714-2025 参考文献著录和标注样式（BibTeX 和 BibLaTeX）
+\end{itemize}
 
 下载地址：
 \begin{itemize}
-  \item 主要地址：\url{https://github.com/1FCENdoge/sysuthesis/releases}
+  \item 主要地址：\url{https://github.com/SYSU-SCC/sysu-thesis/releases}
 \end{itemize}
 
-用户在使用 \pkg{sysuthesis} 模板前，应先了解学校对论文写作的要求。
+用户在使用 \pkg{sysu-thesis} 模板前，应先了解学校对论文写作的要求。
 如果在使用的过程中遇到问题，可以阅读
 \href{https://github.com/ustctug/ustcthesis/wiki}{常见问题}，
-或者在 \href{https://github.com/1FCENdoge/sysuthesis/issues}{GitHub Issues}
+或者在 \href{https://github.com/SYSU-SCC/sysu-thesis/issues}{GitHub Issues}
 中反馈。
 
 
@@ -156,17 +160,17 @@
     类别     & 文件                      & 说明                         \\
     \midrule
     模板文件 & \file{sysuthesis.cls}     & 模板文件                     \\
-             & \file{sysuthesis-numerical.bst}   & \BibTeX{} 参考文献表格式   \\
-             & \file{sysuthesis-numeric.bbx}    & BibLaTeX 参考文献表格式  \\
-             & \file{figures/sysu*.pdf} & 校徽图片               \\
+             & \file{sysuthesis-*.bst}   & \BibTeX{} 参考文献表格式   \\
+             & \file{image/template/sysu*.pdf} & 校徽图片               \\
     \midrule
     使用说明 & \file{sysuthesis-guide.tex} & 模板使用说明的源代码         \\
              & \file{sysuthesis-guide.pdf} & （你正在阅读的）模板使用说明 \\
     \midrule
     示例文档 & \file{main.tex}           & 主文档                       \\
              & \file{sysusetup.tex}      & 配置文件                     \\
-             & \file{chapters/*.tex}     & 示例文档的各个章节           \\
-             & \file{figures/}           & 放置图片的目录               \\
+             & \file{code/}          & 需要添加到正文的计算机代码       \\
+             & \file{docs/*.tex}     & 示例文档的各个章节           \\
+             & \file{image/}           & 放置图片的目录               \\
              & \file{tables/}            & 放置表格的目录               \\
              & \file{reference.bib}       & \BibTeX{} 示例数据库         \\
     \midrule
@@ -184,15 +188,16 @@
 
 \subsection{依赖宏包}
 
-本模板要求使用 TeX Live、MacTeX 或 MiKTeX 不低于 2017 年的发行版，
-推荐升级到最新的版本。
+本模板要求使用 TeX Live、MacTeX 或 MiKTeX 最新的版本，并尽可能升级到最新的更新包。
 
 模板直接依赖的宏包有：
 \pkg{amsmath},
 \pkg{caption},
 \pkg{color},
+\pkg{colortbl},
 \pkg{ctex},
 \pkg{makecell},
+\pkg{multirow},
 \pkg{fancyhdr},
 \pkg{footmisc},
 \pkg{geometry},
@@ -407,7 +412,7 @@ key-value 的方式填写，如：
 声明页由 \cs{copyrightpage} 命令生成。模板会根据 \opt{secret-level} 和
 \opt{secret-year} 的内容自动填写。
 
-
+\clearpage
 \subsection{摘要和章节}
 \DescribeEnv{abstract}
 \DescribeEnv{abstract*}
@@ -419,7 +424,7 @@ key-value 的方式填写，如：
 \begin{itemize}
   \item 中文摘要：\env{abstract}
   \item 英文摘要：\env{abstract*}
-  \item 第三种语言摘要（如果需要）：\env{abstract**}
+  \item 法语摘要（如果需要）：\env{abstract**}
   \item 符号说明：\env{notation}
   \item 致谢：    \env{acknowledgements}
   \item 科研成果：\env{achievements}
@@ -442,11 +447,12 @@ key-value 的方式填写，如：
   \end{abstract}
 \end{latex}
 
+目录、插图和附表清单可以使用命令自动生成：
 \DescribeMacro{\tableofcontents}
 \DescribeMacro{\listoffigures}
 \DescribeMacro{\listoftables}
 \DescribeMacro{\listoffiguresandtables}
-目录、插图和附表清单可以使用命令自动生成：
+% 目录、插图和附表清单可以使用命令自动生成：
 \begin{itemize}
   \item 目录：  \cs{tableofcontents}
   \item 插图清单：\cs{listoffigures}
