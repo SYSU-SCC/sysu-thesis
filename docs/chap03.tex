@@ -7,6 +7,10 @@
 
 数学公式可以使用 \env{equation} 和 \env{equation*} 环境。
 注意数学公式的引用应前后带括号，建议使用 \cs{eqref} 命令，比如式~\eqref{eq:example}。
+\begin{equation}
+  \hat{f}(\xi) = \int_{-\infty}^\infty f(x) \eu^{-2 \uppi \iu x \xi} \dif x.
+  \label{eq:example}
+\end{equation}
 
 公式中含有中文
 \begin{align}
@@ -21,7 +25,7 @@
     \textbf{H} = \begin{bmatrix}
         I*\mathbf{x}_i \\ \textbf{h}
     \end{bmatrix}
-	\label{eq:example}
+	\label{eq:matrix}
 \end{equation}
 每行后面都有编号的公式
 \begin{align}
