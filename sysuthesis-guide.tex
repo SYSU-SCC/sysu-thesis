@@ -188,7 +188,8 @@
 
 \subsection{依赖宏包}
 
-本模板要求使用 TeX Live、MacTeX 或 MiKTeX 最新的版本，并尽可能升级到最新的更新包。
+本模板要求使用 TeX Live、MacTeX 或 MiKTeX 不低于 2020 年的发行版，
+推荐安装最新的版本。
 
 模板直接依赖的宏包有：
 \pkg{amsmath},
@@ -642,6 +643,30 @@ key-value 的方式填写，如：
     不带 \file{.tex} 后缀。
   \item 每章都要使用 \cs{bibliographystyle} 和 \cs{bibliography} 命令。
 \end{enumerate}
+
+\subsubsection{BibLaTeX}
+
+BibLaTeX 是较新的参考文献处理方案。
+需要在载入宏包时通过选择样式（\opt{style}），
+并且在导言区使用 \cs{addbibresource} 设置数据库的路径，
+最后在参考文献表的位置使用 \cs{printbibliography} 输出。
+\begin{latex}
+  \usepackage[style=sysuthesis-authoryear]{biblatex}
+  \addbibresource{reference.bib}
+\end{latex}
+
+使用 BibLaTeX 必须用 \file{biber} 编译生成参考文献表。
+这里的样式是在 \href{https://ctan.org/pkg/biblatex-gb7714-2015}{biblatex-gb7714-2025}
+的基础上进行了少量修改。
+一些额外用法可以参考该宏包的文档。
+
+对于顺序编码制，文献引用标注默认为上标样式。
+如果要切换为与正文平排，一种方法是使用 \cs{parencite}，
+另一种是载入 \pkg{biblatex} 时统一设置。
+\begin{latex}
+  \usepackage[bibstyle=sysuthesis-numeric,
+              citestyle=sysuthesis-inline]{biblatex}
+\end{latex}
 
 
 \end{document}

@@ -1,0 +1,600 @@
+%%
+%% ---------------------------------------------------------------
+%% biblatex-gb7714-2015 --- A biblatex implementation of the
+%% GBT7714-2025 citation style,numerical sequence
+%% Maintained by huzhenzhen
+%% E-mail: hzzmail@163.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% ---------------------------------------------------------------
+%%
+\ProvidesFile{gb7714-2025.cbx}[a biblatex citation style for GB/T 7714-2025]
+
+%
+%   加载标准样式
+%
+\RequireCitationStyle{numeric-comp} %numeric
+
+%
+%   增加一个控制是否将标注标签中的作者加上超链接的选项
+%   20210121,v1.0w,hzz
+\newtoggle{bbx:gblabelref}
+\DeclareBibliographyOption{gblabelref}[false]{%biblatex低版本
+  \settoggle{bbx:gblabelref}{#1}}
+\ExecuteBibliographyOptions{gblabelref}
+
+%
+%   增加一个控制是否进行标注标签压缩的选项
+%   20220212,v1.1c,hzz
+\newtoggle{bbx:gbcitecomp}
+\DeclareBibliographyOption{gbcitecomp}[true]{%biblatex低版本
+  \settoggle{bbx:gbcitecomp}{#1}}
+\ExecuteBibliographyOptions{gbcitecomp}
+
+\newtoggle{gbNoAfPcSpace}%gb-no-after-parencite-space
+\togglefalse{gbNoAfPcSpace}
+
+%
+%   增加标签包围符号格式处理选项
+%   20211030,1.1a,hzz
+%
+\newrobustcmd{\mkbibleftborder}{\gbleftbracket}
+\newrobustcmd{\mkbibrightborder}{\gbrightbracket}
+\DeclareBibliographyOption[string]{gbcitelabel}[bracket]{%
+    \csuse{gbcitelabelopt@#1}
+}
+\ExecuteBibliographyOptions{gbcitelabel}
+
+\renewrobustcmd{\mkbibsuperscript}[1]{%
+  \unspace\allowhyphens\textsuperscript{%
+    \begingroup
+    \protected\long\def\mkbibsuperscript##1{%
+      \blx@warning{Nested superscript}%
+      \mkbibbrackets{##1}}%嵌套的这里没有动
+    #1\endgroup}\kern\z@}%
+
+\def\gbcitelabelopt@bracket{%
+\renewrobustcmd{\mkbibleftborder}{\gbleftbracket}%
+\renewrobustcmd{\mkbibrightborder}{\gbrightbracket}%
+}
+\def\gbcitelabelopt@parens{%
+\renewrobustcmd{\mkbibleftborder}{\gbleftparen}%
+\renewrobustcmd{\mkbibrightborder}{\gbrightparen}%
+}
+\def\gbcitelabelopt@parensqj{%
+\renewrobustcmd{\mkbibleftborder}{\allowbreak（}%
+\renewrobustcmd{\mkbibrightborder}{）\unspace}%
+}
+\def\gbcitelabelopt@bracketqj{%
+\renewrobustcmd{\mkbibleftborder}{\allowbreak【}%
+\renewrobustcmd{\mkbibrightborder}{】\unspace}%
+}
+\def\gbcitelabelopt@quanjiao{%
+\renewrobustcmd{\mkbibleftborder}{\allowbreak（}%
+\renewrobustcmd{\mkbibrightborder}{）\unspace}%
+}
+\def\gbcitelabelopt@dot{%
+\renewrobustcmd{\mkbibleftborder}{}%
+\renewrobustcmd{\mkbibrightborder}{.}%
+}
+\def\gbcitelabelopt@plain{%
+\renewrobustcmd{\mkbibleftborder}{}%
+\renewrobustcmd{\mkbibrightborder}{}%
+}
+\def\gbcitelabelopt@box{%
+\renewrobustcmd{\mkbibleftborder}{}%
+\renewrobustcmd{\mkbibrightborder}{}%
+\renewrobustcmd{\mkbibsuperscript}[1]{%
+  \unspace\allowhyphens\textsuperscript{%
+    \begingroup
+\framebox{##1}\endgroup}\kern\z@}%
+}
+\def\gbcitelabelopt@circle{%
+\renewrobustcmd{\mkbibleftborder}{}%
+\renewrobustcmd{\mkbibrightborder}{}%
+\renewrobustcmd{\mkbibsuperscript}[1]{%
+  \unspace\allowhyphens\textsuperscript{%
+    \begingroup
+\textcircled{##1}\endgroup}\kern\z@}%
+}
+
+
+%
+%   选项设置
+%
+\ExecuteBibliographyOptions{
+  autocite  = superscript ,
+  autopunct = true       ,
+  %sorting   = none        ,
+  maxcitenames=1,
+  mincitenames=1,
+}
+
+%
+%   修订使可用选项gblabelref来控制是否将标准标签中的作者加上超链接
+%   20210121,v1.0w,hzz
+%
+\renewbibmacro*{textcite}{%
+  \iffieldequals{namehash}{\cbx@lasthash}
+    {\usebibmacro{cite:comp}}
+    {\usebibmacro{cite:dump}%
+     \ifbool{cbx:parens}
+       {\printtext{\mkbibrightborder}\global\boolfalse{cbx:parens}}%\bibclosebracket
+       {}%
+     \iffirstcitekey
+       {}
+       {\setunit{\textcitedelim}}%
+     \usebibmacro{cite:init}%
+     \ifnameundef{labelname}
+       {\printfield[citetitle]{labeltitle}}
+       {\iftoggle{bbx:gblabelref}{\printtext[bibhyperref]{\printnames{labelname}}}{\printnames{labelname}}}%
+     \setunit*{\printdelim{namelabeldelim}}%
+     \printtext{\mkbibleftborder}\global\booltrue{cbx:parens}%\bibopenbracket
+     \ifnumequal{\value{citecount}}{1}
+       {\usebibmacro{prenote}}
+       {}%
+     \usebibmacro{cite:comp}%
+     \stepcounter{textcitecount}%
+     \savefield{namehash}{\cbx@lasthash}}}
+%这是老版本的textcite，上面是新版本的，使用新版本后，对于老版本的biblatex的兼容性可能会受影响
+%\renewbibmacro*{textcite}{%
+%  \iffieldequals{namehash}{\cbx@lasthash}
+%    {\usebibmacro{cite:comp}}
+%    {\usebibmacro{cite:dump}%
+%     \ifbool{cbx:parens}
+%       {\printtext{\mkbibrightborder}\global\boolfalse{cbx:parens}}%\bibclosebracket
+%       {}%
+%     \iffirstcitekey
+%       {}
+%       {\setunit{\textcitedelim}}%
+%     \usebibmacro{cite:init}%
+%     \ifnameundef{labelname}
+%       {\printfield[citetitle]{labeltitle}}
+%       {\iftoggle{bbx:gblabelref}{\printtext[bibhyperref]{\printnames{labelname}}}{\printnames{labelname}}}%
+%     \setunit*{\printdelim{namelabeldelim}}%
+%     \printtext{\mkbibleftborder}\global\booltrue{cbx:parens}%\bibopenbracket
+%     \ifnumequal{\value{citecount}}{1}
+%       {\usebibmacro{prenote}}
+%       {}%
+%     \usebibmacro{cite:comp}%
+%     \stepcounter{textcitecount}%
+%     \savefield{namehash}{\cbx@lasthash}}}%
+
+
+
+%
+%设置标注中各篇文献之间的标点
+%20210530,v1.0y,hzz
+%textcite标注命令中的标点设置
+\def\gbpunctcommacite{\addcomma}
+%\DeclareDelimFormat[textcite]{andothersdelim}{\addspace}%
+\renewcommand*{\compcitedelim}{\gbpunctcommacite}%\addcomma\addthinspace
+\renewcommand*{\supercitedelim}{\gbpunctcommacite}
+\DeclareDelimFormat{multicitedelimiter}{\gbpunctcommacite}%新定义一个multicitedelim来区分不同标注命令下的空格处理
+\DeclareDelimFormat[parencite]{multicitedelimiter}{\gbpunctcommacite\addthinspace}%太窄则用addspace
+\renewcommand*{\multicitedelim}{\printdelim{multicitedelimiter}}
+
+%
+%将连续3篇文献压缩改为连续2篇文献压缩
+%
+%该宏的目的是抛弃压缩内部的编号，而仅输出最后一个编号，主要通过cbx@tempcnta来控制
+%一般情况下cbx@tempcnta为0，所以该宏不输出任何内容。当cbx@tempcnta在cite:comp:comp宏中更改变大后
+%说明开始进入需要压缩的范围，当到压缩终点时，cbx@tempcnta必然大于1，则输出内容。
+%修改第二行的数字1为0即可将默认的3个开始压缩变为2个开始压缩。
+\newcounter{gbrefcompress}
+\setcounter{gbrefcompress}{2}
+\renewbibmacro*{cite:dump}{%
+  \ifnumgreater{\value{cbx@tempcnta}}{0}%
+    {\ifnumgreater{\value{cbx@tempcnta}}{\thegbrefcompress-2}%1改为0，可以将压缩起始3个编号改为2个编号
+       {\bibrangedash}%
+       {\multicitedelim}%
+     \bibhyperref[\cbx@lastkey]{%
+       \ifdef\cbx@lastprefix%
+         {\printtext[labelprefix]{\cbx@lastprefix}}%
+         {}%
+       \printtext[labelnumber]{\cbx@lastnumber}}}%
+    {}%
+  \setcounter{cbx@tempcnta}{0}%
+  \global\undef\cbx@lastprefix}
+
+%biblatex v3.15 增加了一堆标点命令如\multiciterangedelim
+%为方便用户定义，在新的版本中使用新的{cite:dump}，尽管前面的定义也没有问题
+%前面的定义是适用于biblatex v2.8以后的版本的，从16年到20年都没动过
+%而且也适用于最新的版本，biblatex本身兼容性做的也还是不错的。
+\@ifpackagelater{biblatex}{2020/08/15}{%v3.15 2020-08-16
+    \renewbibmacro*{cite:dump}{%
+      \usebibmacro{cite:dump:inset}%
+      % dump labelnumber (+labelprefix)
+      \ifnumgreater{\value{cbx@tempcnta}}{0}
+        {\ifnumgreater{\value{cbx@tempcnta}}{\thegbrefcompress-2}%1改为0，可以将压缩起始3个编号改为2个编号
+           {\setunit{\multiciterangedelim}}
+           {\setunit{\multicitedelim}}%
+         \usebibmacro{cite:print:last:labelnumber}%
+         \global\undef\cbx@lastprefix}
+        {}%
+      \setcounter{cbx@tempcnta}{0}%
+    }%
+}{}
+
+%
+%   定义一个上标方括号wrapper
+%
+\newcommand*\mkbibsuperbracket[1]{%
+  \mkbibsuperscript{\mkbibleftborder{#1}\mkbibrightborder}%
+}
+
+%   修改postnote的输出格式
+\DeclareFieldFormat{postnote}{#1}
+
+
+%修改\mkbibsuperscript宏在最后加上一个空白使得xeCJK不会自动在引用标签后面加上中英文之间的空白
+%20210401,v1.0w,hzz
+%20211030,v1.1a,hzz,调整到选项中去
+%\renewrobustcmd{\mkbibsuperscript}[1]{%
+%  \unspace\allowhyphens\textsuperscript{%
+%    \begingroup
+%    \protected\long\def\mkbibsuperscript##1{%
+%      \blx@warning{Nested superscript}%
+%      \mkbibbrackets{##1}}%
+%    #1\endgroup}\kern\z@}
+
+\newrobustcmd{\mkbibsuperscriptusp}[1]{%
+  \unspace\allowhyphens\textsuperscript{%
+    \begingroup%
+    \protected\long\def\mkbibsuperscriptusp##1{%
+      \blx@warning{Nested superscript}%
+      \mkbibleftborder{##1}\mkbibrightborder}%
+    #1\endgroup}\iftoggle{gbNoAfPcSpace}{\kern\z@}{}}
+
+
+
+%
+%   重定义cite命令
+%
+%   方法:\DeclareCiteCommand{\cite}[\mkbibparens]{precode}{loopcode}{sepcode}{postcode}
+%    v1.0p版后将cite的处理方式修改为类似pagescite，而不再使用biblatex的标准方式
+\DeclareCiteCommand{\cite}[\mkbibsuperscript]%利用mkbibsuperbracket添加方括号 \textsuperscript
+  {\mkbibleftborder\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}\mkbibrightborder%
+   \printfield{postnote}}%\kern\p@ \kern\z@
+
+%\renewcommand{\cite}[1]{\textsuperscript{[\supercite{#1}]}\kern\z@}
+%   v1.0p 以前用的方式
+%\DeclareCiteCommand{\cite}[\mkbibsuperbracket]%利用mkbibsuperbracket添加方括号
+%  {\usebibmacro{cite:init}%
+%   \usebibmacro{prenote}}
+%  {\usebibmacro{citeindex}%
+%   \usebibmacro{cite:comp}}
+%  {}
+%  {\usebibmacro{cite:dump}%
+%   \usebibmacro{postnote}}
+
+%
+%   定义upcite命令
+%   20180604，v1.0l，hzz
+%   20190409，v1.0r，hzz
+%   方法:对supercite增加[]
+\newrobustcmd*{\upcite}{%
+    \cite}
+
+%
+%   重定义parencite命令，以满足标签带页码的国标要求
+%
+\DeclareCiteCommand{\parencite}%[\mkbibbrackets]
+  {\mkbibleftborder\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}%
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}\mkbibrightborder%
+   \mkbibsuperscriptusp{\printfield{postnote}}}
+
+%
+%   新定义pagescite命令，以满足标签带页码的国标要求
+%
+%   原理方法:
+%   1.新增页码输出宏
+\newbibmacro*{postpages}{%
+  \iffieldundef{postnote}
+    {\printfield[postnote]{pages}}
+    {\printfield{postnote}}}
+%   2.新增\pagescite引用命令
+\DeclareCiteCommand{\pagescite}[\mkbibsuperscript]%\mkbibbrackets,仍然用上标
+  {\mkbibleftborder\usebibmacro{cite:init}%]直接添加方括号
+   \usebibmacro{prenote}%
+   }
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}\mkbibrightborder%
+   \usebibmacro{postpages}}
+
+%
+%   定义yearpagescite，为与ay样式兼容，等同于\pagescite
+%
+\DeclareCiteCommand{\yearpagescite}[\mkbibsuperscript]%\mkbibbrackets,仍然用上标
+  {\mkbibleftborder\usebibmacro{cite:init}%直接添加方括号
+   \usebibmacro{prenote}%
+   }
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}\mkbibrightborder%
+   \usebibmacro{postpages}}
+
+%
+%   定义\yearcite命令，为与ay样式兼容，且提供不输出页码的标签格式，
+%
+%   原理方法:等同于\pagescite，但不要页码
+\DeclareCiteCommand{\yearcite}[\mkbibsuperscript]%\mkbibbrackets,仍然用上标
+  {\mkbibleftborder\usebibmacro{cite:init}%直接添加方括号
+   \usebibmacro{prenote}%
+   }
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}\mkbibrightborder}
+
+
+%
+%   定义\authornumcite命令，输出作者信息，然后在后面带上顺序编码
+%   20180427，v1.0k，增加，hzz
+%   gb7714样式新定义的命令都把cite放到最后，比如前面的pagescite，yearcite，这里的\authornumcite
+%   区别于biblatex定义的命令都把cite放到前面，比如citeauthor等。见numeric.CBX
+%   20200121，v1.0w，增加超链接，hzz
+\newbibmacro*{citeathn}{%
+  \printtext[bibhyperref]{%
+    \printfield{labelprefix}%
+    \printfield{labelnumber}%
+    \ifbool{bbx:subentry}
+      {\printfield{entrysetcount}}
+      {}}}
+%见numeric.CBX，\DeclareCiteCommand{\cite},
+\DeclareCiteCommand{\authornumcite}%[\mkbibsuperscript]
+  {\usebibmacro{prenote}}
+  {\iffieldequalstr{userf}{cn}{\renewcommand*{\andothersdelim}{\addthinspace}}%\addthinspace
+  {\renewcommand*{\andothersdelim}{\addspace}}%
+  \iftoggle{bbx:gblabelref}{\printtext[bibhyperref]{\printnames{labelname}}}{\printnames{labelname}}%
+  \mkbibsuperscript{\mkbibleftborder\usebibmacro{citeindex}%
+   \usebibmacro{citeathn}\mkbibrightborder}}
+  {\multicitedelim}
+  {\mkbibsuperscript{\printfield{postnote}}}
+
+
+%
+%   增加如下多个命令
+%   20190409，v1.0r，hzz
+%   方法:利用newcommand或newrobustcmd命令进行定义
+%   注意\citet和\citep命令之所以不用newrobustcmd，是为避免加载natbib模块后产生冲突
+%\DeclareCiteCommand{\citet}%
+%  {\usebibmacro{prenote}}
+%  {\iffieldequalstr{userf}{cn}{\renewcommand*{\andothersdelim}{\addthinspace}}%\addthinspace
+%  {\renewcommand*{\andothersdelim}{\addspace}}%
+%  \printnames{labelname}\mkbibsuperscript{\mkbibbrackets{\usebibmacro{citeindex}%
+%   \usebibmacro{citeathn}}}}
+%  {\multicitedelim}
+%  {\mkbibsuperscript{\printfield{postnote}}}
+
+%
+%   重定义citet，因为前面与\authornumcite同定义的命令无法正确处理多个bibtexkey同时给出的压缩情况
+%   20200721,v1.0v,hzz
+%   方法:利用textcite命令进行定义
+%   基本利用textcite命令来写citet，仅利用bool{cbx:incitet}做判断，进而处理不同的上标和页码形式
+%   20210416,v1.0y,hzz:将namelabeldelim标点注释掉了，因为中文环境下不需要，
+%   若有需要可以用context sensitive的形式做定义
+\newbool{cbx:incitet}
+\global\booltrue{cbx:incitet}
+
+\newbibmacro*{citet}{%
+  \iffieldequals{namehash}{\cbx@lasthash}%
+    {\mkbibsuperscript{\usebibmacro{cite:comp}}}%
+    {\usebibmacro{cite:dump}%
+     \ifbool{cbx:parens}%
+       {\mkbibsuperscript{{\hspace{-0.075em}\mkbibrightborder}}%\bibclosebracket
+       \global\boolfalse{cbx:parens}}%\printtext
+       {}%
+     \iffirstcitekey
+       {}
+       {\textcitedelim}%
+     \usebibmacro{cite:init}%
+     \ifnameundef{labelname}
+       {\printfield[citetitle]{labeltitle}}
+       {\printnames{labelname}}%
+     %\setunit*{\printdelim{namelabeldelim}}%
+     \mkbibsuperscript{\printtext{\mkbibleftborder}%\bibopenbracket
+     \global\booltrue{cbx:parens}%
+     \ifnumequal{\value{citecount}}{1}
+       {\usebibmacro{prenote}}%
+       {}%
+     \usebibmacro{cite:comp}%
+     \stepcounter{textcitecount}%
+     \savefield{namehash}{\cbx@lasthash}}}}
+
+\DeclareCiteCommand{\cbx@textcite}%
+  {\usebibmacro{cite:init}}%
+  {\usebibmacro{citeindex}%
+   \ifbool{cbx:incitet}{\usebibmacro{citet}}{\usebibmacro{textcite}}%
+   }%
+  {}%
+  {\ifbool{cbx:incitet}%
+        {\mkbibsuperscript{\usebibmacro{cite:dump}\usebibmacro{postnote}%
+        \ifbool{cbx:parens}{\hspace{-0.075em}\mkbibrightborder%\bibclosebracket
+        \global\boolfalse{cbx:parens}}{}%
+        }%
+        }%
+        {\usebibmacro{cite:dump}\usebibmacro{postnote}%
+        \ifbool{cbx:parens}{\mkbibrightborder%\bibclosebracket
+        \global\boolfalse{cbx:parens}}{}%
+        }%
+   }
+
+  \newrobustcmd{\cbx@citet@init}[2]{%
+  \global\booltrue{cbx:incitet}%
+  \setcounter{textcitetotal}{0}%
+  \setcounter{textcitecount}{0}%
+  \def\cbx@savedcites{#1}#2\cbx@savedcites\empty}
+
+  \renewrobustcmd{\cbx@textcite@init}[2]{%
+  \global\boolfalse{cbx:incitet}%
+  \setcounter{textcitetotal}{0}%
+  \setcounter{textcitecount}{0}%
+  \def\cbx@savedcites{#1}#2\cbx@savedcites\empty}
+
+\DeclareCiteCommand{\citet}[\cbx@citet@init\cbx@textcite]
+  {\gdef\cbx@savedkeys{}%
+   \citetrackerfalse%
+   \pagetrackerfalse%
+   \DeferNextCitekeyHook%
+   \usebibmacro{cite:init}}
+  {\ifthenelse{\iffirstcitekey\AND\value{multicitetotal}>0}
+     {\protected@xappto\cbx@savedcites{()(\thefield{multipostnote})}%
+      \global\clearfield{multipostnote}}
+     {}%
+   \xappto\cbx@savedkeys{\thefield{entrykey},}%
+   \iffieldequals{namehash}{\cbx@lasthash}
+     {}
+     {\stepcounter{textcitetotal}%
+      \savefield{namehash}{\cbx@lasthash}}}
+  {}
+  {\protected@xappto\cbx@savedcites{%
+     [\thefield{prenote}][\thefield{postnote}]{\cbx@savedkeys}}}
+
+
+
+\DeclareCiteCommand{\citep}[\mkbibsuperscript]%利用mkbibsuperbracket添加方括号
+  {\mkbibleftborder\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}\mkbibrightborder%
+   \printfield{postnote}}
+
+\newrobustcmd*{\citetns}%
+    {\textcite}
+
+\newrobustcmd*{\citepns}%
+    {\parencite}
+
+\newrobustcmd*{\inlinecite}%
+    {\parencite}
+
+%
+%   增加如下复数的命令，以符合biblatex的复数命令习惯
+%   20190430，v1.0r，hzz
+% citec和citecs命令是实现了[1]-[3]这样的压缩形式。
+% authornumcites是常用命令authornumcite的复数形式
+%\DeclareFieldFormat{labelbracket}{\mkbibbrackets{#1}}
+\DeclareFieldFormat{labelbracket}{\mkbibleftborder{#1}\mkbibrightborder}
+
+\newbibmacro*{citec:comp:comp}{%
+  \ifboolexpr{
+    ( test {\iffieldundef{labelprefix}} and test {\ifundef\cbx@lastprefix} )
+    or
+    test {\iffieldequals{labelprefix}{\cbx@lastprefix}}%
+  }
+    {\ifnumequal{\thefield{labelnumber}}{\value{cbx@tempcntb}}
+       {\savefield{entrykey}{\cbx@lastkey}%
+        \savefield{labelnumber}{\cbx@lastnumber}%
+        \addtocounter{cbx@tempcnta}{1}}
+       {\ifnumequal{\thefield{labelnumber}}{\value{cbx@tempcntb}-1}
+          {}
+          {\usebibmacro{citec:dump}%
+           \ifnumgreater{\value{cbx@tempcntb}}{-1}
+             {\multicitedelim}
+             {}%
+           \printtext[bibhyperref]{%
+             \printfield{labelprefix}%
+             \printtext[labelbracket]{\printfield{labelnumber}}}}}}
+    {\usebibmacro{cite:comp:end}}%
+  \setcounter{cbx@tempcntb}{\thefield{labelnumber}}%
+  \savefield{labelprefix}{\cbx@lastprefix}}
+
+\newbibmacro*{citec:comp}{%
+  \addtocounter{cbx@tempcntb}{1}%
+  \iffieldundef{shorthand}
+    {\ifbool{bbx:subentry}
+       {\iffieldundef{entrysetcount}
+          {\usebibmacro{citec:comp:comp}}
+          {\usebibmacro{cite:comp:inset}}}
+       {\usebibmacro{citec:comp:comp}}}
+    {\usebibmacro{cite:comp:shand}}}
+
+\newbibmacro*{citec:dump}{%
+  \ifnumgreater{\value{cbx@tempcnta}}{0}
+    {\ifnumgreater{\value{cbx@tempcnta}}{0}%从1改成0就是从3个开始压缩改成2个开始压缩
+       {\bibrangedash}
+       {\multicitedelim}%
+     \bibhyperref[\cbx@lastkey]{%
+       \ifdef\cbx@lastprefix
+         {\printtext[labelprefix]{\cbx@lastprefix}}
+         {}%
+       \printtext[labelbracket]{\cbx@lastnumber}}}%labelnumber
+    {}%
+  \setcounter{cbx@tempcnta}{0}%
+  \global\undef\cbx@lastprefix}
+
+%\DeclareCiteCommand{\citec}[\mkbibsuperscript]%[\mkbibbrackets]
+%  {\usebibmacro{cite:init}%
+%   \usebibmacro{prenote}}
+%  {\usebibmacro{citeindex}%
+%   \usebibmacro{citec:comp}}
+%  {}
+%  {\usebibmacro{citec:dump}%
+%   \usebibmacro{postnote}}
+
+%上面这个用于非压缩情况，这里考虑了压缩的情况
+\DeclareCiteCommand{\citec}[\mkbibsuperscript]%
+  {\ifnumless{\value{multicitecount}}{2}
+     {\usebibmacro{cite:init}%
+      \usebibmacro{prenote}}
+     {\iffieldundef{prenote}
+        {\iffieldundef{postnote}
+           {}
+           {\usebibmacro{citec:dump}%
+            \usebibmacro{cite:init}%
+            \setunit{\multicitedelim}%
+            }}
+        {\usebibmacro{citec:dump}%
+         \usebibmacro{cite:init}%
+         \setunit{\multicitedelim}%
+         \usebibmacro{prenote}}}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{citec:comp}}
+  {}
+  {\ifboolexpr{       test {\ifnumequal{\value{multicitecount}}{\value{multicitetotal}}}
+               or not test {\iffieldundef{postnote}}}
+     {\usebibmacro{citec:dump}%
+      \printfield{postnote}%
+      }
+     {}}
+
+\DeclareMultiCiteCommand{\citecs}[\mkbibsuperscript]{\citec}{}
+
+\DeclareMultiCiteCommand{\authornumcites}[]{\authornumcite}{\multicitedelim}
+
+%如果标注标签不进行压缩可以则重定义如下：
+\iftoggle{bbx:gbcitecomp}{}%
+{\newbibmacro*{cite}{%
+  \printtext[bibhyperref]{%
+    \printfield{labelprefix}%
+    \printfield{labelnumber}%
+    \ifbool{bbx:subentry}
+      {\printfield{entrysetcount}}
+      {}}}
+\DeclareCiteCommand{\cite}[\mkbibsuperscript]%
+  {\mkbibleftborder\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {\multicitedelim}
+  {\mkbibrightborder\usebibmacro{postnote}}
+\DeclareCiteCommand{\parencite}%
+  {\mkbibleftborder\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {\multicitedelim}
+  {\mkbibrightborder\mkbibsuperscriptusp{\usebibmacro{postnote}}}
+}

@@ -12,7 +12,7 @@
 
 2. 本科论文模板格式按照本科生论文规范编写，全校通用。研究生模板满足中法核工程与技术学院研究生论文格式要求的同时，也为其他学院提供可供使用和参考的模板。如遇格式问题，请及时提交 issue 或者通过QQ群反馈，QQ群号：929324613。
 
-3. 本模板要求 TeX Live、MacTeX、MiKTeX 尽可能使用最新的发行版，并且升级到最新的更新。安装和升级方法见[新手指南](https://github.com/ustctug/ustcthesis/wiki/新手指南)。
+3. 本模板要求 TeX Live、MacTeX、MiKTeX 不低于 2020 年的发行版， 并且尽可能升级到最新。安装和升级方法见[新手指南](https://github.com/ustctug/ustcthesis/wiki/新手指南)。
 
 4. **不支持** [CTeX 套装](https://github.com/ustctug/ustcthesis/wiki/常见问题#3-模板支持用-ctex-套装编译吗)。
 
@@ -48,7 +48,7 @@
 
 ### TeX Live 编辑（本地）
 
-本模板需要使用 TeX Live 最新的发行版进行编译，编译命令如下：
+本模板需要使用不低于 2020 年的 TeX Live 发行版进行编译，编译命令如下：
 
 - 编译模板的使用说明文档 `sysuthesis-guide.pdf`：
    ```
