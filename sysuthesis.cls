@@ -1569,6 +1569,7 @@
   	top        = 2.5cm,
   	bottom     = 2.0cm,
   	hmargin    = 3.0cm,
+    headheight = 0.72cm,
   }
 \fi
 
@@ -1909,7 +1910,7 @@
   	  \raggedleft\heiti\fontsize{12bp}{12bp}\selectfont
   	  \null\sysu@secret@level\par}\par
 %  	  \vskip 0.5cm%
-    \includegraphics[width=11cm]{\sysu@logo@path/SYSULogo}\\
+    \includegraphics[width=11cm]{\sysu@logo@path/SYSULogo.pdf}\\
   	\vskip 1.2cm%
   	{\rmfamily\bfseries\fontsize{26bp}{26bp}\selectfont
   		\sysu@thesis@name\par}%
@@ -2336,21 +2337,20 @@
 
 % 中文摘要环境。
 \newcommand\sysu@keywords@text{%
-  \sysu@clist@use{\sysu@keywords}{，}%
-}
-\newcommand\sysu@keywords@en@text{%
   \ifsysu@degree@graduate
-    \sysu@clist@use{\sysu@keywords@en}{, }%
+    \sysu@clist@use{\sysu@keywords}{；}%
   \else
-    \sysu@clist@use{\sysu@keywords@en}{, }%
+    \sysu@clist@use{\sysu@keywords}{，}%
   \fi
 }
-
 \ifsysu@degree@bachelor
 \newcommand\sysu@keywords@fr@text{%
   \sysu@clist@use{\sysu@keywords@fr}{, }%
 }
 \fi
+\newcommand\sysu@keywords@en@text{%
+    \sysu@clist@use{\sysu@keywords@en}{, }%
+}
 
 \newenvironment{abstract}{%
   \sysusetup{language=chinese}%
@@ -2377,15 +2377,16 @@
   \let\clearpage\relax
   \sysu@chapter{摘\hspace{2em}要}%
   \else
-  \clearpage
-  \sysu@pdfbookmark{摘要}%
-  \vspace*{24bp}%
-  {\centering\sffamily\fontsize{16bp}{29.33bp}\selectfont{摘\hspace{\ccwd}要}\par}%
-  \vspace{18bp}%
+  \pretocmd{\sysu@chapter}{%
+    \vspace*{22bp}%
+  }{}{}
+  \let\clearpage\relax
+  \sysu@chapter{摘\hspace{2em}要}%
+  \vspace{14bp}
   \fi
 }{
   \par\null\par\noindent\hangindent=4em\relax
-  \textbf{关键词}：\sysu@keywords@text\par
+  \textbf{关键词：}\sysu@keywords@text\par
   \sysu@reset@main@language
   \newpage
 }
@@ -2393,7 +2394,7 @@
 \newbox\sysu@keywords@box
 \newlength\sysu@keywords@width
 % 英文摘要环境
-\newcommand\sysu@keywords@label{KEY WORDS}%
+\newcommand\sysu@keywords@label{KEYWORDS}%
 
 \newenvironment{abstract*}{%
   \sysusetup{language=english}%
@@ -2419,12 +2420,13 @@
     }%
     \sysu@chapter{ABSTRACT}%
   \else
-    % 本科生的“ABSTRACT”使用三号衬线体
-    \clearpage
-    \sysu@pdfbookmark{ABSTRACT}%
-    \vspace*{24bp}%
-    {\centering\bfseries\fontsize{16bp}{33bp}\selectfont{ABSTRACT}\par}%
-    \vspace{18bp}%
+    \pretocmd{\sysu@chapter}{%
+      \vspace*{22bp}%
+    }{}{}
+    \let\clearpage\relax
+    \ctexset{chapter/format = \centering\bfseries\fontsize{16bp}{33bp}\selectfont,}%
+    \sysu@chapter{ABSTRACT}%
+    \vspace{14bp}
   \fi
 }{
   \par\null\par\noindent
@@ -2442,21 +2444,18 @@
   \newpage
 }
 
-
 % 法语摘要环境
 \ifsysu@degree@bachelor
   \newenvironment{abstract**}{%
 	\sysusetup{language=english}%
     \pretocmd{\sysu@chapter}{%
   	%这是章标题前的内容，不会另起一页
-    \vspace*{24bp}%
+    \vspace*{22bp}%
   }{}{}
     \let\clearpage\relax
-    \ctexset{
-      chapter/format = \centering\bfseries\fontsize{16bp}{33bp}\selectfont,
-    }%
+    \ctexset{chapter/format = \centering\bfseries\fontsize{16bp}{33bp}\selectfont,}%
     \sysu@chapter{ABSTRACT}%
-    \vspace{18bp}%
+    \vspace{14bp}%
   }{
 	\par\null\par\noindent
 	\renewcommand\sysu@keywords@label{Mots-clés }%
@@ -2738,7 +2737,10 @@
   \captionsetup{font+=bf}
 \fi
 
-% 中英文双标题
+% 若有英文图题，另起一行置于中文图题下方。
+\AtBeginOfPackageFile*{bicaption}{
+  \let\captionmainlanguage\sysu@main@language
+}
 \AtEndOfPackageFile*{bicaption}{
   \captionsetup[bi-first]{lang = chinese}% 第一种语言图、表标题
   \captionsetup[bi-second]{% 第二种语言图、表标题

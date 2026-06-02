@@ -1,125 +1,76 @@
-\chapter{\LaTeX 模板配置与使用}
+\chapter{数学}
+
+\label{cha:maths}
+
+\section{公式}
+\label{sec:formula}
+
+数学公式可以使用 \env{equation} 和 \env{equation*} 环境。
+注意数学公式的引用应前后带括号，建议使用 \cs{eqref} 命令，比如式~\eqref{eq:example}。
+\begin{equation}
+  \hat{f}(\xi) = \int_{-\infty}^\infty f(x) \eu^{-2 \uppi \iu x \xi} \dif x.
+  \label{eq:example}
+\end{equation}
+
+公式中含有中文
+\begin{align}
+    \begin{split}
+        \mbox{像素准确率} &= \sum_{i=1}^{n_{cl}}n_{ii} / \sum_{i=1}^{n_{cl}}t_i \\
+        \mbox{平均像素准确率} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}(n_{ii}/ t_i) \\
+        \mbox{Mean IU} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}\frac{n_{ii}}{t_i + \sum_j^{n_{cl}} n_{ji} - n_{ii}}
+    \end{split}
+\end{align}
+公式中含有矩阵
+\begin{equation}
+    \textbf{H} = \begin{bmatrix}
+        I*\mathbf{x}_i \\ \textbf{h}
+    \end{bmatrix}
+	\label{eq:matrix}
+\end{equation}
+每行后面都有编号的公式
+\begin{align}
+    \frac{\partial}{\partial W_{ij}^{(l)}} J(\mathbf{W},\mathbf{b};\mathbf{x},y) & = \frac{\partial J(\mathbf{W},\mathbf{b};\mathbf{x},y)}{\partial z_i^{(l+1)}}\cdot \frac{\partial z_i^{(l+1)}}{\partial W_{ij}^{(l)}} = \delta_i^{(l+1)}a_j^{(l)} \\
+    \frac{\partial}{\partial b_i^{(l)}} J(\mathbf{W},\mathbf{b};\mathbf{x},y)    & = \frac{\partial J(\mathbf{W},\mathbf{b};\mathbf{x},y)}{\partial z_i^{(l+1)}}\cdot \frac{\partial z_i^{(l+1)}}{\partial b_i^{(l)}} = \delta_i^{(l+1)}
+\end{align}
+
+多行公式尽可能在“=”处对齐，推荐使用 \env{align} 环境，比如式~\eqref{eq:align_2}。
+\begin{align}
+  a & = b + c + d + e \label{eq:align_1} \\
+    & = f + g. \label{eq:align_2}
+\end{align}
+
+\section{例子、定理与证明}
+
+\begin{theorem}[定理例子]
+    \label{the:example-theorem}
+    这是一个定理。
+\end{theorem}
+
+\begin{corollary}[推论例子]
+    \label{the:example-corollary}
+    这是一个推论。
+\end{corollary}
+
+\begin{lemma}[引理例子]
+    \label{the:example-lemma}
+    这是一个引理。
+\end{lemma}
+
+这里我们先给出\autoref{the:example-theorem-sysu-thesis}
+
+\begin{theorem}[中山大学毕业论文模板定理]
+    \label{the:example-theorem-sysu-thesis}
+    中山大学 \LaTeX 毕业论文模板可以用于写各种证明。
+\end{theorem}
+
+下面我们对\autoref{the:example-theorem-sysu-thesis}进行证明：
 
 
-\label{cha:sysu-thesis-latex-install-guide}
+\begin{proof}
 
-本部分内容将让你能够通过本\LaTeX 模板生成一份可用的pdf，并为后面修改源码撰写毕设做准备。
+    下面我们开始证明：
 
-首先，我们会展示最简单的方法：直接使用overleaf进行编写。然后，我们整理了不同环境下\LaTeX 环境的配置指南与不同写作工具的配置技巧，方便各位同学使用本\LaTeX 模板。最后，我们说明了如何开始编写自己的毕业论文（设计）。
+    由本定理的证明可见，我可以引用\autoref{the:example-theorem}和引理\ref{the:example-corollary}以及推论\ref{the:example-lemma}来证明我这个 \LaTeX 可以用来写各种证明。 \\
 
-
-\section{使用Overleaf编写毕设}
-
-Overleaf\footnote{网址可见\url{https://www.overleaf.com/}}是一个在线的Latex文档协作平台。我们不需要配置任何环境，便能够在上面直接使用本模板进行写作。操作步骤如下：
-
-第一步，下载本项目压缩包（从\url{https://github.com/SYSU-SCC/sysu-thesis/releases}处下载即可），注意需要下载zip格式的压缩包。
-然后，我们在Overleaf上新建项目，并上传该压缩包，可参考\autoref{fig:overleaf-new-proj}。
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.2\textwidth]{image/chap03/overleaf-create-proj.jpg}
-	\includegraphics[width=0.7\textwidth]{image/chap03/overleaf-upload-proj.jpg}
-	\caption{在Overleaf上创建并上传压缩包。}
-	\label{fig:overleaf-new-proj}
-\end{figure}
-
-第二步，在Overleaf的菜单中调整编译工具为\texttt{xelatex}，可参考\autoref{fig:overleaf-config}。
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.6\textwidth]{image/chap03/overleaf-config.jpg}
-	\caption{在Overleaf上调整编译工具}
-	\label{fig:overleaf-config}
-\end{figure}
-
-
-第三步，点击编译，得到本pdf，可以开始修改pdf了！最终可见\autoref{fig:overleaf-example}。
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.9\textwidth]{image/chap03/overleaf-example.jpg}
-	\caption{Overleaf使用例子}
-	\label{fig:overleaf-example}
-\end{figure}
-
-
-
-\section{编译环境配置}
-
-编译环境配置相对来说比较简单，下载Tex Live2020并如同一般的程序一样安装即可。
-
-\subsection{编译环境配置：Window篇}
-
-在\url{https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/}上下载Tex Live2020并参考教程\footnote{可以参考\url{https://zhuanlan.zhihu.com/p/58811994}}安装即可。
-
-\subsection{编译环境配置：Linux篇}
-
-在\url{https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/}上下载Tex Live2020并参考教程\footnote{可以参考\url{https://zhuanlan.zhihu.com/p/55894177}}安装即可。
-
-
-\subsection{编译环境配置：MacOS篇}
-
-在MacOS上配置Latex的环境，这里我们使用的是MacTex。
-
-\begin{enumerate}
-	\item \url{https://www.tug.org/mactex/}下载MacTex安装。
-	\item 安装步骤：不详细展开，按照图形界面点击即可, 傻瓜式安装。
-\end{enumerate}
-
-TIPS：MacTex文件比较大，有2G多，介意的话可以选择MacTex\_Basic包，只有100M以内，但是如果安装MacTex\_Basic，后期可能会遇到各种缺包的问题。
-
-
-安装完成之后，可以简单测试一下安装是否成功。如可以查看Texshop应用是否安装好，或者在命令行测试一下\texttt{xelatex}命令是否可用。
-
-\section{写作环境配置}
-
-不同的写作工具对应不同的写作环境。这里我们给出几个工具的配置例子以供参考。
-
-\subsection{模板编译流程}
-
-由于\LaTeX 的限制，本模板需要经过四次编译才能生成完整的论文：
-
-\begin{enumerate}
-	\item 先使用xelatex编译一次
-	\item 再使用bibtex编译一次
-	\item 然后使用xelatex编译两次
-\end{enumerate}
-
-本编译流程已经写在Makefile中，修改模板源码后只需要执行\texttt{make main}即可按照该流程进行编译并生成最终的pdf。
-
-
-
-\subsection{写作环境配置：Visual Studio Code}
-
-Visual Studio Code是微软公司推出的轻量代码编辑器，我们可以做一些简单的配置，便可以用该编辑器修改我们的\LaTeX 模板，并实现一键编译。
-
-\begin{enumerate}
-	\item 安装 Visual Studio Code。
-	\item 安装 LaTeX Workshop 插件。
-\end{enumerate}
-
-本项目的\texttt{.vscode/setting.json}下已经包含了与前面所述编译流程相同的配置。正常配置下，每次修改模板源码后按下保存（Ctrl+S），就能够自动进行编译产生pdf。效果图如\autoref{fig:vscode-example}所示。
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=\linewidth]{image/chap03/vscode-example.png}
-	\caption{vscode配置好后的样例}
-	\label{fig:vscode-example}
-\end{figure}
-
-
-\section{如何开始写毕业论文（设计）}
-
-首先将所有个人信息，包括学号、姓名、专业、论文题目等，在\texttt{./docs/info.tex}中逐项进行更新。
-
-然后我们再编辑\texttt{./docs/abstract.tex}补充论文摘要。
-
-到了论文主体部分，我们可以自行编辑\texttt{./docs/chap01.tex}，\texttt{./docs/chap02.tex}等文件进行编辑。如果章数不够，可以自行修改\texttt{main.tex}增加新的章节。
-
-当论文主体编写完成后，我们再编辑\texttt{./docs/ack.tex}作为论文致谢。
-
-
-% 首先将个人信息写到\texttt{./docs/info.tex}中。
+    \autoref{the:example-theorem-sysu-thesis}得证。
+\end{proof}

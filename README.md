@@ -1,28 +1,32 @@
-# 中山大学 $\LaTeX$ 毕业论文模板
+# 中山大学 $\LaTeX$ 毕业论文模板（本科/研究生）
 
-本项目现已得到中山大学计算机学院支持。我们正在努力增加 feature ，满足本院毕业设计的要求，并争取进一步完善，成为中大官方 $\LaTeX$ 毕设模板。Demo 与源码可在 [releases](https://github.com/SYSU-SCC/sysu-thesis/releases) 页面下载。
+[![GitHub release](https://img.shields.io/github/release/SYSU-SCC/sysu-thesis/all.svg)](https://github.com/SYSU-SCC/sysu-thesis/releases/latest)
+[![GitHub commits](https://img.shields.io/github/commits-since/SYSU-SCC/sysu-thesis/latest.svg)](https://github.com/SYSU-SCC/sysu-thesis/commits/master/)
+[![Test](https://github.com/SYSU-SCC/sysu-thesis/actions/workflows/test.yml/badge.svg)](https://github.com/SYSU-SCC/sysu-thesis/actions/workflows/test.yml)
 
-**本模板在 v2.0 版本进行开始（[#114](https://github.com/SYSU-SCC/sysu-thesis/pull/114)）支持本硕博切换，其中本科生模板为计算机学院官方模板，硕博模板正在通过学院审核。使用前请注意，2.0 版本代码进行了重构，与之前的格式可能有细微差别，如遇学校格式审核问题，请回退至 [v1.2](https://github.com/SYSU-SCC/sysu-thesis/releases/tag/v1.2.20241211) 。**
+本项目是中山大学的毕业论文/设计 LaTeX 模板 sysu-thesis，现已得到中山大学计算机学院等学院的支持，兼容最新版的 TeX Live、MacTeX 、MiKTeX 发行版，支持跨平台使用。
 
-**诚挚邀请广大校友加入本项目维护，详见 [#67](https://github.com/SYSU-SCC/sysu-thesis/issues/67)、[#105](https://github.com/SYSU-SCC/sysu-thesis/pull/105)。希望加入 collaborator 团队的同学可联系 [@wu-kan](https://github.com/wu-kan)。**
+注意：
+
+1. 使用说明文档 `sysuthesis-guide.pdf` 在发布版中附带，用户也可自行编译；**使用模板前应仔细阅读使用说明文档 `sysuthesis-guide.pdf`**。
+
+2. 本科论文模板格式按照本科生论文规范编写，全校通用。研究生模板满足中法核工程与技术学院研究生论文格式要求的同时，也为其他学院提供可供使用和参考的模板。如遇格式问题，请及时提交 issue 或者通过QQ群反馈，QQ群号：929324613。
+
+3. 本模板要求 TeX Live、MacTeX、MiKTeX 不低于 2020 年的发行版， 并且尽可能升级到最新。安装和升级方法见[新手指南](https://github.com/ustctug/ustcthesis/wiki/新手指南)。
+
+4. **不支持** [CTeX 套装](https://github.com/ustctug/ustcthesis/wiki/常见问题#3-模板支持用-ctex-套装编译吗)。
+
+**诚挚邀请广大校友加入本项目维护，希望加入 collaborator 团队的同学可联系 [@wu-kan](https://github.com/wu-kan)。**
+
+## Star History:
+
+[![Stargazers over time](https://starchart.cc/SYSU-SCC/sysu-thesis.svg?variant=adaptive)](https://starchart.cc/SYSU-SCC/sysu-thesis)
+
+## 下载地址
+
+- GitHub Releases：<https://github.com/SYSU-SCC/sysu-thesis/releases>
 
 ## 如何使用
-
-### overleaf 编辑（在线）
-
-本模板可以使用 [overleaf](https://www.overleaf.com/) 在线编辑，需要在 [releases](https://github.com/SYSU-SCC/sysu-thesis/releases) 页面提前下载 `Source code (zip)`。
-
-步骤如下：
-
-1. 进入 [overleaf](https://overleaf.com) 并登录账号
-2. 左侧 `New Project` 选择 `Upload Project`
-3. 上传 `.zip` 压缩包，建立新项目
-4. 点击 `menu`，滑动到下方 `Settings` 的 `Compiler` 选择 `XeLaTeX`
-5. 打开 `main.tex` 文件，点击中间右侧上方的 `Recompile` 进行编译
-6. 如果顺利可以看到 pdf 的预览
-7. 如果无法加载图片只有路径信息，点击 `Recompile` 旁边的倒三角，其中的 `Compile Mode` 选择 `Normal` 模式
-
-此时可以得到完整的 `main.pdf` 文件。
 
 ### GitHub Actions 自动构建（在线）
 
@@ -42,25 +46,32 @@
 
 在容器环境中，可以使用 `make`（或 `make help`）查看所有可用的编译子命令。例如，使用 `make main` 进行编译并生成 `main.pdf` 文件，或者使用 LaTeX Workshop 插件进行编译与预览。
 
-### texlive 编辑（本地）
+### TeX Live 编辑（本地）
 
-本模板需要使用 texlive(>=2020) 进行编译，编译命令如下：
+本模板需要使用不低于 2020 年的 TeX Live 发行版进行编译，编译命令如下：
 
-```bash
-# 查看帮助信息，列出所有可用编译子命令
-# make help
-# 编译论文正文
-make main
-```
+- 编译模板的使用说明文档 `sysuthesis-guide.pdf`：
+   ```
+   latexmk -xelatex sysuthesis-guide.tex
+   ```
+- 编译论文 `main.pdf`：
+   ```
+   latexmk -xelatex main.tex
+   ```
+- 如需清理论文编译过程中的临时文件，可以：
+   ```
+   latexmk -c
+   ```
 
-即可生成 `main.pdf` 文件。如有环境问题，推荐对照 [GitHub Actions](./.github/workflows/test.yml) 中的环境进行配置。
+- 以上编译过程也可以用 `make` 工具：
+   ```
+   make doc        # 编译生成 sysuthesis-guide.pdf
+   make            # 编译生成论文 main.pdf
+   make clean      # 删除编译过程中生成的临时文件
+   ```
 
-## TODO List
+如有环境问题，推荐对照 [GitHub Actions](./.github/workflows/test.yml) 中的环境进行配置。
 
-- [ ] 增加 [overleaf](https://www.overleaf.com/) 等模板库的自动发布，可一键在 overleaf 中打开项目。
-- [ ] 进一步优化代码，可支持多种需求
-
-希望大家踊跃提出自己的想法，提交 pr，一起完善该 $\LaTeX$ 模板， Make **SYS**U Great Again！
 
 ## 需要注意的问题
 
@@ -68,8 +79,8 @@ make main
 
 ## 相关规范
 
-1. [本科生](./specifications/附件1.中山大学本科生毕业论文（设计）写作与印制规范.doc)
-2. [研究生](http://graduate.sysu.edu.cn/rules)
+1. [本科生](https://spa.sysu.edu.cn/zh-hans/article/1744)
+2. [研究生](https://lifesciences.sysu.edu.cn/sites/default/files/2025-03/中山大学研究生学位论文格式要求.pdf)
 
 ## 关于展示
 
@@ -82,49 +93,21 @@ make main
 - [NelsonCheung-cn/SYSU-beamer-template](https://github.com/NelsonCheung-cn/SYSU-beamer-template)
 - [Very-White/sysu_ppt_template](https://github.com/Very-White/sysu_ppt_template)
 
-## 一些说明
+## 反馈问题
 
-1. 已征得原作者，17 届中大数据院软件工程校友黄俊杰(@huangjj27)的同意，我们团队未来将长期维护该项目。
-2. 原项目 repo 可见 [gitlab](https://gitlab.com/sysu-gitlab/latex-group/thesis)，原项目 wiki 可见 [wiki](https://gitlab.com/sysu-gitlab/latex-group/thesis/-/wikis/home)，原 repo 中的信息将会在之后更新到本 repo 中。
+如果发现模板有问题，请按照以下步骤操作：
 
----
+1. 阅读学校的标准，判断是否符合学校的要求：[本科生论文规范](https://spa.sysu.edu.cn/zh-hans/article/1744)；[研究生论文规范](https://lifesciences.sysu.edu.cn/sites/default/files/2025-03/中山大学研究生学位论文格式要求.pdf)；
+2. 阅读 [常见问题 FAQ](https://github.com/ustctug/ustcthesis/wiki/常见问题)；
+3. 将 TeX 发行版和宏包升级到最新，并且将模板升级到 Github 上最新版本，查看问题是否已经修复；
+4. 在 [GitHub Issues](https://github.com/ustctug/ustcthesis/issues)中搜索该问题的关键词；
+5. 在 [GitHub Issues](https://github.com/1FCENdoge/sysuthesis/issues)中提出新 issue。
 
-~~这里是分割线，以下是原始 repo 的 README~~
+如果导师或者院系在格式上有额外的要求，请将老师的邮件截图放在 issue 中或者在QQ群中反馈。作者会考虑增加接口以便修改格式。QQ群号：929324613，或者扫描下方二维码：
+<img width="1284" height="2283" alt="IMG_0515" src="https://github.com/user-attachments/assets/35a835fa-05a8-472e-a14b-3ce8adea3c0e" />
 
----
+## 更多资料
 
-本维护项目由 17 届中大数据院软件工程校友黄俊杰(@huangjj27)发起, 发起理由如下:
-
-1. 中山大学在 github 上[LaTeX 官方模板项目](http://github.com/sysu/sysuthesis)已经有 2 年多的时间没有维护
-1. [@chunkwong](https://github.com/chungkwong)师兄在 github 上放出了中大的第一个[非官方的本科论文 LaTeX 模板](https://github.com/chungkwong/sysu_thesis), 并由[@guanyingc](https://github.com/guanyingc)师兄接力改进
-1. 上述两位师兄毕业后均无法抽空维护项目
-
-基于以上理由，本项目维护小组成立，并***诚邀各届校友参与开发维护, 为中大莘莘学子编写毕业论文提供方便***。
-
-## 使用指南
-
-请移步到[项目 wiki](https://gitlab.com/sysu-gitlab/latex-group/thesis/wikis/home)
-
-_注意:　最新代码在 dev 分支上, 获取代码前请先确认分支._
-
-## 致谢
-
-1. 感谢[@chunkwong](https://github.com/chungkwong)师兄在 Github 上放出了中大第一个[非官方的本科论文 LaTex 模板](https://github.com/chungkwong/sysu_thesis)
-1. 感谢[@guanyingc](https://github.com/guanyingc)师兄在模板结构化分解上作出了[极大的贡献](https://github.com/guanyingc/SYSU-LaTex-Thesis)
-1. 感谢@huangjj27 师兄在模板样式规范化做出极大的贡献
-1. 感谢@a20185 @Kinpzz @yttty @perqin @noeagles 等人[对 v4.6.0 作出极大的贡献](https://gitlab.com/sysu-gitlab/latex-group/thesis/merge_requests/32)
-1. PPT 的模板源自<http://far.tooold.cn/post/latex/beamertsinghua>
-1. 最后, 感谢 Donald Ervin Knuth 教授发明了`tex`这么好(zhe)用(teng)的工具。
-   Finally, thanks Prof. Donald Ervin Knuth for inventing such useful tool as tex.
-
-## 错误反馈以及改进
-
-1. 同学们如果在编译或者使用过程中遇到了一些问题，请参照[这里](ihttps://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)的步骤尝试解决问题。如果还是没法解决，请[email](mailto:incoming+sysu-gitlab/latex-group/thesis@gitlab.com)汇报错误。
-1. 如果您想参与项目的维护，我们强烈建议您发起访问请求(Access request)到本项目，即可成为本项目的开发人员! 我们***非常欢迎校友的加入***。
-   或者，克隆本仓库到您的 gitlab 仓库中，修改完成后给本项目提交`Merge Request`。
-
-## 声明
-
-1. 您可以任意地使用和修改这个模板，但该模板可能无法满足最新的《中山大学本科生毕业论文(设计)写作与印制规范》。
-1. 目前项目组人手紧缺，**强烈欢迎校友们的加入**。
-1. 目前基于 GitLab CI 的构建工具[使用的字体与规范要求有轻微的区别](https://gitlab.com/sysu-gitlab/latex-group/thesis/merge_requests/29#note_66184589)，请在使用时注意风险。
+- [LaTeX 新手入门指南](https://github.com/ustctug/ustcthesis/wiki/新手指南)
+- [常见问题 FAQ](https://github.com/ustctug/ustcthesis/wiki/常见问题)
+- [参与开发](https://github.com/ustctug/ustcthesis/wiki/参与开发)

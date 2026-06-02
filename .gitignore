@@ -1,9 +1,7 @@
-*.swp
-
-node_modules/
-
-/.vscode
-/*.synctex.gz
+main.pdf
+sysuthesis-guide.pdf
+pre.pdf
+*.hd
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -27,7 +25,6 @@ node_modules/
 # *.ps
 # *.eps
 # *.pdf
-!template/image/sysu-logo.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
 .pdf
@@ -117,11 +114,6 @@ acs-*.bib
 *.glo
 *.gls
 *.glsdefs
-*.lzo
-*.lzs
-
-# uncomment this for glossaries-extra (will ignore makeindex's style files!)
-# *.ist
 
 # gnuplottex
 *-gnuplottex-*
@@ -143,20 +135,18 @@ acs-*.bib
 
 # knitr
 *-concordance.tex
-# TODO Uncomment the next line if you use knitr and want to ignore its generated tikz files
-# *.tikz
+# TODO Comment the next line if you want to keep your tikz graphics files
+*.tikz
 *-tikzDictionary
 
 # listings
 *.lol
 
-# luatexja-ruby
-*.ltjruby
-
 # makeidx
 *.idx
 *.ilg
 *.ind
+*.ist
 
 # minitoc
 *.maf
@@ -220,10 +210,6 @@ pythontex-files-*/
 # todonotes
 *.tdo
 
-# vhistory
-*.hst
-*.ver
-
 # easy-todo
 *.lod
 
@@ -236,9 +222,8 @@ pythontex-files-*/
 # xindy
 *.xdy
 
-# xypic precompiled matrices and outlines
+# xypic precompiled matrices
 *.xyc
-*.xyd
 
 # endfloat
 *.ttt
@@ -261,14 +246,8 @@ TSWLatexianTemp*
 # Kile
 *.backup
 
-# gummi
-.*.swp
-
 # KBibTeX
 *~[0-9]*
-
-# TeXnicCenter
-*.tps
 
 # auto folder when using emacs and auctex
 ./auto/*
@@ -279,44 +258,3 @@ TSWLatexianTemp*
 
 # standalone packages
 *.sta
-
-# Makeindex log files
-*.lpz
-
-# xwatermark package
-*.xwm
-
-# REVTeX puts footnotes in the bibliography by default, unless the nofootinbib
-# option is specified. Footnotes are the stored in a file with suffix Notes.bib.
-# Uncomment the next line to have this generated file ignored.
-#*Notes.bib
-diff
-*.xml
-*.nav
-*.snm
-~*
-.~*
-.fuse*
-*.txt.data
-*.zip
-analyse/
-paper
-ardrone.pdf
-template.pdf
-old
-*.aux
-*.bbl
-*.blg
-*.ent
-*.loa
-*.lof
-*.log
-*.lot
-*.out
-*.toc
-main.pdf
-missfont.log
-svn-commit.tmp
-sysuthesis.tar.gz
-中山大学本科毕业论文非官方LaTeX模版0.0.*.tar.gz
-
