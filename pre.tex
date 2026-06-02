@@ -1,6 +1,6 @@
 \documentclass[
     % fontset=ubuntu, % 生僻字可用思源字体，如“昇腾”
-    fontset=fandol,
+    % fontset=fandol,
     % aspectratio=169, % 可调整长宽比
     % 10pt, % 可调整字号
     xcolor=x11names % SeaGreen4
@@ -104,19 +104,19 @@
         \end{itemize}
     \end{block}
 
-    % \begin{figure} %文中的Grid-LSTM模型做的语义图像分割的例子
-    %     \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_000799.jpg}
-    %     \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_002094.jpg}
-    %     \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_004483.jpg}
-    %     \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_003194.jpg}
-    %     \\
-    %     \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_000799.pdf}
-    %     \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_002094.pdf}
-    %     \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_004483.pdf}
-    %     \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/chap04/example/2007_003194.pdf}
-    %     \caption{并排的多张图像}
-    %     \label{fig:multi-image-example1}
-    % \end{figure}
+    \begin{figure} %文中的Grid-LSTM模型做的语义图像分割的例子
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/pre/2007_000799.jpg}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/pre/2007_002094.jpg}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/pre/2007_004483.jpg}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/pre/2007_003194.jpg}
+        \\
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/pre/2007_000799.pdf}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/pre/2007_002094.pdf}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/pre/2007_004483.pdf}
+        \includegraphics[width=.2\linewidth,height=.15\linewidth]{./image/pre/2007_003194.pdf}
+        \caption{并排的多张图像}
+        \label{fig:multi-image-example1}
+    \end{figure}
 
 \end{frame}
 
@@ -133,9 +133,9 @@
     \end{block}
     \end{minipage}\begin{minipage}{.6\linewidth}
 
-    % \begin{figure}
-    %     \includegraphics[width=.95\linewidth]{./image/chap03/overleaf-example.jpg}
-    % \end{figure}
+    \begin{figure}
+        \includegraphics[width=0.9\linewidth]{./image/pre/hole.pdf}
+    \end{figure}
 
     \end{minipage}
 
@@ -154,11 +154,11 @@
 
     % \begin{figure}
     %     \begin{minipage}{0.49\linewidth}
-    %         \includegraphics[height=0.45\textheight]{./image/chap04/example/2007_004483.pdf}
+    %         \includegraphics[height=0.45\textheight]{./image/pre/2007_004483.pdf}
     %         \caption{一}
     %     \end{minipage}
     %     \begin{minipage}{0.49\linewidth}
-    %         \includegraphics[height=0.45\textheight]{./image/chap04/example/2007_003194.pdf}
+    %         \includegraphics[height=0.45\textheight]{./image/pre/2007_003194.pdf}
     %         \caption{二}
     %     \end{minipage}
     % \end{figure}
@@ -228,6 +228,10 @@ for (int i = 0; i < N; ++i)
 
     \begin{equation}
         e^{i\pi}+1=0
+    \end{equation}
+
+    \begin{equation}
+        \hat{f}(\xi) = \int_{-\infty }^{\infty } f(x)e^{-2\pi ix\xi } \mathrm{d}x
     \end{equation}
 
 \end{frame}
