@@ -1145,21 +1145,22 @@
   \fi
 }
 
-\ifsysu@main@language@chinese
-  \sysusetup{math-style = GB}%
-\else
-  \sysusetup{math-style = TeX}%
-\fi
+% \ifsysu@main@language@chinese
+%   \sysusetup{math-style = GB}%
+% \else
+%   \sysusetup{math-style = TeX}%
+% \fi
+\sysusetup{math-style = TeX}%
 
 \sysu@set@math@style
 \sysu@option@hook{math-style}{\sysu@set@math@style}
-\sysu@option@hook{main-language}{%
-  \ifsysu@main@language@chinese
-    \sysusetup{math-style = GB}%
-  \else
-    \sysusetup{math-style = TeX}%
-  \fi
-}
+% \sysu@option@hook{main-language}{%
+%   \ifsysu@main@language@chinese
+%     \sysusetup{math-style = GB}%
+%   \else
+%     \sysusetup{math-style = TeX}%
+%   \fi
+% }
 
 % 针对 \pkg{unicode-math} 逐项配置数学符号。
 
