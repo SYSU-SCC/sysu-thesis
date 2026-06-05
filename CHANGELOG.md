@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - 修正了调用 `mathtools` 后 `\eqref` 与前文间距的问题（[tuna/thuthesis#1043](https://github.com/tuna/thuthesis/discussions/1043)）。
+- 修正 biblatex 中 authoryear 参考文献样式不同作者仅因同姓被错误地认为是同一作者的错误（[ustctug/ustcthesis#499](https://github.com/ustctug/ustcthesis/issues/499)、[hushidong/biblatex-gb7714-2015#236](https://github.com/hushidong/biblatex-gb7714-2015/issues/236)）。
 
 ## [2.1.0] - 2026-06-01
 
