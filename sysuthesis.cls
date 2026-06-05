@@ -1965,7 +1965,7 @@
 % 本科生的外封
 \newcommand\sysu@cover{%
   \begin{titlepage}%
-    \sysu@pdfbookmark{Cover}%
+    \sysu@pdfbookmark{封面}%
     \centering
     \vskip 0.5cm%
     \includegraphics[width=3cm]{\sysu@logo@path/sysu-logo.pdf}
@@ -2021,7 +2021,6 @@
 % 本科生的扉页（内封）
 \newcommand\sysu@title@page@bachelor{%
   \begin{titlepage}%
-  	\sysu@pdfbookmark{Title page}%
   	\centering
   	\ \vskip 2cm%
   {

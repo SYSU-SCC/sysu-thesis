@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - 默认数学符号风格 `math-style` 改为 `TeX`。
+- 本科生模板去掉 pdf 文件内封面的书签。
 
 ### Fixed
 
