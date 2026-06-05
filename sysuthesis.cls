@@ -1761,10 +1761,10 @@
   \csname clist_use:Nn\endcsname{#1}{#2}%
 }
 \newcommand\sysu@supervisor@names{%
-  \sysu@clist@use{\sysu@supervisor}{\quad}
+  \sysu@clist@use{\sysu@supervisor}{\quad}%
 }
 \newcommand\sysu@practice@supervisor@names{%
-  \sysu@clist@use{\sysu@practice@supervisor}{\quad}
+  \sysu@clist@use{\sysu@practice@supervisor}{\quad}%
 }
 \newcounter{sysu@count}
 \newcommand\sysu@supervisor@en@line{%
