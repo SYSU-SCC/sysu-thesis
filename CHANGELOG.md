@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - 默认数学符号风格 `math-style` 改为 `TeX`。
 
+### Fixed
+
+- 修正了调用 `mathtools` 后 `\eqref` 与前文间距的问题（[tuna/thuthesis#1043](https://github.com/tuna/thuthesis/discussions/1043)）。
+
 ## [2.1.0] - 2026-06-01
 
 ### 版本亮点
