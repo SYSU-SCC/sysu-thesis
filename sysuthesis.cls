@@ -350,6 +350,13 @@
     },
     default = false,
   },
+  eqn-paren-style = {
+    name = eqn@paren@style,
+    choices = {
+      full,
+      half,
+    }
+  },
 }
 
 % 将 \sysu@cite@style 置空方便后续进行判断。
@@ -1145,21 +1152,22 @@
   \fi
 }
 
-\ifsysu@main@language@chinese
-  \sysusetup{math-style = GB}%
-\else
-  \sysusetup{math-style = TeX}%
-\fi
+% \ifsysu@main@language@chinese
+%   \sysusetup{math-style = GB}%
+% \else
+%   \sysusetup{math-style = TeX}%
+% \fi
+\sysusetup{math-style = TeX}%
 
 \sysu@set@math@style
 \sysu@option@hook{math-style}{\sysu@set@math@style}
-\sysu@option@hook{main-language}{%
-  \ifsysu@main@language@chinese
-    \sysusetup{math-style = GB}%
-  \else
-    \sysusetup{math-style = TeX}%
-  \fi
-}
+% \sysu@option@hook{main-language}{%
+%   \ifsysu@main@language@chinese
+%     \sysusetup{math-style = GB}%
+%   \else
+%     \sysusetup{math-style = TeX}%
+%   \fi
+% }
 
 % 针对 \pkg{unicode-math} 逐项配置数学符号。
 
@@ -1753,10 +1761,10 @@
   \csname clist_use:Nn\endcsname{#1}{#2}%
 }
 \newcommand\sysu@supervisor@names{%
-  \sysu@clist@use{\sysu@supervisor}{\quad}
+  \sysu@clist@use{\sysu@supervisor}{\quad}%
 }
 \newcommand\sysu@practice@supervisor@names{%
-  \sysu@clist@use{\sysu@practice@supervisor}{\quad}
+  \sysu@clist@use{\sysu@practice@supervisor}{\quad}%
 }
 \newcounter{sysu@count}
 \newcommand\sysu@supervisor@en@line{%
@@ -1957,7 +1965,7 @@
 % 本科生的外封
 \newcommand\sysu@cover{%
   \begin{titlepage}%
-    \sysu@pdfbookmark{Cover}%
+    \sysu@pdfbookmark{封面}%
     \centering
     \vskip 0.5cm%
     \includegraphics[width=3cm]{\sysu@logo@path/sysu-logo.pdf}
@@ -2013,7 +2021,6 @@
 % 本科生的扉页（内封）
 \newcommand\sysu@title@page@bachelor{%
   \begin{titlepage}%
-  	\sysu@pdfbookmark{Title page}%
   	\centering
   	\ \vskip 2cm%
   {
@@ -2897,6 +2904,41 @@
 \patchcmd{\@getpen}{\@M}{\@Mi}
   {}{\sysu@patch@error{\@getpen}}
 
+% \subsection{表达式}
+
+% 重定义 `\eqref`，使`式~\eqref` 这样的写法不产生额外的空格。
+% \DeclareRobustCommand{\eqref}[1]{\textup{\tagform@{\ref{#1}}}}
+\DeclareRobustCommand{\eqref}[1]{%
+  \ifsysu@language@chinese
+    \ifsysu@eqn@paren@style@full
+      \unskip
+    \fi
+  \fi
+  \textup{\tagform@{\ref{#1}}}%
+  \ifsysu@language@chinese
+    \ifsysu@eqn@paren@style@full
+      \ignorespaces
+    \fi
+  \fi
+}
+
+% 修改 `amsmath` 的 `\tagform@`
+% \def\tagform@#1{\maketag@@@{(\ignorespaces#1\unskip\@@italiccorr)}}
+\def\tagform@#1{%
+  \ifsysu@language@chinese
+    \ifsysu@eqn@paren@style@full
+      % 这里的 `\unskip` 是为了 `式~\eqref` 不产生额外的空格。
+      \unskip
+      % \kern 0pt 防止中文左括号与前面文字的距离过窄
+      % 防止中文左括号与前面文字的距离过窄
+      \maketag@@@{\kern 0pt\relax （\ignorespaces#1\unskip\@@italiccorr）}%
+    \else
+      \maketag@@@{(\ignorespaces#1\unskip\@@italiccorr)}%
+    \fi
+  \else
+    \maketag@@@{(\ignorespaces#1\unskip\@@italiccorr)}%
+  \fi
+}
 
 % \subsection{参考文献}
 
@@ -3501,11 +3543,31 @@
 % \pkg{mathtools} 会修改 \pkg{unicode-math} 的 `\underbrace` 和 `\overbrace`，
 % 需要还原为 `\LaTeXunderbrace` 和 `\LaTeXoverbrace`，
 % 参考 \url{https://tex.stackexchange.com/q/521394/82731}。
+%
+% \pkg{mathtools} 的 `showonlyrefs` 选项修改了 `\eqref`，
+% 需要重新处理括号与前后文字的空白。
+% 见 <https://github.com/tuna/thuthesis/issues/1043>。
 \AtEndOfPackageFile*{mathtools}{
   \@ifpackageloaded{unicode-math}{
     \let\underbrace\LaTeXunderbrace
     \let\overbrace\LaTeXoverbrace
   }{}
+  \expandafter\def\csname MT_extended_eqref:n\endcsname#1{%
+    \ifsysu@language@chinese
+      \ifsysu@eqn@paren@style@full
+        \unskip
+      \fi
+    \fi
+    \protected@write\@auxout{}
+      {\string\MT@newlabel{#1}}%
+    \textup{\let\df@label\@empty\csname MT_prev_tagform:n\endcsname{\ref{#1}}}%
+    \ifsysu@language@chinese
+      \ifsysu@eqn@paren@style@full
+        \ignorespaces
+      \fi
+    \fi
+  }
+  \expandafter\MakeRobust\csname MT_extended_eqref:n\endcsname
 }
 
 % \subsubsection{\pkg{nomencl} 宏包}
