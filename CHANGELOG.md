@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.1] - 2026-06-15
+
 ### Changed
 
 - 默认数学符号风格 `math-style` 改为 `TeX`。
@@ -29,5 +31,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 简化示例内容。
 
 
-[Unreleased]: https://github.com/SYSU-SCC/sysu-thesis/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/SYSU-SCC/sysu-thesis/compare/v2.1.1...HEAD
+[2.1.1]: https://github.com/SYSU-SCC/sysu-thesis/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/SYSU-SCC/sysu-thesis/releases/tag/v2.1.0
