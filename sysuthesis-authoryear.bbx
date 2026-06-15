@@ -10,7 +10,7 @@
 %
 %   版本和时间信息
 %
-\def\versionofgbtstyle{2026/04/11 v1.1w}
+\def\versionofgbtstyle{2026/06/10 v1.1x}
 \def\versionofbiblatex{\abx@version}
 \ProvidesFile{gb7714-2025ay.bbx}[\versionofgbtstyle biblatex bibliography style]
 %\RequireBiber[3]%显式指定用biber后端，当用bibtex时会报错，但其实不会影响编译，只是采用bibtex后无法达成格式需求
@@ -76,6 +76,7 @@
     \DeclareDatamodelFields[type=field,datatype=integer]{refnumber}
     \DeclareDatamodelFields[type=field,datatype=literal]{scale}%表示地图比例
     \DeclareDatamodelFields[type=field,datatype=literal]{dimensions}%表示地图大小
+    \DeclareDatamodelFields[type=field,datatype=verbatim]{cstr}%表示cstr，类似于doi
 
 
     %因为biblatex更新3.14版本以后，biber对于为声明数据模型的条目类型
@@ -787,17 +788,12 @@
       eventdate =gb7714-2015,%iso
     }
 
-
-%
-%   针对3.13<=biblatex版本的选项设置，因为内容有限，所以不再增加版本区分，而用时间直接判断
-%
-%   解决国标中“王临慧, 2010a.”和“王临慧, 等, 2010b.”的问题
-%   在没有这个选项之前无法加上a和b
-%   v1.0s，20190828
-\@ifpackagelater{biblatex}{2019/08/16}{%
-    \ExecuteBibliographyOptions{%
-        nohashothers=false}}{}
-
+    %增加一个选项用于去掉期刊名中缩写的点
+    \newcommand{\journalshortdot}{\adddot}
+    \DeclareBibliographyOption{gbrmabbrdot}[false]{%
+        \ifstrequal{#1}{false}{}{\renewcommand{\journalshortdot}{}}
+    }
+    \ExecuteBibliographyOptions{gbrmabbrdot}
 
 %=====================================================================
 %设置本地化字符串
@@ -980,11 +976,11 @@
         \step[fieldsource=address,final]
         \step[fieldset=location,origfieldval]
         }
-        \map{%eventtitle映射为booktitle
+        \map{%利用eventtitle设置booktitle便于后面采用booktitle统一输出
             \pertype{inproceedings}
-            \pertype{collection}
+            \pertype{incollection}
             \step[fieldsource=eventtitle,final]
-            \step[fieldsource=eventtitle, fieldtarget=booktitle]
+            \step[fieldset=booktitle, origfieldval]
         }
         \map{%eventtitle映射为publisher
             \pertype{proceedings}
@@ -1107,20 +1103,28 @@
             \step[typesource=legislation, typetarget=archive]
             \step[fieldset=entrysubtype, fieldvalue=legislation]%
             }
+        \map{
+            \pertype{letter}
+            \step[typesource=letter, typetarget=archive]
+            \step[fieldset=entrysubtype, fieldvalue=letter]%
+            }
         \map{%对应增加的一个档案类型archive确定文献类型标识符
             \pertype{archive}
             \step[fieldset=usera, fieldvalue={A}]
             \step[fieldsource=publisher] %有时会把publisher和institution混淆，处理后使用institution
             \step[fieldset=institution, origfieldval]
             }
-        \map{%根据archiveprefix域信息设置备选类型misc的类型标识符为PP
+        \map{%
+          \step[fieldsource=archiveprefix, fieldtarget=eprinttype]
+        }
+        \map{%根据eprinttype域信息设置备选类型misc的类型标识符为PP
             \pertype{misc}
-            \step[fieldsource=archiveprefix,final]%
+            \step[fieldsource=eprinttype,final]%
             \step[fieldset=usera, fieldvalue={PP}]%
             }
-        \map{%根据archiveprefix域信息处理备选类型misc
+        \map{%根据eprinttype域信息处理备选类型misc
             \pertype{misc}
-            \step[fieldsource=archiveprefix,match=\regexp{(a|A)(r|R)(x|X)(i|I)(v|V)},final]%
+            \step[fieldsource=eprinttype,match=\regexp{(a|A)(r|R)(x|X)(i|I)(v|V)},final]%
             \step[fieldset=entrysubtype,fieldvalue={preprint}]
             \step[notfield=urldate,final]%
             \step[fieldset=urldate, fieldvalue={\the\year-01-01}]%
@@ -1539,7 +1543,7 @@
             \map{%
             \pertype{preprint}
             \pertype{misc}
-            \step[fieldsource=archiveprefix,final]%转变为online
+            \step[fieldsource=eprinttype,final]%转变为online
             \step[fieldset=institution,origfieldval]
             }
             \map{%因为misc类型本身就是没有类型，而不像其它文献有明确的类型，所以
@@ -1635,6 +1639,22 @@
         \map[overwrite]{%&符号处理
             \step[fieldsource={howpublished}, match=\regexp{([^\\])\x26}, replace=\regexp{$1\\\x26}]
             }
+        \map[overwrite,foreach={journal,journaltitle,shortjournal}]{%期刊名中的缩写点处理
+            \step[fieldsource=\regexp{$MAPLOOP}, match=\regexp{\.}, replace=\regexp{\\journalshortdot\{\} }]
+            }
+        % 7.9.1 获取和访问路径中含永久标识符时，可不重复著录永久标识符。
+        \map{
+            \step[fieldsource=cstr, match=\regexp{(.+)}, final]
+            \step[fieldsource=url, match=\regexp{$1}, final]
+            \step[fieldset=cstr, null]
+            \step[fieldset=doi, null]
+        }
+        \map{
+            \step[fieldsource=doi, match=\regexp{(.+)}, final]
+            \step[fieldsource=url, match=\regexp{$1}, final]
+            \step[fieldset=cstr, null]
+            \step[fieldset=doi, null]
+        }
     }
 }
 
@@ -2185,9 +2205,14 @@
 \setcounter{biburlucpenalty}{100} %让url可以在大写字母后断行
 \setcounter{biburllcpenalty}{100} %让url可以在小写字母后断行
 \DeclareFieldFormat{doi}{%
-  \rmfamily{DOI}\addcolon\space
+  DOI\addcolon\addthinspace%
   \ifhyperref
     {\href{https://doi.org/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+\DeclareFieldFormat{cstr}{%
+  CSTR\addcolon\addthinspace%
+  \ifhyperref
+    {\href{https://cstr.cn/#1}{\nolinkurl{#1}}}
     {\nolinkurl{#1}}}
 %
 %   标题的字母大小写格式修改
@@ -2875,7 +2900,20 @@
   \iftoggle{bbx:doi}
     {\printfield{doi}}
     {}}
+%
+%   增加cstr、doi+cstr格式
+%    2026.04.14 byhzz
+\newbibmacro*{cstr}{%
+  \iftoggle{bbx:doi}
+    {\printfield{cstr}}
+    {}}
+\newbibmacro*{doi+cstr}{%
+  \iftoggle{bbx:doi}
+    {\iffieldundef{doi}
+        {\printfield{cstr}}{\printfield{doi}}}
+    {}}
 
+%
 %
 %   调整页码的格式，即chapter+pages格式
 %
@@ -3513,7 +3551,14 @@ test {\ifentrytype{conference}}
      \printfield{series}%
      \setunit{\innerspacedelim}}%
   \usebibmacro{periodical+issue}%将issue调整到上面来，并修改
-\iffieldundef{number}{}{%%进一步处理有范围的数字
+\ifboolexpr{ test {\iffieldundef{volume}} and test {\iffieldundef{number}}}
+{%
+\iffieldundef{year}{}{%
+\printfield{year}%
+  \periodicaldaterangesep%
+  \iffieldundef{endyear}{}{\printfield{endyear}}}%
+}%
+{\iffieldundef{number}{}{%%进一步处理有范围的数字
   \multinumberparser{\thefield{number}}}%
   \iffieldundef{volume}%
   {\printfield{year}%
@@ -3532,7 +3577,7 @@ test {\ifentrytype{conference}}
   \setunit{\periodicaldatevoldelim}%将冒号修改为逗号
   \printtext{\multivolsecond}%
   \printtext{\mkbibparens{\multinumbersecond}}}%
-  }%
+  }}%
   \usebibmacro{issue}%
   \newunit}
 
@@ -3645,8 +3690,8 @@ test {\ifentrytype{conference}}
 \newunit%
 \usebibmacro{doi+eprint+url}%从下面移动到上面来，因为gbt2015的url需直接放在页码后面。
   \newunit\newblock%
-  \printfield{pagetotal}%
-  \newunit\newblock%
+  %\printfield{pagetotal}%
+  %\newunit\newblock%
   \iftoggle{bbx:isbn}
     {\printfield{isbn}}
     {}%
@@ -3773,6 +3818,7 @@ test {\ifentrytype{conference}}
   \ifboolexpr{not test {\iflistundef{publisher}} and test {\iffieldundef{url}}}
   {\usebibmacro{date}}
   {\usebibmacro{newsdate}}%
+  \usebibmacro{note+pages}%
   \usebibmacro{doi+eprint+url}%
   \newunit\newblock
   \usebibmacro{addendum+pubstate}%
@@ -3810,7 +3856,8 @@ test {\ifentrytype{conference}}
 % \printlist{organization}%
  \printlist{institution}%
 \iffieldundef{entrysubtype}{\newunit\usebibmacro{modifydate}}
-    {\ifboolexpr{test {\iffieldequalstr{entrysubtype}{archive}} or test {\iffieldequalstr{entrysubtype}{report}}}
+    {\ifboolexpr{test {\iffieldequalstr{entrysubtype}{archive}} or test {\iffieldequalstr{entrysubtype}{letter}} or
+    test {\iffieldequalstr{entrysubtype}{report}}}
         {\newunit\usebibmacro{newsdate}}
         {\ifboolexpr{test {\iffieldequalstr{entrysubtype}{dataset}} or test {\iffieldequalstr{entrysubtype}{preprint}}}
           {\usebibmacro{modifydate}}{\newunit\usebibmacro{modifydate}}}}%
@@ -3822,7 +3869,9 @@ test {\ifentrytype{conference}}
 %    {\iffieldequalstr{entrysubtype}{archive}{\usebibmacro{newsdate}}{\usebibmacro{modifydate}}}%
 %}%带括号的日期和不带括号的日期
 \iffieldundef{entrysubtype}{\usebibmacro{online:url+urldate}}
-    {\iffieldequalstr{entrysubtype}{report}{\newunit\usebibmacro{url}}{\usebibmacro{online:url+urldate}}}%
+    {\iffieldequalstr{entrysubtype}{report}{\usebibmacro{chapter+pages}\newunit\usebibmacro{url}}{\usebibmacro{online:url+urldate}}}%
+  \newunit\newblock
+  \usebibmacro{doi+cstr}%
   \newunit\newblock
   \iftoggle{bbx:eprint}
     {\usebibmacro{eprint}}
@@ -3870,8 +3919,8 @@ test {\ifentrytype{conference}}
   \usebibmacro{publisher+location+date}%
   \usebibmacro{chapter+pages}%
   \usebibmacro{doi+eprint+url}%
-  \newunit
-  \printfield{pagetotal}%
+  %\newunit
+  %\printfield{pagetotal}%
   \newunit\newblock
   \iftoggle{bbx:isbn}
     {\printfield{isrn}}
@@ -3922,6 +3971,9 @@ test {\ifentrytype{conference}}
    or test {\ifentrytype{map}}}%
     {}{\usebibmacro{modifydate}}}%修改或更新日期为带括号的时间
   \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \iffieldundef{cstr}{}
+  {\usebibmacro{cstr}}%
   %\newunit
   %\printfield{pagetotal}%
   \newunit\newblock
@@ -4021,7 +4073,9 @@ test {\ifentrytype{conference}}
   \printfield{edition}%
   \newunit\newblock
   %\printfield{note}%
-  \ifentrytype{inproceedings}{\conferencedatdelim}{}%
+  %当存在eventtitle会议名，而不是会议录题名booktitle时，处理标点。
+  \ifboolexpr{(test {\ifentrytype{inproceedings}} or test {\ifentrytype{incollection}} )
+        and not test {\iffieldundef{eventtitle}}}{\conferencedatdelim}{}%
   \usebibmacro{publisher+location+date}}
 
 %
