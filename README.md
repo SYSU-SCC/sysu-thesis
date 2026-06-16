@@ -103,8 +103,7 @@
 4. 在 [GitHub Issues](https://github.com/ustctug/ustcthesis/issues)中搜索该问题的关键词；
 5. 在 [GitHub Issues](https://github.com/1FCENdoge/sysuthesis/issues)中提出新 issue。
 
-如果导师或者院系在格式上有额外的要求，请将老师的邮件截图放在 issue 中或者在QQ群中反馈。作者会考虑增加接口以便修改格式。QQ群号：929324613，或者扫描下方二维码：
-![qqgroup](image/qqgroup.jpg)
+如果导师或者院系在格式上有额外的要求，请将老师的邮件截图放在 issue 中或者在QQ群中反馈。作者会考虑增加接口以便修改格式。QQ群号：929324613。
 
 ## 更多资料
 
