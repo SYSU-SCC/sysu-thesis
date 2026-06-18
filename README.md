@@ -20,7 +20,14 @@
 
 ## Star History:
 
-[![Stargazers over time](https://starchart.cc/SYSU-SCC/sysu-thesis.svg?variant=adaptive)](https://starchart.cc/SYSU-SCC/sysu-thesis)
+<a href="https://www.star-history.com/?repos=SYSU-SCC%2Fsysu-thesis&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=SYSU-SCC/sysu-thesis&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=SYSU-SCC/sysu-thesis&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=SYSU-SCC/sysu-thesis&type=date&legend=top-left" />
+ </picture>
+</a>
+<!-- [![Stargazers over time](https://starchart.cc/SYSU-SCC/sysu-thesis.svg?variant=adaptive)](https://starchart.cc/SYSU-SCC/sysu-thesis) -->
 
 ## 下载地址
 
