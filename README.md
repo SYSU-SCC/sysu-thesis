@@ -20,7 +20,14 @@
 
 ## Star History:
 
-[![Stargazers over time](https://starchart.cc/SYSU-SCC/sysu-thesis.svg?variant=adaptive)](https://starchart.cc/SYSU-SCC/sysu-thesis)
+<a href="https://www.star-history.com/?repos=SYSU-SCC%2Fsysu-thesis&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=SYSU-SCC/sysu-thesis&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=SYSU-SCC/sysu-thesis&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=SYSU-SCC/sysu-thesis&type=date&legend=top-left" />
+ </picture>
+</a>
+<!-- [![Stargazers over time](https://starchart.cc/SYSU-SCC/sysu-thesis.svg?variant=adaptive)](https://starchart.cc/SYSU-SCC/sysu-thesis) -->
 
 ## 下载地址
 
@@ -103,7 +110,8 @@
 4. 在 [GitHub Issues](https://github.com/ustctug/ustcthesis/issues)中搜索该问题的关键词；
 5. 在 [GitHub Issues](https://github.com/1FCENdoge/sysuthesis/issues)中提出新 issue。
 
-如果导师或者院系在格式上有额外的要求，请将老师的邮件截图放在 issue 中或者在QQ群中反馈。作者会考虑增加接口以便修改格式。QQ群号：929324613。
+如果导师或者院系在格式上有额外的要求，请将老师的邮件截图放在 issue 中或者在QQ群中反馈。作者会考虑增加接口以便修改格式。QQ群号：929324613，或者扫描下方二维码：
+<img width="1284" height="2283" alt="qq_group" src="https://github.com/user-attachments/assets/963d2e25-f344-4e0b-9b11-3c8e583770ae" />
 
 ## 更多资料
 
