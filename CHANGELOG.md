@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `sysuthesis-authoryear.bst`、`sysuthesis-numerical.bst`：修正 `shortjournal` 缺失时的报错（[ustctug/ustcthesis#511](https://github.com/ustctug/ustcthesis/issues/511)）。
+
 ## [2.1.1] - 2026-06-15
 
 ### Changed
