@@ -1,5 +1,5 @@
 %%
-%% This is file `variants/gbt7714-2025-numeric.bst',
+%% This is file `gbt7714-2025-numeric.bst',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
