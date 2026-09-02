@@ -583,7 +583,7 @@
     %
     %增加一个处理佚名或noauthor的控制选项
     \DeclareBibliographyOption{gbnoauthor}[true]{%
-      \ifstrequal{#1}{false}{}{\dealnoathor}}
+      \ifstrequal{#1}{false}{}{\dealnoauthor}}
     %\ExecuteBibliographyOptions{gbnoauthor=true}%对于需要展开较早(展开层级优先)的选项，这一执行无效，只能用宏包加载时给出的选项。
 
 
@@ -614,7 +614,7 @@
     %   增加控制析出文献来源前的标点符号//输出的选项
     %   v1.0k, 2018.04.20,added in  by hzz
     \newtoggle{bbx:gbpunctin}
-    \DeclareBibliographyOption{gbpunctin}[false]{%
+    \DeclareBibliographyOption{gbpunctin}[true]{%
         \settoggle{bbx:gbpunctin}{#1}}
     \ExecuteBibliographyOptions{gbpunctin}
 
@@ -836,7 +836,7 @@
     \DefineBibliographyStrings{english}{
         bibliography     = {\str@bibliography},
         references       = {\str@references},
-        bytranslatorcn= {\str@bytranslator\adddot}, %将trans. by 改成 译
+        bytranslatorcn= {\str@bytranslator}, %将trans. by 改成 译
         byeditor={\iffieldequalstr{userd}{chinese}{\str@editorcn}{ed\adddotspace by}},
         and         = {\addcomma},%将第2和3人名见的and符号改成 逗号，用\finalnamedelim命令也可以定义，参见3.9.1节
         andcn       = {\addcomma},%\str@andcn\ and本地化字符串的中文对应词
@@ -1069,6 +1069,7 @@
             \step[fieldset=usera, fieldvalue={DS}]%
             \step[fieldsource=publisher] %有时会把publisher和institution混淆，处理后使用institution
             \step[fieldset=institution, origfieldval]
+            \step[fieldset=entrysubtype,fieldvalue={dataset}]
             }
         \map{%对应增加的一个软件类型software确定文献类型标识符
             \pertype{software}
@@ -1081,16 +1082,17 @@
             \step[fieldset=usera, fieldvalue={CM}]%
             \step[fieldsource=publisher] %有时会把publisher和institution混淆，处理后使用institution
             \step[fieldset=institution, origfieldval]
-            }
-        \map{%舆图类型map的scale表示尺寸
-            \pertype{map}
-            \step[fieldsource=scale,final] %有时会把publisher和institution混淆，处理后使用institution
-            \step[fieldset=addendum, origfieldval]
+            \step[fieldset=entrysubtype, fieldvalue=map]
             }
         \map{%舆图类型map的dimensions表示尺寸
             \pertype{map}
-            \step[fieldsource=dimensions,final] %有时会把publisher和institution混淆，处理后使用institution
+            \step[fieldsource=dimensions,final]
             \step[fieldset=addendum, origfieldval]
+            }
+        \map{%
+            \pertype{map}
+            \step[fieldsource=edition,final] %
+            \step[fieldset=version, origfieldval]
             }
         \map{%对应增加的一个预印本类型preprint确定文献类型标识符
             \pertype{preprint}
@@ -1169,6 +1171,12 @@
             \pertype{patent}
             \step[fieldset=usera, fieldvalue={P}]
             }
+        \map[overwrite]{
+            \pertype{patent}
+            \step[fieldsource=holder, final]
+            \step[fieldset=author, origfieldval]
+            \step[fieldset=holder, null]
+            }
         \map{
             \pertype{inproceedings}
             \pertype{conference}%兼容老的conference类型
@@ -1184,7 +1192,7 @@
             }
         \map{
             \pertype{incollection}
-            \step[fieldset=usera, fieldvalue={G}]
+            \step[fieldset=usera, fieldvalue={M}]%20260706从标识符G转为M
             \step[fieldsource=institution]%有时会把publisher和institution混淆，处理后使用publisher
             \step[fieldset=publisher, origfieldval]
             }
@@ -1503,7 +1511,6 @@
             \pertype{dataset}
             \step[fieldsource=journal,final]
             \step[typesource=dataset,typetarget=article]
-            \step[fieldset=entrysubtype,fieldvalue={dataset}]
             }
             \map{%再转online
             \pertype{dataset}
@@ -1662,7 +1669,7 @@
 %   佚名/noauthor的处理
 %
 %   原理方法:利用样式层的动态数据修改实现
-\def\dealnoathor{
+\def\dealnoauthor{
         \DeclareStyleSourcemap{
             \maps[datatype=bibtex]{
                 \map{%默认情况下将空缺作者的中文文献设置为佚名
@@ -1672,6 +1679,10 @@
                 \map{%默认情况下将空缺作者的英文文献设置为A{non}
                     \step[fieldsource=language,match={english},final]
                     \step[fieldset=author, fieldvalue={A{non}}]%noauthor换成Anon，同时为避免大写还加了{}
+                }
+                \map{%如果author或者editor或者translator存在，那么设置namea便于后面判断。
+                    \step[fieldsource=author,final]
+                    \step[fieldset=namea,origfieldval]
                 }
             }
         }
@@ -2120,7 +2131,7 @@
 %    2021.08.19，增加出版地和出版社之间的标点，hzz
 \newcommand{\publocpunct}{\addcolon\addspace}%出版项中：出版社地址后面的标点
 %\renewcommand{\relateddelim}{}%\par
-
+\DeclareDelimFormat[bib]{nonameyeardelim}{\addcomma\addspace} %标题内容和文献标识符之间的标点
 %=====================================================================
 %   修改域的格式，重定义域的输出宏
 %=====================================================================
@@ -2479,7 +2490,7 @@
     {\printtext[title]{\bibtitlefont%增加字体控制命令
         %标准的号放前面
         \ifentrytype{standard}{\ifboolexpr{(not test{\iffieldundef{number}})}%
-                {\printfield[titlecase]{number}\quad\printfield[titlecase]{title}}%
+                {\printfield{number}\quad\printfield[titlecase]{title}}%
                 {\printfield[titlecase]{title}}}%
             {\printfield[titlecase]{title}}%
        \ifboolexpr{test {\iffieldundef{subtitle}}}%增加了对子标题的判断
@@ -3798,14 +3809,14 @@ test {\ifentrytype{conference}}
   \newunit\newblock
   \usebibmacro{byauthor}}%
   \newunit\newblock
-  \printfield{type}%
-  \setunit*{\innerspacedelim}%
+%  \printfield{type}%
+%  \setunit*{\innerspacedelim}%
   %\printfield{number}%已放到patenttitle中处理
-  \iflistundef{location}
-    {}
-    {\setunit*{\innerspacedelim}%
-     \printtext{%[parens]
-       \printlist[][-\value{listtotal}]{location}}}%
+%  \iflistundef{location}
+%    {}
+%    {\setunit*{\innerspacedelim}%
+%     \printtext{%[parens]
+%       \printlist[][-\value{listtotal}]{location}}}%
   \ifboolexpr{not test {\iflistundef{publisher}} and test {\iffieldundef{url}}}%
     {\setunit*{\subtitlepunct}%
      \printtext{%[parens]
@@ -3839,7 +3850,7 @@ test {\ifentrytype{conference}}
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
   \usebibmacro{author/editor+others/translator+others}%
-\ifnameundef{namea}{}{\setunit{\labelnamepunct}\newblock}%这一段用于去除作者不存在时多出的标点
+    \ifnameundef{namea}{}{\setunit{\labelnamepunct}\newblock}%这一段用于去除作者不存在时多出的标点
   \usebibmacro{title}%
   \iftoggle{bbx:gbstrict}{}{%
   \newunit%
@@ -3861,15 +3872,9 @@ test {\ifentrytype{conference}}
         {\newunit\usebibmacro{newsdate}}
         {\ifboolexpr{test {\iffieldequalstr{entrysubtype}{dataset}} or test {\iffieldequalstr{entrysubtype}{preprint}}}
           {\usebibmacro{modifydate}}{\newunit\usebibmacro{modifydate}}}}%
-%  \newunit\newblock
-%\ifboolexpr{%
-%test{\iffieldundef{day}} and test{\iffieldundef{endday}} and test{\iffieldundef{eventday}}%
-%}{\usebibmacro{date}}%
-%{\iffieldundef{entrysubtype}{\usebibmacro{modifydate}}%
-%    {\iffieldequalstr{entrysubtype}{archive}{\usebibmacro{newsdate}}{\usebibmacro{modifydate}}}%
-%}%带括号的日期和不带括号的日期
 \iffieldundef{entrysubtype}{\usebibmacro{online:url+urldate}}
-    {\iffieldequalstr{entrysubtype}{report}{\usebibmacro{chapter+pages}\newunit\usebibmacro{url}}{\usebibmacro{online:url+urldate}}}%
+    {\iffieldequalstr{entrysubtype}{report}{\usebibmacro{chapter+pages}\newunit\usebibmacro{url}}
+    {\iffieldequalstr{entrysubtype}{map}{\newunit\usebibmacro{url}}{\usebibmacro{online:url+urldate}}}}%
   \newunit\newblock
   \usebibmacro{doi+cstr}%
   \newunit\newblock
@@ -4185,6 +4190,8 @@ test {\ifentrytype{conference}}
     \iffieldequalstr{userd}{chinese}{\gbpunctcomma}{\gbpunctcommalanen}}
 \DeclareDelimFormat{bibpagespunct}{%
     \iffieldequalstr{userd}{chinese}{\unspace\gbpunctcolon}{\unspace\gbpunctcolonlanen}}
+\DeclareDelimFormat[bib]{nonameyeardelim}{%
+    \iffieldequalstr{userd}{chinese}{\gbpunctcomma}{\gbpunctcommalanen}} %标题内容和文献标识符之间的标点
 \renewcommand{\aftertransdelim}{\gbpunctcomma}
 \renewcommand{\beforetransdelim}{%
   \iffieldequalstr{userd}{chinese}{\gbpunctcomma}{\gbpunctcommalanen}}
