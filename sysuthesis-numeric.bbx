@@ -597,7 +597,7 @@
     %
     %   原理方法:在顺序编码制中不需要使用,为与作者年制的兼容性考虑,这里也增加避免报错
     \DeclareBibliographyOption{gbnoauthor}[true]{%
-      \ifstrequal{#1}{false}{}{\dealnoathor}}
+      \ifstrequal{#1}{false}{}{\dealnoauthor}}
 
 
     %
@@ -627,7 +627,7 @@
     %   增加控制析出文献来源前的标点符号//输出的选项
     %   v1.0k, 2018.04.20,added in  by hzz
     \newtoggle{bbx:gbpunctin}
-    \DeclareBibliographyOption{gbpunctin}[false]{%
+    \DeclareBibliographyOption{gbpunctin}[true]{%
         \settoggle{bbx:gbpunctin}{#1}}
     \ExecuteBibliographyOptions{gbpunctin}
 
@@ -1099,6 +1099,7 @@
             \step[fieldset=usera, fieldvalue={DS}]%
             \step[fieldsource=publisher] %有时会把publisher和institution混淆，处理后使用institution
             \step[fieldset=institution, origfieldval]
+            \step[fieldset=entrysubtype,fieldvalue={dataset}]
             }
         \map{%对应增加的一个软件类型software确定文献类型标识符
             \pertype{software}
@@ -1111,11 +1112,17 @@
             \step[fieldset=usera, fieldvalue={CM}]%
             \step[fieldsource=publisher] %有时会把publisher和institution混淆，处理后使用institution
             \step[fieldset=institution, origfieldval]
+            \step[fieldset=entrysubtype, fieldvalue=map]
             }
         \map{%舆图类型map的dimensions表示尺寸
             \pertype{map}
-            \step[fieldsource=dimensions,final] %有时会把publisher和institution混淆，处理后使用institution
+            \step[fieldsource=dimensions,final] %
             \step[fieldset=addendum, origfieldval]
+            }
+        \map{%
+            \pertype{map}
+            \step[fieldsource=edition,final] %
+            \step[fieldset=version, origfieldval]
             }
         \map{%对应增加的一个预印本类型preprint确定文献类型标识符
             \pertype{preprint}
@@ -1194,6 +1201,12 @@
             \pertype{patent}
             \step[fieldset=usera, fieldvalue={P}]
             }
+        \map[overwrite]{
+            \pertype{patent}
+            \step[fieldsource=holder, final]
+            \step[fieldset=author, origfieldval]
+            \step[fieldset=holder, null]
+            }
         \map{
             \pertype{inproceedings}
             \pertype{conference}%兼容老的conference类型
@@ -1209,7 +1222,7 @@
             }
         \map{
             \pertype{incollection}
-            \step[fieldset=usera, fieldvalue={G}]
+            \step[fieldset=usera, fieldvalue={M}]%20260706从标识符G转为M
             \step[fieldsource=institution]%有时会把publisher和institution混淆，处理后使用publisher
             \step[fieldset=publisher, origfieldval]
             }
@@ -1558,7 +1571,6 @@
             \pertype{dataset}
             \step[fieldsource=journal,final]
             \step[typesource=dataset,typetarget=article]
-            \step[fieldset=entrysubtype,fieldvalue={dataset}]
             }
             \map{%再转online
             \pertype{dataset}
@@ -1569,7 +1581,6 @@
             %\step[notfield=address,final]%当address不存在则继续
             \step[fieldsource=url,final]%地址不存在且存在url那么转变为online
             \step[typesource=dataset,typetarget=online]
-            \step[fieldset=entrysubtype,fieldvalue={dataset}]
             }
             \map{%
             \pertype{software}
@@ -1703,7 +1714,7 @@
 %   佚名/noauthor的处理
 %
 %   原理方法:利用样式层的动态数据修改实现
-\def\dealnoathor{
+\def\dealnoauthor{
         \DeclareStyleSourcemap{
             \maps[datatype=bibtex]{
                 \map{%默认情况下将空缺作者的中文文献设置为佚名
@@ -1713,6 +1724,10 @@
                 \map{%默认情况下将空缺作者的英文文献设置为A{non}
                     \step[fieldsource=language,match={english},final]
                     \step[fieldset=author, fieldvalue={A{non}}]%noauthor换成Anon，同时为避免大写还加了{}
+                }
+                \map{%如果author或者editor或者translator存在，那么设置namea便于后面判断。
+                    \step[fieldsource=author,final]
+                    \step[fieldset=namea,origfieldval]
                 }
             }
         }
@@ -2441,7 +2456,7 @@
     {\printtext[title]{\bibtitlefont%增加字体控制命令
         %标准的号放前面
         \ifentrytype{standard}{\ifboolexpr{(not test{\iffieldundef{number}})}%
-                {\printfield[titlecase]{number}\quad\printfield[titlecase]{title}}%
+                {\printfield{number}\quad\printfield[titlecase]{title}}%
                 {\printfield[titlecase]{title}}}%
             {\printfield[titlecase]{title}}%
        \ifboolexpr{test {\iffieldundef{subtitle}}}%增加了对子标题的判断
@@ -3604,14 +3619,14 @@ incollection,proceedings,inproceedings]{number}{%
   \newunit\newblock
   \usebibmacro{byauthor}}%
   \newunit\newblock
-  \printfield{type}%
-  \setunit*{\innerspacedelim}%
-  %\printfield{number}%已放到patenttitle中处理
-  \iflistundef{location}
-    {}
-    {\setunit*{\innerspacedelim}%
-     \printtext{%[parens]
-       \printlist[][-\value{listtotal}]{location}}}%
+%  \printfield{type}%
+%  \setunit*{\innerspacedelim}%
+%  %\printfield{number}%已放到patenttitle中处理
+%  \iflistundef{location}
+%    {}
+%    {\setunit*{\innerspacedelim}%
+%     \printtext{%[parens]
+%       \printlist[][-\value{listtotal}]{location}}}%
   \ifboolexpr{not test {\iflistundef{publisher}} and test {\iffieldundef{url}}}%
     {\setunit*{\subtitlepunct}%
      \printtext{%[parens]
@@ -3669,7 +3684,7 @@ incollection,proceedings,inproceedings]{number}{%
           {\usebibmacro{modifydate}}{\newunit\usebibmacro{modifydate}}}}%
 \iffieldundef{entrysubtype}{\usebibmacro{online:url+urldate}}
     {\iffieldequalstr{entrysubtype}{report}{\usebibmacro{chapter+pages}\newunit\usebibmacro{url}}
-        {\usebibmacro{online:url+urldate}}}%
+        {\iffieldequalstr{entrysubtype}{map}{\newunit\usebibmacro{url}}{\usebibmacro{online:url+urldate}}}}%
   \newunit\newblock
   \usebibmacro{doi+cstr}%
   \newunit\newblock
